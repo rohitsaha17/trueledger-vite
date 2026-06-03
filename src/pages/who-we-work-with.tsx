@@ -4,7 +4,6 @@ import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionDivider } from "@/components/shared/section-divider";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   ChevronRight,
   Building2,
@@ -66,7 +65,8 @@ const floatingBadges = [
 /*  Hero Abstract SVG Illustration                                      */
 /* ================================================================== */
 
-function HeroIllustration() {
+/** @internal Kept for potential future use */
+export function HeroIllustration() {
   return (
     <div className="relative w-full h-full min-h-[320px] lg:min-h-[420px] flex items-center justify-center">
       {/* Abstract geometric SVG */}

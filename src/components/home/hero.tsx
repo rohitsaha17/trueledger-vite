@@ -239,7 +239,7 @@ function Globe() {
 
         const currentPhi =
           phiRef.current + pointerInteractionMovement.current;
-        const containerW = container.offsetWidth || 560;
+        const containerW = container?.offsetWidth || 560;
 
         // Update cobe globe
         globe.update({

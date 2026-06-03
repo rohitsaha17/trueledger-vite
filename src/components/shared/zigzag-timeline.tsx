@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -108,7 +107,7 @@ function FinishConnector({ fromRight }: { fromRight: boolean }) {
 
 export function ZigzagTimeline({
   steps,
-  eyebrow,
+  eyebrow: _eyebrow,
   title,
   description,
   className,

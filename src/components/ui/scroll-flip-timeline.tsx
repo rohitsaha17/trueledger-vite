@@ -44,7 +44,7 @@ const cardVariants = {
     rotateZ: 0,
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] },
+    transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] as const },
   },
   exit: (dir: number) => ({
     rotateY: dir > 0 ? 90 : -90,
@@ -52,7 +52,7 @@ const cardVariants = {
     rotateZ: dir > 0 ? 2 : -2,
     scale: 0.85,
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.55, 0, 1, 0.45] },
+    transition: { duration: 0.5, ease: [0.55, 0, 1, 0.45] as const },
   }),
 };
 

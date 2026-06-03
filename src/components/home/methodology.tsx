@@ -1,4 +1,3 @@
-import { AnimatedSection } from "@/components/shared/animated-section";
 import {
   StackingCards,
   type StackingProject,

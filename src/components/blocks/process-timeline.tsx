@@ -114,7 +114,7 @@ ProcessCardBody.displayName = "ProcessCardBody"
 /*  Process Card (scroll-driven horizontal reveal)                      */
 /* ------------------------------------------------------------------ */
 
-interface ProcessCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ProcessCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onDragOver" | "onAnimationStart"> {
   variant?: "indigo" | "brand" | "solid" | "light"
   size?: "sm" | "md" | "lg" | "xl"
   itemsLength: number

@@ -20,7 +20,7 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
   },
 };
 
@@ -29,7 +29,7 @@ const fadeUpSlow = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as const },
   },
 };
 
@@ -43,7 +43,7 @@ interface ServicePageHeroProps {
 }
 
 export function ServicePageHero({
-  eyebrow,
+  eyebrow: _eyebrow,
   title,
   description,
   imageSrc,
