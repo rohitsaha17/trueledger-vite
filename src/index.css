@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-heading: "Clash Display", "Space Grotesk", sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  /* shadcn/ui semantic tokens mapped to mauve palette */
+  --color-background: #FFFFFF;
+  --color-foreground: #2D2630;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #2D2630;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #2D2630;
+  --color-primary: #7C4A76;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #F4E9F2;
+  --color-secondary-foreground: #7C4A76;
+  --color-muted: #FAF5F9;
+  --color-muted-foreground: #6F6675;
+  --color-accent: #F4E9F2;
+  --color-accent-foreground: #7C4A76;
+  --color-destructive: #ef4444;
+  --color-border: #ECDEEA;
+  --color-input: #ECDEEA;
+  --color-ring: #C183B8;
+
+  /* Brand tokens */
+  --color-brand: #C183B8;
+  --color-brand-dark: #7C4A76;
+  --color-brand-soft: #F4E9F2;
+  --color-brand-tint: #FAF5F9;
+  --color-ink: #2D2630;
+  --color-ink-muted: #6F6675;
+  --color-coral: #EA8A6A;
+  --color-surface: #FFFFFF;
+  --color-border-brand: #ECDEEA;
+
+  --radius-sm: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+}
+
+::selection {
+  background-color: var(--color-brand-soft);
+  color: var(--color-brand-dark);
+}

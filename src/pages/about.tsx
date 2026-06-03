@@ -1,0 +1,565 @@
+import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/shared/animated-section";
+import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { ScrollFlipTimeline, type TimelineStep } from "@/components/ui/scroll-flip-timeline";
+import { Button } from "@/components/ui/button";
+import {
+  ChevronRight,
+  Quote,
+  ShieldCheck,
+  Globe,
+  Cpu,
+  Users,
+  Award,
+  Building2,
+  Lock,
+  Wifi,
+  Eye,
+  Server,
+  Camera,
+  HardDrive,
+  Printer,
+  Mail,
+  KeyRound,
+  UserCheck,
+} from "lucide-react";
+
+/* Inline LinkedIn icon */
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+/* ================================================================== */
+/*  Leadership data                                                     */
+/* ================================================================== */
+
+const leaders = [
+  {
+    name: "Aseem Chawla",
+    role: "Mentor and Advisor",
+    bio: "Aseem Chawla is a distinguished Senior Advocate and Fellow Chartered Accountant, with over two decades of expertise in tax law, international taxation, corporate advisory, and regulatory compliance. A Harvard Kennedy School alumnus, he is consistently ranked among the top legal experts in the Asia-Pacific region. Aseem has authored several respected publications on tax policy and frequently speaks at global forums, providing invaluable guidance to the leadership at TrueLedger Consulting.",
+    linkedin: "https://www.linkedin.com/in/aseem-chawla/",
+    image: "/images/team/aseem-chawla.jpg",
+  },
+  {
+    name: "CA Manish Aggarwal",
+    role: "Co-Founder & Partner",
+    bio: "Manish Aggarwal is a Chartered Accountant and legal professional with extensive international tax experience, specializing in cross-border taxation, transfer pricing, and global mobility. Having worked with PwC, EY, and Deloitte, Manish brings hands-on experience managing tax strategies for companies across North America, Europe, Asia, and the Middle East. He is a thought leader in tax compliance and outsourcing solutions, and actively contributes to professional publications and forums.",
+    linkedin: "https://www.linkedin.com/in/camanishtax/",
+    image: "/images/team/manish-aggarwal.png",
+  },
+  {
+    name: "CA Hrithvik Raj",
+    role: "Co-Founder & Partner",
+    bio: "CA Hrithvik Raj is a Chartered Accountant with over 12 years of experience in global accounting, auditing, and financial advisory. He has led risk-based assurance and financial reporting for clients across the USA, France, Singapore, and Bahrain. With expertise in industries such as manufacturing, healthcare, IT, and e-commerce, Hrithvik excels in delivering accurate and scalable solutions. His strong focus on compliance, internal controls, and international standards makes him a trusted advisor for global businesses.",
+    linkedin: "https://www.linkedin.com/in/hrithvik-raj-90358895/",
+    image: "/images/team/hrithvik-raj.jpg",
+  },
+];
+
+/* ================================================================== */
+/*  Why TrueLedger data                                                 */
+/* ================================================================== */
+
+const whyCards = [
+  {
+    icon: Award,
+    title: "Senior professionals, proven across the world's best firms",
+    description:
+      "Our team brings decades of hands-on experience from Big 4 firms, MNCs, and GCCs — across the US, India, Canada, Singapore, and Australia. Every engagement is led and reviewed by senior professionals who have navigated complex, high-stakes work at the highest levels.",
+  },
+  {
+    icon: Globe,
+    title: "Clients across geographies, industries, and complexities",
+    description:
+      "From tech startups in Silicon Valley and restaurants in New York, to NRIs managing cross-border wealth and CPA firms seeking US compliance support — we serve a diverse, global client base and understand what each one actually needs.",
+  },
+  {
+    icon: Cpu,
+    title: "Technology-first workflows, human-led advisory",
+    description:
+      "We use AI, automation, and modern accounting platforms to eliminate manual, repetitive work — so our professionals can focus entirely on what matters: critical review, sound judgment, and advice that protects and grows your business.",
+  },
+  {
+    icon: Users,
+    title: "A young, driven team with a client-first mindset",
+    description:
+      "No bureaucracy. No rigid hierarchies. Just a talented, energetic team that treats your business like their own — responsive, curious, and genuinely invested in your success.",
+  },
+];
+
+/* ================================================================== */
+/*  Data Security panels                                                */
+/* ================================================================== */
+
+const securityPanels = [
+  {
+    title: "Our Online Security",
+    icon: Lock,
+    items: [
+      { icon: ShieldCheck, text: "Antivirus" },
+      { icon: Wifi, text: "VPNs & DLP" },
+      { icon: Lock, text: "Boundary Firewall & Encryption" },
+      { icon: KeyRound, text: "Secure Logins & Domain Servers" },
+    ],
+  },
+  {
+    title: "On-Site Technology",
+    icon: Server,
+    items: [
+      { icon: UserCheck, text: "Authorised personnel access only" },
+      { icon: Eye, text: "Staff digital activity under surveillance" },
+      { icon: ShieldCheck, text: "Protected by a high-class firewall" },
+    ],
+  },
+  {
+    title: "Offices & Staff",
+    icon: Building2,
+    items: [
+      { icon: HardDrive, text: "No external storage devices allowed" },
+      { icon: Printer, text: "Use of printers not allowed" },
+      { icon: Mail, text: "Access to external mail and storage is blocked" },
+      { icon: Lock, text: "Lockers provided for employees" },
+      { icon: KeyRound, text: "Secure login gateway & server management" },
+      { icon: Camera, text: "Premises under 24/7 CCTV surveillance" },
+    ],
+  },
+];
+
+/* ================================================================== */
+/*  Stats                                                               */
+/* ================================================================== */
+
+const stats = [
+  { value: "XXX", label: "Clients" },
+  { value: "XXX", label: "Jurisdictions" },
+  { value: "XXX", label: "Business Setups" },
+  { value: "XXX", label: "Software Certifications" },
+];
+
+/* ================================================================== */
+/*  Story timeline markers                                              */
+/* ================================================================== */
+
+const storyBeats: TimelineStep[] = [
+  {
+    marker: "The Spark",
+    text: "Some of the best business ideas don’t start in boardrooms — they start at airports, between flights, in the kind of honest conversation that only happens when two people have nowhere else to be. That’s exactly how TrueLedger Consulting was born.",
+    image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    marker: "The Experience",
+    text: "Our founders had spent years working with global companies — navigating multi-jurisdictional compliance, tax controversy and disputes, managing cross-border accounting complexities, and building financial operations across some of the world’s most demanding markets.",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114125_37c4434f-726d-4bb3-b527-dad9f6221ffb.png",
+  },
+  {
+    marker: "The Gap",
+    text: "They believe there is currently a lack of true business partners — partners businesses can rely upon not just for back-office or operational work, but who can be trusted as genuine advisors with knowledge of multi-jurisdiction accounting and tax regulatory frameworks.",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114128_25fe50fd-53c5-4d9f-8e84-40a218f26e64.png",
+  },
+  {
+    marker: "The Insight",
+    text: "They had seen what separated businesses that scaled smoothly from those that struggled: the quality of the expertise behind them. And yet, the market kept repeating the same mistake — businesses were hiring accountants when what they really needed were expert financial professionals who understood business, not just books.",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114830_d7020677-9647-4a01-88c5-19228771fe32.png",
+  },
+  {
+    marker: "The Conviction",
+    text: "That 20-minute conversation became a conviction: the world’s talent shortage in accounting and finance is real, but so is the solution. India is home to a deep, highly qualified pool of finance professionals — CPAs, chartered accountants, tax specialists, and compliance experts — whose talent remains largely untapped by the businesses that need them most. The opportunity was clear. The timing was right. TrueLedger was born.",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114132_37c24fa6-a971-4b27-8709-6c082494275a.png",
+  },
+];
+
+/* ================================================================== */
+/*  Main Page Component                                                 */
+/* ================================================================== */
+
+export default function AboutPage() {
+  return (
+    <>
+      {/* ============================================================ */}
+      {/*  SECTION 1 — HERO                                            */}
+      {/* ============================================================ */}
+      <section className="bg-background">
+        {/* Video container — flush to navbar, no side padding on mobile */}
+        <div className="px-0 md:px-2 lg:px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative overflow-hidden aspect-[1/1] sm:aspect-[16/9] md:aspect-[2.4/1] rounded-b-2xl md:rounded-b-3xl"
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/videos/about-hero-seedance.mp4" type="video/mp4" />
+            </video>
+
+            {/* Overlay for text readability */}
+            <div className="absolute inset-0 bg-black/30" />
+
+            {/* "About Us" overlay text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.h1
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight"
+                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
+              >
+                About Us
+              </motion.h1>
+            </div>
+          </motion.div>
+        </div>
+
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 2 — THE STORY (Scroll-Flip Timeline)                 */}
+      {/* ============================================================ */}
+      <section className="pt-20 md:pt-28 pb-8">
+        {/* Wrapper constrains sticky heading to timeline only — heading unsticks after last card */}
+        <div>
+          {/* Story heading — sticky on scroll */}
+          <div className="sticky top-[72px] z-20 bg-background/95 backdrop-blur-sm border-b border-black/[0.04]">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 md:py-4">
+              <div className="text-center">
+                <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink leading-[1.15] mb-1">
+                  The TrueLedger Story
+                </h2>
+                <p className="text-base sm:text-lg text-brand font-medium leading-snug max-w-lg mx-auto">
+                  A 20-Minute Conversation<br className="hidden sm:block" />
+                  That Changed Everything.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll-Flip Timeline — offset accounts for navbar (72px) + sticky heading (~100px) */}
+          <ScrollFlipTimeline steps={storyBeats} stickyTopOffset={156} />
+        </div>
+
+        {/* Pull quote */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection delay={0.15}>
+            <div className="max-w-3xl mx-auto mt-12 md:mt-16 relative">
+              <div className="absolute -top-6 -left-2 sm:-left-6">
+                <Quote className="size-12 sm:size-16 text-brand/10" />
+              </div>
+              <div className="relative rounded-2xl bg-brand-tint border border-brand/10 p-8 sm:p-10 md:p-12">
+                <h3 className="font-heading text-2xl sm:text-3xl md:text-[2rem] font-bold text-ink leading-tight mb-4">
+                  Long-term partnerships, not transactions.
+                </h3>
+                <blockquote>
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed italic">
+                    &ldquo;We measure our success by your growth. We don&rsquo;t
+                    chase volume &mdash; we build relationships. Our goal is to be
+                    the team you rely on as your business scales, not a vendor you
+                    replace every year.&rdquo;
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 3 — OUR LEADERSHIP                                   */}
+      {/* ============================================================ */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionHeading
+              title="The People Behind TrueLedger"
+            />
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {leaders.map((leader, i) => (
+              <AnimatedSection key={leader.name} delay={0.1 + i * 0.1}>
+                <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                  {/* Photo — fixed aspect ratio, no crop */}
+                  <div className="aspect-[3/4] bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 relative flex items-center justify-center p-4">
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h3 className="font-heading font-bold text-lg text-ink leading-snug">
+                          {leader.name}
+                        </h3>
+                        <p className="text-sm font-medium text-brand mt-0.5">
+                          {leader.role}
+                        </p>
+                      </div>
+                      <a
+                        href={leader.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 size-9 rounded-lg bg-brand-tint flex items-center justify-center border border-brand/10 hover:bg-brand/10 transition-colors"
+                      >
+                        <LinkedInIcon className="size-4 text-brand" />
+                      </a>
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">
+                      {leader.bio}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 5 — WHY TRUELEDGER                                   */}
+      {/* ============================================================ */}
+      <section className="py-20 md:py-28 bg-brand-tint/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionHeading
+              title="Why Trueledger"
+            />
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch justify-center gap-10 md:gap-14 relative">
+              {/* Decorative glow */}
+              <div className="size-[520px] rounded-full absolute blur-[300px] -z-10 bg-brand/[0.06]" />
+
+              {/* Image — height driven by the pointers column */}
+              <div className="md:w-[40%] shrink-0 rounded-2xl shadow-lg border border-brand/10 overflow-hidden relative min-h-[300px]">
+                <img
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=830&h=844&auto=format&fit=crop"
+                  alt="TrueLedger team collaboration"
+                />
+              </div>
+
+              {/* Feature list */}
+              <div className="flex-1 flex items-center">
+                <div className="flex flex-col gap-8 w-full">
+                  {whyCards.map((card, i) => {
+                    const Icon = card.icon;
+                    return (
+                      <AnimatedSection key={card.title} delay={0.15 + i * 0.08}>
+                        <div className="flex items-start gap-4">
+                          <div className="size-10 shrink-0 p-2 bg-brand-tint border border-brand/15 rounded-xl flex items-center justify-center">
+                            <Icon className="size-5 text-brand" />
+                          </div>
+                          <div>
+                            <h4 className="text-base font-semibold text-ink">
+                              {card.title}
+                            </h4>
+                            <p className="text-sm text-muted-foreground mt-0.5 leading-relaxed">
+                              {card.description}
+                            </p>
+                          </div>
+                        </div>
+                      </AnimatedSection>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 6 — DATA SECURITY                                    */}
+      {/* ============================================================ */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionHeading
+              title="Built on Trust. Secured by Design."
+              description="TrueLedger provides top-notch IT defenses created to guard against data breaches. We follow the ISO 27001:2012 (ISMS) framework for data security management, and use CCPA-compliant services such as Box and AWS for software and data transfers."
+            />
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {securityPanels.map((panel, i) => {
+              const PanelIcon = panel.icon;
+              return (
+                <AnimatedSection key={panel.title} delay={0.1 + i * 0.1}>
+                  <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full">
+                    {/* Panel header */}
+                    <div className="bg-gradient-to-r from-brand-tint to-brand-soft p-5 border-b border-brand/10">
+                      <div className="flex items-center gap-3">
+                        <div className="size-10 rounded-xl bg-white/80 flex items-center justify-center">
+                          <PanelIcon className="size-5 text-brand" />
+                        </div>
+                        <h3 className="font-heading font-semibold text-base text-ink">
+                          {panel.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Checklist items */}
+                    <div className="p-5 space-y-3.5">
+                      {panel.items.map((item) => {
+                        const ItemIcon = item.icon;
+                        return (
+                          <div
+                            key={item.text}
+                            className="flex items-start gap-3"
+                          >
+                            <div className="shrink-0 size-7 rounded-lg bg-brand-tint/60 flex items-center justify-center mt-0.5">
+                              <ItemIcon className="size-3.5 text-brand" />
+                            </div>
+                            <p className="text-sm text-ink leading-relaxed">
+                              {item.text}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 7 — KEY STATS & CERTIFICATIONS                       */}
+      {/* ============================================================ */}
+      <section className="py-16 md:py-20 bg-brand-dark relative overflow-hidden">
+        {/* Background orbs */}
+        <motion.div
+          className="absolute top-0 left-1/4 w-72 h-72 bg-brand/15 rounded-full blur-3xl"
+          animate={{ x: [-15, 15, -15], y: [-8, 8, -8] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-56 h-56 bg-primary/10 rounded-full blur-3xl"
+          animate={{ x: [10, -10, 10], y: [6, -6, 6] }}
+          transition={{ duration: 8, repeat: Infinity, delay: 1.5 }}
+        />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+            {stats.map((stat, i) => (
+              <AnimatedSection key={stat.label} delay={0.1 + i * 0.1}>
+                <div className="text-center">
+                  <p className="font-heading text-4xl sm:text-5xl font-bold text-white mb-2 tracking-tight">
+                    {stat.value}
+                  </p>
+                  <p className="text-white/50 text-sm font-medium">
+                    {stat.label}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection delay={0.5}>
+            <p className="text-white/50 text-xs text-center mt-6 italic">
+              * Placeholder values &mdash; update with actual figures
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 8 — OUR TEAM                                         */}
+      {/* ============================================================ */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionHeading
+              title="Our Young Team"
+            />
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.15}>
+            <div className="max-w-4xl mx-auto">
+              <div className="rounded-2xl border-2 border-dashed border-brand/20 bg-brand-tint/20 overflow-hidden">
+                <div className="aspect-[16/9] flex flex-col items-center justify-center p-8 text-center">
+                  <div className="size-20 rounded-2xl bg-white/80 flex items-center justify-center border border-brand/10 mb-6">
+                    <Users className="size-10 text-brand/40" />
+                  </div>
+                  <p className="font-heading font-semibold text-lg text-ink/60 mb-2">
+                    Team Group Photo
+                  </p>
+                  <p className="text-sm text-muted-foreground max-w-sm">
+                    A team group photo will be placed here to showcase the
+                    talented and energetic TrueLedger team.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 9 — CLOSING CTA                                      */}
+      {/* ============================================================ */}
+      <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
+        {/* Animated gradient orbs */}
+        <motion.div
+          className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
+          animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
+          transition={{ duration: 12, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
+          animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
+          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+        />
+
+        {/* Chevron decoration */}
+        <div className="absolute top-1/2 -translate-y-1/2 -left-12 font-heading text-[16rem] font-bold text-white/[0.04] select-none pointer-events-none leading-none">
+          &rsaquo;
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <AnimatedSection>
+            <p className="text-white/50 text-sm font-medium uppercase tracking-widest mb-4">
+              Ready to get started?
+            </p>
+            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">
+              Let&rsquo;s build something meaningful together.
+            </h2>
+            <p className="text-white/40 text-base max-w-xl mx-auto mb-10">
+              Whether you need accounting expertise, tax advisory, or a trusted
+              financial partner for the long haul &mdash; we&rsquo;re ready to
+              talk.
+            </p>
+            <ConsultationModal
+              trigger={
+                <Button
+                  size="lg"
+                  className="bg-white text-brand-dark hover:bg-white/90 shadow-xl shadow-black/20 text-base px-8 h-13"
+                >
+                  Book a Consultation
+                  <ChevronRight className="size-4" />
+                </Button>
+              }
+            />
+          </AnimatedSection>
+        </div>
+      </section>
+    </>
+  );
+}
