@@ -48,13 +48,9 @@ export default function InformationSecurityPolicyPage() {
         <div className="absolute top-20 right-[10%] w-80 h-80 bg-brand/[0.04] rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
 
-        <motion.div
-          className="absolute top-12 right-[8%] pointer-events-none select-none"
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <div className="absolute top-12 right-[8%] pointer-events-none select-none">
           <BookOpen className="size-48 text-brand/[0.05]" />
-        </motion.div>
+        </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-36">
           <div className="max-w-3xl mx-auto text-center">

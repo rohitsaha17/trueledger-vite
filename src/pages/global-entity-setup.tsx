@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ServiceProcessTimeline, type ProcessPhase } from "@/components/shared/service-process-timeline";
@@ -246,17 +245,9 @@ export default function GlobalEntitySetupPage() {
       {/*  SECTION 6 — CLOSING CTA                                      */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
-        {/* Animated gradient orbs */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
-          animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
-          animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
+        {/* Static gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
 
         {/* Grid pattern overlay */}
         <div

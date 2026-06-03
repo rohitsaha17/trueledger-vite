@@ -444,17 +444,9 @@ export default function AboutPage() {
       {/*  SECTION 7 — KEY STATS & CERTIFICATIONS                       */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 bg-brand-dark relative overflow-hidden">
-        {/* Background orbs */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-72 h-72 bg-brand/15 rounded-full blur-3xl"
-          animate={{ x: [-15, 15, -15], y: [-8, 8, -8] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-56 h-56 bg-primary/10 rounded-full blur-3xl"
-          animate={{ x: [10, -10, 10], y: [6, -6, 6] }}
-          transition={{ duration: 8, repeat: Infinity, delay: 1.5 }}
-        />
+        {/* Static background orbs */}
+        <div className="absolute top-0 left-1/4 w-72 h-72 bg-brand/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-primary/10 rounded-full blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
@@ -516,17 +508,9 @@ export default function AboutPage() {
       {/*  SECTION 9 — CLOSING CTA                                      */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
-        {/* Animated gradient orbs */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
-          animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
-          animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
+        {/* Static gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
 
         {/* Chevron decoration */}
         <div className="absolute top-1/2 -translate-y-1/2 -left-12 font-heading text-[16rem] font-bold text-white/[0.04] select-none pointer-events-none leading-none">

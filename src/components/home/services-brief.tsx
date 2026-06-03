@@ -361,31 +361,21 @@ export function ServicesBrief() {
                   className="absolute inset-0 pointer-events-none"
                 >
                   {[
-                    { x: "15%", y: "20%", size: 4, delay: 0 },
-                    { x: "75%", y: "15%", size: 3, delay: 0.5 },
-                    { x: "80%", y: "70%", size: 5, delay: 1 },
-                    { x: "25%", y: "75%", size: 3, delay: 1.5 },
-                    { x: "60%", y: "85%", size: 4, delay: 0.8 },
+                    { x: "15%", y: "20%", size: 4 },
+                    { x: "75%", y: "15%", size: 3 },
+                    { x: "80%", y: "70%", size: 5 },
+                    { x: "25%", y: "75%", size: 3 },
+                    { x: "60%", y: "85%", size: 4 },
                   ].map((dot, i) => (
-                    <motion.div
+                    <div
                       key={i}
-                      className="absolute rounded-full"
+                      className="absolute rounded-full opacity-30"
                       style={{
                         left: dot.x,
                         top: dot.y,
                         width: dot.size,
                         height: dot.size,
                         backgroundColor: activeService.accent,
-                      }}
-                      animate={{
-                        opacity: [0.2, 0.5, 0.2],
-                        scale: [1, 1.5, 1],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: dot.delay,
-                        ease: "easeInOut",
                       }}
                     />
                   ))}

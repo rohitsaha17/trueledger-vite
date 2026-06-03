@@ -283,16 +283,8 @@ export default function BusinessAdvisoryPage() {
       {/*  SECTION 5 — CLOSING CTA                                     */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
-          animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
-          animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
 
         <div className="absolute top-1/2 -translate-y-1/2 -left-12 font-heading text-[16rem] font-bold text-white/[0.04] select-none pointer-events-none leading-none">
           &rsaquo;

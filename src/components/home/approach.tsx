@@ -99,11 +99,7 @@ const cards = [
             <path d="M0 80 L0 60 Q20 55 30 45 T60 30 T90 15 T120 5 L120 80 Z" fill="url(#chart-grad)" />
             <path d="M0 60 Q20 55 30 45 T60 30 T90 15 T120 5" fill="none" stroke="#7C4A76" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
-          <motion.div
-            className="absolute -top-2 right-0 size-5 rounded-full bg-primary shadow-md shadow-primary/30 border-2 border-white"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          <div className="absolute -top-2 right-0 size-5 rounded-full bg-primary shadow-md shadow-primary/30 border-2 border-white" />
         </div>
       </div>
     ),

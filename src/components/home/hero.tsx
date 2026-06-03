@@ -5,6 +5,7 @@ import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ------------------------------------------------------------------ */
 /*  Marker data — positions spread for clear label visibility          */
@@ -437,20 +438,17 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 }
 
 export function Hero() {
+  const isMobile = useIsMobile();
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-tint via-background to-background">
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-[100px]"
+      {/* Gradient orbs — static on mobile, animated on desktop */}
+      <div
+        className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-[100px] opacity-80"
         style={{ background: "radial-gradient(circle, rgba(193,131,184,0.12), transparent 70%)" }}
-        animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
-        className="absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full blur-[80px]"
+      <div
+        className="absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full blur-[80px] opacity-60"
         style={{ background: "radial-gradient(circle, rgba(124,74,118,0.08), transparent 70%)" }}
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
 
       {/* Chevron decorations */}
@@ -523,15 +521,17 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Globe side */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
-            <Globe />
-          </motion.div>
+          {/* Globe side — skipped on mobile for performance */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
+            >
+              <Globe />
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

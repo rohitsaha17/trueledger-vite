@@ -404,20 +404,7 @@ export default function WhoWeWorkWithPage() {
                         isHorizontal ? "" : "mb-5"
                       }`}
                     >
-                      {i === 1 ? (
-                        <motion.div
-                          animate={{ scale: [1, 1.15, 1] }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        >
-                          <Icon className="size-6 text-brand" />
-                        </motion.div>
-                      ) : (
-                        <Icon className="size-6 text-brand" />
-                      )}
+                      <Icon className="size-6 text-brand" />
                     </div>
 
                     {/* Text */}
@@ -535,17 +522,9 @@ export default function WhoWeWorkWithPage() {
           backgroundSize: "40px 40px",
         }}
       >
-        {/* Animated gradient orbs */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
-          animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
-          animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
+        {/* Static gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>

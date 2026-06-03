@@ -139,25 +139,16 @@ export default function ContactPage() {
         {/* World map background */}
         <WorldMapSVG />
 
-        {/* Pulsing country dots */}
+        {/* Static country dots */}
         {mapDots.map((dot, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute size-2.5 rounded-full bg-brand/30 pointer-events-none"
+            className="absolute size-2.5 rounded-full bg-brand/50 pointer-events-none"
             style={{
               left: `${(dot.x / 1000) * 100}%`,
               top: `${(dot.y / 500) * 100}%`,
             }}
-            animate={{ scale: [1, 1.8, 1], opacity: [0.4, 0.8, 0.4] }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              delay: i * 0.4,
-              ease: "easeInOut",
-            }}
-          >
-            <div className="absolute inset-0 rounded-full bg-brand/20 animate-ping" />
-          </motion.div>
+          />
         ))}
 
         {/* Gradient orbs */}
@@ -457,22 +448,10 @@ export default function ContactPage() {
       {/*  SECTION 3 — CLOSING CTA                                     */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
-        {/* Animated gradient orbs */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
-          animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
-          animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
-        <motion.div
-          className="absolute top-1/3 right-[10%] w-64 h-64 bg-coral/10 rounded-full blur-3xl"
-          animate={{ x: [10, -10, 10], y: [-15, 15, -15] }}
-          transition={{ duration: 14, repeat: Infinity, delay: 4 }}
-        />
+        {/* Static gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-[10%] w-64 h-64 bg-coral/10 rounded-full blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>

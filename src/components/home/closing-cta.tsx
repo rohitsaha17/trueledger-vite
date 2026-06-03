@@ -7,17 +7,9 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 export function ClosingCta() {
   return (
     <section className="py-14 md:py-20 bg-brand-dark relative overflow-hidden">
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl"
-        animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
-        transition={{ duration: 12, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl"
-        animate={{ x: [15, -15, 15], y: [10, -10, 10] }}
-        transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-      />
+      {/* Static gradient orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
 
       {/* Grid pattern overlay */}
       <div
@@ -37,28 +29,20 @@ export function ClosingCta() {
         &rsaquo;
       </div>
 
-      {/* Floating badges */}
-      <motion.div
-        className="absolute top-16 right-[15%] hidden lg:flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
-        animate={{ y: [-5, 5, -5] }}
-        transition={{ duration: 4, repeat: Infinity }}
-      >
+      {/* Floating badges — static, visible on lg only */}
+      <div className="absolute top-16 right-[15%] hidden lg:flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
         <div className="flex -space-x-2">
           <img src="/logos/flags/us.svg" alt="" className="size-5 rounded-full border border-white/20" />
           <img src="/logos/flags/in.svg" alt="" className="size-5 rounded-full border border-white/20" />
           <img src="/logos/flags/au.svg" alt="" className="size-5 rounded-full border border-white/20" />
         </div>
         <span className="text-xs text-white/50">6+ Countries</span>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="absolute bottom-16 left-[12%] hidden lg:flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
-        animate={{ y: [4, -4, 4] }}
-        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-      >
+      <div className="absolute bottom-16 left-[12%] hidden lg:flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
         <ArrowUpRight className="size-3.5 text-brand" />
         <span className="text-xs text-white/50">ISO Certified</span>
-      </motion.div>
+      </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <AnimatedSection>

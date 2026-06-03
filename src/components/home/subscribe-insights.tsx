@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ArrowRight, Calculator } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ─── floating currency / number items ─── */
 const floatingItems: {
@@ -72,6 +73,7 @@ function FloatingCurrency({
 }
 
 export function SubscribeInsights() {
+  const isMobile = useIsMobile();
   return (
     <section className="py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -82,96 +84,72 @@ export function SubscribeInsights() {
             <div className="absolute -bottom-24 -left-16 w-80 h-80 bg-brand/15 rounded-full blur-3xl" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-3xl" />
 
-            {/* ── floating currency & number symbols ── */}
-            {floatingItems.map((item, i) => (
-              <FloatingCurrency key={i} item={item} />
-            ))}
+            {/* ── decorative animations — skipped on mobile for performance ── */}
+            {!isMobile && (
+              <>
+                {/* floating currency & number symbols */}
+                {floatingItems.map((item, i) => (
+                  <FloatingCurrency key={i} item={item} />
+                ))}
 
-            {/* ── animated calculator icon ── */}
-            <motion.div
-              className="absolute top-10 left-[8%] text-white/[0.07] hidden md:block"
-              animate={{
-                y: [-6, 6, -6],
-                rotate: [-5, 5, -5],
-              }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Calculator className="size-20" strokeWidth={1} />
-            </motion.div>
-
-            {/* ── mini bar chart ── */}
-            <motion.div
-              className="absolute bottom-12 right-[8%] hidden md:flex items-end gap-1 text-white/[0.08]"
-              animate={{ y: [4, -4, 4] }}
-              transition={{ duration: 5, repeat: Infinity, delay: 1, ease: "easeInOut" }}
-            >
-              {[20, 32, 24, 40, 28, 44, 36].map((h, i) => (
+                {/* animated calculator icon */}
                 <motion.div
-                  key={i}
-                  className="w-2 rounded-t-sm bg-white/[0.12]"
-                  style={{ height: h }}
-                  animate={{ height: [h, h * 1.3, h] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                    ease: "easeInOut",
-                  }}
-                />
-              ))}
-            </motion.div>
+                  className="absolute top-10 left-[8%] text-white/[0.07]"
+                  animate={{ y: [-6, 6, -6], rotate: [-5, 5, -5] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Calculator className="size-20" strokeWidth={1} />
+                </motion.div>
 
-            {/* ── pie chart ring ── */}
-            <motion.div
-              className="absolute top-14 right-[12%] hidden lg:block"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            >
-              <svg width="48" height="48" viewBox="0 0 48 48" className="text-white/[0.06]">
-                <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="40 20 30 35" />
-                <circle cx="24" cy="24" r="12" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="20 15 10 30" />
-              </svg>
-            </motion.div>
+                {/* mini bar chart */}
+                <div className="absolute bottom-12 right-[8%] flex items-end gap-1 text-white/[0.08]">
+                  {[20, 32, 24, 40, 28, 44, 36].map((h, i) => (
+                    <div key={i} className="w-2 rounded-t-sm bg-white/[0.12]" style={{ height: h }} />
+                  ))}
+                </div>
 
-            {/* ── grid dot pattern ── */}
+                {/* pie chart ring */}
+                <svg width="48" height="48" viewBox="0 0 48 48" className="absolute top-14 right-[12%] text-white/[0.06]">
+                  <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="40 20 30 35" />
+                  <circle cx="24" cy="24" r="12" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="20 15 10 30" />
+                </svg>
+
+                {/* scrolling ticker tape (top) */}
+                <div className="absolute top-0 left-0 right-0 overflow-hidden h-8 flex items-center opacity-[0.06]">
+                  <motion.div
+                    className="flex gap-8 whitespace-nowrap font-mono text-xs text-white"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                  >
+                    {[...tickerNumbers, ...tickerNumbers].map((num, i) => (
+                      <span key={i} className="shrink-0">{num}</span>
+                    ))}
+                  </motion.div>
+                </div>
+
+                {/* scrolling ticker tape (bottom, reverse) */}
+                <div className="absolute bottom-0 left-0 right-0 overflow-hidden h-8 flex items-center opacity-[0.06]">
+                  <motion.div
+                    className="flex gap-8 whitespace-nowrap font-mono text-xs text-white"
+                    animate={{ x: ["-50%", "0%"] }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  >
+                    {[...tickerNumbers, ...tickerNumbers].map((num, i) => (
+                      <span key={i} className="shrink-0">{num}</span>
+                    ))}
+                  </motion.div>
+                </div>
+              </>
+            )}
+
+            {/* ── grid dot pattern (lightweight CSS, kept on all devices) ── */}
             <div
               className="absolute inset-0 opacity-[0.03]"
               style={{
-                backgroundImage:
-                  "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
                 backgroundSize: "24px 24px",
               }}
             />
-
-            {/* ── scrolling ticker tape (top) ── */}
-            <div className="absolute top-0 left-0 right-0 overflow-hidden h-8 flex items-center opacity-[0.06]">
-              <motion.div
-                className="flex gap-8 whitespace-nowrap font-mono text-xs text-white"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              >
-                {[...tickerNumbers, ...tickerNumbers].map((num, i) => (
-                  <span key={i} className="shrink-0">
-                    {num}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* ── scrolling ticker tape (bottom, reverse) ── */}
-            <div className="absolute bottom-0 left-0 right-0 overflow-hidden h-8 flex items-center opacity-[0.06]">
-              <motion.div
-                className="flex gap-8 whitespace-nowrap font-mono text-xs text-white"
-                animate={{ x: ["-50%", "0%"] }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              >
-                {[...tickerNumbers, ...tickerNumbers].map((num, i) => (
-                  <span key={i} className="shrink-0">
-                    {num}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
 
             {/* ── main content ── */}
             <div className="relative z-10 px-8 py-16 md:px-16 md:py-22 text-center">

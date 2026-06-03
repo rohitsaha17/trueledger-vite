@@ -62,9 +62,31 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll only on desktop — causes jank on mobile */
+@media (min-width: 1024px) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ── Mobile performance ── */
+@media (max-width: 767px) {
+  /* Reduce blur radius on mobile — GPU-heavy */
+  .blur-3xl  { --tw-blur: blur(32px) !important; }
+  .blur-\\[100px\\],
+  .blur-\\[120px\\] { --tw-blur: blur(40px) !important; }
+}
+
+/* ── Reduced-motion: kill all non-essential animations ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
