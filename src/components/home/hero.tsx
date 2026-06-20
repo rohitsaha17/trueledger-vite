@@ -284,13 +284,13 @@ function Globe() {
 
           // Glow pass (wide + soft)
           drawPath();
-          arcCtx.strokeStyle = "rgba(193, 131, 184, 0.06)";
+          arcCtx.strokeStyle = "rgba(77, 57, 127, 0.06)";
           arcCtx.lineWidth = 4 * dpr;
           arcCtx.stroke();
 
           // Main arc line
           drawPath();
-          arcCtx.strokeStyle = "rgba(124, 74, 118, 0.2)";
+          arcCtx.strokeStyle = "rgba(77, 57, 127, 0.2)";
           arcCtx.lineWidth = 1 * dpr;
           arcCtx.stroke();
 
@@ -306,8 +306,8 @@ function Globe() {
 
             // Radial glow
             const grad = arcCtx.createRadialGradient(dx, dy, 0, dx, dy, 6 * dpr);
-            grad.addColorStop(0, "rgba(193, 131, 184, 0.5)");
-            grad.addColorStop(1, "rgba(193, 131, 184, 0)");
+            grad.addColorStop(0, "rgba(77, 57, 127, 0.5)");
+            grad.addColorStop(1, "rgba(77, 57, 127, 0)");
             arcCtx.beginPath();
             arcCtx.arc(dx, dy, 6 * dpr, 0, Math.PI * 2);
             arcCtx.fillStyle = grad;
@@ -316,7 +316,7 @@ function Globe() {
             // Core dot
             arcCtx.beginPath();
             arcCtx.arc(dx, dy, 1.8 * dpr, 0, Math.PI * 2);
-            arcCtx.fillStyle = "rgba(193, 131, 184, 0.85)";
+            arcCtx.fillStyle = "rgba(77, 57, 127, 0.85)";
             arcCtx.fill();
           }
         });
@@ -337,7 +337,7 @@ function Globe() {
 
             arcCtx.beginPath();
             arcCtx.arc(px, py, radius, 0, Math.PI * 2);
-            arcCtx.strokeStyle = `rgba(124, 74, 118, ${alpha})`;
+            arcCtx.strokeStyle = `rgba(77, 57, 127, ${alpha})`;
             arcCtx.lineWidth = 1.2 * dpr;
             arcCtx.stroke();
           }
@@ -345,7 +345,7 @@ function Globe() {
           // Solid center dot
           arcCtx.beginPath();
           arcCtx.arc(px, py, 3.5 * dpr, 0, Math.PI * 2);
-          arcCtx.fillStyle = "rgba(124, 74, 118, 0.65)";
+          arcCtx.fillStyle = "rgba(77, 57, 127, 0.65)";
           arcCtx.fill();
         });
 
@@ -416,19 +416,20 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
-          let frame = 0;
-          const totalFrames = 60;
-          const step = () => {
-            frame++;
-            const progress = Math.min(frame / totalFrames, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = `${Math.round(eased * target)}${suffix}`;
-            if (frame < totalFrames) requestAnimationFrame(step);
+          const duration = 2000;
+          const startTime = performance.now();
+          const step = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            const current = Math.round(eased * target);
+            el.textContent = `${current}${suffix}`;
+            if (progress < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
         }
       },
-      { threshold: 0.5 },
+      { threshold: 0.3 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -444,11 +445,11 @@ export function Hero() {
       {/* Gradient orbs — static on mobile, animated on desktop */}
       <div
         className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-[100px] opacity-80"
-        style={{ background: "radial-gradient(circle, rgba(193,131,184,0.12), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(77,57,127,0.12), transparent 70%)" }}
       />
       <div
         className="absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full blur-[80px] opacity-60"
-        style={{ background: "radial-gradient(circle, rgba(124,74,118,0.08), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(77,57,127,0.08), transparent 70%)" }}
       />
 
       {/* Chevron decorations */}
@@ -507,7 +508,7 @@ export function Hero() {
               {[
                 { value: 150, suffix: "+", label: "Clients Served" },
                 { value: 6, suffix: "+", label: "Countries" },
-                { value: 5, suffix: "+", label: "Years Experience" },
+                { value: 15, suffix: "+", label: "Years Experience" },
               ].map((stat) => (
                 <div key={stat.label} className="flex flex-col">
                   <span className="text-3xl sm:text-4xl font-bold text-foreground font-heading">

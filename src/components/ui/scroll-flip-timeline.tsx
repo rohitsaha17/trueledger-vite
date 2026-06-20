@@ -58,11 +58,11 @@ const cardVariants = {
 
 /* gradient fallback colours for each step index */
 const gradientFallbacks = [
-  "from-[#5D3858] to-[#8B6B82]",
-  "from-[#3B2352] to-[#7C4A76]",
-  "from-[#4A2848] to-[#C183B8]",
-  "from-[#2D1F3D] to-[#7C4A76]",
-  "from-[#3D2040] to-[#9B5F93]",
+  "from-[#362765] to-[#6B5BA0]",
+  "from-[#2D1F54] to-[#4D397F]",
+  "from-[#3B2D68] to-[#7B6BA8]",
+  "from-[#241A45] to-[#4D397F]",
+  "from-[#362765] to-[#6B5BA0]",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -257,7 +257,7 @@ function DesktopTimeline({ steps, stickyTopOffset = 0 }: ScrollFlipTimelineProps
                       transformStyle: "preserve-3d",
                       backfaceVisibility: "hidden",
                       boxShadow:
-                        "0 30px 60px -15px rgba(124,74,118,0.3), 0 15px 30px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(124,74,118,0.06)",
+                        "0 30px 60px -15px rgba(77,57,127,0.3), 0 15px 30px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(77,57,127,0.06)",
                     }}
                   >
                     <div
@@ -276,8 +276,8 @@ function DesktopTimeline({ steps, stickyTopOffset = 0 }: ScrollFlipTimelineProps
                       />
 
                       {/* Overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f18]/90 via-[#1a0f18]/30 to-transparent" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#1a0f18]/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/90 via-[#140e2a]/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#140e2a]/30 to-transparent" />
 
                       {/* Step number */}
                       <div className="absolute top-5 right-5">
@@ -324,7 +324,7 @@ function DesktopTimeline({ steps, stickyTopOffset = 0 }: ScrollFlipTimelineProps
                   backgroundColor:
                     i <= activeStep
                       ? "var(--color-brand)"
-                      : "rgba(124,74,118,0.12)",
+                      : "rgba(77,57,127,0.12)",
                   opacity: i === activeStep ? 1 : i < activeStep ? 0.5 : 0.3,
                 }}
                 transition={{ duration: 0.4 }}
@@ -374,7 +374,7 @@ function MobileTimeline({ steps }: ScrollFlipTimelineProps) {
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f18] via-[#1a0f18]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-[#140e2a]/20 to-transparent" />
 
                 <div className="absolute top-3 right-3 size-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
                   <span className="text-sm font-bold text-white/70">

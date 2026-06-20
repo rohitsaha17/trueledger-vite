@@ -92,12 +92,12 @@ const cards = [
           <svg viewBox="0 0 120 80" className="w-32 drop-shadow-lg">
             <defs>
               <linearGradient id="chart-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#C183B8" stopOpacity="0.1" />
-                <stop offset="100%" stopColor="#7C4A76" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="#4D397F" stopOpacity="0.1" />
+                <stop offset="100%" stopColor="#4D397F" stopOpacity="0.3" />
               </linearGradient>
             </defs>
             <path d="M0 80 L0 60 Q20 55 30 45 T60 30 T90 15 T120 5 L120 80 Z" fill="url(#chart-grad)" />
-            <path d="M0 60 Q20 55 30 45 T60 30 T90 15 T120 5" fill="none" stroke="#7C4A76" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M0 60 Q20 55 30 45 T60 30 T90 15 T120 5" fill="none" stroke="#4D397F" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
           <div className="absolute -top-2 right-0 size-5 rounded-full bg-primary shadow-md shadow-primary/30 border-2 border-white" />
         </div>

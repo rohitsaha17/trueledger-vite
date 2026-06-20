@@ -150,13 +150,13 @@ export default function GlobalEntitySetupPage() {
           <>
             We Don&rsquo;t Just File the Papers.
             <br className="hidden sm:block" />
-            <span className="text-[#C183B8]">We Help You Make the Right Call.</span>
+            <span className="text-[#EE672C]">We Help You Make the Right Call.</span>
           </>
         }
         description="Setting up a business entity is rarely just a formality. The structure you choose, the state you register in, the agreements you put in place — these decisions shape how your business operates, gets taxed, and scales."
         imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
-        accentColor="#C183B8"
-        overlayGradient="linear-gradient(to right, rgba(26,15,24,0.97) 0%, rgba(26,15,24,0.93) 35%, rgba(26,15,24,0.7) 65%, rgba(193,131,184,0.25) 100%)"
+        accentColor="#EE672C"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
 
       {/* ============================================================ */}

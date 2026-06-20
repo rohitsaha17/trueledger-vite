@@ -50,7 +50,7 @@ export function ServiceProcessTimeline({
       style={{
         height: `${scrollHeight}vh`,
         background:
-          "radial-gradient(ellipse 60% 60% at 5% 80%, #331e30 0%, #21131e 30%, #1a0f18 60%, #1a0f18 100%)",
+          "radial-gradient(ellipse 60% 60% at 5% 80%, #241850 0%, #1a1338 30%, #140e2a 60%, #140e2a 100%)",
         ...backgroundStyle,
       }}
     >
@@ -64,7 +64,7 @@ export function ServiceProcessTimeline({
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <h2 className="bg-gradient-to-r from-[#C183B8]/60 via-white to-[#C183B8]/60 bg-clip-text font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-transparent">
+          <h2 className="bg-gradient-to-r from-[#7B6BA8]/60 via-white to-[#7B6BA8]/60 bg-clip-text font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-transparent">
             {title}
           </h2>
           {description && (
@@ -85,8 +85,8 @@ export function ServiceProcessTimeline({
               className="min-w-[55%] max-w-[55%] lg:min-w-[50%] lg:max-w-[50%] rounded-2xl shadow-2xl shadow-black/40"
             >
               {/* Step number sidebar */}
-              <ProcessCardTitle className="border-r border-[#5D3858]/30 flex items-center justify-center shrink-0 w-20">
-                <span className="font-heading text-2xl font-bold text-[#C183B8]/60">
+              <ProcessCardTitle className="border-r border-[#362765]/30 flex items-center justify-center shrink-0 w-20">
+                <span className="font-heading text-2xl font-bold text-[#7B6BA8]/60">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               </ProcessCardTitle>

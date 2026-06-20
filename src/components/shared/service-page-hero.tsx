@@ -48,7 +48,7 @@ export function ServicePageHero({
   description,
   imageSrc,
   overlayGradient,
-  accentColor = "#C183B8",
+  accentColor = "#EE672C",
 }: ServicePageHeroProps) {
   return (
     <section className="pt-6 pb-8">
@@ -70,7 +70,7 @@ export function ServicePageHero({
             style={{
               background:
                 overlayGradient ||
-                "linear-gradient(to right, rgba(26,15,24,0.97) 0%, rgba(26,15,24,0.93) 40%, rgba(26,15,24,0.7) 70%, rgba(26,15,24,0.4) 100%)",
+                "linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 40%, rgba(20,14,42,0.7) 70%, rgba(20,14,42,0.4) 100%)",
             }}
           />
 

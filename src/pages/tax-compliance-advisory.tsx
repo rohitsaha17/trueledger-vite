@@ -195,13 +195,13 @@ export default function TaxComplianceAdvisoryPage() {
           <>
             Tax Season Ends.
             <br className="hidden sm:block" />
-            <span className="text-[#C183B8]">Tax Planning Shouldn&rsquo;t.</span>
+            <span className="text-[#EE672C]">Tax Planning Shouldn&rsquo;t.</span>
           </>
         }
         description="Most people think about taxes once a year. We think about them all year round — and that difference is exactly what sets our services apart."
         imageSrc="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1920&q=80"
-        accentColor="#C183B8"
-        overlayGradient="linear-gradient(to right, rgba(26,15,24,0.97) 0%, rgba(26,15,24,0.93) 35%, rgba(26,15,24,0.7) 65%, rgba(193,131,184,0.25) 100%)"
+        accentColor="#EE672C"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
 
       {/* ============================================================ */}

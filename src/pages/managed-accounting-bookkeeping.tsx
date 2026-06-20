@@ -209,7 +209,7 @@ function HeroSection() {
         description="Growth demands financial clarity. Accurate books, timely reports, and disciplined compliance don’t just keep you organized — they sharpen your decision-making and give you the confidence to scale."
         imageSrc="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80"
         accentColor="#a78bfa"
-        overlayGradient="linear-gradient(135deg, rgba(26,15,24,0.97) 0%, rgba(26,15,24,0.93) 40%, rgba(26,15,24,0.7) 70%, rgba(167,139,250,0.3) 100%)"
+        overlayGradient="linear-gradient(135deg, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 40%, rgba(20,14,42,0.7) 70%, rgba(167,139,250,0.3) 100%)"
       />
   );
 }

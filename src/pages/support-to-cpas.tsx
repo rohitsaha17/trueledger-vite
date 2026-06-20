@@ -153,13 +153,13 @@ export default function SupportToCPAsPage() {
           <>
             Every CPA Firm Reaches a Point.
             <br className="hidden sm:block" />
-            <span className="text-[#C183B8]">We Are Those Extra Hands.</span>
+            <span className="text-[#EE672C]">We Are Those Extra Hands.</span>
           </>
         }
         description="A dedicated offshore accounting team that plugs into your practice — qualified, process-driven, and built to scale with your firm through every season."
         imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80"
-        accentColor="#C183B8"
-        overlayGradient="linear-gradient(to right, rgba(26,15,24,0.97) 0%, rgba(26,15,24,0.93) 35%, rgba(26,15,24,0.7) 65%, rgba(193,131,184,0.25) 100%)"
+        accentColor="#EE672C"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
 
       {/* ============================================================ */}

@@ -1,39 +1,41 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-heading: "Clash Display", "Space Grotesk", sans-serif;
+  --font-heading: "Outfit", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
 
-  /* shadcn/ui semantic tokens mapped to mauve palette */
+  /* shadcn/ui semantic tokens */
   --color-background: #FFFFFF;
   --color-foreground: #2D2630;
   --color-card: #FFFFFF;
   --color-card-foreground: #2D2630;
   --color-popover: #FFFFFF;
   --color-popover-foreground: #2D2630;
-  --color-primary: #7C4A76;
+  --color-primary: #4D397F;
   --color-primary-foreground: #FFFFFF;
-  --color-secondary: #F4E9F2;
-  --color-secondary-foreground: #7C4A76;
-  --color-muted: #FAF5F9;
+  --color-secondary: #EEEAF4;
+  --color-secondary-foreground: #4D397F;
+  --color-muted: #F5F3F8;
   --color-muted-foreground: #6F6675;
-  --color-accent: #F4E9F2;
-  --color-accent-foreground: #7C4A76;
-  --color-destructive: #ef4444;
-  --color-border: #ECDEEA;
-  --color-input: #ECDEEA;
-  --color-ring: #C183B8;
+  --color-accent: #EEEAF4;
+  --color-accent-foreground: #4D397F;
+  --color-destructive: #B03B2D;
+  --color-border: #E4E0EC;
+  --color-input: #E4E0EC;
+  --color-ring: #4D397F;
 
   /* Brand tokens */
-  --color-brand: #C183B8;
-  --color-brand-dark: #7C4A76;
-  --color-brand-soft: #F4E9F2;
-  --color-brand-tint: #FAF5F9;
+  --color-brand: #4D397F;
+  --color-brand-dark: #362765;
+  --color-brand-soft: #EEEAF4;
+  --color-brand-tint: #F5F3F8;
   --color-ink: #2D2630;
   --color-ink-muted: #6F6675;
-  --color-coral: #EA8A6A;
+  --color-coral: #EE672C;
+  --color-orange: #EE672C;
+  --color-red: #B03B2D;
   --color-surface: #FFFFFF;
-  --color-border-brand: #ECDEEA;
+  --color-border-brand: #E4E0EC;
 
   --radius-sm: 0.625rem;
   --radius-md: 0.75rem;

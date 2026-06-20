@@ -14,9 +14,9 @@ const processCardVariants = cva("flex border", {
       indigo:
         "flex border text-slate-50 border-slate-700 backdrop-blur-lg bg-gradient-to-br from-[rgba(15,23,42,0.7)_40%] to-[#3730a3_120%]",
       brand:
-        "text-white border-white/[0.08] backdrop-blur-xl bg-gradient-to-br from-[rgba(45,31,61,0.9)_30%] via-[rgba(93,56,88,0.5)_60%] to-[rgba(124,74,118,0.25)_110%]",
+        "text-white border-white/[0.08] backdrop-blur-xl bg-gradient-to-br from-[rgba(36,24,80,0.9)_30%] via-[rgba(54,39,101,0.5)_60%] to-[rgba(77,57,127,0.25)_110%]",
       solid:
-        "text-white border-[#5D3858]/40 bg-[#1a0f18]",
+        "text-white border-[#362765]/40 bg-[#140e2a]",
       light: "shadow",
     },
     size: {

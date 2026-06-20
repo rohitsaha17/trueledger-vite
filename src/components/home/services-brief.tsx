@@ -21,8 +21,8 @@ const services = [
       "We don't just file paperwork. We think about your structure before you sign anything. We guide founders and enterprises through every step of establishing a compliant, tax-efficient presence — whether you're setting up a US LLC or C-Corp, entering India, Canada, Singapore, or Australia, or structuring a multi-entity global footprint.",
     href: "/services/global-entity-setup",
     gradient:
-      "radial-gradient(ellipse at 30% 20%, #C183B8 0%, #7C4A76 35%, #3d2439 70%, #1a0f18 100%)",
-    accent: "#C183B8",
+      "radial-gradient(ellipse at 30% 20%, #7B6BA8 0%, #4D397F 35%, #2a1d52 70%, #140e2a 100%)",
+    accent: "#7B6BA8",
     image: "/images/services/global-entity-setup.webp",
   },
   {
@@ -32,7 +32,7 @@ const services = [
       "Accurate books aren't just a deliverable — they're a discipline. Built on years of hands-on experience across industries and geographies, we manage your books in real time: ensuring compliance, maintaining financial hygiene, and keeping you growth-ready every single day.",
     href: "/services/managed-accounting-bookkeeping",
     gradient:
-      "radial-gradient(ellipse at 70% 80%, #a78bfa 0%, #7C4A76 30%, #4c1d95 60%, #1e0a3a 100%)",
+      "radial-gradient(ellipse at 70% 80%, #a78bfa 0%, #4D397F 30%, #362765 60%, #140e2a 100%)",
     accent: "#a78bfa",
     image: "/images/services/managed-accounting.webp",
   },
@@ -43,8 +43,8 @@ const services = [
       "With deep expertise across global tax laws, cross-border structures, and owner-level tax planning, we serve business owners across jurisdictions who need an advisor who understands the full picture — entity and personal.",
     href: "/services/tax-compliance-advisory",
     gradient:
-      "radial-gradient(ellipse at 60% 30%, #f0abfc 0%, #C183B8 25%, #7C4A76 55%, #2d1a2a 100%)",
-    accent: "#f0abfc",
+      "radial-gradient(ellipse at 60% 30%, #EE672C 0%, #c4531f 25%, #4D397F 55%, #1e143a 100%)",
+    accent: "#EE672C",
     image: "/images/services/tax-compliance.webp",
   },
   {
@@ -54,7 +54,7 @@ const services = [
       "Great businesses are built on great decisions — and great decisions need the right advisor. Our advisory practice goes beyond numbers, working alongside founders and leadership teams on the things that shape a business long-term: strategy, governance, fundraising readiness, financial controls, and the technology infrastructure that holds it all together.",
     href: "/services/business-advisory",
     gradient:
-      "radial-gradient(ellipse at 40% 60%, #fbbf24 0%, #b45309 20%, #7C4A76 50%, #1a0f18 100%)",
+      "radial-gradient(ellipse at 40% 60%, #fbbf24 0%, #b45309 20%, #4D397F 50%, #140e2a 100%)",
     accent: "#fbbf24",
     image: "/images/services/business-advisory.webp",
   },
@@ -65,7 +65,7 @@ const services = [
       "Every CPA firm reaches a point where the back-office work starts competing with the work that actually grows the business. That's where we come in. We become a natural extension of your team — handling client onboarding, day-to-day bookkeeping, month-end close, financial reporting, historical cleanups, payroll, and sales tax filings across your portfolio.",
     href: "/services/support-to-cpas",
     gradient:
-      "radial-gradient(ellipse at 50% 40%, #5eead4 0%, #0d9488 20%, #7C4A76 55%, #1a0f18 100%)",
+      "radial-gradient(ellipse at 50% 40%, #5eead4 0%, #0d9488 20%, #4D397F 55%, #140e2a 100%)",
     accent: "#5eead4",
     image: "/images/services/support-cpas.webp",
   },
@@ -142,7 +142,7 @@ export function ServicesBrief() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(26,15,24,0.92) 0%, rgba(26,15,24,0.85) 30%, rgba(26,15,24,0.5) 55%, rgba(26,15,24,0.1) 75%, transparent 100%)",
+            "linear-gradient(to right, rgba(20,14,42,0.92) 0%, rgba(20,14,42,0.85) 30%, rgba(20,14,42,0.5) 55%, rgba(20,14,42,0.1) 75%, transparent 100%)",
         }}
       />
 

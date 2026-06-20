@@ -13,14 +13,14 @@ const steps: StackingProject[] = [
     description:
       "A defined onboarding framework with pre-built checklists and clear timelines ensures a smooth transition — with value delivered from day one.",
     src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80",
-    color: "#7C4A76",
+    color: "#4D397F",
   },
   {
     title: "Tech-Powered Workflows for Consistent Delivery.",
     description:
       "Tech-embedded workflows and rigorous review mechanisms ensure your books are closed accurately and on time — every single month, without exception.",
     src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
-    color: "#5D3858",
+    color: "#362765",
   },
   {
     title: "Real-Time Visibility. Informed Decisions.",

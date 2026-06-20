@@ -14,6 +14,15 @@ import {
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 
+const countries = [
+  { flag: "🇺🇸", name: "USA" },
+  { flag: "🇨🇦", name: "Canada" },
+  { flag: "🇮🇳", name: "India" },
+  { flag: "🇦🇺", name: "Australia" },
+  { flag: "🇬🇧", name: "UK" },
+  { flag: "🇸🇬", name: "Singapore" },
+];
+
 const clients = [
   {
     country: "Michigan, USA",
@@ -65,19 +74,38 @@ export function TrustedClients() {
 
   return (
     <section className="py-14 md:py-20 relative overflow-hidden">
-      {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-tint/30 to-transparent pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <SectionHeading
             title="Trusted by Multi-Jurisdictional Clients"
-            description="From tech startups to hospitality groups, from FMCG giants to real estate firms — businesses across the US, Canada, Australia, and beyond trust TrueLedger to manage what matters most."
+            description="From tech startups to hospitality groups — businesses across 6+ countries trust TrueLedger to manage what matters most."
           />
         </AnimatedSection>
 
+        {/* Country flag strip — visual anchor */}
+        <AnimatedSection delay={0.1}>
+          <div className="flex items-center justify-center gap-3 sm:gap-5 mb-10">
+            {countries.map((c, i) => (
+              <div key={c.name} className="flex items-center gap-3 sm:gap-5">
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="size-11 sm:size-13 rounded-full bg-white border-2 border-brand/15 shadow-sm flex items-center justify-center text-xl sm:text-2xl">
+                    {c.flag}
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-medium text-muted-foreground">{c.name}</span>
+                </div>
+                {i < countries.length - 1 && (
+                  <div className="w-4 sm:w-8 h-px bg-gradient-to-r from-brand/30 to-brand/10 -mt-4" />
+                )}
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        {/* Carousel — reduced width */}
         <AnimatedSection delay={0.15}>
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto max-w-3xl">
             <Carousel
               setApi={setApi}
               opts={{ loop: true, align: "center" }}
@@ -88,18 +116,17 @@ export function TrustedClients() {
                   <CarouselItem key={i}>
                     <Card className="border-brand/10 shadow-lg shadow-brand/5 bg-white/90 backdrop-blur-sm overflow-hidden">
                       <div className="flex flex-col sm:flex-row">
-                        {/* Left accent stripe */}
-                        <div className="hidden sm:block w-1.5 bg-gradient-to-b from-brand via-primary to-brand/50 shrink-0 rounded-l-xl" />
+                        <div className="hidden sm:block w-1.5 bg-gradient-to-b from-orange via-primary to-brand/50 shrink-0 rounded-l-xl" />
                         <CardContent className="flex flex-col sm:flex-row gap-5 pt-2 flex-1">
                           <div className="shrink-0 flex items-start">
-                            <div className="size-16 rounded-2xl bg-gradient-to-br from-brand-soft to-brand-tint flex items-center justify-center text-3xl shadow-sm">
+                            <div className="size-14 rounded-2xl bg-gradient-to-br from-brand-soft to-brand-tint flex items-center justify-center text-2xl shadow-sm">
                               {c.flag}
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex flex-wrap items-center gap-2.5 mb-3">
                               <span className="inline-flex items-center gap-1 font-heading font-semibold text-base">
-                                <MapPin className="size-3.5 text-primary" />
+                                <MapPin className="size-3.5 text-orange" />
                                 {c.country}
                               </span>
                               <Badge variant="secondary">{c.tag}</Badge>

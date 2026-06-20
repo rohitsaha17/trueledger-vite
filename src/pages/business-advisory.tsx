@@ -150,13 +150,13 @@ export default function BusinessAdvisoryPage() {
           <>
             The Right Advice, at the Right Time,
             <br className="hidden sm:block" />
-            <span className="text-[#C183B8]">Changes Everything.</span>
+            <span className="text-[#EE672C]">Changes Everything.</span>
           </>
         }
         description="Most businesses don’t struggle because of a lack of effort. They struggle because the financial decisions — the structural ones, the strategic ones — were made without the right advisor in the room."
         imageSrc="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80"
-        accentColor="#C183B8"
-        overlayGradient="linear-gradient(to right, rgba(26,15,24,0.97) 0%, rgba(26,15,24,0.93) 35%, rgba(26,15,24,0.7) 65%, rgba(193,131,184,0.25) 100%)"
+        accentColor="#EE672C"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
 
       {/* ============================================================ */}
