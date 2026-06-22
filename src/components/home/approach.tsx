@@ -127,7 +127,7 @@ const cards = [
 
 export function Approach() {
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden">
+    <section className="py-10 md:py-14 relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 pointer-events-none">
         <img
@@ -151,46 +151,40 @@ export function Approach() {
           />
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
           {cards.map((card, i) => (
-            <AnimatedSection key={card.title} delay={i * 0.12}>
+            <AnimatedSection key={card.title} delay={i * 0.1}>
               <motion.div
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -4 }}
                 transition={{ duration: 0.25 }}
               >
-                <Card className="group cursor-pointer h-full overflow-hidden border-border/50 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 bg-white">
-                  {/* Card image */}
-                  <div className="h-44 overflow-hidden">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
+                <Card className="group cursor-pointer h-full overflow-hidden border-border/50 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 bg-white relative">
+                  {/* Background image at low opacity */}
+                  <img
+                    src={card.image}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-500 pointer-events-none"
+                    loading="lazy"
+                  />
 
-                  <CardContent className="p-7 pt-5">
-                    {/* Icon */}
+                  <CardContent className="relative z-10 p-5">
                     <div
-                      className={`size-12 rounded-xl ${card.iconBg} flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-300`}
+                      className={`size-10 rounded-lg ${card.iconBg} flex items-center justify-center mb-3 text-primary group-hover:scale-110 transition-transform duration-300`}
                     >
                       {card.icon}
                     </div>
 
-                    {/* Title */}
-                    <h3 className="font-heading font-bold text-lg mb-3">
+                    <h3 className="font-heading font-bold text-base mb-2">
                       {card.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-muted-foreground text-[13px] leading-relaxed">
                       {card.description}
                     </p>
                   </CardContent>
 
-                  {/* Gradient accent at bottom */}
                   <div
-                    className={`h-1 w-full bg-gradient-to-r ${card.gradient} rounded-b-xl`}
+                    className={`h-0.5 w-full bg-gradient-to-r ${card.gradient} rounded-b-xl`}
                   />
                 </Card>
               </motion.div>
