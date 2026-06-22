@@ -90,24 +90,28 @@ const audiences = [
     title: "International Founders",
     text: "Expanding into the US market and need the right entity structure from day one.",
     gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210852_c03a1c7c-fa32-4ff0-87c5-12b4d98cf851_min.webp",
   },
   {
     icon: Landmark,
     title: "Multi-State Businesses",
     text: "Establishing a presence in new states or countries with full compliance.",
     gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210853_70276300-ab05-4493-83dc-7e167f6bcc04_min.webp",
   },
   {
     icon: Rocket,
     title: "Growth-Stage Startups",
     text: "Preparing for investment rounds, cross-border operations, or restructuring.",
     gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210855_0d847833-42f5-4af2-8fc8-2de8266ec9f7_min.webp",
   },
   {
     icon: Target,
     title: "Detail-Oriented Owners",
     text: "Who want their structure done right — not just done fast — with long-term clarity.",
     gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210856_d3fd93ca-d852-405b-96b7-dcc29808d0e0_min.webp",
   },
 ];
 
@@ -189,28 +193,47 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — EMBEDDED VIDEO                                   */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-brand-tint/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center mb-10">
-              <SectionHeading
-                title="Watch Our Quick Explainer"
-              />
-            </div>
-            <div className="flex justify-center">
-              <div className="w-full max-w-[360px] rounded-2xl overflow-hidden shadow-lg border border-black/[0.06] bg-white">
-                <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/BkmOnZ4gbqw"
-                    title="TrueLedger Entity Setup Explainer"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                  />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <AnimatedSection>
+              <div>
+                <SectionHeading
+                  title="Watch Our Quick Explainer"
+                  align="left"
+                />
+                <p className="text-muted-foreground leading-relaxed mt-4 max-w-lg">
+                  In under two minutes, learn how TrueLedger helps founders choose the right entity structure, register in the right state, and get fully set up — without the guesswork.
+                </p>
+                <ul className="mt-6 space-y-3">
+                  {["Entity structure options explained", "State selection considerations", "End-to-end setup walkthrough"].map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-ink font-medium">
+                      <span className="size-5 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
+                        <ChevronRight className="size-3 text-brand" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.15}>
+              <div className="flex justify-center lg:justify-end">
+                <div className="w-full max-w-[340px] rounded-2xl overflow-hidden shadow-xl border border-black/[0.06] bg-white">
+                  <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/BkmOnZ4gbqw"
+                      title="TrueLedger Entity Setup Explainer"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -300,8 +323,8 @@ export default function GlobalEntitySetupPage() {
               return (
                 <AnimatedSection key={item.text} delay={i * 0.1}>
                   <div className={`relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group`}>
+                    <img src={item.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-500 pointer-events-none" loading="lazy" />
                     <div className={`absolute inset-0 bg-gradient-to-b ${item.gradient} pointer-events-none`} />
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand/[0.03] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-brand/[0.06] transition-colors duration-300" />
 
                     <div className="relative z-10 p-6 lg:p-7 flex flex-col items-center text-center">
                       <div className="size-14 rounded-2xl bg-brand-tint flex items-center justify-center border border-brand/10 mb-5 group-hover:scale-110 group-hover:bg-brand/10 transition-all duration-300">
