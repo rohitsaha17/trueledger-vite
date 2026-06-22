@@ -1,10 +1,5 @@
 'use client';
-import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
-import { useRef } from 'react';
-
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
+import { useRef, useCallback, useState, useEffect } from 'react';
 
 export interface StackingProject {
   title: string;
@@ -13,86 +8,75 @@ export interface StackingProject {
   color: string;
 }
 
+const NAV_HEIGHT = 72;
+const TITLE_BAR_HEIGHT = 56;
+const CARD_BODY_HEIGHT = 360;
+
 interface CardProps {
   i: number;
+  total: number;
   title: string;
   description: string;
   src: string;
   color: string;
-  progress: MotionValue<number>;
-  range: [number, number];
-  targetScale: number;
+  stickyTop: number;
 }
 
-/* ------------------------------------------------------------------ */
-/*  Individual Card                                                    */
-/* ------------------------------------------------------------------ */
+function StackingCard({ i, total, title, description, src, color, stickyTop }: CardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
 
-function StackingCard({
-  i,
-  title,
-  description,
-  src,
-  color,
-  progress,
-  range,
-  targetScale,
-}: CardProps) {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start end', 'start start'],
-  });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
+  const scrollToCard = useCallback(() => {
+    if (!cardRef.current) return;
+    const y = cardRef.current.offsetTop + (cardRef.current.offsetParent as HTMLElement)?.offsetTop - stickyTop + TITLE_BAR_HEIGHT;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }, [stickyTop]);
 
   return (
     <div
-      ref={container}
-      className="h-screen flex items-center justify-center sticky top-0"
+      ref={cardRef}
+      className="sticky rounded-2xl overflow-hidden shadow-xl"
+      style={{ top: stickyTop, zIndex: 10 + i, backgroundColor: color }}
     >
-      <motion.div
-        style={{
-          backgroundColor: color,
-          scale,
-          top: `calc(-5vh + ${i * 25}px)`,
-        }}
-        className="flex flex-col relative -top-[25%] h-[450px] w-[90%] max-w-5xl rounded-2xl p-8 sm:p-10 origin-top shadow-xl"
+      <button
+        type="button"
+        onClick={scrollToCard}
+        className="w-full flex items-center gap-4 px-6 sm:px-8 cursor-pointer group"
+        style={{ height: TITLE_BAR_HEIGHT }}
       >
-        <h2 className="text-2xl sm:text-3xl text-center font-heading font-semibold text-white drop-shadow-sm">
+        <span className="flex items-center justify-center size-8 rounded-lg bg-white/15 text-white/80 text-sm font-bold font-heading shrink-0">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <h3 className="text-base sm:text-lg font-heading font-semibold text-white truncate text-left flex-1">
           {title}
-        </h2>
-        <div className="flex flex-col sm:flex-row h-full mt-5 gap-6 sm:gap-10">
-          <div className="sm:w-[40%] relative sm:top-[10%]">
-            <p className="text-sm sm:text-[0.9375rem] text-white/85 leading-relaxed">
-              {description}
-            </p>
-          </div>
-          <div className="relative sm:w-[60%] h-full rounded-xl overflow-hidden">
-            <motion.div className="w-full h-full" style={{ scale: imageScale }}>
-              <img
-                src={src}
-                alt={title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </motion.div>
-          </div>
+        </h3>
+        <span className="shrink-0 text-white/40 text-xs font-medium font-heading">
+          {String(i + 1).padStart(2, '0')}/{String(total).padStart(2, '0')}
+        </span>
+      </button>
+
+      <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 px-6 sm:px-8 pb-8" style={{ height: CARD_BODY_HEIGHT }}>
+        <div className="sm:w-[40%] flex flex-col justify-center">
+          <p className="text-sm sm:text-[0.9375rem] text-white/85 leading-relaxed">
+            {description}
+          </p>
         </div>
-      </motion.div>
+        <div className="sm:w-[60%] rounded-xl overflow-hidden relative">
+          <img
+            src={src}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading={i < 2 ? 'eager' : 'lazy'}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        </div>
+      </div>
     </div>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Cards container — drop this into any section                       */
-/* ------------------------------------------------------------------ */
-
 interface StackingCardsProps {
   projects: StackingProject[];
-  /** Content rendered as a sticky header pinned below the navbar */
   stickyHeader?: React.ReactNode;
-  /** Tailwind bg class for the sticky header area (must match section bg) */
   headerBgClass?: string;
 }
 
@@ -101,27 +85,35 @@ export function StackingCards({
   stickyHeader,
   headerBgClass = 'bg-background',
 }: StackingCardsProps) {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end'],
-  });
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(104);
 
-  const scaleStep = Math.min(0.05, 0.25 / projects.length);
+  useEffect(() => {
+    if (!headerRef.current) return;
+    const measure = () => setHeaderHeight(headerRef.current!.offsetHeight);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [stickyHeader]);
+
+  const headerOffset = NAV_HEIGHT + (stickyHeader ? headerHeight : 0);
+  const paddingBottom = CARD_BODY_HEIGHT;
 
   return (
-    <div ref={container}>
-      {/* Sticky section heading — stays visible while cards stack below */}
+    <div>
       {stickyHeader && (
-        <div className="sticky top-[72px] z-20 pointer-events-none">
+        <div
+          ref={headerRef}
+          className="sticky z-30"
+          style={{ top: NAV_HEIGHT }}
+        >
           <div className={`${headerBgClass} pt-8 pb-3`}>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               {stickyHeader}
             </div>
           </div>
-          {/* Fade gradient so cards disappear smoothly behind the heading */}
           <div
-            className="h-10"
+            className="h-4"
             style={{
               background: `linear-gradient(to bottom, var(--sticky-header-bg, transparent), transparent)`,
             }}
@@ -129,22 +121,25 @@ export function StackingCards({
         </div>
       )}
 
-      {projects.map((project, i) => {
-        const targetScale = 1 - (projects.length - i) * scaleStep;
-        return (
-          <StackingCard
-            key={`p_${i}`}
-            i={i}
-            src={project.src}
-            title={project.title}
-            color={project.color}
-            description={project.description}
-            progress={scrollYProgress}
-            range={[i * (1 / projects.length), 1]}
-            targetScale={targetScale}
-          />
-        );
-      })}
+      {/* All cards as siblings — sticky stacking needs a shared parent */}
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          {projects.map((project, i) => (
+            <StackingCard
+              key={i}
+              i={i}
+              total={projects.length}
+              title={project.title}
+              description={project.description}
+              src={project.src}
+              color={project.color}
+              stickyTop={headerOffset + i * TITLE_BAR_HEIGHT}
+            />
+          ))}
+          {/* Spacer inside the sticky containment block so the last card can stay stuck */}
+          <div style={{ height: paddingBottom }} aria-hidden />
+        </div>
+      </div>
     </div>
   );
 }

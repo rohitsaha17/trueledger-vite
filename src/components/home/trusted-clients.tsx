@@ -14,44 +14,40 @@ import {
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const countries = [
-  { flag: "🇺🇸", name: "USA" },
-  { flag: "🇨🇦", name: "Canada" },
-  { flag: "🇮🇳", name: "India" },
-  { flag: "🇦🇺", name: "Australia" },
-  { flag: "🇬🇧", name: "UK" },
-  { flag: "🇸🇬", name: "Singapore" },
-];
-
 const clients = [
   {
     country: "Michigan, USA",
     flag: "🇺🇸",
     tag: "End-to-End Accounting",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_144911_1ba7e70a-6904-48da-9b86-708584dee5c0_min.webp",
     text: "An award-winning AI and data analytics firm serving Fortune 500 companies, with a strong footprint in the automotive industry across the US and India. TrueLedger manages their end-to-end accounting function — from bookkeeping and financial reporting to AP, AR, and payroll processing.",
   },
   {
     country: "New York, USA",
     flag: "🇺🇸",
     tag: "Full Financial Operations",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_144914_fad1ab72-7b3d-4067-9ba4-1b24491d3548_min.webp",
     text: "A dynamic multi-venue hospitality group operating in one of the world's most competitive restaurant and bar markets. TrueLedger handles their full financial operations — accounting, AP processing, entity formation, tax compliance, and management reporting.",
   },
   {
     country: "India",
     flag: "🇮🇳",
     tag: "Payroll & Sales Tax",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145030_3db197a8-a374-462b-b152-5ff2708700c5_min.webp",
     text: "A global hospitality chain founded in India, rapidly expanding its footprint across the United States. TrueLedger supported US operations with payroll management and multi-state sales tax registrations across their property portfolio.",
   },
   {
     country: "Canada",
     flag: "🇨🇦",
     tag: "Bookkeeping & Payroll",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145017_54d2f084-689f-43ee-8df1-99b9426c335b_min.webp",
     text: "A Canadian real estate investment group with a reputation built on results, operating across multiple business verticals. TrueLedger provides bookkeeping, payroll processing, and financial reporting to support their growing operations.",
   },
   {
     country: "Melbourne, Australia",
     flag: "🇦🇺",
     tag: "Accounts Payable",
+    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145019_8444f3a6-836d-4a21-a01c-c2fc4256e6a5_min.webp",
     text: "An innovative Australian food and beverage company behind category-leading products sold across 20,000 retail outlets nationally and exported across Asia. TrueLedger supports their accounts payable operations across their multi-location business.",
   },
 ];
@@ -84,26 +80,6 @@ export function TrustedClients() {
           />
         </AnimatedSection>
 
-        {/* Country flag strip — visual anchor */}
-        <AnimatedSection delay={0.1}>
-          <div className="flex items-center justify-center gap-3 sm:gap-5 mb-10">
-            {countries.map((c, i) => (
-              <div key={c.name} className="flex items-center gap-3 sm:gap-5">
-                <div className="flex flex-col items-center gap-1.5">
-                  <div className="size-11 sm:size-13 rounded-full bg-white border-2 border-brand/15 shadow-sm flex items-center justify-center text-xl sm:text-2xl">
-                    {c.flag}
-                  </div>
-                  <span className="text-[10px] sm:text-xs font-medium text-muted-foreground">{c.name}</span>
-                </div>
-                {i < countries.length - 1 && (
-                  <div className="w-4 sm:w-8 h-px bg-gradient-to-r from-brand/30 to-brand/10 -mt-4" />
-                )}
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        {/* Carousel — reduced width */}
         <AnimatedSection delay={0.15}>
           <div className="mx-auto max-w-3xl">
             <Carousel
@@ -115,28 +91,35 @@ export function TrustedClients() {
                 {clients.map((c, i) => (
                   <CarouselItem key={i}>
                     <Card className="border-brand/10 shadow-lg shadow-brand/5 bg-white/90 backdrop-blur-sm overflow-hidden">
-                      <div className="flex flex-col sm:flex-row">
-                        <div className="hidden sm:block w-1.5 bg-gradient-to-b from-orange via-primary to-brand/50 shrink-0 rounded-l-xl" />
-                        <CardContent className="flex flex-col sm:flex-row gap-5 pt-2 flex-1">
-                          <div className="shrink-0 flex items-start">
-                            <div className="size-14 rounded-2xl bg-gradient-to-br from-brand-soft to-brand-tint flex items-center justify-center text-2xl shadow-sm">
-                              {c.flag}
-                            </div>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-2.5 mb-3">
-                              <span className="inline-flex items-center gap-1 font-heading font-semibold text-base">
-                                <MapPin className="size-3.5 text-orange" />
-                                {c.country}
-                              </span>
-                              <Badge variant="secondary">{c.tag}</Badge>
-                            </div>
-                            <p className="text-muted-foreground text-sm leading-relaxed">
-                              {c.text}
-                            </p>
-                          </div>
-                        </CardContent>
+                      {/* Industry image */}
+                      <div className="relative h-48 sm:h-56 overflow-hidden">
+                        <img
+                          src={c.image}
+                          alt={c.tag}
+                          className="w-full h-full object-cover"
+                          loading={i === 0 ? "eager" : "lazy"}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                        <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                          <span className="text-2xl">{c.flag}</span>
+                          <span className="inline-flex items-center gap-1 font-heading font-semibold text-sm text-white drop-shadow-md">
+                            <MapPin className="size-3.5 text-orange" />
+                            {c.country}
+                          </span>
+                        </div>
+                        <div className="absolute top-3 right-3">
+                          <Badge className="bg-white/90 text-foreground backdrop-blur-sm border-0 shadow-sm">
+                            {c.tag}
+                          </Badge>
+                        </div>
                       </div>
+
+                      {/* Content */}
+                      <CardContent className="pt-5 pb-6 px-6">
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {c.text}
+                        </p>
+                      </CardContent>
                     </Card>
                   </CarouselItem>
                 ))}

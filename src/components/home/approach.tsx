@@ -9,6 +9,7 @@ const cards = [
     description:
       "We bring years of experience across global markets and complex business structures — applied personally to every client we work with. You get senior-level thinking, not junior execution.",
     gradient: "from-brand/20 via-brand-soft to-brand-tint",
+    cardBg: "linear-gradient(135deg, rgba(77,57,127,0.08) 0%, rgba(167,139,250,0.06) 40%, rgba(255,255,255,0.9) 100%)",
     iconBg: "bg-brand/15",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-7">
@@ -35,6 +36,7 @@ const cards = [
     description:
       "No chasing, no waiting, no surprises. You'll always have a dedicated point of contact who knows your business inside out and stays ahead of what it needs next.",
     gradient: "from-primary/15 via-brand-soft to-brand-tint",
+    cardBg: "linear-gradient(135deg, rgba(238,103,44,0.07) 0%, rgba(251,191,36,0.05) 40%, rgba(255,255,255,0.9) 100%)",
     iconBg: "bg-primary/10",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-7">
@@ -79,6 +81,7 @@ const cards = [
     description:
       "From startup to scale-up, from domestic to global — our advisory evolves with you. The more your business demands, the more we bring to the table.",
     gradient: "from-coral/15 via-brand-soft/40 to-brand-tint",
+    cardBg: "linear-gradient(135deg, rgba(176,59,45,0.06) 0%, rgba(238,103,44,0.05) 40%, rgba(255,255,255,0.9) 100%)",
     iconBg: "bg-coral/10",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-7">
@@ -109,6 +112,7 @@ const cards = [
     description:
       "Your financials are only valuable if they're right and ready when you need them. We operate on disciplined timelines and rigorous review standards.",
     gradient: "from-brand-dark/10 via-brand-soft to-brand-tint",
+    cardBg: "linear-gradient(135deg, rgba(54,39,101,0.08) 0%, rgba(77,57,127,0.05) 40%, rgba(255,255,255,0.9) 100%)",
     iconBg: "bg-brand-dark/10",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-7">
@@ -151,6 +155,17 @@ const cards = [
 export function Approach() {
   return (
     <section className="py-14 md:py-20 relative overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
+          alt=""
+          className="w-full h-full object-cover opacity-[0.05]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      </div>
+
       {/* Soft gradient blob */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] bg-brand/[0.04] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] bg-primary/[0.03] pointer-events-none" />
@@ -167,7 +182,7 @@ export function Approach() {
           {cards.map((card, i) => (
             <AnimatedSection key={card.title} delay={i * 0.12}>
               <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }}>
-                <Card className="group relative h-full overflow-visible border-border/50 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 bg-white/80 backdrop-blur-sm">
+                <Card className="group relative h-full overflow-visible border-border/50 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 backdrop-blur-sm" style={{ background: card.cardBg }}>
                   {/* Pop-out visual */}
                   {card.visual}
 
