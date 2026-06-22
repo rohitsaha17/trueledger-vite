@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ScrollFlipTimeline, type TimelineStep } from "@/components/ui/scroll-flip-timeline";
+// ScrollFlipTimeline removed — using static layout
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
@@ -146,7 +146,7 @@ const stats = [
 /*  Story timeline markers                                              */
 /* ================================================================== */
 
-const storyBeats: TimelineStep[] = [
+const storyBeats = [
   {
     marker: "The Spark",
     text: "Some of the best business ideas don’t start in boardrooms — they start at airports, between flights, in the kind of honest conversation that only happens when two people have nowhere else to be. That’s exactly how TrueLedger Consulting was born.",
@@ -198,6 +198,7 @@ export default function AboutPage() {
               muted
               loop
               playsInline
+              preload="auto"
               className="absolute inset-0 w-full h-full object-cover"
             >
               <source src="/videos/about-hero-seedance.mp4" type="video/mp4" />
@@ -224,34 +225,56 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 2 — THE STORY (Scroll-Flip Timeline)                 */}
+      {/*  SECTION 2 — THE STORY                                        */}
       {/* ============================================================ */}
-      <section className="pt-20 md:pt-28 pb-8">
-        {/* Wrapper constrains sticky heading to timeline only — heading unsticks after last card */}
-        <div>
-          {/* Story heading — sticky on scroll */}
-          <div className="sticky top-[72px] z-20 bg-background/95 backdrop-blur-sm border-b border-black/[0.04]">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 md:py-4">
-              <div className="text-center">
-                <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink leading-[1.15] mb-1">
-                  The TrueLedger Story
-                </h2>
-                <p className="text-base sm:text-lg text-brand font-medium leading-snug max-w-lg mx-auto">
-                  A 20-Minute Conversation<br className="hidden sm:block" />
-                  That Changed Everything.
-                </p>
-              </div>
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink leading-[1.15] mb-3">
+                The TrueLedger Story
+              </h2>
+              <p className="text-base sm:text-lg text-brand font-medium leading-snug max-w-lg mx-auto">
+                A 20-Minute Conversation That Changed Everything.
+              </p>
             </div>
+          </AnimatedSection>
+
+          <div className="space-y-16 md:space-y-20 max-w-5xl mx-auto">
+            {storyBeats.map((beat, i) => (
+              <AnimatedSection key={beat.marker} delay={0.1}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center`}>
+                  <div className={i % 2 === 1 ? "md:order-2" : ""}>
+                    <div className="rounded-2xl overflow-hidden shadow-lg border border-black/[0.06]">
+                      <img
+                        src={beat.image}
+                        alt={beat.marker}
+                        className="w-full aspect-[4/3] object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div className={i % 2 === 1 ? "md:order-1" : ""}>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="size-8 rounded-full bg-brand text-white flex items-center justify-center text-xs font-bold font-heading shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-brand font-bold uppercase tracking-wider text-sm">
+                        {beat.marker}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {beat.text}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
 
-          {/* Scroll-Flip Timeline — offset accounts for navbar (72px) + sticky heading (~100px) */}
-          <ScrollFlipTimeline steps={storyBeats} stickyTopOffset={156} />
-        </div>
-
-        {/* Pull quote */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Pull quote */}
           <AnimatedSection delay={0.15}>
-            <div className="max-w-3xl mx-auto mt-12 md:mt-16 relative">
+            <div className="max-w-3xl mx-auto mt-16 md:mt-20 relative">
               <div className="absolute -top-6 -left-2 sm:-left-6">
                 <Quote className="size-12 sm:size-16 text-brand/10" />
               </div>
@@ -386,8 +409,19 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 6 — DATA SECURITY                                    */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_203624_f982825f-72b5-42d9-acac-210e86af9acb_min.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-[0.08]"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <SectionHeading
               title="Built on Trust. Secured by Design."
@@ -507,25 +541,30 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 9 — CLOSING CTA                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
-        {/* Static gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        {/* Background image */}
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/85" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
 
-        {/* Chevron decoration */}
-        <div className="absolute top-1/2 -translate-y-1/2 -left-12 font-heading text-[16rem] font-bold text-white/[0.04] select-none pointer-events-none leading-none">
-          &rsaquo;
-        </div>
+        {/* Accent glows */}
+        <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-white/50 text-sm font-medium uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">
               Let&rsquo;s build something meaningful together.
             </h2>
-            <p className="text-white/40 text-base max-w-xl mx-auto mb-10">
+            <p className="text-white/45 text-sm sm:text-base max-w-lg mx-auto mb-10">
               Whether you need accounting expertise, tax advisory, or a trusted
               financial partner for the long haul &mdash; we&rsquo;re ready to
               talk.
@@ -534,7 +573,8 @@ export default function AboutPage() {
               trigger={
                 <Button
                   size="lg"
-                  className="bg-white text-brand-dark hover:bg-white/90 shadow-xl shadow-black/20 text-base px-8 h-13"
+                  className="text-base px-8 h-13 font-semibold shadow-xl shadow-[#EE672C]/20 border-0 text-white cursor-pointer"
+                  style={{ background: "linear-gradient(135deg, #EE672C, #B03B2D)" }}
                 >
                   Book a Consultation
                   <ChevronRight className="size-4" />

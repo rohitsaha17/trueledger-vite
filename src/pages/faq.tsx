@@ -204,22 +204,23 @@ export default function FAQPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — CLOSING CTA                                     */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-dark relative overflow-hidden">
-        {/* Static gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/15 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-[15%] w-64 h-64 bg-coral/10 rounded-full blur-3xl" />
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-[#140e2a]/85" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
+        <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-            <div className="bg-white/[0.08] backdrop-blur-xl rounded-3xl border border-white/[0.12] p-10 md:p-14 text-center max-w-3xl mx-auto">
-              <p className="text-white/50 text-sm font-medium uppercase tracking-widest mb-4">
+            <div className="bg-white/[0.06] backdrop-blur-xl rounded-3xl border border-white/[0.10] p-10 md:p-14 text-center max-w-3xl mx-auto">
+              <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
                 Need more clarity?
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
                 Still Have Questions? Let&rsquo;s Talk.
               </h2>
-              <p className="text-white/40 text-base max-w-xl mx-auto mb-10">
+              <p className="text-white/45 text-sm sm:text-base max-w-lg mx-auto mb-10">
                 Book a free 30-minute discovery call and get clear, honest answers
                 from our team &mdash; no commitment, no pressure.
               </p>
@@ -227,7 +228,8 @@ export default function FAQPage() {
                 trigger={
                   <Button
                     size="lg"
-                    className="bg-white text-brand-dark hover:bg-white/90 shadow-xl shadow-black/20 text-base px-8 h-13"
+                    className="text-base px-8 h-13 font-semibold shadow-xl shadow-[#EE672C]/20 border-0 text-white cursor-pointer"
+                    style={{ background: "linear-gradient(135deg, #EE672C, #B03B2D)" }}
                   >
                     Book a Consultation
                     <ChevronRight className="size-4" />
