@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
-import { ZigzagTimeline, type ZigzagStep } from "@/components/shared/zigzag-timeline";
+import type { ZigzagStep } from "@/components/shared/zigzag-timeline";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, Check, BarChart3 } from "lucide-react";
@@ -209,19 +209,87 @@ function HeroSection() {
         description="Growth demands financial clarity. Accurate books, timely reports, and disciplined compliance don’t just keep you organized — they sharpen your decision-making and give you the confidence to scale."
         imageSrc="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80"
         accentColor="#a78bfa"
-        overlayGradient="linear-gradient(135deg, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 40%, rgba(20,14,42,0.7) 70%, rgba(167,139,250,0.3) 100%)"
+        overlayGradient="linear-gradient(135deg, rgba(20,14,42,0.92) 0%, rgba(20,14,42,0.85) 35%, rgba(20,14,42,0.55) 65%, rgba(167,139,250,0.2) 100%)"
       />
   );
 }
 
 function WhatWeProvideSection() {
   return (
-    <ZigzagTimeline
-      steps={whatWeProvide}
-      eyebrow="What We Provide"
-      title="End-to-End Financial Management"
-      className="bg-brand-tint/50"
-    />
+    <section className="py-20 md:py-28 bg-brand-tint/50 overflow-hidden">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading">
+            End-to-End Financial Management
+          </h2>
+        </motion.div>
+
+        <div className="relative">
+          {/* Vertical connector line — desktop only */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-brand/20 via-brand/40 to-brand/20 -translate-x-1/2" />
+
+          <div className="flex flex-col gap-6 md:gap-0">
+            {whatWeProvide.map((step, i) => {
+              const stepNum = String(i + 1).padStart(2, "0");
+              return (
+                <motion.div
+                  key={step.title}
+                  className="relative"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                >
+                  {/* Desktop: two-column with connector */}
+                  <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] items-center gap-0 py-4">
+                    {/* Left — title */}
+                    <div className="flex items-center justify-end gap-4 pr-8">
+                      <div className="text-right">
+                        <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
+                        <h3 className="font-heading font-bold text-lg text-ink leading-snug mt-0.5">
+                          {step.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Center — node dot */}
+                    <div className="relative z-10 flex items-center justify-center">
+                      <div className="size-4 rounded-full bg-brand border-[3px] border-brand-tint shadow-md shadow-brand/20" />
+                    </div>
+
+                    {/* Right — description box */}
+                    <div className="pl-8">
+                      <div className="bg-white rounded-xl p-5 shadow-sm border border-black/[0.06] hover:shadow-md transition-shadow duration-300 max-w-md">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile: stacked card */}
+                  <div className="md:hidden bg-white rounded-xl p-5 shadow-sm border border-black/[0.06]">
+                    <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
+                    <h3 className="font-heading font-bold text-base text-ink leading-snug mt-1 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -311,14 +379,16 @@ function PricingSection() {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4 xl:gap-6 items-start">
-          {pricingTiers.map((tier, i) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-5 xl:gap-6 items-end">
+          {pricingTiers.map((tier, i) => {
+            const staircaseOffset = i === 0 ? "lg:mb-0" : i === 1 ? "lg:mb-16" : "lg:mb-32";
+            return (
             <AnimatedSection key={tier.name} delay={i * 0.1}>
               <div
                 className={[
-                  "relative rounded-2xl bg-white border overflow-hidden transition-shadow duration-300",
+                  `relative rounded-2xl bg-white border overflow-hidden transition-shadow duration-300 ${staircaseOffset}`,
                   tier.highlighted
-                    ? "border-brand shadow-xl shadow-brand/10 lg:scale-105 lg:-my-2 z-10"
+                    ? "border-brand shadow-xl shadow-brand/10 z-10"
                     : "border-black/[0.06] shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]",
                 ].join(" ")}
               >
@@ -388,7 +458,8 @@ function PricingSection() {
                 </div>
               </div>
             </AnimatedSection>
-          ))}
+          );
+          })}
         </div>
 
         {/* Custom tier callout */}
@@ -417,92 +488,77 @@ function PricingSection() {
 }
 
 function TechAdvantageSection() {
-  /* Pyramid tiers — top (narrowest) to bottom (widest) */
   const tierColors = [
-    { bg: "from-[#4a2545] to-[#6b3a64]", text: "text-white", logoRing: "ring-white/20" },
-    { bg: "from-[#6b3a64] to-[#8b5080]", text: "text-white", logoRing: "ring-white/20" },
-    { bg: "from-[#8b5080] to-[#a96a9e]", text: "text-white", logoRing: "ring-white/20" },
-    { bg: "from-[#c490b8] to-[#d9aece]", text: "text-brand-dark", logoRing: "ring-brand/15" },
-    { bg: "from-[#e8cfe0] to-[#f3e4ee]", text: "text-brand-dark", logoRing: "ring-brand/10" },
+    { face: "#3d1f3a", top: "#5a3555", right: "#2e1730", text: "text-white", logoRing: "ring-white/20" },
+    { face: "#5a3555", top: "#7a4d72", right: "#3d1f3a", text: "text-white", logoRing: "ring-white/20" },
+    { face: "#7a4d72", top: "#9a6d92", right: "#5a3555", text: "text-white", logoRing: "ring-white/20" },
+    { face: "#b892ae", top: "#d4b5cc", right: "#9a6d92", text: "text-brand-dark", logoRing: "ring-brand/15" },
+    { face: "#e0cbda", top: "#f0e4ec", right: "#c8a8be", text: "text-brand-dark", logoRing: "ring-brand/10" },
   ];
 
+  const sideHeight = 18;
+
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-      {/* Background decorative glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-brand/[0.04] blur-[120px] pointer-events-none" />
+    <section className="py-20 md:py-28 bg-[#140e2a] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(77,57,127,0.15),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-14 md:mb-20">
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading mb-4">
               Our Technology Advantage
             </h2>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
               Software expertise and certifications across multiple areas &mdash; our illustrative tech stack.
             </p>
           </div>
         </AnimatedSection>
 
-        {/* 3D Isometric Pyramid */}
-        <div className="max-w-4xl mx-auto" style={{ perspective: "1200px" }}>
+        <div className="max-w-3xl mx-auto" style={{ perspective: "1000px" }}>
           <motion.div
-            className="flex flex-col items-center gap-0"
-            initial={{ rotateX: 12, opacity: 0, y: 60 }}
-            whileInView={{ rotateX: 6, opacity: 1, y: 0 }}
+            className="flex flex-col items-center"
+            initial={{ rotateX: 20, opacity: 0, y: 80 }}
+            whileInView={{ rotateX: 12, opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ transformStyle: "preserve-3d" }}
           >
             {techStack.map((tier, i) => {
-              const widthPercent = 36 + i * 16; // 36%, 52%, 68%, 84%, 100%
+              const widthPercent = 30 + i * 15;
               const colors = tierColors[i];
 
               return (
                 <motion.div
                   key={tier.label}
                   className="w-full flex justify-center"
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 + 0.2 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
                 >
-                  <div
-                    className={`bg-gradient-to-r ${colors.bg} relative group transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl`}
-                    style={{
-                      width: `${widthPercent}%`,
-                      clipPath: i === 0
-                        ? "polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)"
-                        : i === techStack.length - 1
-                        ? "polygon(0% 0%, 100% 0%, 96% 100%, 4% 100%)"
-                        : "polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%)",
-                    }}
-                  >
-                    {/* Shiny highlight edge */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/[0.12] to-transparent pointer-events-none" />
-                    {/* Bottom shadow edge for 3D depth */}
-                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-black/[0.15]" />
-
-                    <div className="relative z-10 flex items-center justify-between px-6 sm:px-10 py-4 sm:py-5">
-                      {/* Label */}
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-xs sm:text-sm font-bold uppercase tracking-wider ${colors.text} opacity-80`}>
+                  <div className="relative group" style={{ width: `${widthPercent}%` }}>
+                    {/* Front face */}
+                    <div
+                      className="relative z-10 flex items-center justify-between px-5 sm:px-8 py-3.5 sm:py-4"
+                      style={{ background: colors.face }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none" />
+                      <div className="flex-1 min-w-0 relative z-10">
+                        <p className={`text-[0.65rem] sm:text-xs font-bold uppercase tracking-wider ${colors.text} opacity-90`}>
                           {tier.label}
                         </p>
                       </div>
-
-                      {/* Logos */}
-                      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                      <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 relative z-10">
                         {tier.tools.map((tool) => (
-                          <motion.div
+                          <div
                             key={tool.name}
-                            className={`size-9 sm:size-11 rounded-xl bg-white/90 backdrop-blur-sm shadow-lg ring-1 ${colors.logoRing} flex items-center justify-center overflow-hidden`}
-                            whileHover={{ scale: 1.15, y: -4 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                            className={`size-8 sm:size-10 rounded-lg bg-white/90 shadow-lg ring-1 ${colors.logoRing} flex items-center justify-center overflow-hidden`}
                           >
                             <img
                               src={tool.logo}
                               alt={tool.name}
-                              className="size-6 sm:size-7 object-contain rounded-md"
+                              className="size-5 sm:size-6 object-contain rounded"
                               loading="lazy"
                               onError={(e) => {
                                 const el = e.currentTarget;
@@ -510,30 +566,54 @@ function TechAdvantageSection() {
                                 const parent = el.parentElement;
                                 if (parent) {
                                   const fallback = document.createElement("span");
-                                  fallback.className = "text-xs font-bold text-brand-dark";
+                                  fallback.className = "text-[0.6rem] font-bold text-brand-dark";
                                   fallback.textContent = tool.name.slice(0, 2).toUpperCase();
                                   parent.appendChild(fallback);
                                 }
                               }}
                             />
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                     </div>
+
+                    {/* Bottom 3D face */}
+                    <div
+                      className="absolute left-0 right-0 z-0"
+                      style={{
+                        height: `${sideHeight}px`,
+                        top: "100%",
+                        background: `linear-gradient(to bottom, ${colors.right}, ${colors.right}dd)`,
+                        transform: "skewX(-45deg) translateX(9px)",
+                        transformOrigin: "top left",
+                      }}
+                    />
+
+                    {/* Right 3D face */}
+                    <div
+                      className="absolute top-0 bottom-0 z-0"
+                      style={{
+                        width: `${sideHeight}px`,
+                        left: "100%",
+                        background: `linear-gradient(to right, ${colors.right}, ${colors.right}cc)`,
+                        transform: "skewY(-45deg) translateY(9px)",
+                        transformOrigin: "top left",
+                      }}
+                    />
                   </div>
                 </motion.div>
               );
             })}
           </motion.div>
 
-          {/* Reflection / glow under pyramid */}
+          {/* Floor glow */}
           <motion.div
-            className="mx-auto mt-[-8px] h-12 rounded-[50%] bg-gradient-to-r from-transparent via-brand/10 to-transparent blur-xl"
-            style={{ width: "80%" }}
+            className="mx-auto mt-4 h-16 rounded-[50%] bg-gradient-to-r from-transparent via-purple-500/15 to-transparent blur-2xl"
+            style={{ width: "90%" }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.8, duration: 0.6 }}
+            transition={{ delay: 1, duration: 0.6 }}
           />
         </div>
       </div>
@@ -623,6 +703,9 @@ function LinkedInVideoSection() {
     <section className="py-16 md:py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
+          <h2 className="text-3xl md:text-4xl font-semibold text-ink leading-tight font-heading text-center mb-10">
+            Latest Video
+          </h2>
           <a
             href="https://www.linkedin.com/feed/update/urn:li:activity:7454483598528909312"
             target="_blank"
