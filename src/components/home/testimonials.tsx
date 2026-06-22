@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Autoplay from "embla-carousel-autoplay";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import {
   Carousel,
@@ -109,7 +107,7 @@ function Stars() {
   );
 }
 
-function ReviewCard({ review, index }: { review: Review; index: number }) {
+function ReviewCard({ review }: { review: Review }) {
   return (
     <div
       className={`relative h-full rounded-3xl bg-gradient-to-br ${review.gradient} p-[1px] overflow-hidden`}
@@ -220,7 +218,7 @@ export function Testimonials() {
             <CarouselContent className="-ml-4">
               {reviews.map((review, i) => (
                 <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                  <ReviewCard review={review} index={i} />
+                  <ReviewCard review={review} />
                 </CarouselItem>
               ))}
             </CarouselContent>
