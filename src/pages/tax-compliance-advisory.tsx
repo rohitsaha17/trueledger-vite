@@ -207,8 +207,16 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — For Individuals & High Net Worth Clients         */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_213650_e0904648-6573-49b5-950a-4d00f28b0275_min.webp"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/80" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="mb-14 md:mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
@@ -233,27 +241,18 @@ export default function TaxComplianceAdvisoryPage() {
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
-                  {/* Large watermark number */}
                   <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">
                     {num}
                   </span>
-
-                  {/* Top accent line */}
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* Step badge */}
                   <div className="inline-flex items-center gap-2 mb-4">
                     <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">
                       {num}
                     </span>
                   </div>
-
-                  {/* Title */}
                   <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">
                     {item.title}
                   </h3>
-
-                  {/* Description */}
                   <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">
                     {item.description}
                   </p>
@@ -261,14 +260,38 @@ export default function TaxComplianceAdvisoryPage() {
               );
             })}
           </div>
+
+          <AnimatedSection delay={0.3}>
+            <div className="flex justify-center mt-12">
+              <ConsultationModal
+                trigger={
+                  <Button
+                    size="lg"
+                    className="text-base px-8 h-13 font-semibold shadow-xl shadow-brand/15 cursor-pointer"
+                  >
+                    Book a Tax Consultation
+                    <ChevronRight className="size-4" />
+                  </Button>
+                }
+              />
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* ============================================================ */}
       {/*  SECTION 3 — For Businesses & Business Owners                 */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden bg-brand-tint/40">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_213652_cbca740f-02f5-46fa-a95d-48d2b7900ec1_min.webp"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/80" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="mb-14 md:mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
@@ -331,6 +354,23 @@ export default function TaxComplianceAdvisoryPage() {
               );
             })}
           </div>
+
+          <AnimatedSection delay={0.3}>
+            <div className="flex justify-center mt-12">
+              <ConsultationModal
+                trigger={
+                  <Button
+                    size="lg"
+                    className="text-base px-8 h-13 font-semibold shadow-xl shadow-primary/15 cursor-pointer"
+                    style={{ background: "linear-gradient(135deg, #EE672C, #B03B2D)" }}
+                  >
+                    Book a Business Tax Consultation
+                    <ChevronRight className="size-4" />
+                  </Button>
+                }
+              />
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
