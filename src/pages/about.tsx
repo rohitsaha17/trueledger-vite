@@ -519,19 +519,12 @@ export default function AboutPage() {
 
           <AnimatedSection delay={0.15}>
             <div className="max-w-4xl mx-auto">
-              <div className="rounded-2xl border-2 border-dashed border-brand/20 bg-brand-tint/20 overflow-hidden">
-                <div className="aspect-[16/9] flex flex-col items-center justify-center p-8 text-center">
-                  <div className="size-20 rounded-2xl bg-white/80 flex items-center justify-center border border-brand/10 mb-6">
-                    <Users className="size-10 text-brand/40" />
-                  </div>
-                  <p className="font-heading font-semibold text-lg text-ink/60 mb-2">
-                    Team Group Photo
-                  </p>
-                  <p className="text-sm text-muted-foreground max-w-sm">
-                    A team group photo will be placed here to showcase the
-                    talented and energetic TrueLedger team.
-                  </p>
-                </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-black/[0.06]">
+                <img
+                  src="/images/team/team-group.jpg"
+                  alt="The TrueLedger team"
+                  className="w-full object-cover"
+                />
               </div>
             </div>
           </AnimatedSection>
