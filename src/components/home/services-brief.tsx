@@ -128,10 +128,10 @@ export function ServicesBrief() {
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_202808_f148b760-d0b4-43d4-b91e-de1516ccacfa_min.webp"
           alt=""
-          className="w-full h-full object-cover opacity-[0.06]"
+          className="w-full h-full object-cover opacity-[0.15]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
