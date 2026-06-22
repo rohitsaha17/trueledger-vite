@@ -18,70 +18,46 @@ const services = [
     icon: Globe,
     title: "Global Entity Setup",
     description:
-      "We don't just file paperwork. We think about your structure before you sign anything. We guide founders and enterprises through every step of establishing a compliant, tax-efficient presence — whether you're setting up a US LLC or C-Corp, entering India, Canada, Singapore, or Australia, or structuring a multi-entity global footprint.",
+      "We guide founders and enterprises through establishing a compliant, tax-efficient presence — whether you're setting up a US LLC or C-Corp, entering India, Canada, Singapore, or Australia, or structuring a multi-entity global footprint.",
     href: "/services/global-entity-setup",
-    gradient:
-      "radial-gradient(ellipse at 30% 20%, #7B6BA8 0%, #4D397F 35%, #2a1d52 70%, #140e2a 100%)",
-    accent: "#7B6BA8",
-    image: "/images/services/global-entity-setup.webp",
+    accent: "#4D397F",
   },
   {
     icon: BookOpen,
     title: "Managed Accounting & Bookkeeping",
     description:
-      "Accurate books aren't just a deliverable — they're a discipline. Built on years of hands-on experience across industries and geographies, we manage your books in real time: ensuring compliance, maintaining financial hygiene, and keeping you growth-ready every single day.",
+      "Built on years of hands-on experience across industries and geographies, we manage your books in real time — ensuring compliance, maintaining financial hygiene, and keeping you growth-ready every single day.",
     href: "/services/managed-accounting-bookkeeping",
-    gradient:
-      "radial-gradient(ellipse at 70% 80%, #a78bfa 0%, #4D397F 30%, #362765 60%, #140e2a 100%)",
-    accent: "#a78bfa",
-    image: "/images/services/managed-accounting.webp",
+    accent: "#362765",
   },
   {
     icon: Calculator,
     title: "Tax Compliance & Planning",
     description:
-      "With deep expertise across global tax laws, cross-border structures, and owner-level tax planning, we serve business owners across jurisdictions who need an advisor who understands the full picture — entity and personal.",
+      "With deep expertise across global tax laws, cross-border structures, and owner-level tax planning, we serve business owners across jurisdictions who need an advisor who understands the full picture.",
     href: "/services/tax-compliance-advisory",
-    gradient:
-      "radial-gradient(ellipse at 60% 30%, #EE672C 0%, #c4531f 25%, #4D397F 55%, #1e143a 100%)",
     accent: "#EE672C",
-    image: "/images/services/tax-compliance.webp",
   },
   {
     icon: Lightbulb,
     title: "Advisory Services",
     description:
-      "Great businesses are built on great decisions — and great decisions need the right advisor. Our advisory practice goes beyond numbers, working alongside founders and leadership teams on the things that shape a business long-term: strategy, governance, fundraising readiness, financial controls, and the technology infrastructure that holds it all together.",
+      "Our advisory practice goes beyond numbers — working alongside founders and leadership teams on strategy, governance, fundraising readiness, financial controls, and technology infrastructure.",
     href: "/services/business-advisory",
-    gradient:
-      "radial-gradient(ellipse at 40% 60%, #fbbf24 0%, #b45309 20%, #4D397F 50%, #140e2a 100%)",
-    accent: "#fbbf24",
-    image: "/images/services/business-advisory.webp",
+    accent: "#B03B2D",
   },
   {
     icon: Users,
     title: "Support to CPAs & Accounting Firms",
     description:
-      "Every CPA firm reaches a point where the back-office work starts competing with the work that actually grows the business. That's where we come in. We become a natural extension of your team — handling client onboarding, day-to-day bookkeeping, month-end close, financial reporting, historical cleanups, payroll, and sales tax filings across your portfolio.",
+      "We become a natural extension of your team — handling client onboarding, day-to-day bookkeeping, month-end close, financial reporting, historical cleanups, payroll, and sales tax filings across your portfolio.",
     href: "/services/support-to-cpas",
-    gradient:
-      "radial-gradient(ellipse at 50% 40%, #5eead4 0%, #0d9488 20%, #4D397F 55%, #140e2a 100%)",
-    accent: "#5eead4",
-    image: "/images/services/support-cpas.webp",
+    accent: "#4D397F",
   },
 ];
 
-
 export function ServicesBrief() {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const goNext = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % services.length);
-  }, []);
-
-  const goPrev = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
-  }, []);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isPaused = useRef(false);
@@ -111,236 +87,203 @@ export function ServicesBrief() {
   );
 
   const handleNext = useCallback(() => {
-    goNext();
+    setActiveIndex((prev) => (prev + 1) % services.length);
     resetTimer();
-  }, [goNext, resetTimer]);
+  }, [resetTimer]);
 
   const handlePrev = useCallback(() => {
-    goPrev();
+    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
     resetTimer();
-  }, [goPrev, resetTimer]);
+  }, [resetTimer]);
 
   const activeService = services[activeIndex];
+  const ActiveIcon = activeService.icon;
 
   return (
-    <section className="relative w-full overflow-hidden bg-brand-dark">
-      {/* Background gradient that changes per service */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="absolute inset-0"
-          style={{ background: activeService.gradient }}
-        />
-      </AnimatePresence>
+    <section className="py-14 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection>
+          <p className="text-xs font-semibold uppercase tracking-widest mb-3 text-[#EE672C]">
+            How We Help Clients
+          </p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 leading-tight max-w-2xl">
+            Every great business is built on the right financial foundation.
+          </h2>
+        </AnimatedSection>
 
-      {/* Left-side dark overlay for text readability */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(20,14,42,0.92) 0%, rgba(20,14,42,0.85) 30%, rgba(20,14,42,0.5) 55%, rgba(20,14,42,0.1) 75%, transparent 100%)",
-        }}
-      />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mt-10">
+          {/* Left: Accordion */}
+          <AnimatedSection delay={0.1}>
+            <div className="space-y-1">
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                const isActive = index === activeIndex;
 
-      {/* Content */}
-      <div className="relative z-10 py-12 md:py-16">
-        {/* Section heading */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 md:mb-8">
-          <AnimatedSection>
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-2"
-              style={{ color: "var(--color-brand)" }}
-            >
-              How We Help Clients
-            </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white leading-tight max-w-2xl">
-              Every great business is built on the right financial foundation.
-            </h2>
-          </AnimatedSection>
-        </div>
-
-        {/* Split layout */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-            {/* Left: Accordion */}
-            <AnimatedSection delay={0.1}>
-              <div className="space-y-1">
-                {services.map((service, index) => {
-                  const Icon = service.icon;
-                  const isActive = index === activeIndex;
-
-                  return (
-                    <button
-                      key={service.title}
-                      onClick={() => handleManualChange(index)}
-                      className="w-full text-left group"
-                    >
-                      <div
-                        className="relative rounded-xl px-4 py-2.5 transition-all duration-300"
-                        style={{
-                          backgroundColor: isActive
-                            ? "rgba(255,255,255,0.1)"
-                            : "transparent",
-                          borderLeft: isActive
-                            ? `3px solid ${service.accent}`
-                            : "3px solid transparent",
-                        }}
-                      >
-                        {/* Title row */}
-                        <div className="flex items-center gap-3">
-                          <div
-                            className="size-8 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300"
-                            style={{
-                              backgroundColor: isActive
-                                ? `${service.accent}22`
-                                : "rgba(255,255,255,0.06)",
-                            }}
-                          >
-                            <Icon
-                              className="size-4.5 transition-colors duration-300"
-                              style={{
-                                color: isActive
-                                  ? service.accent
-                                  : "rgba(255,255,255,0.5)",
-                              }}
-                            />
-                          </div>
-                          <span
-                            className="font-heading font-semibold text-sm sm:text-base transition-colors duration-300"
-                            style={{
-                              color: isActive
-                                ? "#ffffff"
-                                : "rgba(255,255,255,0.6)",
-                            }}
-                          >
-                            {service.title}
-                          </span>
-                        </div>
-
-                        {/* Expanded content */}
-                        <AnimatePresence initial={false}>
-                          {isActive && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{
-                                height: { duration: 0.35, ease: "easeInOut" },
-                                opacity: { duration: 0.25, delay: 0.1 },
-                              }}
-                              className="overflow-hidden"
-                            >
-                              <div className="pt-2 pl-11">
-                                <p className="text-[13px] leading-relaxed text-white/60 mb-3">
-                                  {service.description}
-                                </p>
-                                <Link
-                                  to={service.href}
-                                  className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 group/link"
-                                  style={{ color: service.accent }}
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  Learn More
-                                  <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" />
-                                </Link>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Navigation arrows */}
-              <div className="flex items-center gap-3 mt-5 pl-4">
-                <button
-                  onClick={handlePrev}
-                  className="size-10 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-200"
-                  aria-label="Previous service"
-                >
-                  <ChevronLeft className="size-4" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="size-10 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-200"
-                  aria-label="Next service"
-                >
-                  <ChevronRight className="size-4" />
-                </button>
-                <span className="text-xs text-white/60 ml-2 font-mono tabular-nums">
-                  {String(activeIndex + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
-                </span>
-              </div>
-            </AnimatedSection>
-
-            {/* Right: Visual area */}
-            <AnimatedSection delay={0.2}>
-              <div className="relative aspect-[4/3] lg:aspect-[4/3] rounded-2xl overflow-hidden">
-                {/* Gradient background for the visual card */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`visual-${activeIndex}`}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0"
-                    style={{ background: activeService.gradient }}
-                  />
-                </AnimatePresence>
-
-                {/* Glass overlay */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)",
-                  }}
-                />
-
-                {/* Service image */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`img-${activeIndex}`}
-                    initial={{ opacity: 0, scale: 1.08 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="absolute inset-0"
+                return (
+                  <button
+                    key={service.title}
+                    onClick={() => handleManualChange(index)}
+                    className="w-full text-left cursor-pointer group"
                   >
-                    <img
-                      src={activeService.image}
-                      alt={activeService.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </AnimatePresence>
+                    <div
+                      className="relative rounded-xl px-4 py-3 transition-all duration-300"
+                      style={{
+                        backgroundColor: isActive ? "white" : "transparent",
+                        borderLeft: isActive
+                          ? `3px solid ${service.accent}`
+                          : "3px solid transparent",
+                        boxShadow: isActive
+                          ? "0 2px 16px rgba(0,0,0,0.06)"
+                          : "none",
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="size-9 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300"
+                          style={{
+                            backgroundColor: isActive
+                              ? `${service.accent}15`
+                              : "#f3f4f6",
+                          }}
+                        >
+                          <Icon
+                            className="size-4.5 transition-colors duration-300"
+                            style={{
+                              color: isActive ? service.accent : "#9ca3af",
+                            }}
+                          />
+                        </div>
+                        <span
+                          className="font-heading font-semibold text-sm sm:text-base transition-colors duration-300"
+                          style={{
+                            color: isActive ? "#111827" : "#6b7280",
+                          }}
+                        >
+                          {service.title}
+                        </span>
+                      </div>
 
-                {/* Bottom label */}
-                <AnimatePresence mode="wait">
+                      <AnimatePresence initial={false}>
+                        {isActive && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{
+                              height: { duration: 0.35, ease: "easeInOut" },
+                              opacity: { duration: 0.25, delay: 0.1 },
+                            }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pt-2 pl-12">
+                              <p className="text-[13px] leading-relaxed text-gray-500 mb-3">
+                                {service.description}
+                              </p>
+                              <Link
+                                to={service.href}
+                                className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 group/link"
+                                style={{ color: service.accent }}
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                Learn More
+                                <ArrowRight className="size-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+                              </Link>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-3 mt-6 pl-4">
+              <button
+                onClick={handlePrev}
+                className="size-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
+                aria-label="Previous service"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="size-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
+                aria-label="Next service"
+              >
+                <ChevronRight className="size-4" />
+              </button>
+              <span className="text-xs text-gray-400 ml-2 font-mono tabular-nums">
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(services.length).padStart(2, "0")}
+              </span>
+            </div>
+          </AnimatedSection>
+
+          {/* Right: Visual area */}
+          <AnimatedSection delay={0.2}>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`visual-${activeIndex}`}
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-br from-[#4D397F] via-[#362765] to-[#1e143a]"
+                >
+                  {/* Dot grid pattern */}
+                  <div
+                    className="absolute inset-0 opacity-[0.06]"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle, white 1px, transparent 1px)",
+                      backgroundSize: "28px 28px",
+                    }}
+                  />
+
+                  {/* Accent glow */}
+                  <motion.div
+                    key={`glow-${activeIndex}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.25 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute top-1/3 left-1/3 w-56 h-56 rounded-full blur-[100px]"
+                    style={{ backgroundColor: activeService.accent }}
+                  />
+
+                  {/* Centered icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      key={`icon-${activeIndex}`}
+                      initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.5, delay: 0.15 }}
+                      className="size-28 rounded-3xl bg-white/[0.08] backdrop-blur-sm border border-white/[0.08] flex items-center justify-center"
+                    >
+                      <ActiveIcon className="size-14 text-white/70" />
+                    </motion.div>
+                  </div>
+
+                  {/* Decorative rings */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="size-44 rounded-full border border-white/[0.04]" />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="size-64 rounded-full border border-white/[0.03]" />
+                  </div>
+
+                  {/* Bottom label */}
                   <motion.div
                     key={`label-${activeIndex}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.35, ease: "easeOut", delay: 0.15 }}
-                    className="absolute bottom-6 left-6 right-6"
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className="absolute bottom-5 left-5 right-5"
                   >
-                    <div
-                      className="rounded-xl px-5 py-4 backdrop-blur-md"
-                      style={{
-                        backgroundColor: "rgba(0,0,0,0.35)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                    >
+                    <div className="rounded-xl px-5 py-4 bg-white/[0.08] backdrop-blur-md border border-white/[0.08]">
                       <p
-                        className="text-xs font-semibold uppercase tracking-wider mb-1"
+                        className="text-[10px] font-semibold uppercase tracking-wider mb-1"
                         style={{ color: activeService.accent }}
                       >
                         Service {String(activeIndex + 1).padStart(2, "0")}
@@ -350,39 +293,10 @@ export function ServicesBrief() {
                       </p>
                     </div>
                   </motion.div>
-                </AnimatePresence>
-
-                {/* Floating dots / ambient particles */}
-                <motion.div
-                  key={`particle-${activeIndex}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1 }}
-                  className="absolute inset-0 pointer-events-none"
-                >
-                  {[
-                    { x: "15%", y: "20%", size: 4 },
-                    { x: "75%", y: "15%", size: 3 },
-                    { x: "80%", y: "70%", size: 5 },
-                    { x: "25%", y: "75%", size: 3 },
-                    { x: "60%", y: "85%", size: 4 },
-                  ].map((dot, i) => (
-                    <div
-                      key={i}
-                      className="absolute rounded-full opacity-30"
-                      style={{
-                        left: dot.x,
-                        top: dot.y,
-                        width: dot.size,
-                        height: dot.size,
-                        backgroundColor: activeService.accent,
-                      }}
-                    />
-                  ))}
                 </motion.div>
-              </div>
-            </AnimatedSection>
-          </div>
+              </AnimatePresence>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
