@@ -1,50 +1,69 @@
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
-import { ServiceProcessTimeline, type ProcessPhase } from "@/components/shared/service-process-timeline";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Globe, MapPin, TrendingUp, ShieldCheck } from "lucide-react";
+import {
+  ChevronRight,
+  Globe,
+  Landmark,
+  Rocket,
+  Target,
+  Building,
+  ScrollText,
+  FileCheck,
+  Scale,
+  MapPinHouse,
+  Receipt,
+  Wallet,
+} from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 
 /* ------------------------------------------------------------------ */
 /*  Service cards data (new stacking card format)                       */
 /* ------------------------------------------------------------------ */
 
-const services: ProcessPhase[] = [
+const services = [
   {
+    icon: Building,
     title: "Entity Structure Consultation",
     description:
-      "Not every business needs a C-Corp. Not every founder should default to an LLC. We walk you through the options — LLC, C-Corp, S-Corp, LLP, and more — explaining the implications of each, so you can make an informed decision rather than follow a template.",
+      "We walk you through LLC, C-Corp, S-Corp, LLP, and more — explaining the implications of each, so you can make an informed decision rather than follow a template.",
   },
   {
+    icon: Scale,
     title: "State Selection Strategy",
     description:
-      "Where you incorporate matters — it affects your tax exposure, compliance costs, investor readiness, and day-to-day operations. We help you evaluate the right state for your entity based on your business model and long-term plans.",
+      "Where you incorporate affects your tax exposure, compliance costs, and investor readiness. We help you evaluate the right state based on your business model.",
   },
   {
-    title: "Drafting of Agreements and Bylaws",
+    icon: ScrollText,
+    title: "Drafting of Agreements & Bylaws",
     description:
-      "A well-run business is built on clarity from day one. We draft and review your core governing documents — operating agreements, bylaws, shareholder agreements — ensuring rights, responsibilities, and expectations are clearly defined.",
+      "We draft and review your core governing documents — operating agreements, bylaws, shareholder agreements — ensuring rights and expectations are clearly defined.",
   },
   {
+    icon: FileCheck,
     title: "Regulatory Filings",
     description:
-      "We manage all state and federal filings on your behalf — Articles of Incorporation, Articles of Organization, registered agent appointments, and associated compliance requirements — so your entity is set up correctly from day one.",
+      "We manage all state and federal filings — Articles of Incorporation, registered agent appointments, and compliance requirements — so your entity is set up correctly.",
   },
   {
+    icon: MapPinHouse,
     title: "Virtual Office Setup",
     description:
-      "No physical office? No problem. We help you establish a virtual office that gives your business a credible, professional address — satisfying regulatory and banking requirements without the cost of a dedicated space.",
+      "We help you establish a virtual office that gives your business a credible, professional address — satisfying regulatory and banking requirements.",
   },
   {
+    icon: Receipt,
     title: "Tax Registrations",
     description:
-      "A registered entity is just the beginning. We ensure your business is fully equipped for tax compliance from the start — EIN registration, state payroll tax, sales tax across relevant jurisdictions — so nothing is overlooked.",
+      "EIN registration, state payroll tax, sales tax across relevant jurisdictions — we ensure your business is fully equipped for tax compliance from the start.",
   },
   {
+    icon: Wallet,
     title: "Banking Setup",
     description:
-      "Opening a business bank account can be surprisingly complex for new entities, particularly for non-resident founders. We guide you through the process, help you identify the right banking partner, and ensure your account is operational.",
+      "We guide you through opening a business bank account, help you identify the right banking partner, and ensure your account is operational.",
   },
 ];
 
@@ -68,19 +87,27 @@ const relatedArticles = [
 const audiences = [
   {
     icon: Globe,
-    text: "International founders expanding into the US market",
+    title: "International Founders",
+    text: "Expanding into the US market and need the right entity structure from day one.",
+    gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
   },
   {
-    icon: MapPin,
-    text: "US businesses establishing a presence in new states or countries",
+    icon: Landmark,
+    title: "Multi-State Businesses",
+    text: "Establishing a presence in new states or countries with full compliance.",
+    gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
   },
   {
-    icon: TrendingUp,
-    text: "Startups preparing for investment or cross-border operations",
+    icon: Rocket,
+    title: "Growth-Stage Startups",
+    text: "Preparing for investment rounds, cross-border operations, or restructuring.",
+    gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
   },
   {
-    icon: ShieldCheck,
-    text: "Business owners who want their structure done right — not just done fast",
+    icon: Target,
+    title: "Detail-Oriented Owners",
+    text: "Who want their structure done right — not just done fast — with long-term clarity.",
+    gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
   },
 ];
 
@@ -188,13 +215,73 @@ export default function GlobalEntitySetupPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 3 — WHAT WE COVER (Process Timeline)                 */}
+      {/*  SECTION 3 — WHAT WE COVER (Bento Grid)                      */}
       {/* ============================================================ */}
-      <ServiceProcessTimeline
-        title="Comprehensive Entity Setup Services"
-        description="From structure to registration — every step handled with precision."
-        phases={services}
-      />
+      <section className="py-20 md:py-28 bg-gradient-to-b from-[#140e2a] via-[#1a1338] to-[#140e2a] relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#4D397F]/15 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE672C]/8 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <AnimatedSection>
+            <div className="mb-14">
+              <h2 className="bg-gradient-to-r from-[#7B6BA8]/60 via-white to-[#7B6BA8]/60 bg-clip-text font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-transparent mb-4">
+                Comprehensive Entity Setup Services
+              </h2>
+              <p className="text-white/40 text-sm sm:text-base max-w-xl">
+                From structure to registration — every step handled with precision.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          {/* Bento grid — row 1: 3 cards, row 2: 2+2, row 3: 3 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
+            {services.map((service, i) => {
+              const Icon = service.icon;
+              const isWide = i === 3 || i === 4;
+              return (
+                <AnimatedSection
+                  key={service.title}
+                  delay={i * 0.06}
+                  className={
+                    isWide
+                      ? "md:col-span-3 lg:col-span-1"
+                      : ""
+                  }
+                >
+                  <div className="group relative h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 lg:p-7 hover:bg-white/[0.06] hover:border-white/[0.14] transition-all duration-300">
+                    <div className="flex items-start gap-5">
+                      <div className="shrink-0 size-12 rounded-xl bg-gradient-to-br from-[#4D397F]/30 to-[#362765]/20 border border-white/[0.08] flex items-center justify-center group-hover:from-[#4D397F]/40 group-hover:to-[#EE672C]/15 transition-all duration-300">
+                        <Icon className="size-5 text-[#9B8CC4] group-hover:text-white/90 transition-colors duration-300" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-xs font-mono text-[#EE672C]/60 font-semibold">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                        </div>
+                        <h3 className="font-heading text-lg font-semibold text-white/90 mb-2 leading-snug">
+                          {service.title}
+                        </h3>
+                        <p className="text-white/40 text-sm leading-relaxed">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
+
+          {/* Bottom accent line */}
+          <div className="mt-12 flex items-center gap-4 max-w-md">
+            <div className="h-px flex-1 bg-gradient-to-r from-[#EE672C]/40 to-transparent" />
+            <span className="text-xs text-white/25 uppercase tracking-widest">7 services, one team</span>
+            <div className="h-px flex-1 bg-gradient-to-l from-[#4D397F]/40 to-transparent" />
+          </div>
+        </div>
+      </section>
 
       {/* ============================================================ */}
       {/*  SECTION 4 — WHO THIS IS FOR                                  */}
@@ -207,18 +294,26 @@ export default function GlobalEntitySetupPage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {audiences.map((item, i) => {
               const Icon = item.icon;
               return (
                 <AnimatedSection key={item.text} delay={i * 0.1}>
-                  <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-black/[0.06] shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <div className="shrink-0 size-12 rounded-xl bg-brand-tint flex items-center justify-center border border-brand/10">
-                      <Icon className="size-5 text-brand" />
+                  <div className={`relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group`}>
+                    <div className={`absolute inset-0 bg-gradient-to-b ${item.gradient} pointer-events-none`} />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand/[0.03] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-brand/[0.06] transition-colors duration-300" />
+
+                    <div className="relative z-10 p-6 lg:p-7 flex flex-col items-center text-center">
+                      <div className="size-14 rounded-2xl bg-brand-tint flex items-center justify-center border border-brand/10 mb-5 group-hover:scale-110 group-hover:bg-brand/10 transition-all duration-300">
+                        <Icon className="size-6 text-brand" />
+                      </div>
+                      <h3 className="font-heading font-bold text-base text-ink mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {item.text}
+                      </p>
                     </div>
-                    <p className="text-sm sm:text-base text-ink leading-relaxed font-medium pt-1">
-                      {item.text}
-                    </p>
                   </div>
                 </AnimatedSection>
               );
