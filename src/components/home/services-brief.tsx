@@ -21,6 +21,8 @@ const services = [
       "We guide founders and enterprises through establishing a compliant, tax-efficient presence — whether you're setting up a US LLC or C-Corp, entering India, Canada, Singapore, or Australia, or structuring a multi-entity global footprint.",
     href: "/services/global-entity-setup",
     accent: "#4D397F",
+    image:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_193223_06fe1414-c9a9-4595-9dce-6488b5c91bbe_min.webp",
   },
   {
     icon: BookOpen,
@@ -29,6 +31,8 @@ const services = [
       "Built on years of hands-on experience across industries and geographies, we manage your books in real time — ensuring compliance, maintaining financial hygiene, and keeping you growth-ready every single day.",
     href: "/services/managed-accounting-bookkeeping",
     accent: "#362765",
+    image:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165821_ae8f5541-03f3-450c-b62a-d7740b512d10_min.webp",
   },
   {
     icon: Calculator,
@@ -37,6 +41,8 @@ const services = [
       "With deep expertise across global tax laws, cross-border structures, and owner-level tax planning, we serve business owners across jurisdictions who need an advisor who understands the full picture.",
     href: "/services/tax-compliance-advisory",
     accent: "#EE672C",
+    image:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165826_ac572644-f557-4a5c-989f-6df5b060ab68_min.webp",
   },
   {
     icon: Lightbulb,
@@ -45,6 +51,8 @@ const services = [
       "Our advisory practice goes beyond numbers — working alongside founders and leadership teams on strategy, governance, fundraising readiness, financial controls, and technology infrastructure.",
     href: "/services/business-advisory",
     accent: "#B03B2D",
+    image:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165822_01a41f97-2fe8-412f-a494-bf7fe4ec6f12_min.webp",
   },
   {
     icon: Users,
@@ -53,6 +61,8 @@ const services = [
       "We become a natural extension of your team — handling client onboarding, day-to-day bookkeeping, month-end close, financial reporting, historical cleanups, payroll, and sales tax filings across your portfolio.",
     href: "/services/support-to-cpas",
     accent: "#4D397F",
+    image:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165825_b8c21a16-bb17-4825-b26d-3026f283e654_min.webp",
   },
 ];
 
@@ -96,12 +106,36 @@ export function ServicesBrief() {
     resetTimer();
   }, [resetTimer]);
 
+  const handleHoverEnter = useCallback(
+    (index: number) => {
+      isPaused.current = true;
+      setActiveIndex(index);
+    },
+    []
+  );
+
+  const handleHoverLeave = useCallback(() => {
+    isPaused.current = false;
+    resetTimer();
+  }, [resetTimer]);
+
   const activeService = services[activeIndex];
   const ActiveIcon = activeService.icon;
 
   return (
-    <section className="py-14 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-14 md:py-20 relative overflow-hidden">
+      {/* Section background image */}
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_193223_06fe1414-c9a9-4595-9dce-6488b5c91bbe_min.webp"
+          alt=""
+          className="w-full h-full object-cover opacity-[0.04]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <p className="text-xs font-semibold uppercase tracking-widest mb-3 text-[#EE672C]">
             How We Help Clients
@@ -123,6 +157,8 @@ export function ServicesBrief() {
                   <button
                     key={service.title}
                     onClick={() => handleManualChange(index)}
+                    onMouseEnter={() => handleHoverEnter(index)}
+                    onMouseLeave={handleHoverLeave}
                     className="w-full text-left cursor-pointer group"
                   >
                     <div
@@ -222,6 +258,12 @@ export function ServicesBrief() {
 
           {/* Right: Visual area */}
           <AnimatedSection delay={0.2}>
+            {/* Preload all service images */}
+            <div className="hidden">
+              {services.map((s) => (
+                <img key={s.title} src={s.image} alt="" />
+              ))}
+            </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -230,48 +272,17 @@ export function ServicesBrief() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-gradient-to-br from-[#4D397F] via-[#362765] to-[#1e143a]"
+                  className="absolute inset-0"
                 >
-                  {/* Dot grid pattern */}
-                  <div
-                    className="absolute inset-0 opacity-[0.06]"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle, white 1px, transparent 1px)",
-                      backgroundSize: "28px 28px",
-                    }}
+                  {/* Background image */}
+                  <img
+                    src={activeService.image}
+                    alt={activeService.title}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
 
-                  {/* Accent glow */}
-                  <motion.div
-                    key={`glow-${activeIndex}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.25 }}
-                    transition={{ duration: 0.8 }}
-                    className="absolute top-1/3 left-1/3 w-56 h-56 rounded-full blur-[100px]"
-                    style={{ backgroundColor: activeService.accent }}
-                  />
-
-                  {/* Centered icon */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      key={`icon-${activeIndex}`}
-                      initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.5, delay: 0.15 }}
-                      className="size-28 rounded-3xl bg-white/[0.08] backdrop-blur-sm border border-white/[0.08] flex items-center justify-center"
-                    >
-                      <ActiveIcon className="size-14 text-white/70" />
-                    </motion.div>
-                  </div>
-
-                  {/* Decorative rings */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="size-44 rounded-full border border-white/[0.04]" />
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="size-64 rounded-full border border-white/[0.03]" />
-                  </div>
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e143a]/90 via-[#362765]/40 to-[#4D397F]/20" />
 
                   {/* Bottom label */}
                   <motion.div
@@ -281,7 +292,7 @@ export function ServicesBrief() {
                     transition={{ duration: 0.4, delay: 0.2 }}
                     className="absolute bottom-5 left-5 right-5"
                   >
-                    <div className="rounded-xl px-5 py-4 bg-white/[0.08] backdrop-blur-md border border-white/[0.08]">
+                    <div className="rounded-xl px-5 py-4 bg-black/30 backdrop-blur-md border border-white/[0.1]">
                       <p
                         className="text-[10px] font-semibold uppercase tracking-wider mb-1"
                         style={{ color: activeService.accent }}
