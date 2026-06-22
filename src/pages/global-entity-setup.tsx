@@ -200,7 +200,6 @@ export default function GlobalEntitySetupPage() {
               <div>
                 <SectionHeading
                   title="Watch Our Quick Explainer"
-                  align="left"
                 />
                 <p className="text-muted-foreground leading-relaxed mt-4 max-w-lg">
                   In under two minutes, learn how TrueLedger helps founders choose the right entity structure, register in the right state, and get fully set up — without the guesswork.
