@@ -120,7 +120,6 @@ export function ServicesBrief() {
   }, [resetTimer]);
 
   const activeService = services[activeIndex];
-  const ActiveIcon = activeService.icon;
 
   return (
     <section className="py-14 md:py-20 relative overflow-hidden">
