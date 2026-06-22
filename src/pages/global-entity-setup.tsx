@@ -322,8 +322,8 @@ export default function GlobalEntitySetupPage() {
               return (
                 <AnimatedSection key={item.text} delay={i * 0.1}>
                   <div className={`relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group`}>
-                    <img src={item.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-500 pointer-events-none" loading="lazy" />
-                    <div className={`absolute inset-0 bg-gradient-to-b ${item.gradient} pointer-events-none`} />
+                    <img src={item.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.22] group-hover:opacity-[0.32] transition-opacity duration-500 pointer-events-none" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/40 to-transparent pointer-events-none" />
 
                     <div className="relative z-10 p-6 lg:p-7 flex flex-col items-center text-center">
                       <div className="size-14 rounded-2xl bg-brand-tint flex items-center justify-center border border-brand/10 mb-5 group-hover:scale-110 group-hover:bg-brand/10 transition-all duration-300">
