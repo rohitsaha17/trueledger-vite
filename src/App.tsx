@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AdminGuard } from "@/components/admin/admin-guard";
 import HomePage from "@/pages/home";
 import GlobalEntitySetupPage from "@/pages/global-entity-setup";
 import ManagedAccountingBookkeepingPage from "@/pages/managed-accounting-bookkeeping";
@@ -15,8 +16,18 @@ import TermsPage from "@/pages/terms";
 import SecurityCompliancePage from "@/pages/security-compliance";
 import InformationSecurityPolicyPage from "@/pages/information-security-policy";
 import PlaceholderPage from "@/pages/placeholder";
+import CaseStudiesPage from "@/pages/case-studies";
+import CaseStudyDetailPage from "@/pages/case-study-detail";
+import MediaGalleryPage from "@/pages/media-gallery";
+import ResourcesPage from "@/pages/resources";
+import BlogPostPage from "@/pages/blog-post";
+import AdminLoginPage from "@/pages/admin/login";
+import AdminLayout from "@/pages/admin/layout";
+import AdminDashboard from "@/pages/admin/dashboard";
+import AdminCaseStudies from "@/pages/admin/case-studies";
+import AdminMedia from "@/pages/admin/media";
+import AdminBlog from "@/pages/admin/blog";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,55 +37,96 @@ function ScrollToTop() {
   return null;
 }
 
+function PublicLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
+  );
+}
+
 function App() {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
+
+  if (isAdmin) {
+    return (
+      <Routes>
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminGuard>
+              <AdminLayout />
+            </AdminGuard>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="case-studies" element={<AdminCaseStudies />} />
+          <Route path="media" element={<AdminMedia />} />
+          <Route path="blog" element={<AdminBlog />} />
+        </Route>
+      </Routes>
+    );
+  }
+
+  return (
+    <PublicLayout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="/services/global-entity-setup"
+          element={<GlobalEntitySetupPage />}
+        />
+        <Route
+          path="/services/managed-accounting-bookkeeping"
+          element={<ManagedAccountingBookkeepingPage />}
+        />
+        <Route
+          path="/services/tax-compliance-advisory"
+          element={<TaxComplianceAdvisoryPage />}
+        />
+        <Route
+          path="/services/business-advisory"
+          element={<BusinessAdvisoryPage />}
+        />
+        <Route
+          path="/services/support-to-cpas"
+          element={<SupportToCPAsPage />}
+        />
+        <Route path="/case-studies" element={<CaseStudiesPage />} />
+        <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
+        <Route path="/media" element={<MediaGalleryPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/resources/:slug" element={<BlogPostPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/insights" element={<PlaceholderPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route
+          path="/security-compliance"
+          element={<SecurityCompliancePage />}
+        />
+        <Route
+          path="/information-security-policy"
+          element={<InformationSecurityPolicyPage />}
+        />
+      </Routes>
+    </PublicLayout>
+  );
+}
+
+function AppWrapper() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route
-              path="/services/global-entity-setup"
-              element={<GlobalEntitySetupPage />}
-            />
-            <Route
-              path="/services/managed-accounting-bookkeeping"
-              element={<ManagedAccountingBookkeepingPage />}
-            />
-            <Route
-              path="/services/tax-compliance-advisory"
-              element={<TaxComplianceAdvisoryPage />}
-            />
-            <Route
-              path="/services/business-advisory"
-              element={<BusinessAdvisoryPage />}
-            />
-            <Route
-              path="/services/support-to-cpas"
-              element={<SupportToCPAsPage />}
-            />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/insights" element={<PlaceholderPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route
-              path="/security-compliance"
-              element={<SecurityCompliancePage />}
-            />
-            <Route
-              path="/information-security-policy"
-              element={<InformationSecurityPolicyPage />}
-            />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <App />
     </BrowserRouter>
   );
 }
 
-export default App;
+export default AppWrapper;

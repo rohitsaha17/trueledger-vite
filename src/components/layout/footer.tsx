@@ -5,11 +5,13 @@ import { Input } from "@/components/ui/input";
 
 const companyLinks = [
   { label: "About Us", href: "/about" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Media", href: "/media" },
   { label: "Contact", href: "/contact" },
 ];
 
 const resourceLinks = [
-  { label: "Insights", href: "/insights" },
+  { label: "Resources", href: "/resources" },
   { label: "FAQ", href: "/faq" },
 ];
 

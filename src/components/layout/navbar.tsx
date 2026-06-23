@@ -25,6 +25,9 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services", children: serviceLinks },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Media", href: "/media" },
+  { label: "Resources", href: "/resources" },
 ];
 
 export function Navbar() {
