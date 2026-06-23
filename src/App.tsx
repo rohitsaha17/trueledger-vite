@@ -15,6 +15,7 @@ import PrivacyPolicyPage from "@/pages/privacy-policy";
 import TermsPage from "@/pages/terms";
 import SecurityCompliancePage from "@/pages/security-compliance";
 import InformationSecurityPolicyPage from "@/pages/information-security-policy";
+import WhoWeWorkWithPage from "@/pages/who-we-work-with";
 import PlaceholderPage from "@/pages/placeholder";
 import CaseStudiesPage from "@/pages/case-studies";
 import CaseStudyDetailPage from "@/pages/case-study-detail";
@@ -77,6 +78,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/who-we-work-with" element={<WhoWeWorkWithPage />} />
         <Route
           path="/services/global-entity-setup"
           element={<GlobalEntitySetupPage />}

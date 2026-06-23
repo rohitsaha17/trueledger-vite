@@ -24,6 +24,7 @@ const serviceLinks = [
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
+  { label: "Who We Work With", href: "/who-we-work-with" },
   { label: "Services", href: "/services", children: serviceLinks },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Media", href: "/media" },
