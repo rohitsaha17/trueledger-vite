@@ -157,7 +157,7 @@ export default function SupportToCPAsPage() {
           </>
         }
         description="A dedicated offshore accounting team that plugs into your practice — qualified, process-driven, and built to scale with your firm through every season."
-        imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80"
+        imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031937_26d5554d-a1a9-4889-9e15-66a57de6358c_min.webp"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
@@ -165,8 +165,16 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — HOW WE SUPPORT YOUR PRACTICE (Grid)              */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031938_f302772e-8c31-4f6e-8940-8776dffde9e7_min.webp"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.15]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
+
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center mb-14 md:mb-18"
             initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
@@ -182,9 +190,8 @@ export default function SupportToCPAsPage() {
             </p>
           </motion.div>
 
-          {/* First row — 3 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-            {supportCards.slice(0, 3).map((item, i) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+            {supportCards.map((item, i) => {
               const num = String(i + 1).padStart(2, "0");
               return (
                 <motion.div
@@ -194,32 +201,6 @@ export default function SupportToCPAsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">{num}</span>
-                  </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Second row — 1 centered card */}
-          <div className="flex justify-center mt-5 lg:mt-6">
-            {supportCards.slice(3).map((item, i) => {
-              const num = String(i + 4).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
                   <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
