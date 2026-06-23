@@ -23,35 +23,50 @@ const sectors = [
     title: "Established Mid-Size Businesses",
     description:
       "Construction, real estate, medical, and professional services firms that need a financial partner able to match their operational complexity.",
-    iconBg: "bg-brand-tint",
+    gradient: "from-[#4D397F] via-[#362765] to-[#1e1445]",
+    iconGradient: "from-[#7c6aaf] to-[#4D397F]",
+    glowColor: "rgba(77, 57, 127, 0.35)",
+    accentColor: "#7c6aaf",
   },
   {
     icon: Rocket,
     title: "High-Growth Startups",
     description:
       "IT, AI, and SaaS companies scaling fast and in need of investor-ready financials and forward-looking insight.",
-    iconBg: "bg-coral/10",
+    gradient: "from-[#EE672C] via-[#d4502a] to-[#a83222]",
+    iconGradient: "from-[#f7935e] to-[#EE672C]",
+    glowColor: "rgba(238, 103, 44, 0.35)",
+    accentColor: "#f7935e",
   },
   {
     icon: ShoppingBag,
     title: "E-Commerce and Retail",
     description:
       "Online and omnichannel sellers managing multi-platform revenue, inventory, and sales tax across jurisdictions.",
-    iconBg: "bg-brand-soft",
+    gradient: "from-[#1a5276] via-[#1a3c5e] to-[#162544]",
+    iconGradient: "from-[#5dade2] to-[#2e86c1]",
+    glowColor: "rgba(46, 134, 193, 0.35)",
+    accentColor: "#5dade2",
   },
   {
     icon: UtensilsCrossed,
     title: "Restaurants and Supermarket Chains",
     description:
       "Multi-venue hospitality and retail operators who need tight control over margins, payroll, and cash flow.",
-    iconBg: "bg-brand-tint",
+    gradient: "from-[#6b3a2a] via-[#8b4513] to-[#5a2d0c]",
+    iconGradient: "from-[#e8a87c] to-[#d4772c]",
+    glowColor: "rgba(212, 119, 44, 0.35)",
+    accentColor: "#e8a87c",
   },
   {
     icon: Briefcase,
     title: "CPA Firms",
     description:
       "Accounting firms looking for a dependable offshore team to extend their capacity through every season.",
-    iconBg: "bg-coral/10",
+    gradient: "from-[#2a1d4e] via-[#362765] to-[#4D397F]",
+    iconGradient: "from-[#a78bfa] to-[#7c3aed]",
+    glowColor: "rgba(124, 58, 237, 0.35)",
+    accentColor: "#a78bfa",
   },
 ];
 
@@ -220,14 +235,6 @@ export function HeroIllustration() {
 /* ================================================================== */
 
 export default function WhoWeWorkWithPage() {
-  const cardDirections = [
-    { x: -40, y: 0 },
-    { x: 40, y: 0 },
-    { x: -40, y: 0 },
-    { x: 0, y: 40 },
-    { x: 40, y: 0 },
-  ];
-
   return (
     <>
       {/* ============================================================ */}
@@ -315,10 +322,13 @@ export default function WhoWeWorkWithPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 2 — SECTOR GRID (Bento layout)                     */}
+      {/*  SECTION 2 — SECTOR GRID (Premium dark cards)                */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-coral/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <SectionHeading
               title="Sectors We Serve"
@@ -326,95 +336,135 @@ export default function WhoWeWorkWithPage() {
             />
           </AnimatedSection>
 
-          {/* Bento Grid */}
-          <div
-            className="max-w-6xl mx-auto grid gap-5"
-            style={{
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gridTemplateRows: "auto auto",
-            }}
-          >
-            {sectors.map((sector, i) => {
+          {/* Row 1: three cards */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            {sectors.slice(0, 3).map((sector, i) => {
               const Icon = sector.icon;
               const num = String(i + 1).padStart(2, "0");
-              const dir = cardDirections[i];
-
-              /* Layout classes per card */
-              const layoutClass =
-                i === 0
-                  ? "col-span-3 md:col-span-2 md:row-span-2"
-                  : i === 3
-                    ? "col-span-3 md:col-span-2"
-                    : "col-span-3 md:col-span-1";
-
-              /* Card 1 featured: gradient left border + mesh bg */
-              const isFeatured = i === 0;
-              /* Card 4 horizontal: icon left, text right */
-              const isHorizontal = i === 3;
-
               return (
                 <motion.div
                   key={sector.title}
-                  className={layoutClass}
-                  initial={{ opacity: 0, x: dir.x, y: dir.y }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeOut",
-                    delay: 0.1 + i * 0.08,
-                  }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 + i * 0.1 }}
                 >
                   <motion.div
-                    className={`relative bg-white rounded-2xl border border-black/[0.06] shadow-sm p-6 sm:p-8 h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand/20 ${
-                      isHorizontal
-                        ? "flex flex-col sm:flex-row sm:items-center gap-5"
-                        : ""
-                    } ${isFeatured ? "overflow-hidden" : ""}`}
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className={`group relative h-full rounded-2xl overflow-hidden bg-gradient-to-br ${sector.gradient} p-[1px] cursor-default`}
+                    whileHover={{ scale: 1.03, y: -6 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    style={{ willChange: "transform" }}
                   >
-                    {/* Featured card: gradient left border */}
-                    {isFeatured && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand via-brand-dark to-brand rounded-l-2xl" />
-                    )}
-
-                    {/* Featured card: subtle mesh gradient background */}
-                    {isFeatured && (
-                      <div
-                        className="absolute inset-0 opacity-[0.03] rounded-2xl pointer-events-none"
-                        style={{
-                          backgroundImage: `
-                            radial-gradient(at 20% 30%, var(--color-brand) 0%, transparent 50%),
-                            radial-gradient(at 80% 70%, var(--color-brand-dark) 0%, transparent 50%),
-                            radial-gradient(at 50% 50%, var(--color-coral) 0%, transparent 50%)
-                          `,
-                        }}
-                      />
-                    )}
-
-                    {/* Sequential number */}
-                    <span className="absolute top-4 right-5 font-heading text-4xl font-bold text-brand/[0.06] leading-none select-none pointer-events-none">
-                      {num}
-                    </span>
-
-                    {/* Icon */}
+                    {/* Animated border glow on hover */}
                     <div
-                      className={`shrink-0 size-12 rounded-xl ${sector.iconBg} flex items-center justify-center border border-brand/10 ${
-                        isHorizontal ? "" : "mb-5"
-                      }`}
-                    >
-                      <Icon className="size-6 text-brand" />
-                    </div>
+                      className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
+                      style={{ background: `linear-gradient(135deg, ${sector.accentColor}, transparent 60%)` }}
+                    />
 
-                    {/* Text */}
-                    <div className={isHorizontal ? "flex-1 min-w-0" : ""}>
-                      <h3 className="font-heading font-semibold text-base sm:text-lg text-ink leading-snug mb-3">
+                    {/* Inner card */}
+                    <div className="relative h-full rounded-[15px] bg-gradient-to-br from-[#140e2a] via-[#1a1335] to-[#0f0b1e] p-7 sm:p-8">
+                      {/* Decorative mesh glow */}
+                      <div
+                        className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] opacity-20 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
+                        style={{ background: sector.accentColor }}
+                      />
+                      <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full blur-[40px] opacity-10 pointer-events-none" style={{ background: sector.accentColor }} />
+
+                      {/* Number watermark */}
+                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-white/[0.04] leading-none select-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-500">
+                        {num}
+                      </span>
+
+                      {/* Icon orb */}
+                      <motion.div
+                        className={`relative size-14 rounded-2xl bg-gradient-to-br ${sector.iconGradient} flex items-center justify-center mb-6 shadow-lg`}
+                        style={{ boxShadow: `0 8px 24px -4px ${sector.glowColor}` }}
+                        whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Icon className="size-7 text-white" />
+                      </motion.div>
+
+                      {/* Content */}
+                      <h3 className="font-heading font-bold text-lg text-white leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/65 transition-colors duration-300">
                         {sector.description}
                       </p>
+
+                      {/* Bottom accent line */}
+                      <div className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full overflow-hidden">
+                        <div
+                          className="h-full w-0 group-hover:w-full transition-all duration-700 ease-out rounded-full"
+                          style={{ background: `linear-gradient(90deg, transparent, ${sector.accentColor}, transparent)` }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Row 2: two cards centered */}
+          <div className="max-w-6xl mx-auto flex justify-center gap-6 flex-wrap">
+            {sectors.slice(3).map((sector, i) => {
+              const Icon = sector.icon;
+              const num = String(i + 4).padStart(2, "0");
+              return (
+                <motion.div
+                  key={sector.title}
+                  className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 + i * 0.1 }}
+                >
+                  <motion.div
+                    className={`group relative h-full rounded-2xl overflow-hidden bg-gradient-to-br ${sector.gradient} p-[1px] cursor-default`}
+                    whileHover={{ scale: 1.03, y: -6 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    style={{ willChange: "transform" }}
+                  >
+                    <div
+                      className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
+                      style={{ background: `linear-gradient(135deg, ${sector.accentColor}, transparent 60%)` }}
+                    />
+
+                    <div className="relative h-full rounded-[15px] bg-gradient-to-br from-[#140e2a] via-[#1a1335] to-[#0f0b1e] p-7 sm:p-8">
+                      <div
+                        className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] opacity-20 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
+                        style={{ background: sector.accentColor }}
+                      />
+                      <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full blur-[40px] opacity-10 pointer-events-none" style={{ background: sector.accentColor }} />
+
+                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-white/[0.04] leading-none select-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-500">
+                        {num}
+                      </span>
+
+                      <motion.div
+                        className={`relative size-14 rounded-2xl bg-gradient-to-br ${sector.iconGradient} flex items-center justify-center mb-6 shadow-lg`}
+                        style={{ boxShadow: `0 8px 24px -4px ${sector.glowColor}` }}
+                        whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Icon className="size-7 text-white" />
+                      </motion.div>
+
+                      <h3 className="font-heading font-bold text-lg text-white leading-snug mb-3">
+                        {sector.title}
+                      </h3>
+                      <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/65 transition-colors duration-300">
+                        {sector.description}
+                      </p>
+
+                      <div className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full overflow-hidden">
+                        <div
+                          className="h-full w-0 group-hover:w-full transition-all duration-700 ease-out rounded-full"
+                          style={{ background: `linear-gradient(90deg, transparent, ${sector.accentColor}, transparent)` }}
+                        />
+                      </div>
                     </div>
                   </motion.div>
                 </motion.div>
