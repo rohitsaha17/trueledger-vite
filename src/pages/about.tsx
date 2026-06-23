@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
-// ScrollFlipTimeline removed — using static layout
-import { SectionDivider } from "@/components/shared/section-divider";
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
@@ -454,7 +452,7 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 6 — WHO WE WORK WITH (Sectors)                       */}
+      {/*  SECTION 6 — WHO WE WORK WITH (Sectors + Beyond)              */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -465,85 +463,40 @@ export default function AboutPage() {
             />
           </AnimatedSection>
 
-          <div
-            className="max-w-6xl mx-auto grid gap-5"
-            style={{
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gridTemplateRows: "auto auto",
-            }}
-          >
+          {/* Sector showcase cards — row of 3 + row of 2 centered */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sectors.map((sector, i) => {
               const Icon = sector.icon;
-              const num = String(i + 1).padStart(2, "0");
-
-              const layoutClass =
-                i === 0
-                  ? "col-span-3 md:col-span-2 md:row-span-2"
-                  : i === 3
-                    ? "col-span-3 md:col-span-2"
-                    : "col-span-3 md:col-span-1";
-
-              const isFeatured = i === 0;
-              const isHorizontal = i === 3;
-
-              const directions = [
-                { x: -40, y: 0 },
-                { x: 40, y: 0 },
-                { x: -40, y: 0 },
-                { x: 0, y: 40 },
-                { x: 40, y: 0 },
+              const gradients = [
+                "from-brand via-brand-dark to-[#2a1d4e]",
+                "from-coral via-[#d4502a] to-[#a83222]",
+                "from-brand-dark via-brand to-[#6b52a8]",
+                "from-[#c44e28] via-coral to-[#e8824a]",
+                "from-[#2a1d4e] via-brand-dark to-brand",
               ];
-              const dir = directions[i];
 
               return (
-                <motion.div
+                <AnimatedSection
                   key={sector.title}
-                  className={layoutClass}
-                  initial={{ opacity: 0, x: dir.x, y: dir.y }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeOut",
-                    delay: 0.1 + i * 0.08,
-                  }}
+                  delay={0.1 + i * 0.08}
                 >
                   <motion.div
-                    className={`relative bg-white rounded-2xl border border-black/[0.06] shadow-sm p-6 sm:p-8 h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand/20 ${
-                      isHorizontal
-                        ? "flex flex-col sm:flex-row sm:items-center gap-5"
-                        : ""
-                    } ${isFeatured ? "overflow-hidden" : ""}`}
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className={`group relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 hover:border-brand/15 ${
+                      i >= 3 ? "sm:col-start-auto lg:col-start-auto" : ""
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   >
-                    {isFeatured && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand via-brand-dark to-brand rounded-l-2xl" />
-                    )}
-                    {isFeatured && (
-                      <div
-                        className="absolute inset-0 opacity-[0.03] rounded-2xl pointer-events-none"
-                        style={{
-                          backgroundImage: `
-                            radial-gradient(at 20% 30%, var(--color-brand) 0%, transparent 50%),
-                            radial-gradient(at 80% 70%, var(--color-brand-dark) 0%, transparent 50%),
-                            radial-gradient(at 50% 50%, var(--color-coral) 0%, transparent 50%)
-                          `,
-                        }}
-                      />
-                    )}
-                    <span className="absolute top-4 right-5 font-heading text-4xl font-bold text-brand/[0.06] leading-none select-none pointer-events-none">
-                      {num}
-                    </span>
-                    <div
-                      className={`shrink-0 size-12 rounded-xl ${sector.iconBg} flex items-center justify-center border border-brand/10 ${
-                        isHorizontal ? "" : "mb-5"
-                      }`}
-                    >
-                      <Icon className="size-6 text-brand" />
-                    </div>
-                    <div className={isHorizontal ? "flex-1 min-w-0" : ""}>
-                      <h3 className="font-heading font-semibold text-base sm:text-lg text-ink leading-snug mb-3">
+                    {/* Gradient header strip */}
+                    <div className={`h-1.5 bg-gradient-to-r ${gradients[i]} transition-all duration-300 group-hover:h-2`} />
+
+                    <div className="p-7">
+                      {/* Icon in gradient circle */}
+                      <div className={`size-14 rounded-2xl bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-5 shadow-lg shadow-brand/10 group-hover:shadow-brand/20 transition-shadow duration-300`}>
+                        <Icon className="size-7 text-white" />
+                      </div>
+
+                      <h3 className="font-heading font-bold text-lg text-ink leading-snug mb-3">
                         {sector.title}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
@@ -551,86 +504,47 @@ export default function AboutPage() {
                       </p>
                     </div>
                   </motion.div>
-                </motion.div>
+                </AnimatedSection>
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ============================================================ */}
-      {/*  SECTION 7 — BEYOND SECTORS                                    */}
-      {/* ============================================================ */}
-      <SectionDivider variant="wave" />
+          {/* Beyond These Sectors — continuation callout */}
+          <AnimatedSection delay={0.2}>
+            <div className="max-w-5xl mx-auto mt-14">
+              <div className="relative rounded-2xl overflow-hidden">
+                {/* Background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#140e2a] via-brand-dark to-[#1e1445]" />
+                <div className="absolute top-0 right-0 w-80 h-80 bg-brand/15 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-coral/10 rounded-full blur-[80px] pointer-events-none" />
 
-      <section className="py-20 md:py-28 bg-brand-tint/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <SectionHeading title="Beyond These Sectors" />
-          </AnimatedSection>
+                <div className="relative px-8 py-10 sm:px-12 sm:py-14 md:px-16">
+                  <p className="text-brand-soft/60 text-xs font-semibold uppercase tracking-widest mb-3">
+                    Beyond these sectors
+                  </p>
 
-          <div className="relative max-w-3xl mx-auto">
-            <svg
-              className="absolute -top-4 -left-8 md:-left-16 w-[120px] h-[120px] text-brand/10 pointer-events-none select-none"
-              viewBox="0 0 120 120"
-              fill="currentColor"
-            >
-              <text x="0" y="100" fontSize="160" fontFamily="Georgia, serif" fontWeight="bold">
-                &ldquo;
-              </text>
-            </svg>
-
-            <div className="relative space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed text-center">
-              <motion.p
-                initial={{ opacity: 0, filter: "blur(4px)" }}
-                whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                While these sectors represent our deepest expertise, the
-                businesses we work with share something more fundamental than an
-                industry label. They value accuracy. They expect responsiveness.
-                And they understand that a true financial partner is not a
-                commodity &mdash; it&rsquo;s a relationship.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, filter: "blur(4px)" }}
-                whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                If your business is growing, if the financial complexity is
-                increasing, and if you need a team that can keep up without
-                cutting corners &mdash; we are likely a good fit. We have worked
-                with businesses outside these sectors and will continue to do
-                so, as long as the alignment is right.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, filter: "blur(4px)" }}
-                whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                What matters most to us is not the label on your industry, but
-                the standards you hold yourself to. We choose to work with
-                businesses that take their finances seriously &mdash; because
-                that&rsquo;s the only kind of work we know how to do well.
-              </motion.p>
-
-              <motion.p
-                className="italic text-ink font-medium pt-2 text-lg border-l-4 border-brand pl-6 text-left"
-                initial={{ opacity: 0, filter: "blur(4px)" }}
-                whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Trust is not a claim. It is a track record. We are here to build
-                one with you.
-              </motion.p>
+                  <div className="space-y-5 text-white/70 text-base leading-relaxed max-w-3xl">
+                    <p>
+                      While these sectors represent our deepest expertise, the
+                      businesses we work with share something more fundamental than an
+                      industry label. They value accuracy. They expect responsiveness.
+                      And they understand that a true financial partner is not a
+                      commodity &mdash; it&rsquo;s a relationship.
+                    </p>
+                    <p>
+                      If your business is growing, if the financial complexity is
+                      increasing, and if you need a team that can keep up without
+                      cutting corners &mdash; we are likely a good fit.
+                    </p>
+                    <p className="text-white font-medium italic border-l-2 border-coral/60 pl-5 mt-6">
+                      Trust is not a claim. It is a track record. We are here to build
+                      one with you.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
