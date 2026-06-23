@@ -9,6 +9,10 @@ import {
   Rocket,
   Landmark,
   Settings,
+  BarChart3,
+  ShieldCheck,
+  Banknote,
+  Cpu,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 
@@ -18,21 +22,29 @@ import { ServicePageHero } from "@/components/shared/service-page-hero";
 
 const advisoryPhases = [
   {
+    icon: BarChart3,
+    gradient: "from-brand via-brand-dark to-[#2a1d4e]",
     title: "Strategic & Business Advisory",
     description:
       "Where your numbers meet your strategy. We work alongside leadership teams to model, stress-test, and validate the decisions that shape a business — financial modeling, scenario analysis, and valuation frameworks that give you a clear, defensible picture of what your business is worth.",
   },
   {
+    icon: ShieldCheck,
+    gradient: "from-coral via-[#d4502a] to-[#a83222]",
     title: "Governance, Controls & Compliance",
     description:
       "Build the foundation that earns trust. We help businesses build governance structures, financial controls, policy documentation, and SOC certification readiness — before they need them, not in response to a crisis.",
   },
   {
+    icon: Banknote,
+    gradient: "from-brand-dark via-brand to-[#6b52a8]",
     title: "Capital, Funding & Fundraising Readiness",
     description:
       "Get capital-ready before the conversation starts. We prepare businesses for fundraising, securities listings, due diligence, investor reporting, and historical cleanup — ensuring that when the conversation starts, you are ready.",
   },
   {
+    icon: Cpu,
+    gradient: "from-[#c44e28] via-coral to-[#e8824a]",
     title: "Finance Automation & Technology",
     description:
       "The right tools, properly implemented, transform a finance function. We advise on tech stack design, workflow automation, ERP implementation, and SOC-compliant technology frameworks for businesses at every stage.",
@@ -180,53 +192,36 @@ export default function BusinessAdvisoryPage() {
             </p>
           </motion.div>
 
-          {/* First row — 3 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-            {advisoryPhases.slice(0, 3).map((item, i) => {
+          {/* 2x2 grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 max-w-4xl mx-auto">
+            {advisoryPhases.map((item, i) => {
+              const Icon = item.icon;
               const num = String(i + 1).padStart(2, "0");
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                  className="group relative rounded-2xl bg-white border border-black/[0.06] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">{num}</span>
+                  {/* Gradient header with icon */}
+                  <div className={`relative h-28 bg-gradient-to-br ${item.gradient} flex items-center justify-between px-7`}>
+                    <div className="flex items-center gap-4">
+                      <div className="size-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                        <Icon className="size-6 text-white" />
+                      </div>
+                      <span className="text-white/30 font-heading font-black text-5xl leading-none select-none">{num}</span>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent" />
                   </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
 
-          {/* Second row — 1 centered card */}
-          <div className="flex justify-center mt-5 lg:mt-6">
-            {advisoryPhases.slice(3).map((item, i) => {
-              const num = String(i + 4).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">{num}</span>
+                  <div className="p-6 sm:p-7 pt-4">
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-ink leading-snug mb-3">{item.title}</h3>
+                    <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </motion.div>
               );
             })}
@@ -280,15 +275,22 @@ export default function BusinessAdvisoryPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <div className="size-24 rounded-full bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center shadow-xl shadow-brand/20">
+              <motion.div
+                className="relative size-28 rounded-full bg-white flex items-center justify-center shadow-xl shadow-brand/20 border-2 border-brand/15 cursor-pointer"
+                whileHover={{ scale: 1.15, boxShadow: "0 0 40px rgba(77,57,127,0.35), 0 0 80px rgba(238,103,44,0.15)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              >
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="size-16 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center"
-                >
-                  <span className="text-white font-heading font-bold text-xl">TL</span>
-                </motion.div>
-              </div>
+                  className="absolute inset-0 rounded-full border-2 border-brand/20"
+                  whileHover={{ scale: 1.25, opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                />
+                <img
+                  src="/logos/tl logomark.png"
+                  alt="TrueLedger"
+                  className="size-16 object-contain"
+                />
+              </motion.div>
               <p className="text-xs font-semibold text-brand mt-3 tracking-wide uppercase">Your Advisor</p>
             </motion.div>
 
