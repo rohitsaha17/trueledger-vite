@@ -211,10 +211,10 @@ export default function TaxComplianceAdvisoryPage() {
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_213650_e0904648-6573-49b5-950a-4d00f28b0275_min.webp"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
@@ -286,10 +286,10 @@ export default function TaxComplianceAdvisoryPage() {
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_213652_cbca740f-02f5-46fa-a95d-48d2b7900ec1_min.webp"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>

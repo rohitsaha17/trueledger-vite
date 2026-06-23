@@ -154,7 +154,7 @@ export default function BusinessAdvisoryPage() {
           </>
         }
         description="Most businesses don’t struggle because of a lack of effort. They struggle because the financial decisions — the structural ones, the strategic ones — were made without the right advisor in the room."
-        imageSrc="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80"
+        imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031452_6a4a4264-852a-470c-bfbb-49796401a094_min.webp"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
@@ -237,30 +237,87 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — WHO OUR ADVISORY PRACTICE IS BUILT FOR          */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-brand-tint/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
               title="Who Our Advisory Practice Is Built For"
+              center
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {audiences.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <AnimatedSection key={item.text} delay={i * 0.1}>
-                  <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-black/[0.06] shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <div className="shrink-0 size-12 rounded-xl bg-brand-tint flex items-center justify-center border border-brand/10">
-                      <Icon className="size-5 text-brand" />
+          {/* Hub-and-spoke layout */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* SVG connectors — hidden on mobile */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block"
+              viewBox="0 0 1000 600"
+              preserveAspectRatio="xMidYMid meet"
+              fill="none"
+            >
+              {/* Top-left to center */}
+              <motion.line x1="230" y1="150" x2="500" y2="300" stroke="#4D397F" strokeWidth="2" strokeDasharray="6 4" strokeOpacity="0.25"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.5 }} />
+              {/* Top-right to center */}
+              <motion.line x1="770" y1="150" x2="500" y2="300" stroke="#4D397F" strokeWidth="2" strokeDasharray="6 4" strokeOpacity="0.25"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.6 }} />
+              {/* Bottom-left to center */}
+              <motion.line x1="230" y1="450" x2="500" y2="300" stroke="#4D397F" strokeWidth="2" strokeDasharray="6 4" strokeOpacity="0.25"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.7 }} />
+              {/* Bottom-right to center */}
+              <motion.line x1="770" y1="450" x2="500" y2="300" stroke="#4D397F" strokeWidth="2" strokeDasharray="6 4" strokeOpacity="0.25"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.8 }} />
+              {/* Center node glow */}
+              <circle cx="500" cy="300" r="48" fill="#4D397F" fillOpacity="0.06" />
+              <circle cx="500" cy="300" r="32" fill="#4D397F" fillOpacity="0.10" />
+            </svg>
+
+            {/* Center hub element — hidden on mobile */}
+            <motion.div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:flex flex-col items-center justify-center"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <div className="size-24 rounded-full bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center shadow-xl shadow-brand/20">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="size-16 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center"
+                >
+                  <span className="text-white font-heading font-bold text-xl">TL</span>
+                </motion.div>
+              </div>
+              <p className="text-xs font-semibold text-brand mt-3 tracking-wide uppercase">Your Advisor</p>
+            </motion.div>
+
+            {/* 2x2 grid with gap for center hub */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-x-52 lg:gap-y-10">
+              {audiences.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.text}
+                    className="relative rounded-2xl bg-white border border-black/[0.06] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                    whileHover={{ y: -4 }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="shrink-0 size-12 rounded-xl bg-brand-tint flex items-center justify-center border border-brand/10">
+                        <Icon className="size-5 text-brand" />
+                      </div>
+                      <p className="text-sm sm:text-base text-ink leading-relaxed font-medium pt-1">
+                        {item.text}
+                      </p>
                     </div>
-                    <p className="text-sm sm:text-base text-ink leading-relaxed font-medium pt-1">
-                      {item.text}
-                    </p>
-                  </div>
-                </AnimatedSection>
-              );
-            })}
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
