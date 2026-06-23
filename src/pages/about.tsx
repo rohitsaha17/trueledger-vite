@@ -464,38 +464,29 @@ export default function AboutPage() {
           </AnimatedSection>
 
           {/* Sector showcase cards — row of 3 + row of 2 centered */}
-          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sectors.map((sector, i) => {
-              const Icon = sector.icon;
-              const gradients = [
-                "from-brand via-brand-dark to-[#2a1d4e]",
-                "from-coral via-[#d4502a] to-[#a83222]",
-                "from-brand-dark via-brand to-[#6b52a8]",
-                "from-[#c44e28] via-coral to-[#e8824a]",
-                "from-[#2a1d4e] via-brand-dark to-brand",
-              ];
+          {(() => {
+            const gradients = [
+              "from-brand via-brand-dark to-[#2a1d4e]",
+              "from-coral via-[#d4502a] to-[#a83222]",
+              "from-brand-dark via-brand to-[#6b52a8]",
+              "from-[#c44e28] via-coral to-[#e8824a]",
+              "from-[#2a1d4e] via-brand-dark to-brand",
+            ];
 
+            const renderCard = (sector: typeof sectors[number], i: number) => {
+              const Icon = sector.icon;
               return (
-                <AnimatedSection
-                  key={sector.title}
-                  delay={0.1 + i * 0.08}
-                >
+                <AnimatedSection key={sector.title} delay={0.1 + i * 0.08}>
                   <motion.div
-                    className={`group relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 hover:border-brand/15 ${
-                      i >= 3 ? "sm:col-start-auto lg:col-start-auto" : ""
-                    }`}
+                    className="group relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 hover:border-brand/15"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   >
-                    {/* Gradient header strip */}
                     <div className={`h-1.5 bg-gradient-to-r ${gradients[i]} transition-all duration-300 group-hover:h-2`} />
-
                     <div className="p-7">
-                      {/* Icon in gradient circle */}
                       <div className={`size-14 rounded-2xl bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-5 shadow-lg shadow-brand/10 group-hover:shadow-brand/20 transition-shadow duration-300`}>
                         <Icon className="size-7 text-white" />
                       </div>
-
                       <h3 className="font-heading font-bold text-lg text-ink leading-snug mb-3">
                         {sector.title}
                       </h3>
@@ -506,22 +497,44 @@ export default function AboutPage() {
                   </motion.div>
                 </AnimatedSection>
               );
-            })}
-          </div>
+            };
+
+            return (
+              <div className="max-w-6xl mx-auto space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {sectors.slice(0, 3).map((s, i) => renderCard(s, i))}
+                </div>
+                <div className="flex justify-center gap-6 flex-wrap">
+                  {sectors.slice(3).map((s, i) => (
+                    <div key={s.title} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+                      {renderCard(s, i + 3)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Beyond These Sectors — continuation callout */}
           <AnimatedSection delay={0.2}>
             <div className="max-w-5xl mx-auto mt-14">
               <div className="relative rounded-2xl overflow-hidden">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#140e2a] via-brand-dark to-[#1e1445]" />
+                {/* Background image */}
+                <img
+                  src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-[#140e2a]/80" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#140e2a]/60 via-brand-dark/50 to-[#1e1445]/60" />
                 <div className="absolute top-0 right-0 w-80 h-80 bg-brand/15 rounded-full blur-[100px] pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-coral/10 rounded-full blur-[80px] pointer-events-none" />
 
                 <div className="relative px-8 py-10 sm:px-12 sm:py-14 md:px-16">
-                  <p className="text-brand-soft/60 text-xs font-semibold uppercase tracking-widest mb-3">
-                    Beyond these sectors
-                  </p>
+                  <h3 className="text-coral font-heading font-bold text-xl sm:text-2xl tracking-wide mb-4">
+                    Beyond These Sectors
+                  </h3>
 
                   <div className="space-y-5 text-white/70 text-base leading-relaxed max-w-3xl">
                     <p>
