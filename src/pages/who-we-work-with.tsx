@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SectionDivider } from "@/components/shared/section-divider";
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
@@ -27,6 +26,7 @@ const sectors = [
     iconGradient: "from-[#7c6aaf] to-[#4D397F]",
     glowColor: "rgba(77, 57, 127, 0.35)",
     accentColor: "#7c6aaf",
+    bgImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=60",
   },
   {
     icon: Rocket,
@@ -37,6 +37,7 @@ const sectors = [
     iconGradient: "from-[#f7935e] to-[#EE672C]",
     glowColor: "rgba(238, 103, 44, 0.35)",
     accentColor: "#f7935e",
+    bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
   },
   {
     icon: ShoppingBag,
@@ -47,6 +48,7 @@ const sectors = [
     iconGradient: "from-[#5dade2] to-[#2e86c1]",
     glowColor: "rgba(46, 134, 193, 0.35)",
     accentColor: "#5dade2",
+    bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=60",
   },
   {
     icon: UtensilsCrossed,
@@ -57,6 +59,7 @@ const sectors = [
     iconGradient: "from-[#e8a87c] to-[#d4772c]",
     glowColor: "rgba(212, 119, 44, 0.35)",
     accentColor: "#e8a87c",
+    bgImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=60",
   },
   {
     icon: Briefcase,
@@ -67,6 +70,7 @@ const sectors = [
     iconGradient: "from-[#a78bfa] to-[#7c3aed]",
     glowColor: "rgba(124, 58, 237, 0.35)",
     accentColor: "#a78bfa",
+    bgImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60",
   },
 ];
 
@@ -324,7 +328,7 @@ export default function WhoWeWorkWithPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — SECTOR GRID (Premium dark cards)                */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="pt-20 md:pt-28 pb-10 md:pb-14 relative overflow-hidden">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-coral/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -362,13 +366,22 @@ export default function WhoWeWorkWithPage() {
                     />
 
                     {/* Inner card */}
-                    <div className="relative h-full rounded-[15px] bg-gradient-to-br from-[#140e2a] via-[#1a1335] to-[#0f0b1e] p-7 sm:p-8">
+                    <div className="relative h-full rounded-[15px] overflow-hidden p-7 sm:p-8">
+                      {/* Background image */}
+                      <img
+                        src={sector.bgImage}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-[#0f0b1e]/82 group-hover:bg-[#0f0b1e]/75 transition-colors duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0f0b1e] via-[#0f0b1e]/60 to-transparent" />
+
                       {/* Decorative mesh glow */}
                       <div
                         className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] opacity-20 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
                         style={{ background: sector.accentColor }}
                       />
-                      <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full blur-[40px] opacity-10 pointer-events-none" style={{ background: sector.accentColor }} />
 
                       {/* Number watermark */}
                       <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-white/[0.04] leading-none select-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-500">
@@ -386,10 +399,10 @@ export default function WhoWeWorkWithPage() {
                       </motion.div>
 
                       {/* Content */}
-                      <h3 className="font-heading font-bold text-lg text-white leading-snug mb-3">
+                      <h3 className="relative font-heading font-bold text-lg text-white leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/65 transition-colors duration-300">
+                      <p className="relative text-white/55 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
                         {sector.description}
                       </p>
 
@@ -432,12 +445,21 @@ export default function WhoWeWorkWithPage() {
                       style={{ background: `linear-gradient(135deg, ${sector.accentColor}, transparent 60%)` }}
                     />
 
-                    <div className="relative h-full rounded-[15px] bg-gradient-to-br from-[#140e2a] via-[#1a1335] to-[#0f0b1e] p-7 sm:p-8">
+                    <div className="relative h-full rounded-[15px] overflow-hidden p-7 sm:p-8">
+                      {/* Background image */}
+                      <img
+                        src={sector.bgImage}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-[#0f0b1e]/82 group-hover:bg-[#0f0b1e]/75 transition-colors duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0f0b1e] via-[#0f0b1e]/60 to-transparent" />
+
                       <div
                         className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] opacity-20 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
                         style={{ background: sector.accentColor }}
                       />
-                      <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full blur-[40px] opacity-10 pointer-events-none" style={{ background: sector.accentColor }} />
 
                       <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-white/[0.04] leading-none select-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-500">
                         {num}
@@ -452,10 +474,10 @@ export default function WhoWeWorkWithPage() {
                         <Icon className="size-7 text-white" />
                       </motion.div>
 
-                      <h3 className="font-heading font-bold text-lg text-white leading-snug mb-3">
+                      <h3 className="relative font-heading font-bold text-lg text-white leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/65 transition-colors duration-300">
+                      <p className="relative text-white/55 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
                         {sector.description}
                       </p>
 
@@ -475,22 +497,30 @@ export default function WhoWeWorkWithPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 3 — BEYOND SECTORS (Editorial magazine style)       */}
+      {/*  SECTION 3 — BEYOND SECTORS                                  */}
       {/* ============================================================ */}
-      <SectionDivider variant="wave" />
+      <section className="py-16 md:py-20 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=60"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/88" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/60 via-transparent to-[#140e2a]/70" />
+        <div className="absolute top-0 left-1/4 w-96 h-64 bg-brand/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-48 bg-coral/8 rounded-full blur-[80px] pointer-events-none" />
 
-      <section className="py-20 md:py-28 bg-brand-tint/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-            <SectionHeading
-              title="Beyond These Sectors"
-            />
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white text-center font-heading mb-10 md:mb-14">
+              Beyond These Sectors
+            </h2>
           </AnimatedSection>
 
           <div className="relative max-w-3xl mx-auto">
-            {/* Decorative quotation mark */}
             <svg
-              className="absolute -top-4 -left-8 md:-left-16 w-[120px] h-[120px] text-brand/10 pointer-events-none select-none"
+              className="absolute -top-4 -left-8 md:-left-16 w-[120px] h-[120px] text-white/10 pointer-events-none select-none"
               viewBox="0 0 120 120"
               fill="currentColor"
             >
@@ -505,7 +535,7 @@ export default function WhoWeWorkWithPage() {
               </text>
             </svg>
 
-            <div className="relative space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed text-center">
+            <div className="relative space-y-6 text-base sm:text-lg text-white/60 leading-relaxed text-center">
               <motion.p
                 initial={{ opacity: 0, filter: "blur(4px)" }}
                 whileInView={{ opacity: 1, filter: "blur(0px)" }}
@@ -545,7 +575,7 @@ export default function WhoWeWorkWithPage() {
               </motion.p>
 
               <motion.p
-                className="italic text-ink font-medium pt-2 text-lg border-l-4 border-brand pl-6 text-left"
+                className="italic text-white font-medium pt-2 text-lg border-l-4 border-coral/60 pl-6 text-left"
                 initial={{ opacity: 0, filter: "blur(4px)" }}
                 whileInView={{ opacity: 1, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-40px" }}
