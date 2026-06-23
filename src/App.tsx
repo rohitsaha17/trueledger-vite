@@ -9,7 +9,6 @@ import BusinessAdvisoryPage from "@/pages/business-advisory";
 import SupportToCPAsPage from "@/pages/support-to-cpas";
 import AboutPage from "@/pages/about";
 import FAQPage from "@/pages/faq";
-import WhoWeWorkWithPage from "@/pages/who-we-work-with";
 import ContactPage from "@/pages/contact";
 import PrivacyPolicyPage from "@/pages/privacy-policy";
 import TermsPage from "@/pages/terms";
@@ -37,7 +36,6 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/who-we-work-with" element={<WhoWeWorkWithPage />} />
             <Route
               path="/services/global-entity-setup"
               element={<GlobalEntitySetupPage />}

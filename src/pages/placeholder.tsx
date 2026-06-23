@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 
 const pageTitles: Record<string, string> = {
   "/about": "About Us",
-  "/who-we-work-with": "Who We Work With",
   "/services/global-entity-setup": "Global Entity Setup",
   "/services/managed-accounting-bookkeeping": "Managed Accounting & Bookkeeping",
   "/services/tax-compliance-advisory": "Tax Compliance & Advisory",

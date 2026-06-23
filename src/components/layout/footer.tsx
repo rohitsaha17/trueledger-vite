@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 
 const companyLinks = [
   { label: "About Us", href: "/about" },
-  { label: "Who We Work With", href: "/who-we-work-with" },
   { label: "Contact", href: "/contact" },
 ];
 

@@ -3,6 +3,7 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
 // ScrollFlipTimeline removed — using static layout
+import { SectionDivider } from "@/components/shared/section-divider";
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
@@ -23,6 +24,10 @@ import {
   Mail,
   KeyRound,
   UserCheck,
+  Rocket,
+  ShoppingBag,
+  UtensilsCrossed,
+  Briefcase,
 } from "lucide-react";
 
 /* Inline LinkedIn icon */
@@ -128,6 +133,48 @@ const securityPanels = [
       { icon: KeyRound, text: "Secure login gateway & server management" },
       { icon: Camera, text: "Premises under 24/7 CCTV surveillance" },
     ],
+  },
+];
+
+/* ================================================================== */
+/*  Sectors (from Who We Work With)                                     */
+/* ================================================================== */
+
+const sectors = [
+  {
+    icon: Building2,
+    title: "Established Mid-Size Businesses",
+    description:
+      "Construction, real estate, medical, and professional services firms that need a financial partner able to match their operational complexity.",
+    iconBg: "bg-brand-tint",
+  },
+  {
+    icon: Rocket,
+    title: "High-Growth Startups",
+    description:
+      "IT, AI, and SaaS companies scaling fast and in need of investor-ready financials and forward-looking insight.",
+    iconBg: "bg-coral/10",
+  },
+  {
+    icon: ShoppingBag,
+    title: "E-Commerce and Retail",
+    description:
+      "Online and omnichannel sellers managing multi-platform revenue, inventory, and sales tax across jurisdictions.",
+    iconBg: "bg-brand-soft",
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Restaurants and Supermarket Chains",
+    description:
+      "Multi-venue hospitality and retail operators who need tight control over margins, payroll, and cash flow.",
+    iconBg: "bg-brand-tint",
+  },
+  {
+    icon: Briefcase,
+    title: "CPA Firms",
+    description:
+      "Accounting firms looking for a dependable offshore team to extend their capacity through every season.",
+    iconBg: "bg-coral/10",
   },
 ];
 
@@ -407,7 +454,188 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 6 — DATA SECURITY                                    */}
+      {/*  SECTION 6 — WHO WE WORK WITH (Sectors)                       */}
+      {/* ============================================================ */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionHeading
+              title="Who We Work With"
+              description="We bring depth, not breadth. These are the sectors where our expertise creates the most value."
+            />
+          </AnimatedSection>
+
+          <div
+            className="max-w-6xl mx-auto grid gap-5"
+            style={{
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateRows: "auto auto",
+            }}
+          >
+            {sectors.map((sector, i) => {
+              const Icon = sector.icon;
+              const num = String(i + 1).padStart(2, "0");
+
+              const layoutClass =
+                i === 0
+                  ? "col-span-3 md:col-span-2 md:row-span-2"
+                  : i === 3
+                    ? "col-span-3 md:col-span-2"
+                    : "col-span-3 md:col-span-1";
+
+              const isFeatured = i === 0;
+              const isHorizontal = i === 3;
+
+              const directions = [
+                { x: -40, y: 0 },
+                { x: 40, y: 0 },
+                { x: -40, y: 0 },
+                { x: 0, y: 40 },
+                { x: 40, y: 0 },
+              ];
+              const dir = directions[i];
+
+              return (
+                <motion.div
+                  key={sector.title}
+                  className={layoutClass}
+                  initial={{ opacity: 0, x: dir.x, y: dir.y }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut",
+                    delay: 0.1 + i * 0.08,
+                  }}
+                >
+                  <motion.div
+                    className={`relative bg-white rounded-2xl border border-black/[0.06] shadow-sm p-6 sm:p-8 h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand/20 ${
+                      isHorizontal
+                        ? "flex flex-col sm:flex-row sm:items-center gap-5"
+                        : ""
+                    } ${isFeatured ? "overflow-hidden" : ""}`}
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    {isFeatured && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand via-brand-dark to-brand rounded-l-2xl" />
+                    )}
+                    {isFeatured && (
+                      <div
+                        className="absolute inset-0 opacity-[0.03] rounded-2xl pointer-events-none"
+                        style={{
+                          backgroundImage: `
+                            radial-gradient(at 20% 30%, var(--color-brand) 0%, transparent 50%),
+                            radial-gradient(at 80% 70%, var(--color-brand-dark) 0%, transparent 50%),
+                            radial-gradient(at 50% 50%, var(--color-coral) 0%, transparent 50%)
+                          `,
+                        }}
+                      />
+                    )}
+                    <span className="absolute top-4 right-5 font-heading text-4xl font-bold text-brand/[0.06] leading-none select-none pointer-events-none">
+                      {num}
+                    </span>
+                    <div
+                      className={`shrink-0 size-12 rounded-xl ${sector.iconBg} flex items-center justify-center border border-brand/10 ${
+                        isHorizontal ? "" : "mb-5"
+                      }`}
+                    >
+                      <Icon className="size-6 text-brand" />
+                    </div>
+                    <div className={isHorizontal ? "flex-1 min-w-0" : ""}>
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-ink leading-snug mb-3">
+                        {sector.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {sector.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 7 — BEYOND SECTORS                                    */}
+      {/* ============================================================ */}
+      <SectionDivider variant="wave" />
+
+      <section className="py-20 md:py-28 bg-brand-tint/30">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionHeading title="Beyond These Sectors" />
+          </AnimatedSection>
+
+          <div className="relative max-w-3xl mx-auto">
+            <svg
+              className="absolute -top-4 -left-8 md:-left-16 w-[120px] h-[120px] text-brand/10 pointer-events-none select-none"
+              viewBox="0 0 120 120"
+              fill="currentColor"
+            >
+              <text x="0" y="100" fontSize="160" fontFamily="Georgia, serif" fontWeight="bold">
+                &ldquo;
+              </text>
+            </svg>
+
+            <div className="relative space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed text-center">
+              <motion.p
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                While these sectors represent our deepest expertise, the
+                businesses we work with share something more fundamental than an
+                industry label. They value accuracy. They expect responsiveness.
+                And they understand that a true financial partner is not a
+                commodity &mdash; it&rsquo;s a relationship.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                If your business is growing, if the financial complexity is
+                increasing, and if you need a team that can keep up without
+                cutting corners &mdash; we are likely a good fit. We have worked
+                with businesses outside these sectors and will continue to do
+                so, as long as the alignment is right.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                What matters most to us is not the label on your industry, but
+                the standards you hold yourself to. We choose to work with
+                businesses that take their finances seriously &mdash; because
+                that&rsquo;s the only kind of work we know how to do well.
+              </motion.p>
+
+              <motion.p
+                className="italic text-ink font-medium pt-2 text-lg border-l-4 border-brand pl-6 text-left"
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Trust is not a claim. It is a track record. We are here to build
+                one with you.
+              </motion.p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 8 — DATA SECURITY                                    */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         {/* Background image */}
