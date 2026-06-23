@@ -1,5 +1,4 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types/database";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ?? "";
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "";
@@ -14,23 +13,18 @@ const nullClient = {
         eq: () => ({
           single: () => Promise.resolve({ data: null, error: null }),
           order: () => Promise.resolve({ data: [], error: null }),
-          then: (fn: (v: { data: null }) => void) =>
-            Promise.resolve({ data: null }).then(fn),
+          then: (fn: any) => Promise.resolve({ data: null }).then(fn),
         }),
         order: () => ({
-          then: (fn: (v: { data: [] }) => void) =>
-            Promise.resolve({ data: [] }).then(fn),
+          then: (fn: any) => Promise.resolve({ data: [] }).then(fn),
         }),
         single: () => Promise.resolve({ data: null, error: null }),
-        then: (fn: (v: { data: [] }) => void) =>
-          Promise.resolve({ data: [] }).then(fn),
+        then: (fn: any) => Promise.resolve({ data: [] }).then(fn),
       }),
       order: () => ({
-        then: (fn: (v: { data: [] }) => void) =>
-          Promise.resolve({ data: [] }).then(fn),
+        then: (fn: any) => Promise.resolve({ data: [] }).then(fn),
       }),
-      then: (fn: (v: { data: [] }) => void) =>
-        Promise.resolve({ data: [] }).then(fn),
+      then: (fn: any) => Promise.resolve({ data: [] }).then(fn),
     }),
     insert: () => Promise.resolve({ data: null, error: null }),
     update: () => ({
@@ -52,8 +46,8 @@ const nullClient = {
       }),
     signOut: () => Promise.resolve({ error: null }),
   },
-} as unknown as SupabaseClient<Database>;
+} as unknown as SupabaseClient;
 
-export const supabase: SupabaseClient<Database> = isConfigured
-  ? createClient<Database>(supabaseUrl, supabaseAnonKey)
+export const supabase: SupabaseClient = isConfigured
+  ? createClient(supabaseUrl, supabaseAnonKey)
   : nullClient;

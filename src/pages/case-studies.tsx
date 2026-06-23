@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowRight, Building2 } from "lucide-react";
