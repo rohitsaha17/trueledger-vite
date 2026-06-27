@@ -218,8 +218,17 @@ function HeroSection() {
 
 function WhatWeProvideSection() {
   return (
-    <section className="py-20 md:py-28 bg-brand-tint/50 overflow-hidden">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-28 relative overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-white/[0.93]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-tint/60 via-transparent to-brand-tint/60" />
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           className="text-center mb-16 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -227,6 +236,9 @@ function WhatWeProvideSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
         >
+          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
+            What We Deliver
+          </p>
           <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading">
             End-to-End Financial Management
           </h2>
@@ -239,44 +251,68 @@ function WhatWeProvideSection() {
           <div className="flex flex-col gap-6 md:gap-0">
             {whatWeProvide.map((step, i) => {
               const stepNum = String(i + 1).padStart(2, "0");
+              const isEven = i % 2 === 0;
               return (
                 <motion.div
                   key={step.title}
                   className="relative"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: isEven ? -40 : 40, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: 0.05 }}
+                  transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                  {/* Desktop: two-column with connector */}
+                  {/* Desktop: alternating two-column with connector */}
                   <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] items-center gap-0 py-4">
-                    {/* Left — title */}
-                    <div className="flex items-center justify-end gap-4 pr-8">
-                      <div className="text-right">
-                        <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
-                        <h3 className="font-heading font-bold text-lg text-ink leading-snug mt-0.5">
-                          {step.title}
-                        </h3>
-                      </div>
+                    {/* Left column */}
+                    <div className={`flex items-center ${isEven ? "justify-end pr-8" : "justify-end pr-8"}`}>
+                      {isEven ? (
+                        <div className="text-right">
+                          <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
+                          <h3 className="font-heading font-bold text-lg text-ink leading-snug mt-0.5">
+                            {step.title}
+                          </h3>
+                        </div>
+                      ) : (
+                        <div className="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-sm border border-black/[0.06] hover:shadow-md transition-shadow duration-300 max-w-md">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      )}
                     </div>
 
                     {/* Center — node dot */}
                     <div className="relative z-10 flex items-center justify-center">
-                      <div className="size-4 rounded-full bg-brand border-[3px] border-brand-tint shadow-md shadow-brand/20" />
+                      <motion.div
+                        className="size-4 rounded-full bg-brand border-[3px] border-white shadow-md shadow-brand/20"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: 0.2 }}
+                      />
                     </div>
 
-                    {/* Right — description box */}
-                    <div className="pl-8">
-                      <div className="bg-white rounded-xl p-5 shadow-sm border border-black/[0.06] hover:shadow-md transition-shadow duration-300 max-w-md">
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {step.description}
-                        </p>
-                      </div>
+                    {/* Right column */}
+                    <div className={`${isEven ? "pl-8" : "pl-8"}`}>
+                      {isEven ? (
+                        <div className="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-sm border border-black/[0.06] hover:shadow-md transition-shadow duration-300 max-w-md">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="text-left">
+                          <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
+                          <h3 className="font-heading font-bold text-lg text-ink leading-snug mt-0.5">
+                            {step.title}
+                          </h3>
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   {/* Mobile: stacked card */}
-                  <div className="md:hidden bg-white rounded-xl p-5 shadow-sm border border-black/[0.06]">
+                  <div className="md:hidden bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-sm border border-black/[0.06]">
                     <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
                     <h3 className="font-heading font-bold text-base text-ink leading-snug mt-1 mb-2">
                       {step.title}

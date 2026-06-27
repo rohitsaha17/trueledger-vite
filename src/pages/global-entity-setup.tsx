@@ -14,7 +14,6 @@ import {
   FileCheck,
   Scale,
   MapPinHouse,
-  Receipt,
   Wallet,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
@@ -44,21 +43,15 @@ const services = [
   },
   {
     icon: FileCheck,
-    title: "Regulatory Filings",
+    title: "Tax and Regulatory Registrations",
     description:
-      "We manage all state and federal filings — Articles of Incorporation, registered agent appointments, and compliance requirements — so your entity is set up correctly.",
+      "We manage all regulatory filings and tax registrations including EIN registration, state payroll tax, sales tax across relevant jurisdictions, so your entity is set up correctly.",
   },
   {
     icon: MapPinHouse,
     title: "Virtual Office Setup",
     description:
       "We help you establish a virtual office that gives your business a credible, professional address — satisfying regulatory and banking requirements.",
-  },
-  {
-    icon: Receipt,
-    title: "Tax Registrations",
-    description:
-      "EIN registration, state payroll tax, sales tax across relevant jurisdictions — we ensure your business is fully equipped for tax compliance from the start.",
   },
   {
     icon: Wallet,
@@ -229,33 +222,59 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — EMBEDDED VIDEO                                   */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24 bg-brand-tint/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-white/[0.92]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-tint/80 via-transparent to-brand-soft/40" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <AnimatedSection>
               <div>
-                <SectionHeading
-                  title="Watch Our Quick Explainer"
-                />
-                <p className="text-muted-foreground leading-relaxed mt-4 max-w-lg">
+                <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
+                  See How It Works
+                </p>
+                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-ink leading-tight mb-4">
+                  Watch Our Quick Explainer
+                </h2>
+                <p className="text-muted-foreground leading-relaxed max-w-lg">
                   In under two minutes, learn how TrueLedger helps founders choose the right entity structure, register in the right state, and get fully set up — without the guesswork.
                 </p>
-                <ul className="mt-6 space-y-3">
-                  {["Entity structure options explained", "State selection considerations", "End-to-end setup walkthrough"].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm text-ink font-medium">
-                      <span className="size-5 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
-                        <ChevronRight className="size-3 text-brand" />
-                      </span>
-                      {item}
-                    </li>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {[
+                    { num: "01", label: "Entity structure options explained" },
+                    { num: "02", label: "State selection considerations" },
+                    { num: "03", label: "End-to-end setup walkthrough" },
+                  ].map((item) => (
+                    <div key={item.num} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-black/[0.06] shadow-sm">
+                      <span className="text-2xl font-bold text-brand/15 font-heading block mb-1">{item.num}</span>
+                      <p className="text-sm font-medium text-ink leading-snug">{item.label}</p>
+                    </div>
                   ))}
-                </ul>
+                </div>
+
+                <div className="mt-8">
+                  <ConsultationModal
+                    trigger={
+                      <Button size="lg" className="rounded-full px-7">
+                        Get Started
+                        <ChevronRight className="size-4" />
+                      </Button>
+                    }
+                  />
+                </div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.15}>
               <div className="flex justify-center lg:justify-end">
-                <div className="w-full max-w-[340px] rounded-2xl overflow-hidden shadow-xl border border-black/[0.06] bg-white">
+                <div className="w-full max-w-[340px] rounded-2xl overflow-hidden shadow-2xl shadow-brand/15 border border-black/[0.06] bg-white">
                   <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
                     <iframe
                       src="https://www.youtube.com/embed/BkmOnZ4gbqw"
@@ -291,20 +310,14 @@ export default function GlobalEntitySetupPage() {
             </div>
           </AnimatedSection>
 
-          {/* Bento grid — row 1: 3 cards, row 2: 2+2, row 3: 3 */}
+          {/* Service grid — 3 per row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
             {services.map((service, i) => {
               const Icon = service.icon;
-              const isWide = i === 3 || i === 4;
               return (
                 <AnimatedSection
                   key={service.title}
                   delay={i * 0.06}
-                  className={
-                    isWide
-                      ? "md:col-span-3 lg:col-span-1"
-                      : ""
-                  }
                 >
                   <div className="group relative h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 lg:p-7 hover:bg-white/[0.06] hover:border-white/[0.14] transition-all duration-300">
                     <div className="flex items-start gap-5">
@@ -335,7 +348,7 @@ export default function GlobalEntitySetupPage() {
           {/* Bottom accent line */}
           <div className="mt-12 flex items-center gap-4 max-w-md">
             <div className="h-px flex-1 bg-gradient-to-r from-[#EE672C]/40 to-transparent" />
-            <span className="text-xs text-white/25 uppercase tracking-widest">7 services, one team</span>
+            <span className="text-xs text-white/25 uppercase tracking-widest">6 services, one team</span>
             <div className="h-px flex-1 bg-gradient-to-l from-[#4D397F]/40 to-transparent" />
           </div>
         </div>
