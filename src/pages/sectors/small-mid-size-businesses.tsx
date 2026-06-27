@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
