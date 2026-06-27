@@ -15,6 +15,19 @@ const resourceLinks = [
   { label: "FAQ", href: "/faq" },
 ];
 
+const sectorLinks = [
+  { label: "AI, SaaS & Startups", href: "/sectors/ai-saas-startups" },
+  { label: "Hospitality & Restaurants", href: "/sectors/hospitality-restaurants" },
+  { label: "Small & Mid-Size Businesses", href: "/sectors/small-mid-size-businesses" },
+  { label: "E-Commerce & Retail", href: "/sectors/ecommerce-retail" },
+];
+
+const regionLinks = [
+  { label: "North America", href: "/regions/north-america" },
+  { label: "Europe & UK", href: "/regions/europe-uk" },
+  { label: "APAC", href: "/regions/apac" },
+];
+
 const legalLinks = [
   { label: "Information Security Policy", href: "/information-security-policy" },
   { label: "Security & Compliance", href: "/security-compliance" },
@@ -77,11 +90,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Resources + Sectors */}
           <div className="lg:col-span-2">
             <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4">Resources</h4>
             <ul className="space-y-2.5">
               {resourceLinks.map((l) => (
+                <li key={l.href}>
+                  <Link to={l.href} className="text-sm text-white/50 hover:text-brand transition-colors">{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4 mt-6">Sectors</h4>
+            <ul className="space-y-2.5">
+              {sectorLinks.map((l) => (
+                <li key={l.href}>
+                  <Link to={l.href} className="text-sm text-white/50 hover:text-brand transition-colors">{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4 mt-6">Regions</h4>
+            <ul className="space-y-2.5">
+              {regionLinks.map((l) => (
                 <li key={l.href}>
                   <Link to={l.href} className="text-sm text-white/50 hover:text-brand transition-colors">{l.label}</Link>
                 </li>

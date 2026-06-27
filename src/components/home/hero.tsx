@@ -11,12 +11,12 @@ import { useIsMobile } from "@/hooks/use-mobile";
 /*  Marker data — positions spread for clear label visibility          */
 /* ------------------------------------------------------------------ */
 const markerData = [
-  { location: [39, -98] as [number, number], size: 0.10, id: "usa", flag: "/logos/flags/us.svg", label: "USA" },
-  { location: [56, -106] as [number, number], size: 0.09, id: "canada", flag: "/logos/flags/ca.svg", label: "Canada" },
-  { location: [51.5, -0.1] as [number, number], size: 0.09, id: "uk", flag: "/logos/flags/gb.svg", label: "UK" },
-  { location: [28.6, 77.2] as [number, number], size: 0.10, id: "india", flag: "/logos/flags/in.svg", label: "India" },
-  { location: [1.35, 103.8] as [number, number], size: 0.08, id: "singapore", flag: "/logos/flags/sg.svg", label: "Singapore" },
-  { location: [-37.8, 144.9] as [number, number], size: 0.09, id: "australia", flag: "/logos/flags/au.svg", label: "Australia" },
+  { location: [39, -98] as [number, number], size: 0.10, id: "usa", flag: "/logos/flags/us.svg", label: "USA", href: "/regions/north-america" },
+  { location: [56, -106] as [number, number], size: 0.09, id: "canada", flag: "/logos/flags/ca.svg", label: "Canada", href: "/regions/north-america" },
+  { location: [51.5, -0.1] as [number, number], size: 0.09, id: "uk", flag: "/logos/flags/gb.svg", label: "UK", href: "/regions/europe-uk" },
+  { location: [28.6, 77.2] as [number, number], size: 0.10, id: "india", flag: "/logos/flags/in.svg", label: "India", href: "/about" },
+  { location: [1.35, 103.8] as [number, number], size: 0.08, id: "singapore", flag: "/logos/flags/sg.svg", label: "Singapore", href: "/regions/apac" },
+  { location: [-37.8, 144.9] as [number, number], size: 0.09, id: "australia", flag: "/logos/flags/au.svg", label: "Australia", href: "/regions/apac" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -151,11 +151,22 @@ function Globe() {
       const el = document.createElement("div");
       el.style.cssText =
         "position:absolute;display:flex;align-items:center;gap:8px;z-index:20;" +
-        "pointer-events:none;transform:translate(6px,-50%);transition:opacity 0.3s;opacity:0;white-space:nowrap;";
+        "pointer-events:auto;cursor:pointer;transform:translate(6px,-50%);transition:opacity 0.3s;opacity:0;white-space:nowrap;";
       el.innerHTML =
         `<img src="${m.flag}" alt="${m.label}" style="width:30px;height:30px;border-radius:5px;box-shadow:0 2px 6px rgba(0,0,0,.18);" />` +
         `<span style="font-size:14px;font-weight:700;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);` +
-        `padding:4px 14px;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.12);color:#5a3555;letter-spacing:0.02em;">${m.label}</span>`;
+        `padding:4px 14px;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.12);color:#5a3555;letter-spacing:0.02em;transition:background 0.2s,color 0.2s;">${m.label}</span>`;
+      el.addEventListener("click", () => {
+        window.location.href = m.href;
+      });
+      el.addEventListener("mouseenter", () => {
+        const span = el.querySelector("span");
+        if (span) { span.style.background = "#4D397F"; span.style.color = "#fff"; }
+      });
+      el.addEventListener("mouseleave", () => {
+        const span = el.querySelector("span");
+        if (span) { span.style.background = "rgba(255,255,255,.95)"; span.style.color = "#5a3555"; }
+      });
       labelsContainer.appendChild(el);
       labelEls.set(m.id, el);
     });

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -27,6 +28,7 @@ const sectors = [
     glowColor: "rgba(77, 57, 127, 0.35)",
     accentColor: "#7c6aaf",
     bgImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=60",
+    href: "/sectors/small-mid-size-businesses",
   },
   {
     icon: Rocket,
@@ -38,6 +40,7 @@ const sectors = [
     glowColor: "rgba(238, 103, 44, 0.35)",
     accentColor: "#f7935e",
     bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+    href: "/sectors/ai-saas-startups",
   },
   {
     icon: ShoppingBag,
@@ -49,6 +52,7 @@ const sectors = [
     glowColor: "rgba(46, 134, 193, 0.35)",
     accentColor: "#5dade2",
     bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=60",
+    href: "/sectors/ecommerce-retail",
   },
   {
     icon: UtensilsCrossed,
@@ -60,6 +64,7 @@ const sectors = [
     glowColor: "rgba(212, 119, 44, 0.35)",
     accentColor: "#e8a87c",
     bgImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=60",
+    href: "/sectors/hospitality-restaurants",
   },
   {
     icon: Briefcase,
@@ -71,6 +76,7 @@ const sectors = [
     glowColor: "rgba(124, 58, 237, 0.35)",
     accentColor: "#a78bfa",
     bgImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60",
+    href: "/services/support-to-cpas",
   },
 ];
 
@@ -353,42 +359,27 @@ export default function WhoWeWorkWithPage() {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 + i * 0.1 }}
                 >
+                  <Link to={sector.href}>
                   <motion.div
-                    className={`group relative h-full rounded-2xl overflow-hidden bg-gradient-to-br ${sector.gradient} p-[1px] cursor-default`}
+                    className="group relative h-full rounded-2xl overflow-hidden border border-gray-200/60 shadow-md hover:shadow-xl cursor-pointer"
                     whileHover={{ scale: 1.03, y: -6 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
                     style={{ willChange: "transform" }}
                   >
-                    {/* Animated border glow on hover */}
-                    <div
-                      className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
-                      style={{ background: `linear-gradient(135deg, ${sector.accentColor}, transparent 60%)` }}
-                    />
-
-                    {/* Inner card */}
                     <div className="relative h-full rounded-[15px] overflow-hidden p-7 sm:p-8">
-                      {/* Background image */}
                       <img
                         src={sector.bgImage}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-[#0f0b1e]/82 group-hover:bg-[#0f0b1e]/75 transition-colors duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0f0b1e] via-[#0f0b1e]/60 to-transparent" />
+                      <div className="absolute inset-0 bg-white/55 group-hover:bg-white/45 transition-colors duration-500 backdrop-blur-[2px]" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
 
-                      {/* Decorative mesh glow */}
-                      <div
-                        className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] opacity-20 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
-                        style={{ background: sector.accentColor }}
-                      />
-
-                      {/* Number watermark */}
-                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-white/[0.04] leading-none select-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-500">
+                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-[#4D397F]/[0.06] leading-none select-none pointer-events-none group-hover:text-[#4D397F]/[0.10] transition-colors duration-500">
                         {num}
                       </span>
 
-                      {/* Icon orb */}
                       <motion.div
                         className={`relative size-14 rounded-2xl bg-gradient-to-br ${sector.iconGradient} flex items-center justify-center mb-6 shadow-lg`}
                         style={{ boxShadow: `0 8px 24px -4px ${sector.glowColor}` }}
@@ -398,15 +389,17 @@ export default function WhoWeWorkWithPage() {
                         <Icon className="size-7 text-white" />
                       </motion.div>
 
-                      {/* Content */}
-                      <h3 className="relative font-heading font-bold text-lg text-white leading-snug mb-3">
+                      <h3 className="relative font-heading font-bold text-lg text-[#140e2a] leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="relative text-white/55 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                      <p className="relative text-[#140e2a]/60 text-sm leading-relaxed group-hover:text-[#140e2a]/75 transition-colors duration-300 mb-4">
                         {sector.description}
                       </p>
 
-                      {/* Bottom accent line */}
+                      <span className="relative inline-flex items-center gap-1 text-sm font-semibold text-[#4D397F] group-hover:text-[#EE672C] transition-colors duration-300">
+                        Learn More <ChevronRight className="size-4" />
+                      </span>
+
                       <div className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full overflow-hidden">
                         <div
                           className="h-full w-0 group-hover:w-full transition-all duration-700 ease-out rounded-full"
@@ -415,6 +408,7 @@ export default function WhoWeWorkWithPage() {
                       </div>
                     </div>
                   </motion.div>
+                  </Link>
                 </motion.div>
               );
             })}
@@ -434,34 +428,24 @@ export default function WhoWeWorkWithPage() {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 + i * 0.1 }}
                 >
+                  <Link to={sector.href}>
                   <motion.div
-                    className={`group relative h-full rounded-2xl overflow-hidden bg-gradient-to-br ${sector.gradient} p-[1px] cursor-default`}
+                    className="group relative h-full rounded-2xl overflow-hidden border border-gray-200/60 shadow-md hover:shadow-xl cursor-pointer"
                     whileHover={{ scale: 1.03, y: -6 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
                     style={{ willChange: "transform" }}
                   >
-                    <div
-                      className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
-                      style={{ background: `linear-gradient(135deg, ${sector.accentColor}, transparent 60%)` }}
-                    />
-
                     <div className="relative h-full rounded-[15px] overflow-hidden p-7 sm:p-8">
-                      {/* Background image */}
                       <img
                         src={sector.bgImage}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-[#0f0b1e]/82 group-hover:bg-[#0f0b1e]/75 transition-colors duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0f0b1e] via-[#0f0b1e]/60 to-transparent" />
+                      <div className="absolute inset-0 bg-white/55 group-hover:bg-white/45 transition-colors duration-500 backdrop-blur-[2px]" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
 
-                      <div
-                        className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] opacity-20 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
-                        style={{ background: sector.accentColor }}
-                      />
-
-                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-white/[0.04] leading-none select-none pointer-events-none group-hover:text-white/[0.08] transition-colors duration-500">
+                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-[#4D397F]/[0.06] leading-none select-none pointer-events-none group-hover:text-[#4D397F]/[0.10] transition-colors duration-500">
                         {num}
                       </span>
 
@@ -474,12 +458,16 @@ export default function WhoWeWorkWithPage() {
                         <Icon className="size-7 text-white" />
                       </motion.div>
 
-                      <h3 className="relative font-heading font-bold text-lg text-white leading-snug mb-3">
+                      <h3 className="relative font-heading font-bold text-lg text-[#140e2a] leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="relative text-white/55 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                      <p className="relative text-[#140e2a]/60 text-sm leading-relaxed group-hover:text-[#140e2a]/75 transition-colors duration-300 mb-4">
                         {sector.description}
                       </p>
+
+                      <span className="relative inline-flex items-center gap-1 text-sm font-semibold text-[#4D397F] group-hover:text-[#EE672C] transition-colors duration-300">
+                        Learn More <ChevronRight className="size-4" />
+                      </span>
 
                       <div className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full overflow-hidden">
                         <div
@@ -489,6 +477,7 @@ export default function WhoWeWorkWithPage() {
                       </div>
                     </div>
                   </motion.div>
+                  </Link>
                 </motion.div>
               );
             })}

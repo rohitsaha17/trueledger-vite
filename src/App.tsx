@@ -23,6 +23,13 @@ import CaseStudyDetailPage from "@/pages/case-study-detail";
 import MediaGalleryPage from "@/pages/media-gallery";
 import ResourcesPage from "@/pages/resources";
 import BlogPostPage from "@/pages/blog-post";
+import AISaaSStartupsPage from "@/pages/sectors/ai-saas-startups";
+import HospitalityRestaurantsPage from "@/pages/sectors/hospitality-restaurants";
+import SmallMidSizeBusinessesPage from "@/pages/sectors/small-mid-size-businesses";
+import EcommerceRetailPage from "@/pages/sectors/ecommerce-retail";
+import NorthAmericaPage from "@/pages/regions/north-america";
+import EuropeUKPage from "@/pages/regions/europe-uk";
+import APACPage from "@/pages/regions/apac";
 import AdminLoginPage from "@/pages/admin/login";
 import AdminLayout from "@/pages/admin/layout";
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -118,6 +125,34 @@ function App() {
         <Route
           path="/information-security-policy"
           element={<InformationSecurityPolicyPage />}
+        />
+        <Route
+          path="/sectors/ai-saas-startups"
+          element={<AISaaSStartupsPage />}
+        />
+        <Route
+          path="/sectors/hospitality-restaurants"
+          element={<HospitalityRestaurantsPage />}
+        />
+        <Route
+          path="/sectors/small-mid-size-businesses"
+          element={<SmallMidSizeBusinessesPage />}
+        />
+        <Route
+          path="/sectors/ecommerce-retail"
+          element={<EcommerceRetailPage />}
+        />
+        <Route
+          path="/regions/north-america"
+          element={<NorthAmericaPage />}
+        />
+        <Route
+          path="/regions/europe-uk"
+          element={<EuropeUKPage />}
+        />
+        <Route
+          path="/regions/apac"
+          element={<APACPage />}
         />
       </Routes>
     </PublicLayout>
