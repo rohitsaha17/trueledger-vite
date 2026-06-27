@@ -27,28 +27,32 @@ const advisoryPhases = [
     gradient: "from-brand via-brand-dark to-[#2a1d4e]",
     title: "Strategic & Business Advisory",
     description:
-      "Where your numbers meet your strategy. We work alongside leadership teams to model, stress-test, and validate the decisions that shape a business — financial modeling, scenario analysis, and valuation frameworks that give you a clear, defensible picture of what your business is worth.",
+      "Financial modeling, scenario analysis, and valuation frameworks that give you a clear, defensible picture of what your business is worth.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: ShieldCheck,
     gradient: "from-coral via-[#d4502a] to-[#a83222]",
     title: "Governance, Controls & Compliance",
     description:
-      "Build the foundation that earns trust. We help businesses build governance structures, financial controls, policy documentation, and SOC certification readiness — before they need them, not in response to a crisis.",
+      "Governance structures, financial controls, policy documentation, and SOC certification readiness — before you need them.",
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: Banknote,
     gradient: "from-brand-dark via-brand to-[#6b52a8]",
     title: "Capital, Funding & Fundraising Readiness",
     description:
-      "Get capital-ready before the conversation starts. We prepare businesses for fundraising, securities listings, due diligence, investor reporting, and historical cleanup — ensuring that when the conversation starts, you are ready.",
+      "Fundraising preparation, due diligence, investor reporting, and historical cleanup — so you are ready when the conversation starts.",
+    image: "https://images.unsplash.com/photo-1553729459-uj1ef3fc8bde?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: Cpu,
     gradient: "from-[#c44e28] via-coral to-[#e8824a]",
     title: "Finance Automation & Technology",
     description:
-      "The right tools, properly implemented, transform a finance function. We advise on tech stack design, workflow automation, ERP implementation, and SOC-compliant technology frameworks for businesses at every stage.",
+      "Tech stack design, workflow automation, ERP implementation, and SOC-compliant technology frameworks for every stage.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -213,53 +217,63 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — FOUR ADVISORY PILLARS (Grid Layout)             */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          {/* Section header */}
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/40 via-transparent to-[#140e2a]/40" />
+
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            className="text-center mb-14 md:mb-18"
+            className="text-center mb-12 md:mb-16"
             initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading">
               End-to-End Financial Management
             </h2>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4">
+            <p className="text-white/55 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4">
               Four advisory pillars that cover every dimension of your financial strategy — from modeling to automation.
             </p>
           </motion.div>
 
-          {/* 2x2 grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {advisoryPhases.map((item, i) => {
               const Icon = item.icon;
               const num = String(i + 1).padStart(2, "0");
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                  className="group relative rounded-xl overflow-hidden h-[280px] cursor-pointer"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                  whileHover={{ y: -6 }}
                 >
-                  {/* Gradient header with icon */}
-                  <div className={`relative h-28 bg-gradient-to-br ${item.gradient} flex items-center justify-between px-7`}>
-                    <div className="flex items-center gap-4">
-                      <div className="size-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                        <Icon className="size-6 text-white" />
-                      </div>
-                      <span className="text-white/30 font-heading font-black text-5xl leading-none select-none">{num}</span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent" />
-                  </div>
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/60 to-[#140e2a]/30 group-hover:from-[#140e2a]/98 group-hover:via-[#140e2a]/70 transition-all duration-300" />
 
-                  <div className="p-6 sm:p-7 pt-4">
-                    <h3 className="font-heading font-bold text-base sm:text-lg text-ink leading-snug mb-3">{item.title}</h3>
-                    <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <div className="absolute inset-0 flex flex-col justify-end p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="size-8 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                        <Icon className="size-4 text-white" />
+                      </div>
+                      <span className="text-white/25 font-heading font-black text-2xl leading-none select-none">{num}</span>
+                    </div>
+                    <h3 className="font-heading font-bold text-sm text-white leading-snug mb-1.5">{item.title}</h3>
+                    <p className="text-[11px] text-white/55 leading-relaxed line-clamp-3">{item.description}</p>
                   </div>
                 </motion.div>
               );
@@ -325,9 +339,9 @@ export default function BusinessAdvisoryPage() {
                   transition={{ duration: 0.5 }}
                 />
                 <img
-                  src="/logos/tl logomark.png"
+                  src="/logos/TrueLedger primary Logo.png"
                   alt="TrueLedger"
-                  className="size-16 object-contain"
+                  className="w-20 object-contain"
                 />
               </motion.div>
               <p className="text-xs font-semibold text-brand mt-3 tracking-wide uppercase">Your Advisor</p>
