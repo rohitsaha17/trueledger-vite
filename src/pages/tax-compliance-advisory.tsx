@@ -245,12 +245,15 @@ export default function TaxComplianceAdvisoryPage() {
       {/*  SECTION 2 — For Individuals & High Net Worth Clients         */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
-        <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_213650_e0904648-6573-49b5-950a-4d00f28b0275_min.webp"
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
-          loading="lazy"
-        />
+        >
+          <source src="https://videos.pexels.com/video-files/7247815/7247815-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -320,12 +323,15 @@ export default function TaxComplianceAdvisoryPage() {
       {/*  SECTION 3 — For Businesses & Business Owners                 */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden bg-brand-tint/40">
-        <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_213652_cbca740f-02f5-46fa-a95d-48d2b7900ec1_min.webp"
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
-          loading="lazy"
-        />
+        >
+          <source src="https://videos.pexels.com/video-files/7552423/7552423-hd_1920_1080_25fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">

@@ -204,12 +204,15 @@ export default function SupportToCPAsPage() {
       {/*  SECTION 2 — HOW WE SUPPORT YOUR PRACTICE (Grid)              */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
-        <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031938_f302772e-8c31-4f6e-8940-8776dffde9e7_min.webp"
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-[0.15]"
-          loading="lazy"
-        />
+        >
+          <source src="https://videos.pexels.com/video-files/3252858/3252858-hd_1920_1080_25fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">

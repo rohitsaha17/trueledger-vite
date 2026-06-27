@@ -223,12 +223,15 @@ export default function GlobalEntitySetupPage() {
       {/*  SECTION 2 — EMBEDDED VIDEO                                   */}
       {/* ============================================================ */}
       <section className="py-16 md:py-24 relative overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-        />
+        >
+          <source src="https://videos.pexels.com/video-files/8347237/8347237-hd_1920_1080_25fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-white/[0.92]" />
         <div className="absolute inset-0 bg-gradient-to-br from-brand-tint/80 via-transparent to-brand-soft/40" />
 
