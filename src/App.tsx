@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { CookieConsent } from "@/components/shared/cookie-consent";
 import { AdminGuard } from "@/components/admin/admin-guard";
 import HomePage from "@/pages/home";
 import GlobalEntitySetupPage from "@/pages/global-entity-setup";
@@ -44,6 +45,7 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }

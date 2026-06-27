@@ -85,7 +85,7 @@ export function TrustedClients() {
             <Carousel
               setApi={setApi}
               opts={{ loop: true, align: "center" }}
-              plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+              plugins={[Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })]}
             >
               <CarouselContent>
                 {clients.map((c, i) => (

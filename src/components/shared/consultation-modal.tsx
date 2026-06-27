@@ -22,7 +22,6 @@ const services = [
   "Support to CPAs & Accounting Firms",
 ];
 
-const timeZones = ["IST (India Standard Time)", "EST (Eastern Standard Time)"];
 
 interface ConsultationModalProps {
   trigger?: React.ReactNode;
@@ -90,29 +89,6 @@ export function ConsultationModal({ trigger }: ConsultationModalProps) {
             <div className="grid gap-2">
               <Label htmlFor="company">Company Name</Label>
               <Input id="company" name="company" placeholder="Acme Inc." />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="date">Preferred Date</Label>
-                <Input id="date" name="date" type="date" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="timezone">Time Zone</Label>
-                <select
-                  id="timezone"
-                  name="timezone"
-                  className="h-10 w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                >
-                  <option value="">Select...</option>
-                  {timeZones.map((tz) => (
-                    <option key={tz} value={tz}>{tz}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="time">Preferred Time</Label>
-              <Input id="time" name="time" type="time" />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="service">Select Service</Label>

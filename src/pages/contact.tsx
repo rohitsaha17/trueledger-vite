@@ -42,7 +42,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Address",
-    value: "A-42, South Extension II, NDSE 2, New Delhi – 110049",
+    value: "A-42, South Extension II, NDSE 2, New Delhi – 110049\n5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731",
   },
   {
     icon: Clock,
