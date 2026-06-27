@@ -51,32 +51,73 @@ export function ClosingCta() {
             />
           </div>
 
-          {/* Trust indicators */}
+          {/* Certification badges */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
             viewport={{ once: true }}
-            className="flex flex-wrap items-center justify-center gap-6 mt-10"
+            className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 mt-12"
           >
-            {[
-              { icon: "shield", text: "ISO 27001 Certified" },
-              { icon: "globe", text: "Multi-Country Operations" },
-              { icon: "clock", text: "Dedicated Support" },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-2 text-white/50">
-                {item.icon === "shield" && (
-                  <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                )}
-                {item.icon === "globe" && (
-                  <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                )}
-                {item.icon === "clock" && (
-                  <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                )}
-                <span className="text-xs font-medium">{item.text}</span>
+            {/* ISO 27001 Badge */}
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <svg viewBox="0 0 80 90" className="w-16 h-[72px] sm:w-20 sm:h-[90px] drop-shadow-lg">
+                  <defs>
+                    <linearGradient id="iso-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#1e3a5f" />
+                      <stop offset="100%" stopColor="#0d2137" />
+                    </linearGradient>
+                    <linearGradient id="iso-check" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#4fc3f7" />
+                      <stop offset="100%" stopColor="#29b6f6" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M40 2 L76 18 V52 C76 70 40 88 40 88 C40 88 4 70 4 52 V18 Z" fill="url(#iso-grad)" stroke="#4fc3f7" strokeWidth="1.5" />
+                  <path d="M40 8 L70 22 V50 C70 66 40 82 40 82 C40 82 10 66 10 50 V22 Z" fill="none" stroke="#4fc3f7" strokeWidth="0.5" opacity="0.3" />
+                  <circle cx="40" cy="36" r="14" fill="none" stroke="#4fc3f7" strokeWidth="1.5" opacity="0.6" />
+                  <path d="M32 36 L37 41 L48 30" fill="none" stroke="url(#iso-check)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <text x="40" y="60" textAnchor="middle" fill="white" fontSize="8" fontWeight="700" fontFamily="system-ui">ISO</text>
+                  <text x="40" y="70" textAnchor="middle" fill="#4fc3f7" fontSize="6.5" fontWeight="600" fontFamily="system-ui">27001</text>
+                </svg>
               </div>
-            ))}
+              <div className="text-left">
+                <p className="text-white font-heading font-bold text-sm sm:text-base">ISO 27001</p>
+                <p className="text-white/40 text-xs sm:text-sm">Certified</p>
+              </div>
+            </div>
+
+            <div className="w-px h-12 bg-white/15 hidden sm:block" />
+
+            {/* QuickBooks ProAdvisor Badge */}
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <svg viewBox="0 0 80 80" className="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg">
+                  <defs>
+                    <linearGradient id="qb-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#2CA01C" />
+                      <stop offset="100%" stopColor="#1a7a12" />
+                    </linearGradient>
+                    <linearGradient id="qb-ring" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#4ade80" />
+                      <stop offset="100%" stopColor="#2CA01C" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="40" cy="40" r="36" fill="url(#qb-grad)" />
+                  <circle cx="40" cy="40" r="36" fill="none" stroke="url(#qb-ring)" strokeWidth="1.5" />
+                  <circle cx="40" cy="40" r="30" fill="none" stroke="#4ade80" strokeWidth="0.5" opacity="0.3" />
+                  <rect x="30" y="22" width="20" height="36" rx="10" fill="none" stroke="white" strokeWidth="3" />
+                  <rect x="24" y="30" width="14" height="20" rx="7" fill="none" stroke="white" strokeWidth="3" />
+                  <line x1="37" y1="30" x2="37" y2="50" stroke="white" strokeWidth="3" strokeLinecap="round" />
+                  <circle cx="62" cy="60" r="12" fill="#1a5a10" stroke="#4ade80" strokeWidth="1" />
+                  <path d="M56 60 L60 64 L68 56" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <p className="text-white font-heading font-bold text-sm sm:text-base">QuickBooks</p>
+                <p className="text-white/40 text-xs sm:text-sm">ProAdvisor</p>
+              </div>
+            </div>
           </motion.div>
         </AnimatedSection>
       </div>

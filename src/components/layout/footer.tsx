@@ -114,26 +114,52 @@ export function Footer() {
         </div>
 
         {/* Certifications */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
-            <div className="flex items-center gap-3">
-              <div className="size-10 rounded-lg bg-white/10 flex items-center justify-center">
-                <ShieldCheck className="size-5 text-brand/80" />
-              </div>
+        <div className="mt-12 pt-10 border-t border-white/10">
+          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-6">Certifications & Partnerships</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14">
+            {/* ISO 27001 */}
+            <div className="flex items-center gap-4">
+              <svg viewBox="0 0 80 90" className="w-14 h-16 shrink-0">
+                <defs>
+                  <linearGradient id="ft-iso-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#1e3a5f" />
+                    <stop offset="100%" stopColor="#0d2137" />
+                  </linearGradient>
+                </defs>
+                <path d="M40 2 L76 18 V52 C76 70 40 88 40 88 C40 88 4 70 4 52 V18 Z" fill="url(#ft-iso-grad)" stroke="#4fc3f7" strokeWidth="1.5" />
+                <circle cx="40" cy="36" r="14" fill="none" stroke="#4fc3f7" strokeWidth="1.5" opacity="0.5" />
+                <path d="M32 36 L37 41 L48 30" fill="none" stroke="#4fc3f7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <text x="40" y="60" textAnchor="middle" fill="white" fontSize="8" fontWeight="700" fontFamily="system-ui">ISO</text>
+                <text x="40" y="70" textAnchor="middle" fill="#4fc3f7" fontSize="6.5" fontWeight="600" fontFamily="system-ui">27001</text>
+              </svg>
               <div>
-                <p className="text-xs font-semibold text-white">ISO 27001</p>
-                <p className="text-[10px] text-white/40">Certified</p>
+                <p className="text-sm font-semibold text-white">ISO 27001</p>
+                <p className="text-xs text-white/40">Certified</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="size-10 rounded-lg bg-white/10 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-5 text-[#2CA01C]/80">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z" />
-                </svg>
-              </div>
+
+            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+
+            {/* QuickBooks ProAdvisor */}
+            <div className="flex items-center gap-4">
+              <svg viewBox="0 0 80 80" className="w-14 h-14 shrink-0">
+                <defs>
+                  <linearGradient id="ft-qb-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#2CA01C" />
+                    <stop offset="100%" stopColor="#1a7a12" />
+                  </linearGradient>
+                </defs>
+                <circle cx="40" cy="40" r="36" fill="url(#ft-qb-grad)" />
+                <circle cx="40" cy="40" r="36" fill="none" stroke="#4ade80" strokeWidth="1.5" />
+                <rect x="30" y="22" width="20" height="36" rx="10" fill="none" stroke="white" strokeWidth="3" />
+                <rect x="24" y="30" width="14" height="20" rx="7" fill="none" stroke="white" strokeWidth="3" />
+                <line x1="37" y1="30" x2="37" y2="50" stroke="white" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="62" cy="60" r="12" fill="#1a5a10" stroke="#4ade80" strokeWidth="1" />
+                <path d="M56 60 L60 64 L68 56" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               <div>
-                <p className="text-xs font-semibold text-white">QuickBooks</p>
-                <p className="text-[10px] text-white/40">ProAdvisor</p>
+                <p className="text-sm font-semibold text-white">QuickBooks</p>
+                <p className="text-xs text-white/40">ProAdvisor</p>
               </div>
             </div>
           </div>
