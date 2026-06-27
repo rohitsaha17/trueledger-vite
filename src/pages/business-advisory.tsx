@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { ServiceFAQ } from "@/components/shared/service-faq";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -154,6 +155,43 @@ function BlogTicker() {
 /* ================================================================== */
 
 export default function BusinessAdvisoryPage() {
+  const faqs = [
+    {
+      question: "What does business advisory include at TrueLedger?",
+      answer:
+        "Our advisory services cover financial modeling and forecasting, cash flow strategy, budgeting, KPI dashboards, fundraising readiness, governance frameworks, and fractional CFO support. We tailor the engagement to your specific stage and goals.",
+    },
+    {
+      question:
+        "At what stage should a company engage advisory services?",
+      answer:
+        "There is no wrong time, but most companies benefit most during key inflection points — preparing for fundraising, entering new markets, experiencing rapid growth, planning acquisitions, or navigating financial complexity that outpaces their internal capacity.",
+    },
+    {
+      question:
+        "Do you help with fundraising and investor readiness?",
+      answer:
+        "Yes. We prepare investor-ready financial models, pitch deck financials, due diligence packages, and data rooms. We help you tell your financial story clearly and credibly to potential investors and lenders.",
+    },
+    {
+      question:
+        "How is TrueLedger different from traditional consulting firms?",
+      answer:
+        "We combine deep financial expertise with hands-on execution. Unlike firms that deliver a strategy deck and walk away, we stay embedded in your operations — building models, running analyses, and helping you implement recommendations.",
+    },
+    {
+      question: "Can you provide fractional CFO support?",
+      answer:
+        "Absolutely. Our fractional CFO service gives you senior financial leadership on a part-time basis — board-ready reporting, strategic planning, cash flow management, and stakeholder communication without the cost of a full-time hire.",
+    },
+    {
+      question:
+        "How do you measure the impact of your advisory work?",
+      answer:
+        "We establish clear KPIs and benchmarks at the start of every engagement. Whether it is improving cash conversion cycles, reducing burn rate, increasing margins, or hitting fundraising targets — we track outcomes and report progress regularly.",
+    },
+  ];
+
   return (
     <>
       <ServicePageHero
@@ -337,6 +375,11 @@ export default function BusinessAdvisoryPage() {
         </div>
         <BlogTicker />
       </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION — FAQ                                                */}
+      {/* ============================================================ */}
+      <ServiceFAQ faqs={faqs} />
 
       {/* ============================================================ */}
       {/*  SECTION 5 — CLOSING CTA                                     */}

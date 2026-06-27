@@ -1,5 +1,6 @@
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { ServiceFAQ } from "@/components/shared/service-faq";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -173,6 +174,40 @@ function BlogTicker() {
 /* ================================================================== */
 
 export default function GlobalEntitySetupPage() {
+  const faqs = [
+    {
+      question: "Which countries can you help set up entities in?",
+      answer:
+        "We currently support entity formation in the United States, Canada, United Kingdom, Australia, Singapore, and India. Our team handles jurisdiction-specific compliance requirements, registered agent setup, and all necessary regulatory filings in each country.",
+    },
+    {
+      question: "How long does the entity formation process typically take?",
+      answer:
+        "Timelines vary by jurisdiction. A US LLC can be formed in 3–5 business days, while more regulated jurisdictions like Singapore or the UK may take 2–4 weeks. We provide a clear timeline during the initial consultation and keep you updated at every step.",
+    },
+    {
+      question: "What types of business structures can you set up?",
+      answer:
+        "We support a wide range of structures including LLCs, C-Corps, S-Corps, LLPs, Private Limited Companies, Branch Offices, and Subsidiary entities. We help you choose the right structure based on your business goals, tax implications, and operational needs.",
+    },
+    {
+      question: "Do you handle ongoing compliance after incorporation?",
+      answer:
+        "Yes. Entity setup is just the beginning. We provide ongoing registered agent services, annual filings, statutory compliance, tax registrations, and corporate governance support to keep your entity in good standing.",
+    },
+    {
+      question: "What documents do I need to get started?",
+      answer:
+        "Requirements vary by jurisdiction, but typically include identification documents (passport/ID), proof of address, details about shareholders and directors, and a brief description of your business activities. We guide you through the exact requirements during onboarding.",
+    },
+    {
+      question:
+        "Can you help with bank account opening for new entities?",
+      answer:
+        "Absolutely. We assist with business bank account applications, prepare the required documentation, and coordinate with banking partners in each jurisdiction. We can recommend banks that best suit your business needs and transaction volumes.",
+    },
+  ];
+
   return (
     <>
       <ServicePageHero
@@ -357,6 +392,11 @@ export default function GlobalEntitySetupPage() {
         </div>
         <BlogTicker />
       </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION — FAQ                                                 */}
+      {/* ============================================================ */}
+      <ServiceFAQ faqs={faqs} />
 
       {/* ============================================================ */}
       {/*  SECTION 6 — CLOSING CTA                                      */}

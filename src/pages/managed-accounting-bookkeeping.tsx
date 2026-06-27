@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { ServiceFAQ } from "@/components/shared/service-faq";
 import type { ZigzagStep } from "@/components/shared/zigzag-timeline";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -751,6 +752,46 @@ function LinkedInVideoSection() {
   );
 }
 
+function FAQSection() {
+  const faqs = [
+    {
+      question:
+        "How does outsourced bookkeeping work on a day-to-day basis?",
+      answer:
+        "Your dedicated team works within your existing accounting software and follows your established workflows. We handle daily transaction recording, bank reconciliations, vendor payments, invoicing, and month-end close — communicating with you through scheduled check-ins and a shared task dashboard.",
+    },
+    {
+      question: "What accounting software do you support?",
+      answer:
+        "We are certified across 12+ platforms including QuickBooks Online, QuickBooks Desktop, Xero, NetSuite, Sage, FreshBooks, Zoho Books, and Wave. We adapt to your existing stack rather than asking you to switch.",
+    },
+    {
+      question:
+        "How do you ensure accuracy in our financial records?",
+      answer:
+        "Every deliverable goes through a multi-tier review process — preparer, reviewer, and quality checker. We use standardized checklists, automated reconciliation tools, and real-time error detection to maintain 99.5%+ accuracy rates.",
+    },
+    {
+      question:
+        "Can you handle multi-entity or multi-currency accounting?",
+      answer:
+        "Yes. We routinely manage books for businesses with multiple entities across different jurisdictions and currencies. Our team is experienced with intercompany transactions, currency conversion, and consolidated reporting.",
+    },
+    {
+      question: "What happens during month-end close?",
+      answer:
+        "Our month-end process includes bank and credit card reconciliations, accounts receivable and payable review, accruals and prepaid adjustments, fixed asset depreciation, and financial statement preparation — all delivered within 5–7 business days of month-end.",
+    },
+    {
+      question: "How quickly can you take over our existing books?",
+      answer:
+        "Most transitions complete within 1–2 weeks. We start with a thorough assessment of your current books, clean up any backlog, establish processes, and begin regular operations. For complex situations, we create a phased transition plan.",
+    },
+  ];
+
+  return <ServiceFAQ faqs={faqs} />;
+}
+
 function ClosingCtaSection() {
   return (
     <section className="py-20 md:py-28 relative overflow-hidden">
@@ -802,6 +843,7 @@ export default function ManagedAccountingBookkeepingPage() {
       <TechAdvantageSection />
       <RelatedContentSection />
       <LinkedInVideoSection />
+      <FAQSection />
       <ClosingCtaSection />
     </>
   );

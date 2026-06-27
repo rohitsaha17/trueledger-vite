@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { ServiceFAQ } from "@/components/shared/service-faq";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -187,6 +188,41 @@ function BlogTicker() {
 /* ================================================================== */
 
 export default function TaxComplianceAdvisoryPage() {
+  const faqs = [
+    {
+      question: "Which jurisdictions do you handle tax filings for?",
+      answer:
+        "We prepare and file tax returns in the United States (federal and all 50 states), Canada, Australia, Singapore, the United Kingdom, and India. Our team stays current with jurisdiction-specific regulations and filing deadlines.",
+    },
+    {
+      question:
+        "Can you help with both personal and business tax returns?",
+      answer:
+        "Yes. We handle individual tax returns (1040, 1040-NR), partnership returns (1065), corporate returns (1120, 1120-S), trust returns (1041), and international reporting forms (FBAR, Form 5471, Form 8865) — along with their equivalents in other jurisdictions.",
+    },
+    {
+      question: "Do you handle sales tax, GST, and VAT compliance?",
+      answer:
+        "Absolutely. We manage end-to-end indirect tax compliance including registration, periodic filings, nexus analysis, rate determination, and audit support across US states and international jurisdictions.",
+    },
+    {
+      question:
+        "What is your approach to tax planning and optimization?",
+      answer:
+        "We take a proactive approach — reviewing your financial position quarterly to identify deductions, credits, and structural opportunities. Our goal is to minimize your effective tax rate while remaining fully compliant with all regulations.",
+    },
+    {
+      question: "How do you stay current with changing tax laws?",
+      answer:
+        "Our tax professionals participate in ongoing CPE courses and are members of professional bodies like AICPA and state CPA societies. We track legislative changes in real-time and communicate any impacts to our clients before deadlines.",
+    },
+    {
+      question: "Can you represent us in case of a tax audit?",
+      answer:
+        "Yes. We provide full audit representation and support, including responding to IRS and state agency notices, preparing documentation, and representing your interests throughout the audit process. Our goal is to resolve audits quickly and favorably.",
+    },
+  ];
+
   return (
     <>
       <ServicePageHero
@@ -470,6 +506,11 @@ export default function TaxComplianceAdvisoryPage() {
         </div>
         <BlogTicker />
       </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION — FAQ                                                 */}
+      {/* ============================================================ */}
+      <ServiceFAQ faqs={faqs} />
 
       {/* ============================================================ */}
       {/*  SECTION 5 — CLOSING CTA                                      */}

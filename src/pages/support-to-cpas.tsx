@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { ServiceFAQ } from "@/components/shared/service-faq";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -145,6 +146,42 @@ function BlogTicker() {
 /* ================================================================== */
 
 export default function SupportToCPAsPage() {
+  const faqs = [
+    {
+      question: "How does your CPA firm support model work?",
+      answer:
+        "We assign a dedicated offshore team that works exclusively under your firm’s supervision. They handle bookkeeping, tax preparation, audit support, and other accounting tasks using your software and processes — functioning as a seamless extension of your in-house team.",
+    },
+    {
+      question:
+        "Will our clients know the work is being done offshore?",
+      answer:
+        "That is entirely your choice. Most firms operate under a white-label model where our team works behind the scenes using your firm’s branding, email addresses, and communication channels. Your clients interact only with your firm.",
+    },
+    {
+      question: "What types of work can you handle for our firm?",
+      answer:
+        "We support individual and business tax preparation (1040, 1120, 1120-S, 1065, 1041), bookkeeping and write-up, payroll processing, sales tax filings, financial statement preparation, audit and review assistance, and administrative back-office tasks.",
+    },
+    {
+      question: "How do you ensure quality and accuracy?",
+      answer:
+        "Every deliverable goes through a structured multi-level review process before reaching your team. We use standardized checklists aligned with your firm’s methodology, and our work is always reviewed by a senior professional before delivery.",
+    },
+    {
+      question:
+        "Can you scale up during tax season and scale down after?",
+      answer:
+        "Yes — flexible capacity is a core part of our model. Many firms double or triple their TrueLedger team during January–April and scale back during off-season. We handle staffing and training so you do not have to.",
+    },
+    {
+      question:
+        "What is the typical onboarding process for CPA firms?",
+      answer:
+        "Onboarding takes 1–2 weeks and includes a discovery call to understand your workflows, software access setup, team introductions, process documentation review, and a pilot engagement on a small batch of work before full-scale operations begin.",
+    },
+  ];
+
   return (
     <>
       <ServicePageHero
@@ -352,6 +389,11 @@ export default function SupportToCPAsPage() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION — FAQ                                                  */}
+      {/* ============================================================ */}
+      <ServiceFAQ faqs={faqs} />
 
       {/* ============================================================ */}
       {/*  SECTION 6 — CLOSING CTA                                       */}
