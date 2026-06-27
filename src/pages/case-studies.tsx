@@ -12,148 +12,223 @@ import type { CaseStudy } from "@/types/database";
 /*  Static case-study data (merged with Supabase results at runtime)  */
 /* ------------------------------------------------------------------ */
 
-interface DisplayStudy {
+export interface DisplayStudy {
   id: string;
   title: string;
   slug: string;
   industry: string;
   service: string;
   challenge: string;
+  solution: string;
+  results: string;
   featured_image: string;
 }
 
-const staticStudies: DisplayStudy[] = [
+export const staticStudies: DisplayStudy[] = [
+  /* ── Entity Setup ──────────────────────────────────────────────── */
   {
     id: "s1",
-    title: "Scaling Financial Operations for a 50-Location Restaurant Chain",
-    slug: "restaurant-chain-scaling",
-    industry: "Hospitality",
-    service: "Accounting & Bookkeeping",
+    title: "Launching a Defense Tech Startup's US Entity, Built for Investors",
+    slug: "defense-tech-us-entity",
+    industry: "Defense Technology",
+    service: "Entity Setup",
     challenge:
-      "A rapidly expanding restaurant group needed to consolidate financial reporting across 50 locations, standardize accounting processes, and achieve month-end close within 5 days.",
+      "An India-based defense deep tech startup needed not just a US entity — it needed an investor-ready structure with governance documents, an ESOP pool, and cross-border tax positioning.",
+    solution:
+      "We built the full legal and financial foundation: governance documents and internal policies, an ESOP pool agreement designed for future hires, and the international tax & transfer pricing structuring needed to manage exposure on both sides of the India–US border.\n\nStates Covered: California\n\nKey Registrations & Setup Handled: C-Corp formation, DBA filings, franchise tax registration, ESOP pool agreement design, legal governance documentation, banking setup, accounting setup, payroll setup.",
+    results:
+      "A compliant, cap-table-ready entity with clean governance and cross-border tax positioning in place before the company ever sat across the table from an investor.",
     featured_image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "s2",
-    title: "Multi-State Tax Compliance for a SaaS Company",
-    slug: "saas-tax-compliance",
-    industry: "Technology",
-    service: "Tax Compliance",
-    challenge:
-      "A fast-growing SaaS company with customers in 38 states needed nexus analysis, multi-state sales tax registration, and automated compliance filing across all jurisdictions.",
-    featured_image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: "s3",
-    title: "US Entity Setup for an Australian E-Commerce Brand",
-    slug: "australian-ecommerce-us-setup",
-    industry: "E-Commerce",
+    title: "Scaling a Restaurant Brand Across Four US States",
+    slug: "restaurant-multi-state-setup",
+    industry: "Hospitality",
     service: "Entity Setup",
     challenge:
-      "An Australian D2C brand entering the US market needed a Delaware LLC, EIN registration, business bank account, and sales tax nexus setup — all within 3 weeks of launch.",
+      "A growing restaurant chain needed to expand from a single-state operation into a true multi-state presence without the friction of juggling separate attorneys, registered agents, and bookkeepers in every jurisdiction.",
+    solution:
+      "We acted as the single point of coordination for the entire launch, from formation through to a fully running back office.\n\nStates Covered: New York, Delaware, Tennessee, Virginia\n\nKey Registrations & Setup Handled: LLC formation, state and local tax registrations, business licenses and permits, banking setup, accounting system setup, payroll setup.",
+    results:
+      "The client moved from incorporation to fully operational — banking, books, and payroll running in every state — without managing a single additional vendor relationship.",
     featured_image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+  },
+
+  /* ── Accounting & Bookkeeping ──────────────────────────────────── */
+  {
+    id: "s3",
+    title:
+      "Bringing Order to High-Volume AP/AR for an Australian FMCG Beverage Company",
+    slug: "fmcg-beverage-ap-ar",
+    industry: "FMCG / Beverages",
+    service: "Accounting & Bookkeeping",
+    challenge:
+      "A fast-moving beverage company was processing a high daily volume of purchases and sales with no standardized process, facing payment issues and lacking real-time visibility on collections.",
+    solution:
+      "We rebuilt their AP and AR function from the ground up — full ownership of accounts payable (procure-to-pay) and accounts receivable (order-to-cash), including SOP design and an automation roadmap for both functions.\n\nTools/Software Used: SAP Business One for ERP; Stampli/Makers Hub — AI and automation layer for AP processing.",
+    results:
+      "A streamlined, automated AR/AP cycle; faster vendor payment turnaround; real-time visibility into customer payments; and early, systematic flagging of delays and mismatches before they became cash flow problems.",
+    featured_image:
+      "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "s4",
-    title: "Fundraising Readiness for a Series B Health-Tech Startup",
-    slug: "healthtech-series-b",
-    industry: "Healthcare",
-    service: "Business Advisory",
+    title: "Running the Finance Backbone of a US Restaurant Chain",
+    slug: "restaurant-chain-finance",
+    industry: "Hospitality",
+    service: "Accounting & Bookkeeping",
     challenge:
-      "A health-tech startup preparing for Series B needed investor-ready financials, a 3-year forecast model, clean GAAP-compliant books, and a virtual data room — delivered in 6 weeks.",
+      "Restaurants live and die by daily numbers — inventory, sales, payroll, cash. A US restaurant chain needed someone to take over the entire finance operation end to end so leadership could focus on running the business.",
+    solution:
+      "We took over weekly payroll, daily inventory management, POS sales reconciliation, sales and income tax compliance, statutory filings, month-end close, forecasting, and treasury.\n\nTools/Software Used: QuickBooks Online for Accounting; Gusto for Payroll; Toast and Xtrachef for POS integration; Avalara for Multi-State Sales Tax; Reach Reporting and Double for Forecasts, Dashboards, and Financial Reporting.",
+    results:
+      "Faster month-end close, restaurant-by-restaurant and item-level profitability visibility, stronger cash flow planning, and a payroll and benefits process the team could finally rely on.",
     featured_image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "s5",
-    title: "Offshore Team for a 12-Partner CPA Firm",
-    slug: "cpa-firm-offshore-team",
-    industry: "Professional Services",
-    service: "CPA Firm Support",
-    challenge:
-      "A mid-size CPA firm needed to build a dedicated offshore team of 15 professionals to handle tax season overflow, year-round bookkeeping, and audit preparation across 400+ clients.",
-    featured_image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: "s6",
-    title: "Month-End Close Optimization for a Construction Company",
-    slug: "construction-month-end",
-    industry: "Construction",
+    title: "Powering Finance Operations for an Auto OEM Tech Company",
+    slug: "auto-oem-finance-ops",
+    industry: "Automotive Technology",
     service: "Accounting & Bookkeeping",
     challenge:
-      "A construction company with $80M in annual revenue was closing books 25 days after month-end. We reduced it to 7 days while improving accuracy and implementing job costing.",
-    featured_image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: "s7",
-    title: "International Tax Planning for a Cross-Border Consulting Firm",
-    slug: "cross-border-tax-planning",
-    industry: "Professional Services",
-    service: "Tax Compliance",
-    challenge:
-      "A consulting firm operating in the US, UK, and Singapore needed transfer pricing documentation, treaty benefit analysis, and coordinated tax filings across three jurisdictions.",
+      "A technology company serving auto OEMs needed its order-to-cash and back-office finance function to scale at the same pace as its sales pipeline.",
+    solution:
+      "We embedded ourselves across invoicing, collections, HR, and month-end close as a true extension of their finance team — full order-to-cash cycle (estimates, invoicing, collections, overdue follow-up), HR management, payroll processing, tax compliance, employee expense claims, and month-end close.\n\nTools/Software Used: QuickBooks Enterprise Suite for GL Accounting/ERP; Dext and Ramp for Expense and Employee Claim Management; Paychex for Payroll Processing.",
+    results:
+      "Faster invoicing, clearer visibility into the sales pipeline, disciplined AP and vendor credit management through daily bill posting, and cost-center-level profitability tracking that informed real decisions.",
     featured_image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
   },
+
+  /* ── Tax Compliance & Advisory ─────────────────────────────────── */
+  {
+    id: "s6",
+    title: "Navigating a Green Card Move from India to the US",
+    slug: "green-card-india-us",
+    industry: "Individual Tax",
+    service: "Tax Compliance",
+    challenge:
+      "A senior executive relocating to the US on a Green Card arrived with multiple Indian mutual funds, bank accounts requiring FBAR disclosure, ESOPs split across two countries, and a first-year residency status that would shape every election going forward.",
+    solution:
+      "We mapped every reporting obligation before it became a deadline, advised on first-year residency and mark-to-market elections, and built a filing strategy that addressed each asset class on its own terms.",
+    results:
+      "A fully compliant first-year US filing, with the client confident he hadn't left exposure on the table in either country.",
+    featured_image:
+      "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "s7",
+    title: "Guiding a SaaS Founder Through a SPAC Listing on the NYSE",
+    slug: "saas-founder-spac-nyse",
+    industry: "Technology / SaaS",
+    service: "Tax Compliance",
+    challenge:
+      "The founder of an AI-based SaaS company heading toward an NYSE listing faced high-stakes tax questions — earnout taxability, QSBS capital gains exclusion eligibility, 409A valuation, RSU taxability, and a personal residency relocation, all under negotiation with the acquirer's legal counsel.",
+    solution:
+      "We worked directly alongside the acquirer's counsel, modeling out each position and its downstream tax consequences before terms were finalized.",
+    results:
+      "A successfully negotiated tax position for the founder, with approximately $75M in value addressed across multiple filing years.",
+    featured_image:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+  },
   {
     id: "s8",
-    title: "Singapore Subsidiary Setup for a US Tech Company",
-    slug: "us-tech-singapore-subsidiary",
-    industry: "Technology",
-    service: "Entity Setup",
+    title: "R&D Credit Strategy for a Global Pharma Company",
+    slug: "rd-credit-pharma",
+    industry: "Pharmaceuticals",
+    service: "Tax Compliance",
     challenge:
-      "A US-based AI company needed to establish a Singapore subsidiary for Asia-Pacific operations, including ACRA registration, corporate secretary, employment pass applications, and local bank account.",
+      "A US pharmaceutical company with R&D operations spread across multiple countries needed clarity on what could be claimed as R&D Credit under IRC 41, and how Section 174 amortization rules would apply to a global research footprint.",
+    solution:
+      "We advised on credit eligibility and the practical application of those amortization principles to their specific structure.",
+    results:
+      "Full R&D credit optimization under IRC 41 with proper Section 174 amortization treatment mapped to the company's global research operations.",
     featured_image:
-      "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "s9",
-    title: "CFO Advisory for a Pre-IPO E-Commerce Platform",
-    slug: "ecommerce-pre-ipo-advisory",
-    industry: "E-Commerce",
-    service: "Business Advisory",
+    title: "Unlocking Business Credits for a Global Hospitality Chain",
+    slug: "business-credits-hospitality",
+    industry: "Hospitality",
+    service: "Tax Compliance",
     challenge:
-      "A high-growth e-commerce platform needed fractional CFO support for IPO preparation — including SOX readiness, internal controls, board reporting, and investor relations support.",
+      "A large hospitality chain was leaving value on the table across several underused credit programs.",
+    solution:
+      "We assessed eligibility and built the claim mechanism for Employee Retention Credit, Work Opportunity Tax Credit, R&D and other applicable business credits.",
+    results:
+      "Previously unclaimed credits identified and captured across multiple tax years, significantly reducing the chain's effective tax burden.",
     featured_image:
-      "https://images.unsplash.com/photo-1553729459-uj1ef3f9cde5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
   },
+
+  /* ── CPA Support Services ──────────────────────────────────────── */
   {
     id: "s10",
-    title: "Tax Season Capacity for a Solo Practitioner",
-    slug: "solo-practitioner-tax-season",
+    title: "Absorbing Peak Tax-Season Volume for a Florida CPA Firm",
+    slug: "florida-cpa-peak-season",
     industry: "Professional Services",
     service: "CPA Firm Support",
     challenge:
-      "A solo CPA handling 200+ individual returns needed seasonal support for tax preparation and review, enabling them to take on 60% more clients without hiring full-time staff.",
+      "In the final weeks of April tax season, a Florida-based CPA firm needed extra hands on a stack of complex returns — clients with multi-country income and layered reporting requirements they didn't have the bandwidth to absorb internally.",
+    solution:
+      "We integrated directly into the firm's existing workflow — working in Lacerte for tax prep, Canopy for client communication, and Intuit Tax Advisory for research. We owned the full return cycle: validating document intake, communicating with clients, researching complex positions against current IRS and AICPA guidance, and preparing audit-ready workpapers and binders for the CPA's final sign-off.",
+    results:
+      "The firm met its season-end deadlines without sacrificing quality — and the relationship has since grown beyond tax season into other service areas.",
     featured_image:
       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "s11",
-    title: "Multi-Entity Bookkeeping for a Real Estate Portfolio",
-    slug: "real-estate-multi-entity",
+    title: "Running Real Estate Portfolio Accounting for a Texas CPA Firm",
+    slug: "texas-cpa-real-estate",
     industry: "Real Estate",
-    service: "Accounting & Bookkeeping",
+    service: "CPA Firm Support",
     challenge:
-      "A real estate investor managing 12 LLCs needed consolidated reporting, individual entity P&Ls, investor distributions tracking, and annual K-1 preparation for 40+ partners.",
+      "A Texas-based CPA managing a portfolio of real estate rental entities needed consistent, audit-ready monthly accounting across every property — without building out an internal team to do it.",
+    solution:
+      "We took over the full monthly cycle: maintaining rental schedules, syncing collections and rental data from Yardi into QBO, tracking operating expenses across taxes, maintenance, and insurance, and closing the books with proper adjustments for depreciation, prepaids, and accruals.\n\nTools: Yardi, ADP, QBO, Double.",
+    results:
+      "A reliable, on-time monthly close and a clean reporting package the CPA could hand straight to stakeholders.",
     featured_image:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
   },
+
+  /* ── Business Advisory ─────────────────────────────────────────── */
   {
     id: "s12",
-    title: "R&D Tax Credit Study for an AI Startup",
-    slug: "ai-startup-rd-credit",
+    title: "Building an IPO-Ready Governance and Risk Framework",
+    slug: "ipo-ready-governance",
     industry: "Technology",
-    service: "Tax Compliance",
+    service: "Business Advisory",
     challenge:
-      "An AI startup spending $2M annually on R&D needed a comprehensive Section 41 credit study, documentation of qualifying activities, and filing across federal and 3 state returns.",
+      "A startup scaling toward a public listing within the year had grown faster than its internal controls — financial governance, risk oversight, and reporting discipline hadn't kept pace with the business.",
+    solution:
+      "We built the governance structure from the ground up: clear financial controls, a formal risk framework, and the reporting discipline auditors and institutional investors expect to see — designed specifically around the realities of a pre-IPO company, not a generic compliance template.",
+    results:
+      "A company that could walk into IPO due diligence with its financial house in order, rather than scrambling to retrofit controls under deadline pressure.",
     featured_image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "s13",
+    title: "Automating Finance Operations for a Canadian Hospitality Group",
+    slug: "canadian-hospitality-automation",
+    industry: "Hospitality",
+    service: "Business Advisory",
+    challenge:
+      "A Canada-based hospitality business was pulling financial data from multiple disconnected sources by hand — a process that was slow, error-prone, and gave leadership no single, trustworthy view of the numbers.",
+    solution:
+      "We designed and implemented a full-scale accounting automation system: consolidating data feeds from every source into one reporting window, with automated processing replacing manual entry at each step.",
+    results:
+      "Leadership gained a single source of truth for financial reporting — faster, more accurate, and no longer dependent on someone manually stitching spreadsheets together every month.",
+    featured_image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -181,6 +256,8 @@ function toDisplayStudy(cs: CaseStudy): DisplayStudy {
     industry: cs.industry,
     service: inferService(cs.industry),
     challenge: cs.challenge,
+    solution: cs.solution,
+    results: cs.results,
     featured_image: cs.featured_image,
   };
 }

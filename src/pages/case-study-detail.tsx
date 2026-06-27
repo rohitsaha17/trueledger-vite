@@ -6,10 +6,14 @@ import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import type { CaseStudy } from "@/types/database";
+import { staticStudies } from "@/pages/case-studies";
+import type { DisplayStudy } from "@/pages/case-studies";
+
+type StudyData = CaseStudy | DisplayStudy;
 
 export default function CaseStudyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [study, setStudy] = useState<CaseStudy | null>(null);
+  const [study, setStudy] = useState<StudyData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +25,12 @@ export default function CaseStudyDetailPage() {
       .eq("published", true)
       .single()
       .then(({ data }) => {
-        setStudy(data);
+        if (data) {
+          setStudy(data);
+        } else {
+          const found = staticStudies.find((s) => s.slug === slug) ?? null;
+          setStudy(found);
+        }
         setLoading(false);
       });
   }, [slug]);
