@@ -6,7 +6,7 @@ export interface StackingProject {
   description: string;
   src: string;
   color: string;
-  scrollPadding?: number;
+
 }
 
 const NAV_HEIGHT = 72;
@@ -126,18 +126,16 @@ export function StackingCards({
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl">
           {projects.map((project, i) => (
-            <div key={i}>
-              <StackingCard
-                i={i}
-                total={projects.length}
-                title={project.title}
-                description={project.description}
-                src={project.src}
-                color={project.color}
-                stickyTop={headerOffset + i * TITLE_BAR_HEIGHT}
-              />
-              {project.scrollPadding ? <div style={{ height: project.scrollPadding }} aria-hidden /> : null}
-            </div>
+            <StackingCard
+              key={i}
+              i={i}
+              total={projects.length}
+              title={project.title}
+              description={project.description}
+              src={project.src}
+              color={project.color}
+              stickyTop={headerOffset + i * TITLE_BAR_HEIGHT}
+            />
           ))}
           {/* Spacer inside the sticky containment block so the last card can stay stuck */}
           <div style={{ height: paddingBottom }} aria-hidden />

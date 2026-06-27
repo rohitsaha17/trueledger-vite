@@ -35,7 +35,6 @@ const steps: StackingProject[] = [
       "Every transaction, reconciliation, and document is maintained to the highest standard — ensuring audit readiness at any point in the year.",
     src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
     color: "#8A4A6E",
-    scrollPadding: 200,
   },
   {
     title: "Transparent Pricing. Defined Scope.",
@@ -43,7 +42,6 @@ const steps: StackingProject[] = [
       "Fixed monthly tier-based packages tailored to your needs with a clearly defined scope — no hidden costs, no ambiguity, no surprises.",
     src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
     color: "#A84A55",
-    scrollPadding: 200,
   },
   {
     title: "Global Team. Multi-Timezone Coverage.",
@@ -51,7 +49,6 @@ const steps: StackingProject[] = [
       "An internationally distributed team ensures responsive, uninterrupted support wherever your business operates.",
     src: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
     color: "#C4493C",
-    scrollPadding: 200,
   },
   {
     title: "Industry-Specific Processes. Purpose-Built Solutions.",
@@ -59,7 +56,6 @@ const steps: StackingProject[] = [
       "Our frameworks, tools, and workflows are tailored to your industry — delivering precision that a generic approach simply cannot.",
     src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
     color: "#EE672C",
-    scrollPadding: 200,
   },
 ];
 
