@@ -197,7 +197,7 @@ export default function SupportToCPAsPage() {
         imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031937_26d5554d-a1a9-4889-9e15-66a57de6358c_min.webp"
         videoSrc="https://videos.pexels.com/video-files/7643614/7643614-hd_1920_1080_25fps.mp4"
         accentColor="#EE672C"
-        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
       />
 
       {/* ============================================================ */}
@@ -209,11 +209,12 @@ export default function SupportToCPAsPage() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.15]"
+          className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="https://videos.pexels.com/video-files/3252858/3252858-hd_1920_1080_25fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
+        <div className="absolute inset-0 bg-[#140e2a]/75" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/30" />
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -223,10 +224,10 @@ export default function SupportToCPAsPage() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading">
               How We Support Your Practice
             </h2>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4">
+            <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4">
               Dedicated capacity that scales with your firm through every season.
             </p>
           </motion.div>
@@ -237,20 +238,20 @@ export default function SupportToCPAsPage() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                  className="group relative rounded-2xl bg-white/[0.08] backdrop-blur-sm border border-white/[0.1] p-6 sm:p-7 overflow-hidden hover:bg-white/[0.12] transition-all duration-300"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.04] leading-none select-none pointer-events-none">{num}</span>
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">{num}</span>
+                    <span className="text-xs font-bold tracking-wider text-primary font-mono bg-primary/[0.12] px-2.5 py-1 rounded-md">{num}</span>
                   </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
+                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
                 </motion.div>
               );
             })}

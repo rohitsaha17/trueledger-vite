@@ -88,12 +88,12 @@ export function ServicePageHero({
             style={{
               background:
                 overlayGradient ||
-                "linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 40%, rgba(20,14,42,0.7) 70%, rgba(20,14,42,0.4) 100%)",
+                "linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.68) 40%, rgba(20,14,42,0.4) 70%, rgba(20,14,42,0.18) 100%)",
             }}
           />
 
           {/* Secondary even darkening for guaranteed readability */}
-          <div className="absolute inset-0 bg-brand-dark/35" />
+          <div className="absolute inset-0 bg-brand-dark/15" />
 
           {/* Grid dot pattern */}
           <div

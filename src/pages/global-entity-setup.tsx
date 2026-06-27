@@ -216,7 +216,7 @@ export default function GlobalEntitySetupPage() {
         imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
         videoSrc="https://videos.pexels.com/video-files/4686756/4686756-hd_1920_1080_24fps.mp4"
         accentColor="#EE672C"
-        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
       />
 
       {/* ============================================================ */}
