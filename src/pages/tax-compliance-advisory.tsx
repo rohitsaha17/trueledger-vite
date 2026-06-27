@@ -236,6 +236,7 @@ export default function TaxComplianceAdvisoryPage() {
         }
         description="Most people think about taxes once a year. We think about them all year round — and that difference is exactly what sets our services apart."
         imageSrc="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1920&q=80"
+        videoSrc="https://videos.pexels.com/video-files/6962707/6962707-hd_1920_1080_25fps.mp4"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />

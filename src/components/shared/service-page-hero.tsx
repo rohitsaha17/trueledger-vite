@@ -38,6 +38,7 @@ interface ServicePageHeroProps {
   title: React.ReactNode;
   description: string | React.ReactNode;
   imageSrc: string;
+  videoSrc?: string;
   overlayGradient?: string;
   accentColor?: string;
 }
@@ -47,6 +48,7 @@ export function ServicePageHero({
   title,
   description,
   imageSrc,
+  videoSrc,
   overlayGradient,
   accentColor = "#EE672C",
 }: ServicePageHeroProps) {
@@ -54,15 +56,31 @@ export function ServicePageHero({
     <section className="pt-6 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden min-h-[420px] md:min-h-[500px] flex items-center">
-          {/* Background image — subtle zoom-in on load */}
-          <motion.img
-            src={imageSrc}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
-          />
+          {/* Background media */}
+          {videoSrc ? (
+            <motion.video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={imageSrc}
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{ scale: 1.08 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </motion.video>
+          ) : (
+            <motion.img
+              src={imageSrc}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{ scale: 1.08 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+            />
+          )}
 
           {/* Primary gradient overlay for text readability */}
           <div

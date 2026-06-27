@@ -221,6 +221,7 @@ export default function GlobalEntitySetupPage() {
         }
         description="Setting up a business entity is rarely just a formality. The structure you choose, the state you register in, the agreements you put in place — these decisions shape how your business operates, gets taxed, and scales."
         imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
+        videoSrc="https://videos.pexels.com/video-files/4686756/4686756-hd_1920_1080_24fps.mp4"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />

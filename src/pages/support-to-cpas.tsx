@@ -195,6 +195,7 @@ export default function SupportToCPAsPage() {
         }
         description="A dedicated offshore accounting team that plugs into your practice — qualified, process-driven, and built to scale with your firm through every season."
         imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031937_26d5554d-a1a9-4889-9e15-66a57de6358c_min.webp"
+        videoSrc="https://videos.pexels.com/video-files/7643614/7643614-hd_1920_1080_25fps.mp4"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />

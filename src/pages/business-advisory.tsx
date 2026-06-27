@@ -205,6 +205,7 @@ export default function BusinessAdvisoryPage() {
         }
         description="Most businesses don’t struggle because of a lack of effort. They struggle because the financial decisions — the structural ones, the strategic ones — were made without the right advisor in the room."
         imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031452_6a4a4264-852a-470c-bfbb-49796401a094_min.webp"
+        videoSrc="https://videos.pexels.com/video-files/7552419/7552419-hd_1920_1080_25fps.mp4"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.97) 0%, rgba(20,14,42,0.93) 35%, rgba(20,14,42,0.7) 65%, rgba(77,57,127,0.25) 100%)"
       />
