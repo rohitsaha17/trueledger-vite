@@ -188,14 +188,14 @@ export default function SupportToCPAsPage() {
         eyebrow="Support to CPAs"
         title={
           <>
-            Every CPA Firm Reaches a Point.
+            Every CPA Firm Reaches a Point Where It Needs More Hands.
             <br className="hidden sm:block" />
-            <span className="text-[#EE672C]">We Are Those Extra Hands.</span>
+            <span className="text-[#EE672C]">We Are Those Hands.</span>
           </>
         }
         description="A dedicated offshore accounting team that plugs into your practice — qualified, process-driven, and built to scale with your firm through every season."
         imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031937_26d5554d-a1a9-4889-9e15-66a57de6358c_min.webp"
-        videoSrc="https://videos.pexels.com/video-files/7643614/7643614-hd_1920_1080_25fps.mp4"
+        videoSrc="https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
       />

@@ -204,14 +204,14 @@ function HeroSection() {
           <>
             Unlock Scalable Growth with
             <br className="hidden sm:block" />
-            <span className="text-[#a78bfa]">Managed Accounting Solutions.</span>
+            <span className="text-[#EE672C]">Managed Accounting Solutions.</span>
           </>
         }
         description="Growth demands financial clarity. Accurate books, timely reports, and disciplined compliance don’t just keep you organized — they sharpen your decision-making and give you the confidence to scale."
         imageSrc="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80"
         videoSrc="https://videos.pexels.com/video-files/8479064/8479064-hd_1920_1080_25fps.mp4"
-        accentColor="#a78bfa"
-        overlayGradient="linear-gradient(135deg, rgba(20,14,42,0.78) 0%, rgba(20,14,42,0.62) 35%, rgba(20,14,42,0.35) 65%, rgba(167,139,250,0.1) 100%)"
+        accentColor="#EE672C"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
       />
   );
 }
