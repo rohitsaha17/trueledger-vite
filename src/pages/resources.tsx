@@ -1,214 +1,88 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ArrowRight, BookOpen } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import type { BlogPost } from "@/types/database";
+import {
+  ChevronRight,
+  ArrowUpRight,
+  BookOpen,
+  FileText,
+  PlayCircle,
+  Newspaper,
+  PenLine,
+  ListChecks,
+} from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Static seed data                                                   */
+/*  Resource data from docx content                                    */
 /* ------------------------------------------------------------------ */
 
-interface Resource extends BlogPost {
+interface Resource {
+  id: string;
+  title: string;
+  category: ContentType;
   service: string;
+  link: string;
 }
 
-const staticResources: Resource[] = [
-  {
-    id: "r1",
-    title: "The Complete Guide to Outsourced Accounting in 2026",
-    slug: "guide-outsourced-accounting-2026",
-    category: "Guide",
-    service: "Accounting & Bookkeeping",
-    excerpt:
-      "Everything you need to know about outsourcing your accounting function — from evaluating providers to managing the transition and measuring ROI.",
-    author: "TrueLedger Editorial",
-    created_at: "2026-06-15T00:00:00Z",
-    updated_at: "2026-06-15T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r2",
-    title: "US Tax Filing Deadlines: A 2026 Calendar for Businesses",
-    slug: "us-tax-filing-deadlines-2026",
-    category: "Tax Update",
-    service: "Tax Compliance",
-    excerpt:
-      "A comprehensive calendar of federal and state tax filing deadlines for businesses, including extensions, estimated payments, and information returns.",
-    author: "TrueLedger Tax Team",
-    created_at: "2026-06-10T00:00:00Z",
-    updated_at: "2026-06-10T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r3",
-    title: "Choosing the Right Business Structure for Your US Expansion",
-    slug: "business-structure-us-expansion",
-    category: "Guide",
-    service: "Entity Setup",
-    excerpt:
-      "LLC vs C-Corp vs S-Corp: understand the tax implications, liability protection, and operational flexibility of each structure before incorporating in the US.",
-    author: "TrueLedger Advisory",
-    created_at: "2026-06-05T00:00:00Z",
-    updated_at: "2026-06-05T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r4",
-    title: "5 Financial KPIs Every Startup Should Track",
-    slug: "startup-financial-kpis",
-    category: "Article",
-    service: "Business Advisory",
-    excerpt:
-      "From burn rate to LTV:CAC ratio — the essential financial metrics that investors look for and founders should monitor monthly.",
-    author: "TrueLedger Advisory",
-    created_at: "2026-05-28T00:00:00Z",
-    updated_at: "2026-05-28T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r5",
-    title: "How CPA Firms Are Using Offshore Teams to Scale Profitably",
-    slug: "cpa-firms-offshore-scaling",
-    category: "Whitepaper",
-    service: "CPA Support",
-    excerpt:
-      "A detailed look at how mid-size CPA firms are building offshore capacity — including case studies, cost analysis, and best practices for quality control.",
-    author: "TrueLedger Editorial",
-    created_at: "2026-05-20T00:00:00Z",
-    updated_at: "2026-05-20T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r6",
-    title: "Month-End Close Checklist for Growing Businesses",
-    slug: "month-end-close-checklist",
-    category: "Guide",
-    service: "Accounting & Bookkeeping",
-    excerpt:
-      "A step-by-step month-end close checklist covering reconciliations, accruals, reviews, and reporting — designed to help your team close books in under 7 days.",
-    author: "TrueLedger Operations",
-    created_at: "2026-05-15T00:00:00Z",
-    updated_at: "2026-05-15T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r7",
-    title: "Sales Tax Nexus: What E-Commerce Sellers Need to Know",
-    slug: "sales-tax-nexus-ecommerce",
-    category: "Article",
-    service: "Tax Compliance",
-    excerpt:
-      "Post-Wayfair, economic nexus rules have changed everything for online sellers. Here's how to determine where you have nexus and what to do about it.",
-    author: "TrueLedger Tax Team",
-    created_at: "2026-05-10T00:00:00Z",
-    updated_at: "2026-05-10T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r8",
-    title: "Setting Up a Singapore Subsidiary: A Step-by-Step Guide",
-    slug: "singapore-subsidiary-guide",
-    category: "Guide",
-    service: "Entity Setup",
-    excerpt:
-      "Everything from ACRA registration to corporate secretary requirements, employment passes, and banking — a comprehensive guide for companies expanding to Singapore.",
-    author: "TrueLedger Advisory",
-    created_at: "2026-05-05T00:00:00Z",
-    updated_at: "2026-05-05T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r9",
-    title: "The CFO's Guide to Cash Flow Forecasting",
-    slug: "cfo-cash-flow-forecasting",
-    category: "Whitepaper",
-    service: "Business Advisory",
-    excerpt:
-      "Advanced cash flow forecasting techniques for finance leaders — from 13-week models to scenario planning and rolling forecasts that drive better decisions.",
-    author: "TrueLedger Advisory",
-    created_at: "2026-04-28T00:00:00Z",
-    updated_at: "2026-04-28T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r10",
-    title: "2026 Tax Law Changes: Impact on Small Businesses",
-    slug: "2026-tax-law-changes-small-business",
-    category: "Tax Update",
-    service: "Tax Compliance",
-    excerpt:
-      "Key tax law changes taking effect in 2026 that affect small businesses — including TCJA expirations, new reporting requirements, and planning opportunities.",
-    author: "TrueLedger Tax Team",
-    created_at: "2026-04-20T00:00:00Z",
-    updated_at: "2026-04-20T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r11",
-    title: "How to Evaluate an Outsourced Accounting Provider",
-    slug: "evaluate-outsourced-accounting-provider",
-    category: "Article",
-    service: "Accounting & Bookkeeping",
-    excerpt:
-      "A practical framework for evaluating outsourced accounting providers — covering security, expertise, technology, communication, and pricing models.",
-    author: "TrueLedger Editorial",
-    created_at: "2026-04-15T00:00:00Z",
-    updated_at: "2026-04-15T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
-  {
-    id: "r12",
-    title: "Building a Tax Season Playbook for Your CPA Firm",
-    slug: "tax-season-playbook-cpa",
-    category: "Industry Insight",
-    service: "CPA Support",
-    excerpt:
-      "Proven strategies for managing tax season workflow — from capacity planning and milestone tracking to quality review processes and client communication templates.",
-    author: "TrueLedger Editorial",
-    created_at: "2026-04-10T00:00:00Z",
-    updated_at: "2026-04-10T00:00:00Z",
-    content: "",
-    featured_image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-    published: true,
-  },
+const resources: Resource[] = [
+  /* ── WhitePapers ─────────────────────────────────────────────────── */
+  { id: "wp1", title: "Year-End Books Cleanup & Review for U.S. Businesses", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/m8rdcsv9az5sped" },
+  { id: "wp2", title: "SOC-2 Certification", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/2d23tr9s0u2nptc" },
+  { id: "wp3", title: "IPO Capability", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/a79t57smj8cea7l" },
+  { id: "wp4", title: "Impact of the One Big Beautiful Bill on 2025 Tax Filing Season", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/nojk2ehk6sbhu09" },
+  { id: "wp5", title: "US Tax Season Approach", category: "WhitePaper", service: "CPA Support", link: "https://canva.link/52vepfyztfbtpl0" },
+  { id: "wp6", title: "Analysis of Tax Return for Financial Planning Opportunities", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/j8p79ecu3jhgc14" },
+  { id: "wp7", title: "Fractional CFO — Clean Books", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/3edy4xldg57im5g" },
+  { id: "wp8", title: "Practical AI Adoption in CAS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/k8vbiamdjc8qlrk" },
+  { id: "wp9", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/w3mfo053a8czxxm" },
+  { id: "wp10", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552" },
+  { id: "wp11", title: "Expected Credit Losses under IFRS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/74lkc9tr175stba" },
+  { id: "wp12", title: "IFRS 2 Share-Based Payments", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/vjg4cfbkcww3aw9" },
+
+  /* ── Guides / Checklists / Infographics ──────────────────────────── */
+  { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/2z2xhq7hi01vef3" },
+  { id: "g2", title: "Outsourcing Assessment Checklist", category: "Guide", service: "CPA Support", link: "https://canva.link/wl62p4jorsf5yfc" },
+  { id: "g3", title: "AI Due Diligence Checklist", category: "Guide", service: "CPA Support", link: "https://canva.link/qpbhbaw1z5388n3" },
+  { id: "g4", title: "How Trump's Account Works", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/vk220gen0f1p2jp" },
+  { id: "g5", title: "Qualified Business Income Deductions", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/t54clnh3fwemhoy" },
+  { id: "g6", title: "Gain Exclusion on Sale of a Principal Residence", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/s9qilp16wjy3qih" },
+  { id: "g7", title: "Client Onboarding Interview Guide", category: "Guide", service: "Accounting & Bookkeeping", link: "https://canva.link/5v5htqgqhmic8dl" },
+  { id: "g8", title: "SAFE Instruments — Explained", category: "Guide", service: "Global Entity Setup", link: "https://canva.link/qnjd1oj271pu0xo" },
+  { id: "g9", title: "5 Tips for Cash Flow Discipline", category: "Guide", service: "Accounting & Bookkeeping", link: "https://canva.link/cojtqas287hevnx" },
+  { id: "g10", title: "Top Mistakes to Avoid While Filing Individual Taxes", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/on5qthzl8rnqvob" },
+  { id: "g11", title: "Building a Better Firm — Selecting the Right Technology", category: "Guide", service: "Business Advisory", link: "https://canva.link/403as3boaqeqtkk" },
+
+  /* ── Videos ──────────────────────────────────────────────────────── */
+  { id: "v1", title: "AI Tools — Kick Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/epi0FcveBSU?si=vBOu5ETioajUGav1" },
+  { id: "v2", title: "AI Tools — Holistiplan Demo", category: "Video", service: "Tax Compliance & Advisory", link: "https://canva.link/cyoxx48rz858lxs" },
+  { id: "v3", title: "AI Tools — AICPA Josi Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/SrWSjImK6DQ?si=TuLs50TrZSWq-uD_" },
+  { id: "v4", title: "AI Tools — Spotlight Reporting Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/KS29lMb-G58?si=oMhJrPP5pAbR8I4Z" },
+
+  /* ── Newsletter ──────────────────────────────────────────────────── */
+  { id: "n1", title: "AI Developments", category: "Newsletter", service: "Business Advisory", link: "https://canva.link/8y7fd76xgb6n5ln" },
+
+  /* ── Blog Posts ──────────────────────────────────────────────────── */
+  { id: "b1", title: "OBBA and Founders Tax", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7468561334834475008" },
+  { id: "b2", title: "H1B Laid Off — Tax Implications", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7468212225095192576" },
+  { id: "b3", title: "13-Week Cash Flow Forecast", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7467596800900628480" },
+  { id: "b4", title: "Real Estate Tax Issues", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7467150846783533056" },
+  { id: "b5", title: "Complex Cross-Border Returns", category: "Blog Post", service: "CPA Support", link: "https://www.linkedin.com/feed/update/urn:li:activity:7465644754534445056" },
+  { id: "b6", title: "SEC Reporting Changes", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7460992869420421120" },
+  { id: "b7", title: "AI Risk", category: "Blog Post", service: "Business Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7458043336856322048" },
+  { id: "b8", title: "How Finance Teams Are Using Automation", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7457474051050053632" },
+  { id: "b9", title: "Measuring AI ROI", category: "Blog Post", service: "Business Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7456961203966455808" },
+  { id: "b10", title: "Tips for Cash Flow Discipline in New Business", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7455129689959878657" },
+  { id: "b11", title: "Should You Do a Roth Conversion?", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7454910555083100161" },
+  { id: "b12", title: "Executive Turnover Is Down. AI Clarity Is Not.", category: "Blog Post", service: "Business Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7449509327331033088" },
+  { id: "b13", title: "Audit Triggers Most Businesses Miss", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7447579650052001793" },
+  { id: "b14", title: "Planning Ideas for Your Clients", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7441849656910905345" },
+  { id: "b15", title: "Startups Driving the Next Wave of Innovation in the Accounting Profession", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7438175389698445312" },
+  { id: "b16", title: "5 Startups Using AI and Automation to Transform Accounting, Audit, and Tax", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://canva.link/zlulummtdgm9h1w" },
+  { id: "b17", title: "Analysis of India–USA Bilateral Trade Deal", category: "Blog Post", service: "Global Entity Setup", link: "https://canva.link/j3r01gnhxif1ykt" },
+  { id: "b18", title: "India–UK Free Trade Agreement Signed", category: "Blog Post", service: "Global Entity Setup", link: "https://canva.link/6e4o8lp9zyvm7ey" },
+  { id: "b19", title: "Navigating Tariffs — Accounting Implications", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://canva.link/mbjp2dntd2kb6a7" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -217,82 +91,58 @@ const staticResources: Resource[] = [
 
 const contentTypes = [
   "All",
-  "Article",
+  "WhitePaper",
   "Guide",
-  "Whitepaper",
-  "Industry Insight",
-  "Tax Update",
+  "Video",
+  "Blog Post",
+  "Newsletter",
 ] as const;
 
 const serviceTypes = [
   "All Services",
   "Accounting & Bookkeeping",
-  "Tax Compliance",
-  "Entity Setup",
+  "Tax Compliance & Advisory",
   "Business Advisory",
   "CPA Support",
+  "Global Entity Setup",
 ] as const;
 
-type ContentType = (typeof contentTypes)[number];
+type ContentType = (typeof contentTypes)[number] | "All";
 type ServiceType = (typeof serviceTypes)[number];
+
+const categoryIcons: Record<string, typeof FileText> = {
+  WhitePaper: FileText,
+  Guide: ListChecks,
+  Video: PlayCircle,
+  "Blog Post": PenLine,
+  Newsletter: Newspaper,
+};
+
+const categoryColors: Record<string, string> = {
+  WhitePaper: "#4D397F",
+  Guide: "#2CA01C",
+  Video: "#EE672C",
+  "Blog Post": "#3b82f6",
+  Newsletter: "#B03B2D",
+};
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
 export default function ResourcesPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
   const [activeContent, setActiveContent] = useState<ContentType>("All");
   const [activeService, setActiveService] = useState<ServiceType>("All Services");
 
-  /* Fetch from Supabase */
-  useEffect(() => {
-    supabase
-      .from("blog_posts")
-      .select("*")
-      .eq("published", true)
-      .order("created_at", { ascending: false })
-      .then(({ data }) => {
-        setPosts(data ?? []);
-        setLoading(false);
-      });
-  }, []);
-
-  /* Merge Supabase posts (first) with static data, deduped by slug */
-  const allResources: Resource[] = useMemo(() => {
-    const seen = new Set<string>();
-    const merged: Resource[] = [];
-
-    // Supabase data takes priority
-    for (const p of posts) {
-      if (!seen.has(p.slug)) {
-        seen.add(p.slug);
-        merged.push({ ...p, service: (p as unknown as Resource).service ?? "" });
-      }
-    }
-
-    // Then static resources
-    for (const r of staticResources) {
-      if (!seen.has(r.slug)) {
-        seen.add(r.slug);
-        merged.push(r);
-      }
-    }
-
-    return merged;
-  }, [posts]);
-
-  /* Apply both filters (AND logic) */
   const filtered = useMemo(() => {
-    return allResources.filter((r) => {
+    return resources.filter((r) => {
       const contentMatch =
         activeContent === "All" || r.category === activeContent;
       const serviceMatch =
         activeService === "All Services" || r.service === activeService;
       return contentMatch && serviceMatch;
     });
-  }, [allResources, activeContent, activeService]);
+  }, [activeContent, activeService]);
 
   return (
     <>
@@ -366,17 +216,15 @@ export default function ResourcesPage() {
             </div>
           </AnimatedSection>
 
+          {/* Results count */}
+          <AnimatedSection>
+            <p className="text-sm text-muted-foreground mb-6">
+              Showing {filtered.length} of {resources.length} resources
+            </p>
+          </AnimatedSection>
+
           {/* Resource grid */}
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl bg-muted/50 animate-pulse h-[360px]"
-                />
-              ))}
-            </div>
-          ) : filtered.length === 0 ? (
+          {filtered.length === 0 ? (
             <AnimatedSection>
               <div className="text-center py-20">
                 <BookOpen className="size-16 text-brand/20 mx-auto mb-6" />
@@ -391,60 +239,60 @@ export default function ResourcesPage() {
             </AnimatedSection>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filtered.map((post, i) => (
-                <AnimatedSection key={post.id} delay={0.1 + i * 0.08}>
-                  <Link to={`/resources/${post.slug}`}>
-                    <motion.div
-                      className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col"
-                      whileHover={{ y: -4 }}
+              {filtered.map((res, i) => {
+                const Icon = categoryIcons[res.category] ?? FileText;
+                const color = categoryColors[res.category] ?? "#4D397F";
+                return (
+                  <AnimatedSection key={res.id} delay={0.05 + i * 0.04}>
+                    <a
+                      href={res.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      {post.featured_image && (
-                        <div className="aspect-[16/10] overflow-hidden">
-                          <img
-                            src={post.featured_image}
-                            alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                      )}
-                      <div className="p-6 flex-1 flex flex-col">
-                        <div className="flex items-center gap-3 mb-3">
-                          {post.category && (
-                            <span className="text-xs font-medium text-brand uppercase tracking-wider">
-                              {post.category}
+                      <motion.div
+                        className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col"
+                        whileHover={{ y: -4 }}
+                      >
+                        <div
+                          className="h-2 w-full"
+                          style={{ backgroundColor: color }}
+                        />
+                        <div className="p-6 flex-1 flex flex-col">
+                          <div className="flex items-center gap-3 mb-4">
+                            <span
+                              className="inline-flex items-center justify-center size-9 rounded-lg"
+                              style={{
+                                backgroundColor: `${color}14`,
+                                color,
+                              }}
+                            >
+                              <Icon className="size-4.5" />
                             </span>
-                          )}
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(post.created_at).toLocaleDateString(
-                              "en-US",
-                              {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                              },
-                            )}
-                          </span>
+                            <span
+                              className="text-xs font-semibold uppercase tracking-wider"
+                              style={{ color }}
+                            >
+                              {res.category}
+                            </span>
+                          </div>
+                          <h3 className="font-heading font-bold text-lg text-ink mb-3 leading-snug flex-1">
+                            {res.title}
+                          </h3>
+                          <div className="flex items-center justify-between pt-3 border-t border-black/[0.04]">
+                            <span className="text-xs text-muted-foreground truncate max-w-[60%]">
+                              {res.service}
+                            </span>
+                            <span className="inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:gap-2 transition-all whitespace-nowrap">
+                              Open
+                              <ArrowUpRight className="size-3.5" />
+                            </span>
+                          </div>
                         </div>
-                        <h3 className="font-heading font-bold text-lg text-ink mb-2 leading-snug">
-                          {post.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1">
-                          {post.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-muted-foreground">
-                            By {post.author}
-                          </span>
-                          <span className="inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:gap-2 transition-all">
-                            Read
-                            <ArrowRight className="size-3.5" />
-                          </span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </Link>
-                </AnimatedSection>
-              ))}
+                      </motion.div>
+                    </a>
+                  </AnimatedSection>
+                );
+              })}
             </div>
           )}
         </div>
