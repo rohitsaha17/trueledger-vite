@@ -61,11 +61,14 @@ export function Footer() {
               <a href="mailto:connect@trueledgerconsulting.com" className="flex items-center gap-2.5 hover:text-brand transition-colors">
                 <Mail className="size-4 text-brand/60 shrink-0" /> connect@trueledgerconsulting.com
               </a>
-              <div className="flex items-start gap-2.5">
-                <MapPin className="size-4 text-brand/60 mt-0.5 shrink-0" />
-                <div className="text-white/50">
-                  <div>🇮🇳 A-42, South Extension II, NDSE 2, New Delhi – 110049</div>
-                  <div className="mt-1">🇺🇸 5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2.5">
+                  <span className="text-xl leading-none mt-0.5 shrink-0">🇮🇳</span>
+                  <span className="text-white/50">A-42, South Extension II, NDSE 2, New Delhi – 110049</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="text-xl leading-none mt-0.5 shrink-0">🇺🇸</span>
+                  <span className="text-white/50">5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
