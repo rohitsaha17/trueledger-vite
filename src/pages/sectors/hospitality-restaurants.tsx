@@ -335,27 +335,36 @@ export default function HospitalityRestaurantsPage() {
       {/* ============================================================ */}
       {/*  TESTIMONIAL                                                   */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/30">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/20 via-transparent to-[#140e2a]/20" />
+
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="text-center">
-              <div className="inline-flex items-center justify-center size-12 rounded-full bg-brand-tint border border-brand/10 mb-8">
+              <div className="inline-flex items-center justify-center size-12 rounded-full bg-white/10 border border-white/10 mb-8">
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="size-6 text-brand"
+                  className="size-6 text-[#EE672C]"
                 >
                   <path d="M11.3 2.5c-1.4.7-2.5 1.6-3.3 2.7C7.2 6.3 6.8 7.5 6.8 8.9c0 .4.1.7.2 1 .7-.5 1.4-.7 2.2-.7 1 0 1.8.3 2.5 1 .7.7 1 1.5 1 2.5s-.4 1.9-1.1 2.6c-.7.7-1.6 1-2.6 1-1.2 0-2.2-.5-3-1.4-.8-.9-1.2-2.1-1.2-3.5 0-2 .6-3.8 1.8-5.4 1.2-1.6 2.8-2.7 4.7-3.4l.8 1.4zm8.6 0c-1.4.7-2.5 1.6-3.3 2.7-.8 1.1-1.2 2.3-1.2 3.7 0 .4.1.7.2 1 .7-.5 1.4-.7 2.2-.7 1 0 1.8.3 2.5 1 .7.7 1 1.5 1 2.5s-.4 1.9-1.1 2.6c-.7.7-1.6 1-2.6 1-1.2 0-2.2-.5-3-1.4-.8-.9-1.2-2.1-1.2-3.5 0-2 .6-3.8 1.8-5.4 1.2-1.6 2.8-2.7 4.7-3.4l.8 1.4z" />
                 </svg>
               </div>
-              <blockquote className="text-lg md:text-xl lg:text-2xl font-medium text-ink leading-relaxed mb-8 max-w-3xl mx-auto">
+              <blockquote className="text-lg md:text-xl lg:text-2xl font-medium text-white leading-relaxed mb-8 max-w-3xl mx-auto">
                 &ldquo;TrueLedger did not just do our books &mdash; they understood
                 what running a restaurant actually looks like. They knew what a
                 covers report meant and why F&B cost percentage is the number I
                 look at first every week.&rdquo;
               </blockquote>
               <div>
-                <p className="text-sm font-semibold text-ink">
+                <p className="text-sm font-semibold text-white">
                   &mdash; Founder, Multi-Location Restaurant Group
                 </p>
               </div>

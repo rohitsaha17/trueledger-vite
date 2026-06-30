@@ -28,7 +28,6 @@ const navLinks = [
   { label: "Who We Work With", href: "/who-we-work-with" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Resources", href: "/resources" },
-  { label: "Media", href: "/media" },
 ];
 
 export function Navbar() {

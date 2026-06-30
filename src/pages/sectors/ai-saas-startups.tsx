@@ -358,11 +358,20 @@ export default function AISaaSStartupsPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — TESTIMONIAL                                       */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/20 via-transparent to-[#140e2a]/20" />
+
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="text-center">
-              <div className="inline-flex items-center justify-center size-12 rounded-full bg-[#EE672C]/10 mb-8">
+              <div className="inline-flex items-center justify-center size-12 rounded-full bg-[#EE672C]/20 border border-[#EE672C]/20 mb-8">
                 <svg
                   className="size-6 text-[#EE672C]"
                   fill="currentColor"
@@ -371,14 +380,14 @@ export default function AISaaSStartupsPage() {
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <blockquote className="text-xl md:text-2xl lg:text-[1.65rem] font-heading font-medium text-ink leading-relaxed mb-8">
+              <blockquote className="text-xl md:text-2xl lg:text-[1.65rem] font-heading font-medium text-white leading-relaxed mb-8">
                 &ldquo;We had Big 4 auditors reviewing our books and TrueLedger had already cleaned everything up. The audit took a fraction of the time it would have otherwise. For a Series B company, that kind of financial rigour is not optional &mdash; it is expected.&rdquo;
               </blockquote>
               <div>
-                <p className="font-heading font-semibold text-ink">
+                <p className="font-heading font-semibold text-white">
                   CEO, SaaS Startup
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-white/50 mt-1">
                   Identity withheld per NDA
                 </p>
               </div>

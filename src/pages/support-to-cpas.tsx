@@ -10,6 +10,7 @@ import {
   FileText,
   Globe,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 
 /* ------------------------------------------------------------------ */
@@ -376,22 +377,98 @@ export default function SupportToCPAsPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 5 — WHO WE WORK WITH                                  */}
+      {/*  SECTION 5 — WHO WE WORK WITH (FEATURED CASE STUDIES)          */}
       {/* ============================================================ */}
-      <section className="py-12 md:py-16 bg-brand-tint/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 md:py-28 bg-brand-tint/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <Globe className="size-5 text-brand" />
-              <span className="font-heading font-semibold text-lg text-ink">
-                Who We Work With
-              </span>
+            <div className="text-center mb-14">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Globe className="size-5 text-brand" />
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+                  Who We Work With
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
+                Trusted by CPA Firms Across Industries
+              </h2>
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                From tax season surges to year-round client portfolio management &mdash; see how we support CPA firms managing diverse portfolios across multiple jurisdictions.
+              </p>
             </div>
-            <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-              Trusted by CPA firms managing diverse client portfolios across
-              multiple jurisdictions.
-            </p>
           </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Link to="/case-studies/florida-cpa-peak-season" className="group block bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="h-52 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
+                    alt="Tax season documents"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 sm:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-[#EE672C]">Professional Services</span>
+                    <span className="text-muted-foreground text-xs">|</span>
+                    <span className="text-[0.65rem] text-muted-foreground">CPA Firm Support</span>
+                  </div>
+                  <h3 className="font-heading font-bold text-lg text-ink mb-3 group-hover:text-primary transition-colors leading-snug">
+                    Absorbing Peak Tax-Season Volume for a Florida CPA Firm
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    In the final weeks of April tax season, a Florida-based CPA firm needed extra hands on a stack of complex returns &mdash; clients with multi-country income and layered reporting requirements.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-brand-dark transition-colors">
+                    Read Case Study
+                    <ChevronRight className="size-3.5" />
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Link to="/case-studies/texas-cpa-real-estate" className="group block bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="h-52 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
+                    alt="Real estate property"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 sm:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-[#EE672C]">Real Estate</span>
+                    <span className="text-muted-foreground text-xs">|</span>
+                    <span className="text-[0.65rem] text-muted-foreground">CPA Firm Support</span>
+                  </div>
+                  <h3 className="font-heading font-bold text-lg text-ink mb-3 group-hover:text-primary transition-colors leading-snug">
+                    Running Real Estate Portfolio Accounting for a Texas CPA Firm
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    A Texas-based CPA managing a portfolio of real estate rental entities needed consistent, audit-ready monthly accounting across every property.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-brand-dark transition-colors">
+                    Read Case Study
+                    <ChevronRight className="size-3.5" />
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 
