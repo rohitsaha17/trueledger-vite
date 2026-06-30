@@ -23,9 +23,9 @@ const sectorLinks = [
 ];
 
 const regionLinks = [
-  { label: "North America", href: "/regions/north-america" },
-  { label: "Europe & UK", href: "/regions/europe-uk" },
-  { label: "APAC", href: "/regions/apac" },
+  { label: "USA & Canada", href: "/regions/north-america" },
+  { label: "United Kingdom", href: "/regions/europe-uk" },
+  { label: "Australia & Singapore", href: "/regions/apac" },
 ];
 
 const legalLinks = [
@@ -64,8 +64,8 @@ export function Footer() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="size-4 text-brand/60 mt-0.5 shrink-0" />
                 <div className="text-white/50">
-                  <div>A-42, South Extension II, NDSE 2, New Delhi – 110049</div>
-                  <div className="mt-1">5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</div>
+                  <div>🇮🇳 A-42, South Extension II, NDSE 2, New Delhi – 110049</div>
+                  <div className="mt-1">🇺🇸 5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</div>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">

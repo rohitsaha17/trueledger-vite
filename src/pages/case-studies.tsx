@@ -318,15 +318,19 @@ export default function CaseStudiesPage() {
       {/*  HERO                                                        */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
-        <motion.img
-          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80"
-          alt=""
+        <motion.video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80"
           className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
-        />
+        >
+          <source src="/videos/case-studies-hero.mp4" type="video/mp4" />
+        </motion.video>
         <div className="absolute inset-0 bg-[#140e2a]/88" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
