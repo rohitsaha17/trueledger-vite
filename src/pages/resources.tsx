@@ -147,16 +147,27 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-brand-tint/40 to-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <motion.img
+          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/88" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
               Insights &amp; Resources
             </p>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-ink leading-tight mb-6">
+            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
               Resources
             </h1>
-            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto">
               Expert insights on accounting, tax strategy, and financial
               operations for growing businesses.
             </p>

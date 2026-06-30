@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import createGlobe from "cobe";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -479,11 +478,6 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Badge variant="secondary" className="mb-6 gap-1.5">
-              <ChevronRight className="size-3" />
-              Multi-Country Virtual Accounting & Tax Advisory
-            </Badge>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-6">
               <span className="block">MODERN</span>
               <span className="block">ACCOUNTING</span>

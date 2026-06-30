@@ -4,6 +4,7 @@ import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 
 /* ================================================================== */
@@ -140,7 +141,7 @@ export default function HospitalityRestaurantsPage() {
         }
         description="Running a restaurant — or a group of them — means managing multi-location complexity, seasonal cash flows, and a workforce that spans tipped employees, contract staff, and kitchen teams across states. TrueLedger understands the hospitality P&L."
         imageSrc="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/3195440/3195440-uhd_2560_1440_25fps.mp4"
+        videoSrc="https://videos.pexels.com/video-files/4253491/4253491-uhd_2560_1440_25fps.mp4"
         accentColor="#EE672C"
       />
 
@@ -312,6 +313,22 @@ export default function HospitalityRestaurantsPage() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            className="text-center mt-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-[#EE672C] transition-colors"
+            >
+              View All Case Studies
+              <ChevronRight className="size-4" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 

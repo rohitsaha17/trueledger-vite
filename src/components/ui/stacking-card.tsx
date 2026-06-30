@@ -6,12 +6,11 @@ export interface StackingProject {
   description: string;
   src: string;
   color: string;
-
 }
 
 const NAV_HEIGHT = 72;
-const TITLE_BAR_HEIGHT = 56;
-const CARD_BODY_HEIGHT = 360;
+const TITLE_BAR_HEIGHT = 48;
+const CARD_BODY_HEIGHT = 340;
 
 interface CardProps {
   i: number;
@@ -35,22 +34,22 @@ function StackingCard({ i, total, title, description, src, color, stickyTop }: C
   return (
     <div
       ref={cardRef}
-      className="sticky rounded-2xl overflow-hidden shadow-xl"
+      className="sticky rounded-2xl overflow-hidden shadow-xl will-change-[transform,opacity] transition-shadow duration-300"
       style={{ top: stickyTop, zIndex: 10 + i, backgroundColor: color }}
     >
       <button
         type="button"
         onClick={scrollToCard}
-        className="w-full flex items-center gap-4 px-6 sm:px-8 cursor-pointer group"
+        className="w-full flex items-center gap-3 px-5 sm:px-7 cursor-pointer group"
         style={{ height: TITLE_BAR_HEIGHT }}
       >
-        <span className="flex items-center justify-center size-8 rounded-lg bg-white/15 text-white/80 text-sm font-bold font-heading shrink-0">
+        <span className="flex items-center justify-center size-7 rounded-lg bg-white/15 text-white/80 text-xs font-bold font-heading shrink-0">
           {String(i + 1).padStart(2, '0')}
         </span>
-        <h3 className="text-base sm:text-lg font-heading font-semibold text-white truncate text-left flex-1">
+        <h3 className="text-sm sm:text-base font-heading font-semibold text-white truncate text-left flex-1">
           {title}
         </h3>
-        <span className="shrink-0 text-white/40 text-xs font-medium font-heading">
+        <span className="shrink-0 text-white/40 text-[0.65rem] font-medium font-heading">
           {String(i + 1).padStart(2, '0')}/{String(total).padStart(2, '0')}
         </span>
       </button>

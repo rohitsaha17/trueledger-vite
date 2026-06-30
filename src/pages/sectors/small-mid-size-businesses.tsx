@@ -154,7 +154,7 @@ export default function SmallMidSizeBusinessesPage() {
         }
         description="At TrueLedger, we give small and mid-size businesses the financial infrastructure — accounting, tax, and advisory — that lets owners make decisions with confidence."
         imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4"
+        videoSrc="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4"
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
       />
@@ -237,7 +237,7 @@ export default function SmallMidSizeBusinessesPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
         >
           <source
-            src="https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4"
+            src="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4"
             type="video/mp4"
           />
         </video>

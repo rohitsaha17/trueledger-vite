@@ -145,10 +145,10 @@ export function Footer() {
         {/* Certifications */}
         <div className="mt-12 pt-10 border-t border-white/10">
           <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-6">Certifications & Partnerships</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-10">
             {/* ISO 27001 */}
-            <div className="flex items-center gap-4">
-              <svg viewBox="0 0 80 90" className="w-14 h-16 shrink-0">
+            <div className="flex items-center gap-3">
+              <svg viewBox="0 0 80 90" className="w-12 h-14 shrink-0">
                 <defs>
                   <linearGradient id="ft-iso-grad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#1e3a5f" />
@@ -170,8 +170,8 @@ export function Footer() {
             <div className="w-px h-10 bg-white/10 hidden sm:block" />
 
             {/* QuickBooks ProAdvisor */}
-            <div className="flex items-center gap-4">
-              <svg viewBox="0 0 80 80" className="w-14 h-14 shrink-0">
+            <div className="flex items-center gap-3">
+              <svg viewBox="0 0 80 80" className="w-12 h-12 shrink-0">
                 <defs>
                   <linearGradient id="ft-qb-grad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stopColor="#2CA01C" />
@@ -189,6 +189,32 @@ export function Footer() {
               <div>
                 <p className="text-sm font-semibold text-white">QuickBooks</p>
                 <p className="text-xs text-white/40">ProAdvisor</p>
+              </div>
+            </div>
+
+            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+
+            {/* Digits Partner */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-[#1a1a2e] border border-[#6366f1]/30 flex items-center justify-center shrink-0">
+                <img src="https://digits.com/favicon/favicon-256.png?v=3" alt="Digits" className="w-7 h-7 object-contain" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">Digits</p>
+                <p className="text-xs text-white/40">Partner</p>
+              </div>
+            </div>
+
+            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+
+            {/* Gusto Partner */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-[#1a1a2e] border border-[#f45d48]/30 flex items-center justify-center shrink-0">
+                <img src="https://gusto.com/apple-touch-icon.png" alt="Gusto" className="w-7 h-7 object-contain rounded" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">Gusto</p>
+                <p className="text-xs text-white/40">Partner</p>
               </div>
             </div>
           </div>

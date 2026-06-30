@@ -262,20 +262,8 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — APPROACH AND DIFFERENTIATION (Grid)               */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="https://videos.pexels.com/video-files/5725953/5725953-hd_1920_1080_25fps.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-[#140e2a]/80" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/20 via-transparent to-[#140e2a]/20" />
-
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-20 md:py-28 bg-brand-tint/40">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-14 md:mb-18"
             initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
@@ -283,10 +271,10 @@ export default function SupportToCPAsPage() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading">
               Our Approach and Differentiation
             </h2>
-            <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4">
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4">
               What separates TrueLedger is the way we work — structured, transparent, and built to feel like an extension of your team.
             </p>
           </motion.div>
@@ -298,20 +286,20 @@ export default function SupportToCPAsPage() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl bg-white/[0.08] backdrop-blur-sm border border-white/[0.1] p-6 sm:p-7 overflow-hidden hover:bg-white/[0.12] transition-all duration-300"
+                  className="group relative rounded-2xl bg-white border border-black/[0.06] shadow-sm p-6 sm:p-7 overflow-hidden hover:shadow-lg transition-all duration-300"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.04] leading-none select-none pointer-events-none">{num}</span>
+                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.06] leading-none select-none pointer-events-none">{num}</span>
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="inline-flex items-center gap-2 mb-4">
                     <span className="text-xs font-bold tracking-wider text-primary font-mono bg-primary/[0.12] px-2.5 py-1 rounded-md">{num}</span>
                   </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
+                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
+                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </motion.div>
               );
             })}

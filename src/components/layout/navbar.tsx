@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils";
 const serviceLinks = [
   { label: "Global Entity Setup", href: "/services/global-entity-setup" },
   { label: "Managed Accounting & Bookkeeping", href: "/services/managed-accounting-bookkeeping" },
-  { label: "Support to CPAs & Accounting Firms", href: "/services/support-to-cpas" },
   { label: "Tax Compliance & Advisory", href: "/services/tax-compliance-advisory" },
+  { label: "Support to CPAs & Accounting Firms", href: "/services/support-to-cpas" },
   { label: "Business Advisory", href: "/services/business-advisory" },
 ];
 
@@ -27,8 +27,8 @@ const navLinks = [
   { label: "Services", href: "/services", children: serviceLinks },
   { label: "Who We Work With", href: "/who-we-work-with" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Media", href: "/media" },
   { label: "Resources", href: "/resources" },
+  { label: "Media", href: "/media" },
 ];
 
 export function Navbar() {
