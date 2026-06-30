@@ -118,6 +118,32 @@ export function ClosingCta() {
                 <p className="text-white/40 text-xs sm:text-sm">ProAdvisor</p>
               </div>
             </div>
+
+            <div className="w-px h-12 bg-white/15 hidden sm:block" />
+
+            {/* Digits Partner Badge */}
+            <div className="flex items-center gap-4">
+              <div className="size-14 sm:size-[4.5rem] rounded-full bg-[#1a1a2e] border border-white/10 flex items-center justify-center overflow-hidden p-2.5 drop-shadow-lg">
+                <img src="https://digits.com/favicon/favicon-256.png?v=3" alt="Digits" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-left">
+                <p className="text-white font-heading font-bold text-sm sm:text-base">Digits</p>
+                <p className="text-white/40 text-xs sm:text-sm">Partner</p>
+              </div>
+            </div>
+
+            <div className="w-px h-12 bg-white/15 hidden sm:block" />
+
+            {/* Gusto Partner Badge */}
+            <div className="flex items-center gap-4">
+              <div className="size-14 sm:size-[4.5rem] rounded-full bg-[#1a1a2e] border border-white/10 flex items-center justify-center overflow-hidden p-2.5 drop-shadow-lg">
+                <img src="https://gusto.com/apple-touch-icon.png" alt="Gusto" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-left">
+                <p className="text-white font-heading font-bold text-sm sm:text-base">Gusto</p>
+                <p className="text-white/40 text-xs sm:text-sm">Partner</p>
+              </div>
+            </div>
           </motion.div>
         </AnimatedSection>
       </div>
