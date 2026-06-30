@@ -146,38 +146,47 @@ const pricingTiers = [
 
 const techStack = [
   {
-    label: "Reporting",
+    label: "Forecasting & Reporting",
     tools: [
-      { name: "Reach Reporting", logo: "https://wpcdn.reachreporting.com/wp-content/uploads/2024/05/28151000/cropped-appcard-1e584df9-2a27-4825-ab36-e47f70b6965a-1-192x192.png" },
+      { name: "Spotlight Reporting", logo: "https://cdn.prod.website-files.com/5efc103e2e619592c6612ab2/64f6a58454e53ad531820231_Spotlight.png" },
       { name: "FloQast", logo: "https://cdn.prod.website-files.com/67a1db1fd2f32256b80d22ff/67cb7363a73d6b2adb7181e8_256x256-1.jpg" },
     ],
   },
   {
-    label: "Payroll",
+    label: "Month Close & Workflow",
     tools: [
-      { name: "Gusto", logo: "https://gusto.com/apple-touch-icon.png" },
-      { name: "ADP", logo: "https://www.google.com/s2/favicons?domain=adp.com&sz=128" },
+      { name: "Double", logo: "https://doublehq.com/wp-content/uploads/2026/01/double-logo-new.png" },
+      { name: "Financial Cents", logo: "https://financial-cents.com/wp-content/uploads/2025/04/financial-cents-logo.svg" },
+      { name: "Reach Reporting", logo: "https://wpcdn.reachreporting.com/wp-content/uploads/2024/05/28151000/cropped-appcard-1e584df9-2a27-4825-ab36-e47f70b6965a-1-192x192.png" },
     ],
   },
   {
-    label: "Bills & AP",
+    label: "AI-Native Platforms",
+    tools: [
+      { name: "Campfire", logo: "https://www.google.com/s2/favicons?domain=campfire.ai&sz=128" },
+      { name: "Digits", logo: "https://digits.com/favicon/favicon-256.png?v=3" },
+      { name: "Kick", logo: "https://www.google.com/s2/favicons?domain=kick.co&sz=128" },
+      { name: "Puzzle", logo: "https://www.google.com/s2/favicons?domain=puzzle.io&sz=128" },
+    ],
+  },
+  {
+    label: "Bills, AP & Workflow",
     tools: [
       { name: "Bill.com", logo: "https://cdn.prod.website-files.com/63e3da3df35cd62f54751985/63efaae11991984d7d4d021a_Logo-Mark-Color%201.png" },
-      { name: "Dext", logo: "https://assets.dext.com/favicon.ico" },
+      { name: "Dext", logo: "https://www.google.com/s2/favicons?domain=dext.com&sz=128" },
+      { name: "Stampli", logo: "https://www.stampli.com/wp-content/uploads/2026/03/Updated_Stampli_logo.svg" },
+      { name: "Karbon", logo: "https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" },
+      { name: "Canopy", logo: "https://www.getcanopy.com/wp-content/themes/get_canopy/assets/images/logo.svg" },
     ],
   },
   {
-    label: "AI-Native ERPs",
-    tools: [
-      { name: "Rillet", logo: "https://cdn.prod.website-files.com/67c1d30d11d3d1eef828244c/67f92fecefa40510381d446f_Webclip.png" },
-      { name: "Digits", logo: "https://digits.com/favicon/favicon-256.png?v=3" },
-    ],
-  },
-  {
-    label: "Cloud Ledger Software",
+    label: "Cloud Accounting & Payroll",
     tools: [
       { name: "QuickBooks", logo: "https://cdn.worldvectorlogo.com/logos/quickbooks-2.svg" },
       { name: "Xero", logo: "https://cdn.worldvectorlogo.com/logos/xero-1.svg" },
+      { name: "ADP", logo: "https://www.google.com/s2/favicons?domain=adp.com&sz=128" },
+      { name: "Rippling", logo: "https://www.google.com/s2/favicons?domain=rippling.com&sz=128" },
+      { name: "Gusto", logo: "https://gusto.com/apple-touch-icon.png" },
     ],
   },
 ];
@@ -529,19 +538,21 @@ function PricingSection() {
 }
 
 function TechAdvantageSection() {
-  const tierColors = [
-    { face: "#3d1f3a", top: "#5a3555", right: "#2e1730", text: "text-white", logoRing: "ring-white/20" },
-    { face: "#5a3555", top: "#7a4d72", right: "#3d1f3a", text: "text-white", logoRing: "ring-white/20" },
-    { face: "#7a4d72", top: "#9a6d92", right: "#5a3555", text: "text-white", logoRing: "ring-white/20" },
-    { face: "#b892ae", top: "#d4b5cc", right: "#9a6d92", text: "text-brand-dark", logoRing: "ring-brand/15" },
-    { face: "#e0cbda", top: "#f0e4ec", right: "#c8a8be", text: "text-brand-dark", logoRing: "ring-brand/10" },
-  ];
+  const sideHeight = 22;
+  const tierWidths = [24, 42, 60, 78, 96];
 
-  const sideHeight = 18;
+  const tierColors = [
+    { face: "#EE672C", faceEnd: "#d45520", right: "#a84518" },
+    { face: "#944a6a", faceEnd: "#7a3a58", right: "#5a2a40" },
+    { face: "#6a4580", faceEnd: "#553568", right: "#3a1548" },
+    { face: "#523870", faceEnd: "#3e2858", right: "#2a1440" },
+    { face: "#4D397F", faceEnd: "#3a2860", right: "#1e0e3a" },
+  ];
 
   return (
     <section className="py-20 md:py-28 bg-[#140e2a] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(77,57,127,0.15),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(238,103,44,0.08),transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(77,57,127,0.12),transparent_65%)] pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -556,50 +567,71 @@ function TechAdvantageSection() {
           </div>
         </AnimatedSection>
 
-        <div className="max-w-3xl mx-auto" style={{ perspective: "1000px" }}>
+        <div className="max-w-3xl mx-auto" style={{ perspective: "1200px" }}>
           <motion.div
-            className="flex flex-col items-center"
-            initial={{ rotateX: 20, opacity: 0, y: 80 }}
-            whileInView={{ rotateX: 12, opacity: 1, y: 0 }}
+            className="flex flex-col items-center gap-[3px]"
+            initial={{ rotateX: 58, rotateY: -8, opacity: 0, y: 100 }}
+            whileInView={{ rotateX: 45, rotateY: -8, opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ transformStyle: "preserve-3d" }}
           >
+            {/* Apex capstone */}
+            <motion.div
+              className="relative mb-0.5"
+              initial={{ opacity: 0, scale: 0.3 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <svg width="56" height="32" viewBox="0 0 56 32" className="drop-shadow-[0_0_18px_rgba(238,103,44,0.5)]">
+                <defs>
+                  <linearGradient id="pyramid-apex-grad" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stopColor="#EE672C" />
+                    <stop offset="100%" stopColor="#f5935e" />
+                  </linearGradient>
+                </defs>
+                <polygon points="28,0 56,32 0,32" fill="url(#pyramid-apex-grad)" />
+              </svg>
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-10 bg-[#EE672C]/30 rounded-full blur-xl pointer-events-none" />
+            </motion.div>
+
             {techStack.map((tier, i) => {
-              const widthPercent = 30 + i * 15;
+              const width = tierWidths[i];
               const colors = tierColors[i];
 
               return (
                 <motion.div
                   key={tier.label}
                   className="w-full flex justify-center"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 + 0.35 }}
                 >
-                  <div className="relative group" style={{ width: `${widthPercent}%` }}>
+                  <div className="relative group" style={{ width: `${width}%`, minWidth: "110px" }}>
                     {/* Front face */}
                     <div
-                      className="relative z-10 flex items-center justify-between px-5 sm:px-8 py-3.5 sm:py-4"
-                      style={{ background: colors.face }}
+                      className="relative z-10 flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2.5 sm:py-3.5"
+                      style={{ background: `linear-gradient(135deg, ${colors.face}, ${colors.faceEnd})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none" />
-                      <div className="flex-1 min-w-0 relative z-10">
-                        <p className={`text-[0.65rem] sm:text-xs font-bold uppercase tracking-wider ${colors.text} opacity-90`}>
-                          {tier.label}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 relative z-10">
+
+                      <p className="hidden sm:block text-[0.55rem] sm:text-[0.625rem] font-bold uppercase tracking-wider text-white/80 shrink-0 relative z-10 whitespace-nowrap">
+                        {tier.label}
+                      </p>
+
+                      <div className="flex items-center gap-1 sm:gap-2 mx-auto sm:mx-0 sm:ml-auto shrink-0 relative z-10">
                         {tier.tools.map((tool) => (
                           <div
                             key={tool.name}
-                            className={`size-8 sm:size-10 rounded-lg bg-white/90 shadow-lg ring-1 ${colors.logoRing} flex items-center justify-center overflow-hidden`}
+                            className="size-6 sm:size-8 rounded-md sm:rounded-lg bg-white/90 shadow-lg ring-1 ring-white/20 flex items-center justify-center overflow-hidden transition-transform duration-200 hover:scale-110"
+                            title={tool.name}
                           >
                             <img
                               src={tool.logo}
                               alt={tool.name}
-                              className="size-5 sm:size-6 object-contain rounded"
+                              className="size-3.5 sm:size-5 object-contain rounded-sm"
                               loading="lazy"
                               onError={(e) => {
                                 const el = e.currentTarget;
@@ -607,7 +639,7 @@ function TechAdvantageSection() {
                                 const parent = el.parentElement;
                                 if (parent) {
                                   const fallback = document.createElement("span");
-                                  fallback.className = "text-[0.6rem] font-bold text-brand-dark";
+                                  fallback.className = "text-[0.45rem] sm:text-[0.55rem] font-bold text-[#4D397F]";
                                   fallback.textContent = tool.name.slice(0, 2).toUpperCase();
                                   parent.appendChild(fallback);
                                 }
@@ -624,8 +656,8 @@ function TechAdvantageSection() {
                       style={{
                         height: `${sideHeight}px`,
                         top: "100%",
-                        background: `linear-gradient(to bottom, ${colors.right}, ${colors.right}dd)`,
-                        transform: "skewX(-45deg) translateX(9px)",
+                        background: `linear-gradient(to bottom, ${colors.right}, ${colors.right}cc)`,
+                        transform: `skewX(-45deg) translateX(${sideHeight / 2}px)`,
                         transformOrigin: "top left",
                       }}
                     />
@@ -636,25 +668,33 @@ function TechAdvantageSection() {
                       style={{
                         width: `${sideHeight}px`,
                         left: "100%",
-                        background: `linear-gradient(to right, ${colors.right}, ${colors.right}cc)`,
-                        transform: "skewY(-45deg) translateY(9px)",
+                        background: `linear-gradient(to right, ${colors.right}, ${colors.right}99)`,
+                        transform: `skewY(-45deg) translateY(${sideHeight / 2}px)`,
                         transformOrigin: "top left",
                       }}
                     />
+
+                    {i === 0 && (
+                      <div className="absolute -inset-3 bg-[#EE672C]/[0.07] rounded-xl blur-xl pointer-events-none -z-10" />
+                    )}
                   </div>
                 </motion.div>
               );
             })}
           </motion.div>
 
-          {/* Floor glow */}
+          {/* Floor glow / reflection */}
           <motion.div
-            className="mx-auto mt-4 h-16 rounded-[50%] bg-gradient-to-r from-transparent via-purple-500/15 to-transparent blur-2xl"
-            style={{ width: "90%" }}
+            className="mx-auto mt-5 h-20 rounded-[50%]"
+            style={{
+              width: "96%",
+              background: "radial-gradient(ellipse at center, rgba(77,57,127,0.2), rgba(238,103,44,0.04), transparent 70%)",
+              filter: "blur(16px)",
+            }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 1, duration: 0.6 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
           />
         </div>
       </div>
