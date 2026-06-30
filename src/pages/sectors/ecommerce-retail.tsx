@@ -420,25 +420,42 @@ export default function EcommerceRetailPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — TESTIMONIAL                                       */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/30" />
+
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
             <div className="relative">
-              <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[6rem] font-heading font-black text-brand/[0.06] leading-none select-none pointer-events-none">
-                &ldquo;
-              </span>
+              <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-[#EE672C]/20 border border-[#EE672C]/20 flex items-center justify-center">
+                <svg
+                  className="text-[#EE672C]"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M11.3 2.5c-1.4.7-2.5 1.5-3.5 2.7C6.7 6.5 6 8.1 6 10c0 .4.1.7.1 1H8c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3H4c-1.7 0-3-1.3-3-3v-4c0-3.3 1-6.1 2.8-8.3C5.6 3.5 8.1 2.1 11 1l.3 1.5zm13 0c-1.4.7-2.5 1.5-3.5 2.7-1.1 1.3-1.8 2.9-1.8 4.8 0 .4.1.7.1 1H21c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3h-4c-1.7 0-3-1.3-3-3v-4c0-3.3 1-6.1 2.8-8.3C18.6 3.5 21.1 2.1 24 1l.3 1.5z" />
+                </svg>
+              </div>
               <blockquote className="relative z-10">
-                <p className="text-xl md:text-2xl lg:text-[1.7rem] font-heading font-medium text-ink leading-relaxed italic">
+                <p className="text-xl md:text-2xl lg:text-[1.7rem] font-heading font-medium text-white leading-relaxed italic">
                   &ldquo;We were selling in 35 countries and our books were a
                   mess. TrueLedger not only cleaned everything up &mdash; they
                   built us a reporting framework that actually tells us which
                   markets make money and which ones just look busy.&rdquo;
                 </p>
                 <footer className="mt-8">
-                  <p className="text-sm font-semibold text-ink">
+                  <p className="text-sm font-semibold text-white">
                     Co-Founder
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-white/50">
                     Cross-Border E-Commerce Brand
                   </p>
                 </footer>

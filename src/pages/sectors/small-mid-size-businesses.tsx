@@ -237,7 +237,7 @@ export default function SmallMidSizeBusinessesPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
         >
           <source
-            src="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4"
+            src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4"
             type="video/mp4"
           />
         </video>
@@ -416,27 +416,38 @@ export default function SmallMidSizeBusinessesPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — TESTIMONIAL                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/30" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
-              <svg
-                className="mx-auto mb-6 text-brand/20"
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M11.3 2.5c-1.4.7-2.5 1.5-3.5 2.7C6.7 6.5 6 8.1 6 10c0 .4.1.7.1 1H8c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3H4c-1.7 0-3-1.3-3-3v-4c0-3.3 1-6.1 2.8-8.3C5.6 3.5 8.1 2.1 11 1l.3 1.5zm13 0c-1.4.7-2.5 1.5-3.5 2.7-1.1 1.3-1.8 2.9-1.8 4.8 0 .4.1.7.1 1H21c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3h-4c-1.7 0-3-1.3-3-3v-4c0-3.3 1-6.1 2.8-8.3C18.6 3.5 21.1 2.1 24 1l.3 1.5z" />
-              </svg>
-              <blockquote className="text-lg md:text-xl lg:text-2xl font-heading font-medium text-ink leading-relaxed mb-8">
+              <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-[#EE672C]/20 border border-[#EE672C]/20 flex items-center justify-center">
+                <svg
+                  className="text-[#EE672C]"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M11.3 2.5c-1.4.7-2.5 1.5-3.5 2.7C6.7 6.5 6 8.1 6 10c0 .4.1.7.1 1H8c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3H4c-1.7 0-3-1.3-3-3v-4c0-3.3 1-6.1 2.8-8.3C5.6 3.5 8.1 2.1 11 1l.3 1.5zm13 0c-1.4.7-2.5 1.5-3.5 2.7-1.1 1.3-1.8 2.9-1.8 4.8 0 .4.1.7.1 1H21c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3h-4c-1.7 0-3-1.3-3-3v-4c0-3.3 1-6.1 2.8-8.3C18.6 3.5 21.1 2.1 24 1l.3 1.5z" />
+                </svg>
+              </div>
+              <blockquote className="text-lg md:text-xl lg:text-2xl font-heading font-medium text-white leading-relaxed mb-8">
                 I had been using the same bookkeeper for seven years. When I
                 decided to sell the business, my broker told me the books were
                 not presentable. TrueLedger fixed two years of financials in six
                 weeks and we closed the deal.
               </blockquote>
               <div>
-                <p className="font-semibold text-ink text-sm">
+                <p className="font-semibold text-white text-sm">
                   &mdash; Owner, Industrial Services Business
                 </p>
               </div>
