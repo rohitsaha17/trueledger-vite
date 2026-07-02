@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, Check, BarChart3 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { TechPyramid3D } from "@/components/shared/tech-pyramid-3d";
 
 /* ================================================================== */
 /*  Data                                                               */
@@ -538,17 +539,6 @@ function PricingSection() {
 }
 
 function TechAdvantageSection() {
-  const sideHeight = 22;
-  const tierWidths = [24, 42, 60, 78, 96];
-
-  const tierColors = [
-    { face: "#EE672C", faceEnd: "#d45520", right: "#a84518" },
-    { face: "#944a6a", faceEnd: "#7a3a58", right: "#5a2a40" },
-    { face: "#6a4580", faceEnd: "#553568", right: "#3a1548" },
-    { face: "#523870", faceEnd: "#3e2858", right: "#2a1440" },
-    { face: "#4D397F", faceEnd: "#3a2860", right: "#1e0e3a" },
-  ];
-
   return (
     <section className="py-20 md:py-28 bg-[#140e2a] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(238,103,44,0.08),transparent_60%)] pointer-events-none" />
@@ -557,7 +547,7 @@ function TechAdvantageSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
-          <div className="text-center mb-14 md:mb-20">
+          <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading mb-4">
               Our Technology Advantage
             </h2>
@@ -567,136 +557,7 @@ function TechAdvantageSection() {
           </div>
         </AnimatedSection>
 
-        <div className="max-w-3xl mx-auto" style={{ perspective: "1200px" }}>
-          <motion.div
-            className="flex flex-col items-center gap-[3px]"
-            initial={{ rotateX: 58, rotateY: -8, opacity: 0, y: 100 }}
-            whileInView={{ rotateX: 45, rotateY: -8, opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* Apex capstone */}
-            <motion.div
-              className="relative mb-0.5"
-              initial={{ opacity: 0, scale: 0.3 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <svg width="56" height="32" viewBox="0 0 56 32" className="drop-shadow-[0_0_18px_rgba(238,103,44,0.5)]">
-                <defs>
-                  <linearGradient id="pyramid-apex-grad" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0%" stopColor="#EE672C" />
-                    <stop offset="100%" stopColor="#f5935e" />
-                  </linearGradient>
-                </defs>
-                <polygon points="28,0 56,32 0,32" fill="url(#pyramid-apex-grad)" />
-              </svg>
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-10 bg-[#EE672C]/30 rounded-full blur-xl pointer-events-none" />
-            </motion.div>
-
-            {techStack.map((tier, i) => {
-              const width = tierWidths[i];
-              const colors = tierColors[i];
-
-              return (
-                <motion.div
-                  key={tier.label}
-                  className="w-full flex justify-center"
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 + 0.35 }}
-                >
-                  <div className="relative group" style={{ width: `${width}%`, minWidth: "110px" }}>
-                    {/* Front face */}
-                    <div
-                      className="relative z-10 flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2.5 sm:py-3.5"
-                      style={{ background: `linear-gradient(135deg, ${colors.face}, ${colors.faceEnd})` }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none" />
-
-                      <p className="hidden sm:block text-[0.55rem] sm:text-[0.625rem] font-bold uppercase tracking-wider text-white/80 shrink-0 relative z-10 whitespace-nowrap">
-                        {tier.label}
-                      </p>
-
-                      <div className="flex items-center gap-1 sm:gap-2 mx-auto sm:mx-0 sm:ml-auto shrink-0 relative z-10">
-                        {tier.tools.map((tool) => (
-                          <div
-                            key={tool.name}
-                            className="size-6 sm:size-8 rounded-md sm:rounded-lg bg-white/90 shadow-lg ring-1 ring-white/20 flex items-center justify-center overflow-hidden transition-transform duration-200 hover:scale-110"
-                            title={tool.name}
-                          >
-                            <img
-                              src={tool.logo}
-                              alt={tool.name}
-                              className="size-3.5 sm:size-5 object-contain rounded-sm"
-                              loading="lazy"
-                              onError={(e) => {
-                                const el = e.currentTarget;
-                                el.style.display = "none";
-                                const parent = el.parentElement;
-                                if (parent) {
-                                  const fallback = document.createElement("span");
-                                  fallback.className = "text-[0.45rem] sm:text-[0.55rem] font-bold text-[#4D397F]";
-                                  fallback.textContent = tool.name.slice(0, 2).toUpperCase();
-                                  parent.appendChild(fallback);
-                                }
-                              }}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom 3D face */}
-                    <div
-                      className="absolute left-0 right-0 z-0"
-                      style={{
-                        height: `${sideHeight}px`,
-                        top: "100%",
-                        background: `linear-gradient(to bottom, ${colors.right}, ${colors.right}cc)`,
-                        transform: `skewX(-45deg) translateX(${sideHeight / 2}px)`,
-                        transformOrigin: "top left",
-                      }}
-                    />
-
-                    {/* Right 3D face */}
-                    <div
-                      className="absolute top-0 bottom-0 z-0"
-                      style={{
-                        width: `${sideHeight}px`,
-                        left: "100%",
-                        background: `linear-gradient(to right, ${colors.right}, ${colors.right}99)`,
-                        transform: `skewY(-45deg) translateY(${sideHeight / 2}px)`,
-                        transformOrigin: "top left",
-                      }}
-                    />
-
-                    {i === 0 && (
-                      <div className="absolute -inset-3 bg-[#EE672C]/[0.07] rounded-xl blur-xl pointer-events-none -z-10" />
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          {/* Floor glow / reflection */}
-          <motion.div
-            className="mx-auto mt-5 h-20 rounded-[50%]"
-            style={{
-              width: "96%",
-              background: "radial-gradient(ellipse at center, rgba(77,57,127,0.2), rgba(238,103,44,0.04), transparent 70%)",
-              filter: "blur(16px)",
-            }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-          />
-        </div>
+        <TechPyramid3D tiers={techStack} />
       </div>
     </section>
   );
