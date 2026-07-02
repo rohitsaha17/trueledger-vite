@@ -147,37 +147,46 @@ const pricingTiers = [
 
 const techStack = [
   {
-    label: "Core Accounting & Financial Operations",
+    label: "Cloud Based Accounting",
+    tools: [
+      { name: "QuickBooks", logo: "https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128" },
+      { name: "Xero", logo: "https://www.google.com/s2/favicons?domain=xero.com&sz=128" },
+    ],
+  },
+  {
+    label: "Bill Processing",
     tools: [
       { name: "Bill.com", logo: "https://www.google.com/s2/favicons?domain=bill.com&sz=128" },
-      { name: "QuickBooks", logo: "https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128" },
-      { name: "Plooto", logo: "https://www.google.com/s2/favicons?domain=plooto.com&sz=128" },
+      { name: "Dext", logo: "https://www.google.com/s2/favicons?domain=dext.com&sz=128" },
+      { name: "Stampli", logo: "https://www.google.com/s2/favicons?domain=stampli.com&sz=128" },
     ],
   },
   {
-    label: "AI Bookkeeping & Process Execution",
+    label: "AI Native",
     tools: [
-      { name: "Keeper", logo: "https://www.google.com/s2/favicons?domain=keeper.app&sz=128" },
-      { name: "Botkeeper", logo: "https://www.google.com/s2/favicons?domain=botkeeper.com&sz=128" },
-      { name: "Docyt", logo: "https://www.google.com/s2/favicons?domain=docyt.com&sz=128" },
-      { name: "Booke.ai", logo: "https://www.google.com/s2/favicons?domain=booke.ai&sz=128" },
+      { name: "Campfire", logo: "https://www.google.com/s2/favicons?domain=campfire.ai&sz=128" },
+      { name: "Digits", logo: "https://www.google.com/s2/favicons?domain=digits.com&sz=128" },
+      { name: "Kick", logo: "https://www.google.com/s2/favicons?domain=kick.co&sz=128" },
+      { name: "Puzzle", logo: "https://www.google.com/s2/favicons?domain=puzzle.io&sz=128" },
     ],
   },
   {
-    label: "Control, Tax & Practice Management",
+    label: "Payroll & Workflow",
     tools: [
+      { name: "ADP", logo: "https://www.google.com/s2/favicons?domain=adp.com&sz=128" },
+      { name: "Rippling", logo: "https://www.google.com/s2/favicons?domain=rippling.com&sz=128" },
+      { name: "Gusto", logo: "https://www.google.com/s2/favicons?domain=gusto.com&sz=128" },
+      { name: "Karbon", logo: "https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" },
       { name: "Canopy", logo: "https://www.google.com/s2/favicons?domain=canopytax.com&sz=128" },
-      { name: "Soraban", logo: "https://www.google.com/s2/favicons?domain=soraban.com&sz=128" },
-      { name: "Drake Tax", logo: "https://www.google.com/s2/favicons?domain=drakesoftware.com&sz=128" },
-      { name: "FloQast", logo: "https://www.google.com/s2/favicons?domain=floqast.com&sz=128" },
     ],
   },
   {
-    label: "Reporting, Insights & Automation Layer",
+    label: "Close & Reporting",
     tools: [
-      { name: "Fathom", logo: "https://www.google.com/s2/favicons?domain=fathomhq.com&sz=128" },
-      { name: "Jirav", logo: "https://www.google.com/s2/favicons?domain=jirav.com&sz=128" },
-      { name: "Zoho", logo: "https://www.google.com/s2/favicons?domain=zoho.com&sz=128" },
+      { name: "Double", logo: "https://www.google.com/s2/favicons?domain=doublehq.com&sz=128" },
+      { name: "Financial Cents", logo: "https://www.google.com/s2/favicons?domain=financial-cents.com&sz=128" },
+      { name: "Spotlight", logo: "https://www.google.com/s2/favicons?domain=spotlightreporting.com&sz=128" },
+      { name: "FloQast", logo: "https://www.google.com/s2/favicons?domain=floqast.com&sz=128" },
       { name: "Reach Reporting", logo: "https://www.google.com/s2/favicons?domain=reachreporting.com&sz=128" },
     ],
   },

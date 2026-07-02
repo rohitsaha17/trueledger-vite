@@ -6,16 +6,17 @@ interface TechTier {
   tools: { name: string; logo: string }[];
 }
 
-const APEX_H = 50;
-const TIER_H = 108;
+const TIER_H = 100;
+const APEX_EXTRA = 54;
 const TIER_GAP = 4;
 const DX = 18;
 const DY = 10;
 
-const W = [18, 38, 58, 78, 96];
+const W = [14, 30, 46, 62, 80, 96];
 
 const STYLES = [
   { grad: "linear-gradient(155deg, #e8a060 0%, #d4874d 50%, #a86b38 100%)", back: "#7a5228" },
+  { grad: "linear-gradient(155deg, #d49060 0%, #c07850 50%, #9a6040 100%)", back: "#6a4430" },
   { grad: "linear-gradient(155deg, #ba7595 0%, #9b5e7a 50%, #7a4a62 100%)", back: "#5c3848" },
   { grad: "linear-gradient(155deg, #9068ab 0%, #7a5496 50%, #5e4178 100%)", back: "#42305a" },
   { grad: "linear-gradient(155deg, #7050a0 0%, #5a3d80 50%, #402b60 100%)", back: "#2e1e48" },
@@ -31,21 +32,21 @@ function Logo({ tool }: { tool: { name: string; logo: string } }) {
     .toUpperCase();
 
   return (
-    <div className="bg-white rounded-lg shadow-md flex flex-col items-center p-1 w-[52px] h-[58px] flex-shrink-0">
+    <div className="bg-white rounded-lg shadow-md flex flex-col items-center p-1 w-[48px] h-[54px] flex-shrink-0">
       {bad ? (
-        <div className="w-8 h-8 rounded bg-gray-100 flex items-center justify-center">
-          <span className="text-xs font-bold text-gray-500">{initials}</span>
+        <div className="w-7 h-7 rounded bg-gray-100 flex items-center justify-center">
+          <span className="text-[10px] font-bold text-gray-500">{initials}</span>
         </div>
       ) : (
         <img
           src={tool.logo}
           alt={tool.name}
-          className="w-8 h-8 object-contain"
+          className="w-7 h-7 object-contain"
           loading="lazy"
           onError={() => setBad(true)}
         />
       )}
-      <span className="text-[6px] text-gray-600 font-medium text-center leading-tight line-clamp-2 mt-auto w-full">
+      <span className="text-[5.5px] text-gray-600 font-medium text-center leading-tight line-clamp-2 mt-auto w-full">
         {tool.name}
       </span>
     </div>
@@ -53,16 +54,27 @@ function Logo({ tool }: { tool: { name: string; logo: string } }) {
 }
 
 function Tier({ tier, i }: { tier: TechTier; i: number }) {
-  const topW = W[i];
   const botW = W[i + 1];
-  const inset = (((botW - topW) / botW) * 100) / 2;
-  const clip = `polygon(${inset}% 0%, ${100 - inset}% 0%, 100% 100%, 0% 100%)`;
-  const s = STYLES[i];
+  const s = STYLES[Math.min(i, STYLES.length - 1)];
+  const isApex = i === 0;
+
+  let clip: string;
+  let h: number;
+
+  if (isApex) {
+    clip = "polygon(50% 0%, 100% 100%, 0% 100%)";
+    h = TIER_H + APEX_EXTRA;
+  } else {
+    const topW = W[i];
+    const inset = (((botW - topW) / botW) * 100) / 2;
+    clip = `polygon(${inset}% 0%, ${100 - inset}% 0%, 100% 100%, 0% 100%)`;
+    h = TIER_H;
+  }
 
   return (
     <motion.div
       className="relative mx-auto"
-      style={{ width: `${botW}%`, marginTop: i === 0 ? 0 : TIER_GAP, overflow: "visible" }}
+      style={{ width: `${botW}%`, marginTop: isApex ? 0 : TIER_GAP, overflow: "visible" }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.08 * i, duration: 0.45 }}
@@ -73,8 +85,8 @@ function Tier({ tier, i }: { tier: TechTier; i: number }) {
         style={{ backgroundColor: s.back, clipPath: clip, transform: `translate(${DX}px,-${DY}px)` }}
       />
       <div
-        className="relative z-10 flex flex-col items-center justify-center gap-1 px-4"
-        style={{ height: TIER_H, background: s.grad, clipPath: clip }}
+        className={`relative z-10 flex flex-col items-center gap-1 px-4 ${isApex ? "justify-end pb-3" : "justify-center"}`}
+        style={{ height: h, background: s.grad, clipPath: clip }}
       >
         <span className="md:hidden text-white/70 text-[8px] font-bold uppercase tracking-widest mb-0.5">
           {tier.label}
@@ -115,30 +127,6 @@ export function TechPyramid3D({ tiers }: { tiers: TechTier[] }) {
     <div className="w-full max-w-5xl mx-auto px-4">
       <div className="flex items-start">
         <div className="flex-1 flex flex-col items-center" style={{ overflow: "visible" }}>
-          <motion.div
-            className="relative mx-auto"
-            style={{ width: `${W[0]}%`, height: APEX_H, overflow: "visible" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundColor: STYLES[0].back,
-                clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-                transform: `translate(${DX}px,-${DY}px)`,
-              }}
-            />
-            <div
-              className="relative z-10 h-full"
-              style={{
-                background: STYLES[0].grad,
-                clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-              }}
-            />
-          </motion.div>
-
           {tiers.map((tier, i) => (
             <Tier key={tier.label} tier={tier} i={i} />
           ))}
@@ -155,19 +143,21 @@ export function TechPyramid3D({ tiers }: { tiers: TechTier[] }) {
         </div>
 
         <div className="hidden md:flex flex-col flex-shrink-0 w-60 pl-2">
-          <div style={{ height: APEX_H }} />
-          {tiers.map((tier, i) => (
-            <div
-              key={tier.label}
-              className="flex items-center gap-1"
-              style={{ height: TIER_H, marginTop: i === 0 ? 0 : TIER_GAP }}
-            >
-              <Bracket h={TIER_H * 0.7} />
-              <span className="text-white/80 text-[11px] font-bold uppercase tracking-wider leading-snug">
-                {tier.label}
-              </span>
-            </div>
-          ))}
+          {tiers.map((tier, i) => {
+            const h = i === 0 ? TIER_H + APEX_EXTRA : TIER_H;
+            return (
+              <div
+                key={tier.label}
+                className="flex items-center gap-1"
+                style={{ height: h, marginTop: i === 0 ? 0 : TIER_GAP }}
+              >
+                <Bracket h={h * 0.7} />
+                <span className="text-white/80 text-[11px] font-bold uppercase tracking-wider leading-snug">
+                  {tier.label}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
