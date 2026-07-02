@@ -9,9 +9,9 @@ interface TechTier {
 }
 
 const TIER_COLORS = ["#EE672C", "#b84560", "#7a3a78", "#5a3580", "#4D397F"];
-const TIER_HEIGHT = 0.48;
+const TIER_HEIGHT = 0.72;
 const GAP = 0.06;
-const RADII = [0.3, 0.65, 1.0, 1.4, 1.8, 2.15];
+const RADII = [0.35, 0.72, 1.1, 1.55, 2.0, 2.45];
 
 function createTierTexture(
   tier: TechTier,
@@ -19,7 +19,7 @@ function createTierTexture(
   logos: (HTMLImageElement | null)[]
 ): THREE.CanvasTexture {
   const w = 2048;
-  const h = 320;
+  const h = 640;
   const canvas = document.createElement("canvas");
   canvas.width = w;
   canvas.height = h;
@@ -41,27 +41,27 @@ function createTierTexture(
     ctx.fillStyle = grad;
     ctx.fillRect(fx, 0, faceW, h);
 
-    ctx.fillStyle = "rgba(255,255,255,0.65)";
-    ctx.font = "bold 22px Arial,sans-serif";
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 36px Arial,sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    ctx.fillText(tier.label.toUpperCase(), fx + faceW / 2, 24);
+    ctx.fillText(tier.label.toUpperCase(), fx + faceW / 2, 32);
 
-    const logoSize = 52;
-    const pad = 14;
+    const logoSize = 100;
+    const pad = 20;
     const totalW = tier.tools.length * (logoSize + pad) - pad;
     const sx = fx + (faceW - totalW) / 2;
-    const sy = 80;
+    const sy = 110;
 
     tier.tools.forEach((tool, i) => {
       const lx = sx + i * (logoSize + pad);
 
-      ctx.shadowColor = "rgba(0,0,0,0.2)";
-      ctx.shadowBlur = 6;
-      ctx.shadowOffsetY = 3;
+      ctx.shadowColor = "rgba(0,0,0,0.3)";
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetY = 4;
 
-      ctx.fillStyle = "rgba(255,255,255,0.93)";
-      const r = 10;
+      ctx.fillStyle = "#ffffff";
+      const r = 16;
       ctx.beginPath();
       ctx.moveTo(lx + r, sy);
       ctx.lineTo(lx + logoSize - r, sy);
@@ -85,7 +85,7 @@ function createTierTexture(
       ctx.shadowOffsetY = 0;
 
       if (logos[i]) {
-        const p = 8;
+        const p = 10;
         ctx.drawImage(
           logos[i]!,
           lx + p,
@@ -95,7 +95,7 @@ function createTierTexture(
         );
       } else {
         ctx.fillStyle = color;
-        ctx.font = "bold 18px Arial,sans-serif";
+        ctx.font = "bold 34px Arial,sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(
@@ -105,13 +105,13 @@ function createTierTexture(
         );
       }
 
-      ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.font = "12px Arial,sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.font = "bold 22px Arial,sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
       const label =
         tool.name.length > 12 ? tool.name.slice(0, 11) + "…" : tool.name;
-      ctx.fillText(label, lx + logoSize / 2, sy + logoSize + 6);
+      ctx.fillText(label, lx + logoSize / 2, sy + logoSize + 10);
     });
   }
 
@@ -243,7 +243,7 @@ function GlowRing({ totalTiers }: { totalTiers: number }) {
 
   return (
     <mesh ref={ref} position={[0, y, 0]}>
-      <ringGeometry args={[2.0, 2.6, 64]} />
+      <ringGeometry args={[2.3, 3.0, 64]} />
       <meshBasicMaterial
         color="#EE672C"
         transparent
@@ -312,14 +312,14 @@ function SegmentedPyramid({ tiers }: { tiers: TechTier[] }) {
 export function TechPyramid3D({ tiers }: { tiers: TechTier[] }) {
   return (
     <div className="w-full">
-      <div className="h-[400px] md:h-[500px]">
+      <div className="h-[500px] md:h-[620px]">
         <Canvas
-          camera={{ position: [0, 1, 6.5], fov: 42 }}
+          camera={{ position: [0, 1.2, 8], fov: 42 }}
           gl={{ antialias: true, alpha: true }}
           style={{ background: "transparent" }}
         >
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[5, 8, 5]} intensity={1.3} />
+          <ambientLight intensity={0.7} />
+          <directionalLight position={[5, 8, 5]} intensity={1.4} />
           <directionalLight
             position={[-4, 3, -3]}
             intensity={0.4}
