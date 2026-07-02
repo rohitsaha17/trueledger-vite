@@ -12,108 +12,214 @@ const TIER_COLORS = ["#EE672C", "#b84560", "#7a3a78", "#5a3580", "#4D397F"];
 const TIER_HEIGHT = 0.72;
 const GAP = 0.06;
 const RADII = [0.35, 0.72, 1.1, 1.55, 2.0, 2.45];
+const FACE_ANGLES = [
+  Math.PI / 4,
+  (3 * Math.PI) / 4,
+  (5 * Math.PI) / 4,
+  (7 * Math.PI) / 4,
+];
 
-function createTierTexture(
+function createFaceGeo(
+  topR: number,
+  botR: number,
+  height: number,
+  faceIndex: number
+): THREE.BufferGeometry {
+  const segW = 12;
+  const segH = 6;
+  const a1 = FACE_ANGLES[faceIndex];
+  const a2 = FACE_ANGLES[(faceIndex + 1) % 4];
+
+  const tl = [topR * Math.sin(a1), height / 2, topR * Math.cos(a1)];
+  const tr = [topR * Math.sin(a2), height / 2, topR * Math.cos(a2)];
+  const bl = [botR * Math.sin(a1), -height / 2, botR * Math.cos(a1)];
+  const br = [botR * Math.sin(a2), -height / 2, botR * Math.cos(a2)];
+
+  const positions: number[] = [];
+  const uvs: number[] = [];
+  const indices: number[] = [];
+
+  for (let iy = 0; iy <= segH; iy++) {
+    const t = iy / segH;
+    for (let ix = 0; ix <= segW; ix++) {
+      const s = ix / segW;
+      positions.push(
+        (1 - t) * ((1 - s) * bl[0] + s * br[0]) +
+          t * ((1 - s) * tl[0] + s * tr[0]),
+        (1 - t) * bl[1] + t * tl[1],
+        (1 - t) * ((1 - s) * bl[2] + s * br[2]) +
+          t * ((1 - s) * tl[2] + s * tr[2])
+      );
+      uvs.push(s, t);
+    }
+  }
+
+  for (let iy = 0; iy < segH; iy++) {
+    for (let ix = 0; ix < segW; ix++) {
+      const a = iy * (segW + 1) + ix;
+      const b = a + 1;
+      const c = a + segW + 1;
+      const d = c + 1;
+      indices.push(a, b, d, a, d, c);
+    }
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  return geo;
+}
+
+function createCapGeo(radius: number, up: boolean): THREE.BufferGeometry {
+  const s = Math.SQRT1_2;
+  const positions = [
+    0, 0, 0, radius * s, 0, radius * s, -radius * s, 0, radius * s,
+    -radius * s, 0, -radius * s, radius * s, 0, -radius * s,
+  ];
+  const ny = up ? 1 : -1;
+  const normals = [0, ny, 0, 0, ny, 0, 0, ny, 0, 0, ny, 0, 0, ny, 0];
+  const indices = up
+    ? [0, 2, 1, 0, 3, 2, 0, 4, 3, 0, 1, 4]
+    : [0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 1];
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geo.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+  geo.setIndex(indices);
+  return geo;
+}
+
+function createTierEdges(
+  topR: number,
+  botR: number,
+  height: number
+): THREE.BufferGeometry {
+  const tv = [0, 1, 2, 3].map((i) => {
+    const a = FACE_ANGLES[i];
+    return [topR * Math.sin(a), height / 2, topR * Math.cos(a)];
+  });
+  const bv = [0, 1, 2, 3].map((i) => {
+    const a = FACE_ANGLES[i];
+    return [botR * Math.sin(a), -height / 2, botR * Math.cos(a)];
+  });
+
+  const positions: number[] = [];
+  for (let i = 0; i < 4; i++) {
+    positions.push(...tv[i], ...tv[(i + 1) % 4]);
+    positions.push(...bv[i], ...bv[(i + 1) % 4]);
+    positions.push(...tv[i], ...bv[i]);
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  return geo;
+}
+
+function createFaceTexture(
   tier: TechTier,
   tierIndex: number,
   logos: (HTMLImageElement | null)[]
 ): THREE.CanvasTexture {
-  const w = 2048;
-  const h = 640;
+  const topR = RADII[tierIndex];
+  const botR = RADII[tierIndex + 1];
+  const avgFaceW = ((topR + botR) / 2) * Math.SQRT2;
+  const aspect = avgFaceW / TIER_HEIGHT;
+
+  const h = 400;
+  const w = Math.max(400, Math.round(h * aspect));
   const canvas = document.createElement("canvas");
   canvas.width = w;
   canvas.height = h;
   const ctx = canvas.getContext("2d")!;
-
-  const faceW = w / 4;
   const color = TIER_COLORS[tierIndex];
 
-  for (let face = 0; face < 4; face++) {
-    const fx = face * faceW;
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, w, h);
 
-    ctx.fillStyle = color;
-    ctx.fillRect(fx, 0, faceW, h);
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, "rgba(255,255,255,0.14)");
+  grad.addColorStop(0.4, "rgba(255,255,255,0)");
+  grad.addColorStop(1, "rgba(0,0,0,0.22)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
 
-    const grad = ctx.createLinearGradient(fx, 0, fx, h);
-    grad.addColorStop(0, "rgba(255,255,255,0.14)");
-    grad.addColorStop(0.4, "rgba(255,255,255,0)");
-    grad.addColorStop(1, "rgba(0,0,0,0.22)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(fx, 0, faceW, h);
+  ctx.fillStyle = "#ffffff";
+  const labelSize = Math.round(h * 0.085);
+  ctx.font = `bold ${labelSize}px Arial,sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.fillText(tier.label.toUpperCase(), w / 2, Math.round(h * 0.06));
+
+  const logoSize = Math.round(h * 0.22);
+  const pad = Math.round(h * 0.045);
+  const totalLogosW = tier.tools.length * (logoSize + pad) - pad;
+  const sx = (w - totalLogosW) / 2;
+  const sy = Math.round(h * 0.3);
+
+  tier.tools.forEach((tool, i) => {
+    const lx = sx + i * (logoSize + pad);
+
+    ctx.shadowColor = "rgba(0,0,0,0.3)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 4;
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 36px Arial,sans-serif";
+    const r = Math.round(logoSize * 0.15);
+    ctx.beginPath();
+    ctx.moveTo(lx + r, sy);
+    ctx.lineTo(lx + logoSize - r, sy);
+    ctx.quadraticCurveTo(lx + logoSize, sy, lx + logoSize, sy + r);
+    ctx.lineTo(lx + logoSize, sy + logoSize - r);
+    ctx.quadraticCurveTo(
+      lx + logoSize,
+      sy + logoSize,
+      lx + logoSize - r,
+      sy + logoSize
+    );
+    ctx.lineTo(lx + r, sy + logoSize);
+    ctx.quadraticCurveTo(lx, sy + logoSize, lx, sy + logoSize - r);
+    ctx.lineTo(lx, sy + r);
+    ctx.quadraticCurveTo(lx, sy, lx + r, sy);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+
+    if (logos[i]) {
+      const p = Math.round(logoSize * 0.12);
+      ctx.drawImage(
+        logos[i]!,
+        lx + p,
+        sy + p,
+        logoSize - p * 2,
+        logoSize - p * 2
+      );
+    } else {
+      ctx.fillStyle = color;
+      const abbrSize = Math.round(logoSize * 0.38);
+      ctx.font = `bold ${abbrSize}px Arial,sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(
+        tool.name.slice(0, 2).toUpperCase(),
+        lx + logoSize / 2,
+        sy + logoSize / 2
+      );
+    }
+
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    const nameSize = Math.round(h * 0.045);
+    ctx.font = `bold ${nameSize}px Arial,sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    ctx.fillText(tier.label.toUpperCase(), fx + faceW / 2, 32);
-
-    const logoSize = 100;
-    const pad = 20;
-    const totalW = tier.tools.length * (logoSize + pad) - pad;
-    const sx = fx + (faceW - totalW) / 2;
-    const sy = 110;
-
-    tier.tools.forEach((tool, i) => {
-      const lx = sx + i * (logoSize + pad);
-
-      ctx.shadowColor = "rgba(0,0,0,0.3)";
-      ctx.shadowBlur = 10;
-      ctx.shadowOffsetY = 4;
-
-      ctx.fillStyle = "#ffffff";
-      const r = 16;
-      ctx.beginPath();
-      ctx.moveTo(lx + r, sy);
-      ctx.lineTo(lx + logoSize - r, sy);
-      ctx.quadraticCurveTo(lx + logoSize, sy, lx + logoSize, sy + r);
-      ctx.lineTo(lx + logoSize, sy + logoSize - r);
-      ctx.quadraticCurveTo(
-        lx + logoSize,
-        sy + logoSize,
-        lx + logoSize - r,
-        sy + logoSize
-      );
-      ctx.lineTo(lx + r, sy + logoSize);
-      ctx.quadraticCurveTo(lx, sy + logoSize, lx, sy + logoSize - r);
-      ctx.lineTo(lx, sy + r);
-      ctx.quadraticCurveTo(lx, sy, lx + r, sy);
-      ctx.closePath();
-      ctx.fill();
-
-      ctx.shadowColor = "transparent";
-      ctx.shadowBlur = 0;
-      ctx.shadowOffsetY = 0;
-
-      if (logos[i]) {
-        const p = 10;
-        ctx.drawImage(
-          logos[i]!,
-          lx + p,
-          sy + p,
-          logoSize - p * 2,
-          logoSize - p * 2
-        );
-      } else {
-        ctx.fillStyle = color;
-        ctx.font = "bold 34px Arial,sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(
-          tool.name.slice(0, 2).toUpperCase(),
-          lx + logoSize / 2,
-          sy + logoSize / 2
-        );
-      }
-
-      ctx.fillStyle = "rgba(255,255,255,0.85)";
-      ctx.font = "bold 22px Arial,sans-serif";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "top";
-      const label =
-        tool.name.length > 12 ? tool.name.slice(0, 11) + "…" : tool.name;
-      ctx.fillText(label, lx + logoSize / 2, sy + logoSize + 10);
-    });
-  }
+    const label =
+      tool.name.length > 10 ? tool.name.slice(0, 9) + "…" : tool.name;
+    ctx.fillText(label, lx + logoSize / 2, sy + logoSize + Math.round(h * 0.02));
+  });
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.needsUpdate = true;
@@ -144,23 +250,27 @@ function TierMesh({
           })
       )
     ).then((logos) => {
-      setTexture(createTierTexture(tier, tierIndex, logos));
+      setTexture(createFaceTexture(tier, tierIndex, logos));
     });
   }, [tier, tierIndex]);
 
   const topR = RADII[tierIndex];
   const botR = RADII[tierIndex + 1];
-
   const totalH = totalTiers * TIER_HEIGHT + (totalTiers - 1) * GAP;
   const y = totalH / 2 - tierIndex * (TIER_HEIGHT + GAP) - TIER_HEIGHT / 2;
-
-  const geo = useMemo(() => {
-    const g = new THREE.CylinderGeometry(topR, botR, TIER_HEIGHT, 4, 1);
-    g.rotateY(Math.PI / 4);
-    return g;
-  }, [topR, botR]);
-
   const color = TIER_COLORS[tierIndex];
+
+  const faceGeos = useMemo(
+    () => [0, 1, 2, 3].map((fi) => createFaceGeo(topR, botR, TIER_HEIGHT, fi)),
+    [topR, botR]
+  );
+
+  const topCapGeo = useMemo(() => createCapGeo(topR, true), [topR]);
+  const botCapGeo = useMemo(() => createCapGeo(botR, false), [botR]);
+  const edgesGeo = useMemo(
+    () => createTierEdges(topR, botR, TIER_HEIGHT),
+    [topR, botR]
+  );
 
   const sideMat = useMemo(() => {
     if (texture) {
@@ -169,7 +279,6 @@ function TierMesh({
         metalness: 0.12,
         roughness: 0.42,
         clearcoat: 0.25,
-        side: THREE.DoubleSide,
       });
     }
     return new THREE.MeshPhysicalMaterial({
@@ -177,7 +286,6 @@ function TierMesh({
       metalness: 0.2,
       roughness: 0.45,
       clearcoat: 0.2,
-      side: THREE.DoubleSide,
     });
   }, [texture, color]);
 
@@ -187,18 +295,27 @@ function TierMesh({
         color,
         metalness: 0.3,
         roughness: 0.5,
-        side: THREE.DoubleSide,
       }),
     [color]
   );
 
-  const edgesGeo = useMemo(() => new THREE.EdgesGeometry(geo, 20), [geo]);
-
   return (
     <group position={[0, y, 0]}>
-      <mesh geometry={geo} material={[sideMat, capMat, capMat]} />
+      {faceGeos.map((geo, i) => (
+        <mesh key={i} geometry={geo} material={sideMat} />
+      ))}
+      <mesh
+        geometry={topCapGeo}
+        position={[0, TIER_HEIGHT / 2, 0]}
+        material={capMat}
+      />
+      <mesh
+        geometry={botCapGeo}
+        position={[0, -TIER_HEIGHT / 2, 0]}
+        material={capMat}
+      />
       <lineSegments geometry={edgesGeo}>
-        <lineBasicMaterial color="#ffffff" transparent opacity={0.08} />
+        <lineBasicMaterial color="#ffffff" transparent opacity={0.1} />
       </lineSegments>
     </group>
   );
