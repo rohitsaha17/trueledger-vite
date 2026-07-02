@@ -147,47 +147,38 @@ const pricingTiers = [
 
 const techStack = [
   {
-    label: "Forecasting & Reporting",
+    label: "Core Accounting & Financial Operations",
     tools: [
-      { name: "Spotlight Reporting", logo: "https://cdn.prod.website-files.com/5efc103e2e619592c6612ab2/64f6a58454e53ad531820231_Spotlight.png" },
-      { name: "FloQast", logo: "https://cdn.prod.website-files.com/67a1db1fd2f32256b80d22ff/67cb7363a73d6b2adb7181e8_256x256-1.jpg" },
+      { name: "Bill.com", logo: "https://www.google.com/s2/favicons?domain=bill.com&sz=128" },
+      { name: "QuickBooks", logo: "https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128" },
+      { name: "Plooto", logo: "https://www.google.com/s2/favicons?domain=plooto.com&sz=128" },
     ],
   },
   {
-    label: "Month Close & Workflow",
+    label: "AI Bookkeeping & Process Execution",
     tools: [
-      { name: "Double", logo: "https://doublehq.com/wp-content/uploads/2026/01/double-logo-new.png" },
-      { name: "Financial Cents", logo: "https://financial-cents.com/wp-content/uploads/2025/04/financial-cents-logo.svg" },
-      { name: "Reach Reporting", logo: "https://wpcdn.reachreporting.com/wp-content/uploads/2024/05/28151000/cropped-appcard-1e584df9-2a27-4825-ab36-e47f70b6965a-1-192x192.png" },
+      { name: "Keeper", logo: "https://www.google.com/s2/favicons?domain=keeper.app&sz=128" },
+      { name: "Botkeeper", logo: "https://www.google.com/s2/favicons?domain=botkeeper.com&sz=128" },
+      { name: "Docyt", logo: "https://www.google.com/s2/favicons?domain=docyt.com&sz=128" },
+      { name: "Booke.ai", logo: "https://www.google.com/s2/favicons?domain=booke.ai&sz=128" },
     ],
   },
   {
-    label: "AI-Native Platforms",
+    label: "Control, Tax & Practice Management",
     tools: [
-      { name: "Campfire", logo: "https://www.google.com/s2/favicons?domain=campfire.ai&sz=128" },
-      { name: "Digits", logo: "https://digits.com/favicon/favicon-256.png?v=3" },
-      { name: "Kick", logo: "https://www.google.com/s2/favicons?domain=kick.co&sz=128" },
-      { name: "Puzzle", logo: "https://www.google.com/s2/favicons?domain=puzzle.io&sz=128" },
+      { name: "Canopy", logo: "https://www.google.com/s2/favicons?domain=canopytax.com&sz=128" },
+      { name: "Soraban", logo: "https://www.google.com/s2/favicons?domain=soraban.com&sz=128" },
+      { name: "Drake Tax", logo: "https://www.google.com/s2/favicons?domain=drakesoftware.com&sz=128" },
+      { name: "FloQast", logo: "https://www.google.com/s2/favicons?domain=floqast.com&sz=128" },
     ],
   },
   {
-    label: "Bills, AP & Workflow",
+    label: "Reporting, Insights & Automation Layer",
     tools: [
-      { name: "Bill.com", logo: "https://cdn.prod.website-files.com/63e3da3df35cd62f54751985/63efaae11991984d7d4d021a_Logo-Mark-Color%201.png" },
-      { name: "Dext", logo: "https://www.google.com/s2/favicons?domain=dext.com&sz=128" },
-      { name: "Stampli", logo: "https://www.stampli.com/wp-content/uploads/2026/03/Updated_Stampli_logo.svg" },
-      { name: "Karbon", logo: "https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" },
-      { name: "Canopy", logo: "https://www.getcanopy.com/wp-content/themes/get_canopy/assets/images/logo.svg" },
-    ],
-  },
-  {
-    label: "Cloud Accounting & Payroll",
-    tools: [
-      { name: "QuickBooks", logo: "https://cdn.worldvectorlogo.com/logos/quickbooks-2.svg" },
-      { name: "Xero", logo: "https://cdn.worldvectorlogo.com/logos/xero-1.svg" },
-      { name: "ADP", logo: "https://www.google.com/s2/favicons?domain=adp.com&sz=128" },
-      { name: "Rippling", logo: "https://www.google.com/s2/favicons?domain=rippling.com&sz=128" },
-      { name: "Gusto", logo: "https://gusto.com/apple-touch-icon.png" },
+      { name: "Fathom", logo: "https://www.google.com/s2/favicons?domain=fathomhq.com&sz=128" },
+      { name: "Jirav", logo: "https://www.google.com/s2/favicons?domain=jirav.com&sz=128" },
+      { name: "Zoho", logo: "https://www.google.com/s2/favicons?domain=zoho.com&sz=128" },
+      { name: "Reach Reporting", logo: "https://www.google.com/s2/favicons?domain=reachreporting.com&sz=128" },
     ],
   },
 ];

@@ -1,459 +1,174 @@
-import { useRef, useMemo, Suspense, useEffect, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
-import * as THREE from "three";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface TechTier {
   label: string;
   tools: { name: string; logo: string }[];
 }
 
-const TIER_COLORS = ["#EE672C", "#b84560", "#7a3a78", "#5a3580", "#4D397F"];
-const TIER_HEIGHT = 0.72;
-const GAP = 0.06;
-const RADII = [0.35, 0.72, 1.1, 1.55, 2.0, 2.45];
-const FACE_ANGLES = [
-  Math.PI / 4,
-  (3 * Math.PI) / 4,
-  (5 * Math.PI) / 4,
-  (7 * Math.PI) / 4,
+const APEX_H = 50;
+const TIER_H = 108;
+const TIER_GAP = 4;
+const DX = 18;
+const DY = 10;
+
+const W = [18, 38, 58, 78, 96];
+
+const STYLES = [
+  { grad: "linear-gradient(155deg, #e8a060 0%, #d4874d 50%, #a86b38 100%)", back: "#7a5228" },
+  { grad: "linear-gradient(155deg, #ba7595 0%, #9b5e7a 50%, #7a4a62 100%)", back: "#5c3848" },
+  { grad: "linear-gradient(155deg, #9068ab 0%, #7a5496 50%, #5e4178 100%)", back: "#42305a" },
+  { grad: "linear-gradient(155deg, #7050a0 0%, #5a3d80 50%, #402b60 100%)", back: "#2e1e48" },
 ];
 
-function createFaceGeo(
-  topR: number,
-  botR: number,
-  height: number,
-  faceIndex: number
-): THREE.BufferGeometry {
-  const segW = 12;
-  const segH = 6;
-  const a1 = FACE_ANGLES[faceIndex];
-  const a2 = FACE_ANGLES[(faceIndex + 1) % 4];
-
-  const tl = [topR * Math.sin(a1), height / 2, topR * Math.cos(a1)];
-  const tr = [topR * Math.sin(a2), height / 2, topR * Math.cos(a2)];
-  const bl = [botR * Math.sin(a1), -height / 2, botR * Math.cos(a1)];
-  const br = [botR * Math.sin(a2), -height / 2, botR * Math.cos(a2)];
-
-  const positions: number[] = [];
-  const uvs: number[] = [];
-  const indices: number[] = [];
-
-  for (let iy = 0; iy <= segH; iy++) {
-    const t = iy / segH;
-    for (let ix = 0; ix <= segW; ix++) {
-      const s = ix / segW;
-      positions.push(
-        (1 - t) * ((1 - s) * bl[0] + s * br[0]) +
-          t * ((1 - s) * tl[0] + s * tr[0]),
-        (1 - t) * bl[1] + t * tl[1],
-        (1 - t) * ((1 - s) * bl[2] + s * br[2]) +
-          t * ((1 - s) * tl[2] + s * tr[2])
-      );
-      uvs.push(s, t);
-    }
-  }
-
-  for (let iy = 0; iy < segH; iy++) {
-    for (let ix = 0; ix < segW; ix++) {
-      const a = iy * (segW + 1) + ix;
-      const b = a + 1;
-      const c = a + segW + 1;
-      const d = c + 1;
-      indices.push(a, b, d, a, d, c);
-    }
-  }
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
-  geo.setIndex(indices);
-  geo.computeVertexNormals();
-  return geo;
-}
-
-function createCapGeo(radius: number, up: boolean): THREE.BufferGeometry {
-  const s = Math.SQRT1_2;
-  const positions = [
-    0, 0, 0, radius * s, 0, radius * s, -radius * s, 0, radius * s,
-    -radius * s, 0, -radius * s, radius * s, 0, -radius * s,
-  ];
-  const ny = up ? 1 : -1;
-  const normals = [0, ny, 0, 0, ny, 0, 0, ny, 0, 0, ny, 0, 0, ny, 0];
-  const indices = up
-    ? [0, 2, 1, 0, 3, 2, 0, 4, 3, 0, 1, 4]
-    : [0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 1];
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-  geo.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
-  geo.setIndex(indices);
-  return geo;
-}
-
-function createTierEdges(
-  topR: number,
-  botR: number,
-  height: number
-): THREE.BufferGeometry {
-  const tv = [0, 1, 2, 3].map((i) => {
-    const a = FACE_ANGLES[i];
-    return [topR * Math.sin(a), height / 2, topR * Math.cos(a)];
-  });
-  const bv = [0, 1, 2, 3].map((i) => {
-    const a = FACE_ANGLES[i];
-    return [botR * Math.sin(a), -height / 2, botR * Math.cos(a)];
-  });
-
-  const positions: number[] = [];
-  for (let i = 0; i < 4; i++) {
-    positions.push(...tv[i], ...tv[(i + 1) % 4]);
-    positions.push(...bv[i], ...bv[(i + 1) % 4]);
-    positions.push(...tv[i], ...bv[i]);
-  }
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-  return geo;
-}
-
-function createFaceTexture(
-  tier: TechTier,
-  tierIndex: number,
-  logos: (HTMLImageElement | null)[]
-): THREE.CanvasTexture {
-  const topR = RADII[tierIndex];
-  const botR = RADII[tierIndex + 1];
-  const avgFaceW = ((topR + botR) / 2) * Math.SQRT2;
-  const aspect = avgFaceW / TIER_HEIGHT;
-
-  const h = 400;
-  const w = Math.max(400, Math.round(h * aspect));
-  const canvas = document.createElement("canvas");
-  canvas.width = w;
-  canvas.height = h;
-  const ctx = canvas.getContext("2d")!;
-  const color = TIER_COLORS[tierIndex];
-
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, w, h);
-
-  const grad = ctx.createLinearGradient(0, 0, 0, h);
-  grad.addColorStop(0, "rgba(255,255,255,0.14)");
-  grad.addColorStop(0.4, "rgba(255,255,255,0)");
-  grad.addColorStop(1, "rgba(0,0,0,0.22)");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.fillStyle = "#ffffff";
-  const labelSize = Math.round(h * 0.085);
-  ctx.font = `bold ${labelSize}px Arial,sans-serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "top";
-  ctx.fillText(tier.label.toUpperCase(), w / 2, Math.round(h * 0.06));
-
-  const logoSize = Math.round(h * 0.22);
-  const pad = Math.round(h * 0.045);
-  const totalLogosW = tier.tools.length * (logoSize + pad) - pad;
-  const sx = (w - totalLogosW) / 2;
-  const sy = Math.round(h * 0.3);
-
-  tier.tools.forEach((tool, i) => {
-    const lx = sx + i * (logoSize + pad);
-
-    ctx.shadowColor = "rgba(0,0,0,0.3)";
-    ctx.shadowBlur = 10;
-    ctx.shadowOffsetY = 4;
-
-    ctx.fillStyle = "#ffffff";
-    const r = Math.round(logoSize * 0.15);
-    ctx.beginPath();
-    ctx.moveTo(lx + r, sy);
-    ctx.lineTo(lx + logoSize - r, sy);
-    ctx.quadraticCurveTo(lx + logoSize, sy, lx + logoSize, sy + r);
-    ctx.lineTo(lx + logoSize, sy + logoSize - r);
-    ctx.quadraticCurveTo(
-      lx + logoSize,
-      sy + logoSize,
-      lx + logoSize - r,
-      sy + logoSize
-    );
-    ctx.lineTo(lx + r, sy + logoSize);
-    ctx.quadraticCurveTo(lx, sy + logoSize, lx, sy + logoSize - r);
-    ctx.lineTo(lx, sy + r);
-    ctx.quadraticCurveTo(lx, sy, lx + r, sy);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.shadowColor = "transparent";
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetY = 0;
-
-    if (logos[i]) {
-      const p = Math.round(logoSize * 0.12);
-      ctx.drawImage(
-        logos[i]!,
-        lx + p,
-        sy + p,
-        logoSize - p * 2,
-        logoSize - p * 2
-      );
-    } else {
-      ctx.fillStyle = color;
-      const abbrSize = Math.round(logoSize * 0.38);
-      ctx.font = `bold ${abbrSize}px Arial,sans-serif`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(
-        tool.name.slice(0, 2).toUpperCase(),
-        lx + logoSize / 2,
-        sy + logoSize / 2
-      );
-    }
-
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
-    const nameSize = Math.round(h * 0.045);
-    ctx.font = `bold ${nameSize}px Arial,sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
-    const label =
-      tool.name.length > 10 ? tool.name.slice(0, 9) + "…" : tool.name;
-    ctx.fillText(label, lx + logoSize / 2, sy + logoSize + Math.round(h * 0.02));
-  });
-
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.needsUpdate = true;
-  return tex;
-}
-
-function TierMesh({
-  tierIndex,
-  tier,
-  totalTiers,
-}: {
-  tierIndex: number;
-  tier: TechTier;
-  totalTiers: number;
-}) {
-  const [texture, setTexture] = useState<THREE.CanvasTexture | null>(null);
-
-  useEffect(() => {
-    Promise.all(
-      tier.tools.map(
-        (tool) =>
-          new Promise<HTMLImageElement | null>((resolve) => {
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.onload = () => resolve(img);
-            img.onerror = () => resolve(null);
-            img.src = tool.logo;
-          })
-      )
-    ).then((logos) => {
-      setTexture(createFaceTexture(tier, tierIndex, logos));
-    });
-  }, [tier, tierIndex]);
-
-  const topR = RADII[tierIndex];
-  const botR = RADII[tierIndex + 1];
-  const totalH = totalTiers * TIER_HEIGHT + (totalTiers - 1) * GAP;
-  const y = totalH / 2 - tierIndex * (TIER_HEIGHT + GAP) - TIER_HEIGHT / 2;
-  const color = TIER_COLORS[tierIndex];
-
-  const faceGeos = useMemo(
-    () => [0, 1, 2, 3].map((fi) => createFaceGeo(topR, botR, TIER_HEIGHT, fi)),
-    [topR, botR]
-  );
-
-  const topCapGeo = useMemo(() => createCapGeo(topR, true), [topR]);
-  const botCapGeo = useMemo(() => createCapGeo(botR, false), [botR]);
-  const edgesGeo = useMemo(
-    () => createTierEdges(topR, botR, TIER_HEIGHT),
-    [topR, botR]
-  );
-
-  const sideMat = useMemo(() => {
-    if (texture) {
-      return new THREE.MeshPhysicalMaterial({
-        map: texture,
-        metalness: 0.12,
-        roughness: 0.42,
-        clearcoat: 0.25,
-      });
-    }
-    return new THREE.MeshPhysicalMaterial({
-      color,
-      metalness: 0.2,
-      roughness: 0.45,
-      clearcoat: 0.2,
-    });
-  }, [texture, color]);
-
-  const capMat = useMemo(
-    () =>
-      new THREE.MeshPhysicalMaterial({
-        color,
-        metalness: 0.3,
-        roughness: 0.5,
-      }),
-    [color]
-  );
+function Logo({ tool }: { tool: { name: string; logo: string } }) {
+  const [bad, setBad] = useState(false);
+  const initials = tool.name
+    .split(/[\s.]+/)
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
-    <group position={[0, y, 0]}>
-      {faceGeos.map((geo, i) => (
-        <mesh key={i} geometry={geo} material={sideMat} />
-      ))}
-      <mesh
-        geometry={topCapGeo}
-        position={[0, TIER_HEIGHT / 2, 0]}
-        material={capMat}
-      />
-      <mesh
-        geometry={botCapGeo}
-        position={[0, -TIER_HEIGHT / 2, 0]}
-        material={capMat}
-      />
-      <lineSegments geometry={edgesGeo}>
-        <lineBasicMaterial color="#ffffff" transparent opacity={0.1} />
-      </lineSegments>
-    </group>
+    <div className="bg-white rounded-lg shadow-md flex flex-col items-center p-1 w-[52px] h-[58px] flex-shrink-0">
+      {bad ? (
+        <div className="w-8 h-8 rounded bg-gray-100 flex items-center justify-center">
+          <span className="text-xs font-bold text-gray-500">{initials}</span>
+        </div>
+      ) : (
+        <img
+          src={tool.logo}
+          alt={tool.name}
+          className="w-8 h-8 object-contain"
+          loading="lazy"
+          onError={() => setBad(true)}
+        />
+      )}
+      <span className="text-[6px] text-gray-600 font-medium text-center leading-tight line-clamp-2 mt-auto w-full">
+        {tool.name}
+      </span>
+    </div>
   );
 }
 
-function Apex({ totalTiers }: { totalTiers: number }) {
-  const totalH = totalTiers * TIER_HEIGHT + (totalTiers - 1) * GAP;
-  const y = totalH / 2 + 0.18;
-  const geo = useMemo(() => {
-    const g = new THREE.ConeGeometry(RADII[0], 0.36, 4, 1);
-    g.rotateY(Math.PI / 4);
-    return g;
-  }, []);
+function Tier({ tier, i }: { tier: TechTier; i: number }) {
+  const topW = W[i];
+  const botW = W[i + 1];
+  const inset = (((botW - topW) / botW) * 100) / 2;
+  const clip = `polygon(${inset}% 0%, ${100 - inset}% 0%, 100% 100%, 0% 100%)`;
+  const s = STYLES[i];
 
   return (
-    <mesh geometry={geo} position={[0, y, 0]}>
-      <meshPhysicalMaterial
-        color="#EE672C"
-        metalness={0.3}
-        roughness={0.35}
-        clearcoat={0.4}
-        emissive="#EE672C"
-        emissiveIntensity={0.15}
+    <motion.div
+      className="relative mx-auto"
+      style={{ width: `${botW}%`, marginTop: i === 0 ? 0 : TIER_GAP, overflow: "visible" }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.08 * i, duration: 0.45 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: s.back, clipPath: clip, transform: `translate(${DX}px,-${DY}px)` }}
       />
-    </mesh>
+      <div
+        className="relative z-10 flex flex-col items-center justify-center gap-1 px-4"
+        style={{ height: TIER_H, background: s.grad, clipPath: clip }}
+      >
+        <span className="md:hidden text-white/70 text-[8px] font-bold uppercase tracking-widest mb-0.5">
+          {tier.label}
+        </span>
+        <div className="flex items-center gap-1.5 flex-wrap justify-center">
+          {tier.tools.map((tool, j) => (
+            <Logo key={j} tool={tool} />
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
-function GlowRing({ totalTiers }: { totalTiers: number }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const totalH = totalTiers * TIER_HEIGHT + (totalTiers - 1) * GAP;
-  const y = -(totalH / 2) - 0.05;
-
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.x = Math.PI / 2;
-      ref.current.scale.setScalar(
-        1 + Math.sin(state.clock.elapsedTime * 0.8) * 0.05
-      );
-    }
-  });
-
+function Bracket({ h }: { h: number }) {
+  const mid = h / 2;
   return (
-    <mesh ref={ref} position={[0, y, 0]}>
-      <ringGeometry args={[2.3, 3.0, 64]} />
-      <meshBasicMaterial
-        color="#EE672C"
-        transparent
-        opacity={0.08}
-        side={THREE.DoubleSide}
+    <svg
+      width="28"
+      height={h}
+      viewBox={`0 0 28 ${h}`}
+      fill="none"
+      className="flex-shrink-0"
+    >
+      <path
+        d={`M 4 4 C 12 4, 14 ${mid * 0.55}, 14 ${mid - 4} Q 14 ${mid}, 22 ${mid} Q 14 ${mid}, 14 ${mid + 4} C 14 ${mid + (mid - 4) * 0.45 + 4}, 12 ${h - 4}, 4 ${h - 4}`}
+        stroke="rgba(255,255,255,0.45)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
-    </mesh>
-  );
-}
-
-function Particles() {
-  const ref = useRef<THREE.Points>(null);
-  const geo = useMemo(() => {
-    const pos = new Float32Array(50 * 3);
-    for (let i = 0; i < 50; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 7;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 5;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 7;
-    }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-    return g;
-  }, []);
-
-  useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.04;
-  });
-
-  return (
-    <points ref={ref} geometry={geo}>
-      <pointsMaterial
-        size={0.025}
-        color="#EE672C"
-        transparent
-        opacity={0.35}
-        sizeAttenuation
-      />
-    </points>
-  );
-}
-
-function SegmentedPyramid({ tiers }: { tiers: TechTier[] }) {
-  const groupRef = useRef<THREE.Group>(null);
-
-  useFrame((_, delta) => {
-    if (groupRef.current) groupRef.current.rotation.y += delta * 0.3;
-  });
-
-  return (
-    <Float speed={1} rotationIntensity={0.08} floatIntensity={0.2}>
-      <group ref={groupRef}>
-        <Apex totalTiers={tiers.length} />
-        {tiers.map((tier, i) => (
-          <TierMesh
-            key={tier.label}
-            tierIndex={i}
-            tier={tier}
-            totalTiers={tiers.length}
-          />
-        ))}
-      </group>
-    </Float>
+      <line x1="22" y1={mid} x2="27" y2={mid} stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" />
+    </svg>
   );
 }
 
 export function TechPyramid3D({ tiers }: { tiers: TechTier[] }) {
   return (
-    <div className="w-full">
-      <div className="h-[500px] md:h-[620px]">
-        <Canvas
-          camera={{ position: [0, 1.2, 8], fov: 42 }}
-          gl={{ antialias: true, alpha: true }}
-          style={{ background: "transparent" }}
-        >
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[5, 8, 5]} intensity={1.4} />
-          <directionalLight
-            position={[-4, 3, -3]}
-            intensity={0.4}
-            color="#EE672C"
+    <div className="w-full max-w-5xl mx-auto px-4">
+      <div className="flex items-start">
+        <div className="flex-1 flex flex-col items-center" style={{ overflow: "visible" }}>
+          <motion.div
+            className="relative mx-auto"
+            style={{ width: `${W[0]}%`, height: APEX_H, overflow: "visible" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundColor: STYLES[0].back,
+                clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                transform: `translate(${DX}px,-${DY}px)`,
+              }}
+            />
+            <div
+              className="relative z-10 h-full"
+              style={{
+                background: STYLES[0].grad,
+                clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+              }}
+            />
+          </motion.div>
+
+          {tiers.map((tier, i) => (
+            <Tier key={tier.label} tier={tier} i={i} />
+          ))}
+
+          <div
+            className="mx-auto mt-4 rounded-full"
+            style={{
+              width: "105%",
+              height: 20,
+              background: "radial-gradient(ellipse, rgba(77,57,127,0.3) 0%, transparent 70%)",
+              filter: "blur(10px)",
+            }}
           />
-          <pointLight
-            position={[0, 5, 0]}
-            intensity={0.5}
-            color="#EE672C"
-            distance={12}
-          />
-          <Suspense fallback={null}>
-            <SegmentedPyramid tiers={tiers} />
-            <GlowRing totalTiers={tiers.length} />
-            <Particles />
-          </Suspense>
-        </Canvas>
+        </div>
+
+        <div className="hidden md:flex flex-col flex-shrink-0 w-60 pl-2">
+          <div style={{ height: APEX_H }} />
+          {tiers.map((tier, i) => (
+            <div
+              key={tier.label}
+              className="flex items-center gap-1"
+              style={{ height: TIER_H, marginTop: i === 0 ? 0 : TIER_GAP }}
+            >
+              <Bracket h={TIER_H * 0.7} />
+              <span className="text-white/80 text-[11px] font-bold uppercase tracking-wider leading-snug">
+                {tier.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
