@@ -12,6 +12,7 @@ import {
   Newspaper,
   PenLine,
   ListChecks,
+  Download,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -24,22 +25,26 @@ interface Resource {
   category: ContentType;
   service: string;
   link: string;
+  /** Local hosted PDF path. When set, cards link here instead of `link`. */
+  pdf?: string;
+  /** Local cover image path shown as the card header. */
+  cover?: string;
 }
 
 const resources: Resource[] = [
   /* ── WhitePapers ─────────────────────────────────────────────────── */
-  { id: "wp1", title: "Year-End Books Cleanup & Review for U.S. Businesses", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/m8rdcsv9az5sped" },
-  { id: "wp2", title: "SOC-2 Certification", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/2d23tr9s0u2nptc" },
-  { id: "wp3", title: "IPO Capability", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/a79t57smj8cea7l" },
-  { id: "wp4", title: "Impact of the One Big Beautiful Bill on 2025 Tax Filing Season", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/nojk2ehk6sbhu09" },
-  { id: "wp5", title: "US Tax Season Approach", category: "WhitePaper", service: "CPA Support", link: "https://canva.link/52vepfyztfbtpl0" },
-  { id: "wp6", title: "Analysis of Tax Return for Financial Planning Opportunities", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/j8p79ecu3jhgc14" },
-  { id: "wp7", title: "Fractional CFO — Clean Books", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/3edy4xldg57im5g" },
-  { id: "wp8", title: "Practical AI Adoption in CAS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/k8vbiamdjc8qlrk" },
-  { id: "wp9", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/w3mfo053a8czxxm" },
-  { id: "wp10", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552" },
-  { id: "wp11", title: "Expected Credit Losses under IFRS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/74lkc9tr175stba" },
-  { id: "wp12", title: "IFRS 2 Share-Based Payments", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/vjg4cfbkcww3aw9" },
+  { id: "wp1", title: "Year-End Books Cleanup & Review for U.S. Businesses", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/m8rdcsv9az5sped", cover: "/images/whitepapers/wp1.webp" },
+  { id: "wp2", title: "SOC-2 Certification", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/2d23tr9s0u2nptc", cover: "/images/whitepapers/wp2.webp" },
+  { id: "wp3", title: "IPO Capability", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/a79t57smj8cea7l", cover: "/images/whitepapers/wp3.webp" },
+  { id: "wp4", title: "Impact of the One Big Beautiful Bill on 2025 Tax Filing Season", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/nojk2ehk6sbhu09", cover: "/images/whitepapers/wp4.webp" },
+  { id: "wp5", title: "US Tax Season Approach", category: "WhitePaper", service: "CPA Support", link: "https://canva.link/52vepfyztfbtpl0", cover: "/images/whitepapers/wp5.webp" },
+  { id: "wp6", title: "Analysis of Tax Return for Financial Planning Opportunities", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/j8p79ecu3jhgc14", cover: "/images/whitepapers/wp6.webp" },
+  { id: "wp7", title: "Fractional CFO — Clean Books", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/3edy4xldg57im5g", cover: "/images/whitepapers/wp7.webp" },
+  { id: "wp8", title: "Practical AI Adoption in CAS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/k8vbiamdjc8qlrk", cover: "/images/whitepapers/wp8.webp" },
+  { id: "wp9", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/w3mfo053a8czxxm", cover: "/images/whitepapers/wp9.webp" },
+  { id: "wp10", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552", cover: "/images/whitepapers/wp10.webp" },
+  { id: "wp11", title: "Expected Credit Losses under IFRS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/74lkc9tr175stba", cover: "/images/whitepapers/wp11.webp" },
+  { id: "wp12", title: "IFRS 2 Share-Based Payments", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/vjg4cfbkcww3aw9", cover: "/images/whitepapers/wp12.webp" },
 
   /* ── Guides / Checklists / Infographics ──────────────────────────── */
   { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/2z2xhq7hi01vef3" },
@@ -257,10 +262,11 @@ export default function ResourcesPage() {
               {filtered.map((res, i) => {
                 const Icon = categoryIcons[res.category] ?? FileText;
                 const color = categoryColors[res.category] ?? "#4D397F";
+                const href = res.pdf ?? res.link;
                 return (
                   <AnimatedSection key={res.id} delay={0.05 + i * 0.04}>
                     <a
-                      href={res.link}
+                      href={href}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -268,28 +274,49 @@ export default function ResourcesPage() {
                         className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col"
                         whileHover={{ y: -4 }}
                       >
-                        <div
-                          className="h-2 w-full"
-                          style={{ backgroundColor: color }}
-                        />
-                        <div className="p-6 flex-1 flex flex-col">
-                          <div className="flex items-center gap-3 mb-4">
+                        {res.cover ? (
+                          <div className="relative aspect-[3/2] overflow-hidden bg-[#140e2a]">
+                            <img
+                              src={res.cover}
+                              alt={res.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/70 via-transparent to-transparent" />
                             <span
-                              className="inline-flex items-center justify-center size-9 rounded-lg"
-                              style={{
-                                backgroundColor: `${color}14`,
-                                color,
-                              }}
+                              className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm"
+                              style={{ backgroundColor: `${color}cc` }}
                             >
-                              <Icon className="size-4.5" />
-                            </span>
-                            <span
-                              className="text-xs font-semibold uppercase tracking-wider"
-                              style={{ color }}
-                            >
+                              <Icon className="size-3.5" />
                               {res.category}
                             </span>
                           </div>
+                        ) : (
+                          <div
+                            className="h-2 w-full"
+                            style={{ backgroundColor: color }}
+                          />
+                        )}
+                        <div className="p-6 flex-1 flex flex-col">
+                          {!res.cover && (
+                            <div className="flex items-center gap-3 mb-4">
+                              <span
+                                className="inline-flex items-center justify-center size-9 rounded-lg"
+                                style={{
+                                  backgroundColor: `${color}14`,
+                                  color,
+                                }}
+                              >
+                                <Icon className="size-4.5" />
+                              </span>
+                              <span
+                                className="text-xs font-semibold uppercase tracking-wider"
+                                style={{ color }}
+                              >
+                                {res.category}
+                              </span>
+                            </div>
+                          )}
                           <h3 className="font-heading font-bold text-lg text-ink mb-3 leading-snug flex-1">
                             {res.title}
                           </h3>
@@ -298,8 +325,12 @@ export default function ResourcesPage() {
                               {res.service}
                             </span>
                             <span className="inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:gap-2 transition-all whitespace-nowrap">
-                              Open
-                              <ArrowUpRight className="size-3.5" />
+                              {res.pdf ? "Read PDF" : "Open"}
+                              {res.pdf ? (
+                                <Download className="size-3.5" />
+                              ) : (
+                                <ArrowUpRight className="size-3.5" />
+                              )}
                             </span>
                           </div>
                         </div>
