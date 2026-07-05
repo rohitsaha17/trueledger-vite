@@ -32,19 +32,18 @@ interface Resource {
 }
 
 const resources: Resource[] = [
-  /* ── WhitePapers ─────────────────────────────────────────────────── */
-  { id: "wp1", title: "Year-End Books Cleanup & Review for U.S. Businesses", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/m8rdcsv9az5sped", cover: "/images/whitepapers/wp1.webp" },
-  { id: "wp2", title: "SOC-2 Certification", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/2d23tr9s0u2nptc", cover: "/images/whitepapers/wp2.webp" },
-  { id: "wp3", title: "IPO Capability", category: "WhitePaper", service: "Business Advisory", link: "https://canva.link/a79t57smj8cea7l", cover: "/images/whitepapers/wp3.webp" },
-  { id: "wp4", title: "Impact of the One Big Beautiful Bill on 2025 Tax Filing Season", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/nojk2ehk6sbhu09", cover: "/images/whitepapers/wp4.webp" },
-  { id: "wp5", title: "US Tax Season Approach", category: "WhitePaper", service: "CPA Support", link: "https://canva.link/52vepfyztfbtpl0", cover: "/images/whitepapers/wp5.webp" },
-  { id: "wp6", title: "Analysis of Tax Return for Financial Planning Opportunities", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://canva.link/j8p79ecu3jhgc14", cover: "/images/whitepapers/wp6.webp" },
-  { id: "wp7", title: "Fractional CFO — Clean Books", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/3edy4xldg57im5g", cover: "/images/whitepapers/wp7.webp" },
-  { id: "wp8", title: "Practical AI Adoption in CAS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/k8vbiamdjc8qlrk", cover: "/images/whitepapers/wp8.webp" },
-  { id: "wp9", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/w3mfo053a8czxxm", cover: "/images/whitepapers/wp9.webp" },
-  { id: "wp10", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552", cover: "/images/whitepapers/wp10.webp" },
-  { id: "wp11", title: "Expected Credit Losses under IFRS", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/74lkc9tr175stba", cover: "/images/whitepapers/wp11.webp" },
-  { id: "wp12", title: "IFRS 2 Share-Based Payments", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "https://canva.link/vjg4cfbkcww3aw9", cover: "/images/whitepapers/wp12.webp" },
+  /* ── WhitePapers (hosted PDFs) ───────────────────────────────────── */
+  { id: "wp-nonprofit", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/nonprofit-practice.pdf", pdf: "/whitepapers/nonprofit-practice.pdf", cover: "/images/whitepapers/nonprofit-practice.webp" },
+  { id: "wp-ai-cas", title: "Practical AI Adoption in Client Accounting Services (CAS)", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ai-adoption-cas.pdf", pdf: "/whitepapers/ai-adoption-cas.pdf", cover: "/images/whitepapers/ai-adoption-cas.webp" },
+  { id: "wp-ai-dd", title: "AI Solution Due Diligence for Accounting Firms", category: "WhitePaper", service: "CPA Support", link: "/whitepapers/ai-due-diligence.pdf", pdf: "/whitepapers/ai-due-diligence.pdf", cover: "/images/whitepapers/ai-due-diligence.webp" },
+  { id: "wp-usgaap", title: "US GAAP Revenue Recognition for AI-Native SaaS Companies", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/usgaap-ai-saas.pdf", pdf: "/whitepapers/usgaap-ai-saas.pdf", cover: "/images/whitepapers/usgaap-ai-saas.webp" },
+  { id: "wp-clean-books", title: "Clean Books & Compliance: Why They Matter for CFOs & Advisors", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/clean-books.pdf", pdf: "/whitepapers/clean-books.pdf", cover: "/images/whitepapers/clean-books.webp" },
+  { id: "wp-ieepa", title: "IEEPA Tariff Refund Claims: Technical Accounting Analysis", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ieepa-refund.pdf", pdf: "/whitepapers/ieepa-refund.pdf", cover: "/images/whitepapers/ieepa-refund.webp" },
+  { id: "wp-h1b", title: "Laid Off on H-1B in 2026? The US Tax Checklist", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "/whitepapers/h1b-tax.pdf", pdf: "/whitepapers/h1b-tax.pdf", cover: "/images/whitepapers/h1b-tax.webp" },
+  { id: "wp-mexico", title: "Mexico Tariff Hike: Impact on Indian Exports", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/mexico-tariff.pdf", pdf: "/whitepapers/mexico-tariff.pdf", cover: "/images/whitepapers/mexico-tariff.webp" },
+  { id: "wp-india-budget", title: "Navigating India's Investment Frontier: Union Budget 2026-27", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/india-budget.pdf", pdf: "/whitepapers/india-budget.pdf", cover: "/images/whitepapers/india-budget.webp" },
+  { id: "wp-smsf", title: "Self-Managed Superannuation Fund (SMSF) in Australia", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/smsf-australia.pdf", pdf: "/whitepapers/smsf-australia.pdf", cover: "/images/whitepapers/smsf-australia.webp" },
+  { id: "wp-multistate", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552", cover: "/images/whitepapers/multi-state.webp" },
 
   /* ── Guides / Checklists / Infographics ──────────────────────────── */
   { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/2z2xhq7hi01vef3" },
