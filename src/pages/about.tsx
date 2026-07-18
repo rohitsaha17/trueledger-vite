@@ -135,10 +135,10 @@ const securityPanels = [
 /* ================================================================== */
 
 const stats = [
-  { value: "XXX", label: "Clients" },
-  { value: "XXX", label: "Jurisdictions" },
-  { value: "XXX", label: "Business Setups" },
-  { value: "XXX", label: "Software Certifications" },
+  { value: "150", label: "Clients" },
+  { value: "6", label: "Jurisdictions" },
+  { value: "100+", label: "Business Setups" },
+  { value: "20+", label: "AI Native Applications in Use" },
 ];
 
 /* ================================================================== */
@@ -496,12 +496,6 @@ export default function AboutPage() {
               </AnimatedSection>
             ))}
           </div>
-
-          <AnimatedSection delay={0.5}>
-            <p className="text-white/50 text-xs text-center mt-6 italic">
-              * Placeholder values &mdash; update with actual figures
-            </p>
-          </AnimatedSection>
         </div>
       </section>
 

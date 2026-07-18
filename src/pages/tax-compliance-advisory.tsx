@@ -322,25 +322,27 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — For Businesses & Business Owners                 */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-brand-tint/40">
+      <section className="py-20 md:py-28 relative overflow-hidden bg-[#140e2a]">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.18]"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.12]"
         >
           <source src="https://videos.pexels.com/video-files/7552423/7552423-hd_1920_1080_25fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-[#140e2a]/70 to-[#140e2a]" />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[300px] bg-[#4D397F]/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[250px] bg-[#EE672C]/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="mb-14 md:mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading mb-4">
                 For Businesses &amp; Business&nbsp;Owners
               </h2>
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl">
+              <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
                 Entity structure, compensation, and compliance &mdash; working together efficiently.
               </p>
             </div>
@@ -353,20 +355,20 @@ export default function TaxComplianceAdvisoryPage() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl border p-6 sm:p-7 overflow-hidden transition-shadow duration-300 bg-white border-black/[0.06] shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)]"
+                  className="group relative rounded-2xl border p-6 sm:p-7 overflow-hidden transition-all duration-300 bg-white/[0.04] border-white/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:bg-white/[0.06]"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/50 via-brand/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.06] leading-none select-none pointer-events-none">{num}</span>
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-brand/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-primary/70 font-mono bg-primary/[0.06] px-2.5 py-1 rounded-md">{num}</span>
+                    <span className="text-xs font-bold tracking-wider text-[#EE672C] font-mono bg-[#EE672C]/12 px-2.5 py-1 rounded-md">{num}</span>
                   </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
+                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
                 </motion.div>
               );
             })}
@@ -379,20 +381,20 @@ export default function TaxComplianceAdvisoryPage() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl border p-6 sm:p-7 overflow-hidden transition-shadow duration-300 bg-white border-black/[0.06] shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
+                  className="group relative rounded-2xl border p-6 sm:p-7 overflow-hidden transition-all duration-300 bg-white/[0.04] border-white/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:bg-white/[0.06] w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: (i + 3) * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/50 via-brand/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.06] leading-none select-none pointer-events-none">{num}</span>
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-brand/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-primary/70 font-mono bg-primary/[0.06] px-2.5 py-1 rounded-md">{num}</span>
+                    <span className="text-xs font-bold tracking-wider text-[#EE672C] font-mono bg-[#EE672C]/12 px-2.5 py-1 rounded-md">{num}</span>
                   </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
+                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
                 </motion.div>
               );
             })}

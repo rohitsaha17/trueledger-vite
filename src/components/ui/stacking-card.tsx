@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useCallback, useState, useEffect } from 'react';
+import { useRef, useCallback } from 'react';
 
 export interface StackingProject {
   title: string;
@@ -10,7 +10,7 @@ export interface StackingProject {
 
 const NAV_HEIGHT = 72;
 const TITLE_BAR_HEIGHT = 48;
-const CARD_BODY_HEIGHT = 340;
+const CARD_BODY_HEIGHT = 300;
 
 interface CardProps {
   i: number;
@@ -85,39 +85,18 @@ export function StackingCards({
   stickyHeader,
   headerBgClass = 'bg-background',
 }: StackingCardsProps) {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [headerHeight, setHeaderHeight] = useState(104);
-
-  useEffect(() => {
-    if (!headerRef.current) return;
-    const measure = () => setHeaderHeight(headerRef.current!.offsetHeight);
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, [stickyHeader]);
-
-  const headerOffset = NAV_HEIGHT + (stickyHeader ? headerHeight : 0);
+  const headerOffset = NAV_HEIGHT;
   const paddingBottom = CARD_BODY_HEIGHT;
 
   return (
     <div>
       {stickyHeader && (
-        <div
-          ref={headerRef}
-          className="sticky z-30"
-          style={{ top: NAV_HEIGHT }}
-        >
-          <div className={`${headerBgClass} pt-8 pb-3`}>
+        <div className="relative z-30">
+          <div className={`${headerBgClass} pt-8 pb-4`}>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               {stickyHeader}
             </div>
           </div>
-          <div
-            className="h-4"
-            style={{
-              background: `linear-gradient(to bottom, var(--sticky-header-bg, transparent), transparent)`,
-            }}
-          />
         </div>
       )}
 

@@ -63,19 +63,19 @@ export function Footer() {
               </a>
               <div className="space-y-2">
                 <div className="flex items-start gap-2.5">
-                  <span className="text-xl leading-none mt-0.5 shrink-0">🇮🇳</span>
-                  <span className="text-white/50">A-42, South Extension II, NDSE 2, New Delhi – 110049</span>
-                </div>
-                <div className="flex items-start gap-2.5">
                   <span className="text-xl leading-none mt-0.5 shrink-0">🇺🇸</span>
                   <span className="text-white/50">5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="text-xl leading-none mt-0.5 shrink-0">🇮🇳</span>
+                  <span className="text-white/50">A-42, South Extension II, NDSE 2, New Delhi – 110049</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <Clock className="size-4 text-brand/60 mt-0.5 shrink-0" />
                 <div className="text-white/50">
-                  <div>India (IST): 9:00 AM – 11:30 PM</div>
                   <div>US (EST): 9:00 AM – 2:00 PM</div>
+                  <div>India (IST): 9:00 AM – 11:30 PM</div>
                 </div>
               </div>
             </div>

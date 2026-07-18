@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { WhitepaperDownloadModal } from "@/components/shared/whitepaper-download-modal";
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
@@ -19,7 +20,7 @@ import {
 /*  Resource data from docx content                                    */
 /* ------------------------------------------------------------------ */
 
-interface Resource {
+export interface Resource {
   id: string;
   title: string;
   category: ContentType;
@@ -31,19 +32,19 @@ interface Resource {
   cover?: string;
 }
 
-const resources: Resource[] = [
+export const resources: Resource[] = [
   /* ── WhitePapers (hosted PDFs) ───────────────────────────────────── */
-  { id: "wp-nonprofit", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/nonprofit-practice.pdf", pdf: "/whitepapers/nonprofit-practice.pdf", cover: "/images/whitepapers/nonprofit-practice.webp" },
-  { id: "wp-ai-cas", title: "Practical AI Adoption in Client Accounting Services (CAS)", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ai-adoption-cas.pdf", pdf: "/whitepapers/ai-adoption-cas.pdf", cover: "/images/whitepapers/ai-adoption-cas.webp" },
-  { id: "wp-ai-dd", title: "AI Solution Due Diligence for Accounting Firms", category: "WhitePaper", service: "CPA Support", link: "/whitepapers/ai-due-diligence.pdf", pdf: "/whitepapers/ai-due-diligence.pdf", cover: "/images/whitepapers/ai-due-diligence.webp" },
-  { id: "wp-usgaap", title: "US GAAP Revenue Recognition for AI-Native SaaS Companies", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/usgaap-ai-saas.pdf", pdf: "/whitepapers/usgaap-ai-saas.pdf", cover: "/images/whitepapers/usgaap-ai-saas.webp" },
-  { id: "wp-clean-books", title: "Clean Books & Compliance: Why They Matter for CFOs & Advisors", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/clean-books.pdf", pdf: "/whitepapers/clean-books.pdf", cover: "/images/whitepapers/clean-books.webp" },
-  { id: "wp-ieepa", title: "IEEPA Tariff Refund Claims: Technical Accounting Analysis", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ieepa-refund.pdf", pdf: "/whitepapers/ieepa-refund.pdf", cover: "/images/whitepapers/ieepa-refund.webp" },
-  { id: "wp-h1b", title: "Laid Off on H-1B in 2026? The US Tax Checklist", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "/whitepapers/h1b-tax.pdf", pdf: "/whitepapers/h1b-tax.pdf", cover: "/images/whitepapers/h1b-tax.webp" },
-  { id: "wp-mexico", title: "Mexico Tariff Hike: Impact on Indian Exports", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/mexico-tariff.pdf", pdf: "/whitepapers/mexico-tariff.pdf", cover: "/images/whitepapers/mexico-tariff.webp" },
-  { id: "wp-india-budget", title: "Navigating India's Investment Frontier: Union Budget 2026-27", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/india-budget.pdf", pdf: "/whitepapers/india-budget.pdf", cover: "/images/whitepapers/india-budget.webp" },
-  { id: "wp-smsf", title: "Self-Managed Superannuation Fund (SMSF) in Australia", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/smsf-australia.pdf", pdf: "/whitepapers/smsf-australia.pdf", cover: "/images/whitepapers/smsf-australia.webp" },
-  { id: "wp-multistate", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552", cover: "/images/whitepapers/multi-state.webp" },
+  { id: "wp-nonprofit", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/nonprofit-practice.pdf", pdf: "/whitepapers/nonprofit-practice.pdf" },
+  { id: "wp-ai-cas", title: "Practical AI Adoption in Client Accounting Services (CAS)", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ai-adoption-cas.pdf", pdf: "/whitepapers/ai-adoption-cas.pdf" },
+  { id: "wp-ai-dd", title: "AI Solution Due Diligence for Accounting Firms", category: "WhitePaper", service: "CPA Support", link: "/whitepapers/ai-due-diligence.pdf", pdf: "/whitepapers/ai-due-diligence.pdf" },
+  { id: "wp-usgaap", title: "US GAAP Revenue Recognition for AI-Native SaaS Companies", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/usgaap-ai-saas.pdf", pdf: "/whitepapers/usgaap-ai-saas.pdf" },
+  { id: "wp-clean-books", title: "Clean Books & Compliance: Why They Matter for CFOs & Advisors", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/clean-books.pdf", pdf: "/whitepapers/clean-books.pdf" },
+  { id: "wp-ieepa", title: "IEEPA Tariff Refund Claims: Technical Accounting Analysis", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ieepa-refund.pdf", pdf: "/whitepapers/ieepa-refund.pdf" },
+  { id: "wp-h1b", title: "Laid Off on H-1B in 2026? The US Tax Checklist", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "/whitepapers/h1b-tax.pdf", pdf: "/whitepapers/h1b-tax.pdf" },
+  { id: "wp-mexico", title: "Mexico Tariff Hike: Impact on Indian Exports", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/mexico-tariff.pdf", pdf: "/whitepapers/mexico-tariff.pdf" },
+  { id: "wp-india-budget", title: "Navigating India's Investment Frontier: Union Budget 2026-27", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/india-budget.pdf", pdf: "/whitepapers/india-budget.pdf" },
+  { id: "wp-smsf", title: "Self-Managed Superannuation Fund (SMSF) in Australia", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/smsf-australia.pdf", pdf: "/whitepapers/smsf-australia.pdf" },
+  { id: "wp-multistate", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552" },
 
   /* ── Guides / Checklists / Infographics ──────────────────────────── */
   { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/2z2xhq7hi01vef3" },
@@ -129,6 +130,50 @@ const categoryColors: Record<string, string> = {
   "Blog Post": "#3b82f6",
   Newsletter: "#B03B2D",
 };
+
+/* ------------------------------------------------------------------ */
+/*  Cover images — varied real/stock photos chosen by topic            */
+/* ------------------------------------------------------------------ */
+
+const IMG = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=70`;
+
+const STOCK: Record<string, string[]> = {
+  accounting: ["1554224155-6726b3ff858f", "1460925895917-afdab827c52f", "1551288049-bebda4e38f71", "1543286386-713bdd548da4"],
+  tax: ["1454165804606-c3d57bc86b40", "1450101499163-c8848c66ca85", "1517245386807-bb43f82c33c4", "1579532537598-459ecdaf39cc"],
+  advisory: ["1552664730-d307ca884978", "1521791136064-7986c2920216", "1590283603385-17ffb3a7f29f", "1573164713988-8665fc963095"],
+  cpa: ["1600880292203-757bb62b4baf", "1521737604893-d14cc237f11d", "1559526324-4b87b5e36e44", "1556742049-0cfed4f6a45d"],
+  global: ["1486406146926-c627a92ad1ab", "1444653614773-995cb1ef9efa", "1591696205602-2f950c417cb9", "1526778548025-fa2f459cd5c1"],
+  ai: ["1611974789855-9c2a0a7236a3", "1504384308090-c894fdcc538d"],
+};
+
+function themeFor(r: Resource): keyof typeof STOCK {
+  const t = r.title.toLowerCase();
+  if (/\bai\b|automation|artificial|digits|due diligence/.test(t)) return "ai";
+  if (/tax|irs|gaap|h-1b|tariff|roth|deduction|filing|return|obba|refund|qbi/.test(t)) return "tax";
+  if (/india|uk|trade|entity|smsf|australia|singapore|cross-border|budget|nexus|multi-state|superannuation|safe/.test(t)) return "global";
+  if (/cpa|outsourc|firm/.test(t)) return "cpa";
+  if (/nonprofit|advisory|cfo|strategy|roi|forecast|scal|onboarding/.test(t)) return "advisory";
+  switch (r.service) {
+    case "Tax Compliance & Advisory": return "tax";
+    case "Global Entity Setup": return "global";
+    case "CPA Support": return "cpa";
+    case "Business Advisory": return "advisory";
+    default: return "accounting";
+  }
+}
+
+function hashStr(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+/** Deterministic, topic-relevant stock photo for a resource card. */
+export function coverFor(r: Resource): string {
+  const pool = STOCK[themeFor(r)];
+  return IMG(pool[hashStr(r.title) % pool.length]);
+}
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
@@ -261,80 +306,79 @@ export default function ResourcesPage() {
               {filtered.map((res, i) => {
                 const Icon = categoryIcons[res.category] ?? FileText;
                 const color = categoryColors[res.category] ?? "#4D397F";
-                const href = res.pdf ?? res.link;
-                return (
-                  <AnimatedSection key={res.id} delay={0.05 + i * 0.04}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <motion.div
-                        className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col"
-                        whileHover={{ y: -4 }}
+                const cover = coverFor(res);
+                const cta = res.pdf
+                  ? "Read PDF"
+                  : res.category === "Video"
+                    ? "Watch"
+                    : "Open";
+                const card = (
+                  <motion.div
+                    className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col cursor-pointer"
+                    whileHover={{ y: -4 }}
+                  >
+                    <div className="relative aspect-[3/2] overflow-hidden bg-[#140e2a]">
+                      <img
+                        src={cover}
+                        alt={res.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/75 via-[#140e2a]/10 to-transparent" />
+                      <span
+                        className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm"
+                        style={{ backgroundColor: `${color}cc` }}
                       >
-                        {res.cover ? (
-                          <div className="relative aspect-[3/2] overflow-hidden bg-[#140e2a]">
-                            <img
-                              src={res.cover}
-                              alt={res.title}
-                              loading="lazy"
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/70 via-transparent to-transparent" />
-                            <span
-                              className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm"
-                              style={{ backgroundColor: `${color}cc` }}
-                            >
-                              <Icon className="size-3.5" />
-                              {res.category}
-                            </span>
-                          </div>
-                        ) : (
-                          <div
-                            className="h-2 w-full"
-                            style={{ backgroundColor: color }}
-                          />
-                        )}
-                        <div className="p-6 flex-1 flex flex-col">
-                          {!res.cover && (
-                            <div className="flex items-center gap-3 mb-4">
-                              <span
-                                className="inline-flex items-center justify-center size-9 rounded-lg"
-                                style={{
-                                  backgroundColor: `${color}14`,
-                                  color,
-                                }}
-                              >
-                                <Icon className="size-4.5" />
-                              </span>
-                              <span
-                                className="text-xs font-semibold uppercase tracking-wider"
-                                style={{ color }}
-                              >
-                                {res.category}
-                              </span>
-                            </div>
-                          )}
-                          <h3 className="font-heading font-bold text-lg text-ink mb-3 leading-snug flex-1">
-                            {res.title}
-                          </h3>
-                          <div className="flex items-center justify-between pt-3 border-t border-black/[0.04]">
-                            <span className="text-xs text-muted-foreground truncate max-w-[60%]">
-                              {res.service}
-                            </span>
-                            <span className="inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:gap-2 transition-all whitespace-nowrap">
-                              {res.pdf ? "Read PDF" : "Open"}
-                              {res.pdf ? (
-                                <Download className="size-3.5" />
-                              ) : (
-                                <ArrowUpRight className="size-3.5" />
-                              )}
-                            </span>
+                        <Icon className="size-3.5" />
+                        {res.category}
+                      </span>
+                      {res.category === "Video" && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="size-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                            <svg viewBox="0 0 24 24" fill="white" className="size-6 ml-0.5">
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
                           </div>
                         </div>
-                      </motion.div>
-                    </a>
+                      )}
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="font-heading font-bold text-lg text-ink mb-3 leading-snug flex-1">
+                        {res.title}
+                      </h3>
+                      <div className="flex items-center justify-between pt-3 border-t border-black/[0.04]">
+                        <span className="text-xs text-muted-foreground truncate max-w-[60%]">
+                          {res.service}
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:gap-2 transition-all whitespace-nowrap">
+                          {cta}
+                          {res.pdf ? (
+                            <Download className="size-3.5" />
+                          ) : (
+                            <ArrowUpRight className="size-3.5" />
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+                return (
+                  <AnimatedSection key={res.id} delay={0.05 + i * 0.04}>
+                    {res.pdf ? (
+                      <WhitepaperDownloadModal
+                        pdfUrl={res.pdf}
+                        title={res.title}
+                        trigger={card}
+                      />
+                    ) : (
+                      <a
+                        href={res.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {card}
+                      </a>
+                    )}
                   </AnimatedSection>
                 );
               })}

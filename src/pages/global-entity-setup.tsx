@@ -17,6 +17,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { resources, coverFor } from "./resources";
 
 /* ------------------------------------------------------------------ */
 /*  Service cards data (new stacking card format)                       */
@@ -65,14 +66,15 @@ const services = [
 /*  Related insights data                                               */
 /* ------------------------------------------------------------------ */
 
-const relatedArticles = [
-  { title: "LLC vs C-Corp: Making the Right Choice", category: "Entity Setup" },
-  { title: "Why Delaware Isn’t Always the Answer", category: "State Selection" },
-  { title: "5 Mistakes Founders Make with Operating Agreements", category: "Legal" },
-  { title: "EIN Registration: A Step-by-Step Guide", category: "Tax" },
-  { title: "Virtual Office vs Physical Office: What You Need", category: "Operations" },
-  { title: "Opening a US Bank Account as a Non-Resident", category: "Banking" },
-];
+// Pull real, Global-Entity-Setup–relevant items from the Resources page data.
+const relatedArticles = resources
+  .filter((r) => r.service === "Global Entity Setup")
+  .map((r) => ({
+    title: r.title,
+    category: r.category,
+    href: r.pdf ?? r.link,
+    cover: coverFor(r),
+  }));
 
 /* ------------------------------------------------------------------ */
 /*  Who This Is For data                                                */
@@ -126,13 +128,24 @@ function BlogTicker() {
         }}
       >
         {cards.map((article, i) => (
-          <div
+          <a
             key={`${article.title}-${i}`}
-            className="w-72 shrink-0 bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 group"
+            href={article.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-72 shrink-0 bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 group"
           >
-            {/* Gradient thumbnail */}
-            <div className="h-36 bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+            {/* Thumbnail */}
+            <div className="h-36 relative overflow-hidden bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
+              {article.cover && (
+                <img
+                  src={article.cover}
+                  alt={article.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               <div className="absolute bottom-3 left-3">
                 <span className="text-xs font-medium bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary">
                   {article.category}
@@ -140,7 +153,7 @@ function BlogTicker() {
               </div>
             </div>
             <div className="p-4">
-              <h4 className="font-heading font-semibold text-sm text-ink leading-snug mb-3">
+              <h4 className="font-heading font-semibold text-sm text-ink leading-snug mb-3 line-clamp-2">
                 {article.title}
               </h4>
               <span className="text-xs font-medium text-brand group-hover:text-brand-dark transition-colors inline-flex items-center gap-1">
@@ -148,7 +161,7 @@ function BlogTicker() {
                 <ChevronRight className="size-3" />
               </span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 

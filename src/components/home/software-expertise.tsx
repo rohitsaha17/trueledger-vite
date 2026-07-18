@@ -41,7 +41,7 @@ const categories: Category[] = [
     accentColor: "#00a650",
     tools: [
       { name: "Bill.com", logo: "https://cdn.prod.website-files.com/63e3da3df35cd62f54751985/63efaae11991984d7d4d021a_Logo-Mark-Color%201.png" },
-      { name: "Dext", logo: "https://www.google.com/s2/favicons?domain=dext.com&sz=128" },
+      { name: "Dext", logo: "/logos/software/dext.png" },
       { name: "Stampli", logo: "https://www.stampli.com/wp-content/uploads/2026/03/Updated_Stampli_logo.svg" },
     ],
   },
@@ -56,19 +56,12 @@ const categories: Category[] = [
     ],
   },
   {
-    label: "Workflow & Communication",
+    label: "Workflow, Communication & Close",
     gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
     accentColor: "#EE672C",
     tools: [
       { name: "Karbon", logo: "https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" },
       { name: "Canopy", logo: "https://www.getcanopy.com/wp-content/themes/get_canopy/assets/images/logo.svg" },
-    ],
-  },
-  {
-    label: "Month Close",
-    gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
-    accentColor: "#4D397F",
-    tools: [
       { name: "Double", logo: "https://doublehq.com/wp-content/uploads/2026/01/double-logo-new.png" },
       { name: "Financial Cents", logo: "https://financial-cents.com/wp-content/uploads/2025/04/financial-cents-logo.svg" },
     ],

@@ -33,7 +33,7 @@ const clients = [
     country: "India",
     flag: "🇮🇳",
     tag: "Payroll & Sales Tax",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145030_3db197a8-a374-462b-b152-5ff2708700c5_min.webp",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
     text: "A global hospitality chain founded in India, rapidly expanding its footprint across the United States. TrueLedger supported US operations with payroll management and multi-state sales tax registrations across their property portfolio.",
   },
   {

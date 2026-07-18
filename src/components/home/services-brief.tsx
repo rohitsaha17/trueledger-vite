@@ -45,16 +45,6 @@ const services = [
       "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165826_ac572644-f557-4a5c-989f-6df5b060ab68_min.webp",
   },
   {
-    icon: Lightbulb,
-    title: "Advisory Services",
-    description:
-      "Our advisory practice goes beyond numbers — working alongside founders and leadership teams on strategy, governance, fundraising readiness, financial controls, and technology infrastructure.",
-    href: "/services/business-advisory",
-    accent: "#B03B2D",
-    image:
-      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165822_01a41f97-2fe8-412f-a494-bf7fe4ec6f12_min.webp",
-  },
-  {
     icon: Users,
     title: "Support to CPAs & Accounting Firms",
     description:
@@ -63,6 +53,16 @@ const services = [
     accent: "#4D397F",
     image:
       "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165825_b8c21a16-bb17-4825-b26d-3026f283e654_min.webp",
+  },
+  {
+    icon: Lightbulb,
+    title: "Advisory Services",
+    description:
+      "Our advisory practice goes beyond numbers — working alongside founders and leadership teams on strategy, governance, fundraising readiness, financial controls, and technology infrastructure.",
+    href: "/services/business-advisory",
+    accent: "#B03B2D",
+    image:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165822_01a41f97-2fe8-412f-a494-bf7fe4ec6f12_min.webp",
   },
 ];
 

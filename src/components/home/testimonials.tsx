@@ -23,7 +23,7 @@ interface Review {
 const reviews: Review[] = [
   {
     text: "TrueLedger Consulting has been outstanding to work with. Their team brings deep expertise, handles complex accounting needs with precision, and communicates proactively at every step. Highly recommended for any business looking for reliable financial support.",
-    name: "Piyush Agarwal",
+    name: "Piyush A.",
     role: "Founder & CEO",
     location: "New Delhi, India",
     flag: "🇮🇳",
@@ -32,7 +32,7 @@ const reviews: Review[] = [
   },
   {
     text: "Exceptional service from the TrueLedger team. They took over our books seamlessly and the quality of financial reporting improved significantly. Their attention to detail and commitment to timelines is truly commendable.",
-    name: "Unnati Choudhary",
+    name: "Unnati C.",
     role: "Business Owner",
     location: "India",
     flag: "🇮🇳",
