@@ -345,10 +345,10 @@ export default function NorthAmericaPage() {
                         <FileText className="size-5 text-[#EE672C]" />
                       </div>
                       <a
-                        href="mailto:usdesk@trueledgerconsulting.com"
+                        href="mailto:connect@trueledgerconsulting.com"
                         className="text-white/80 text-sm leading-relaxed hover:text-white transition-colors"
                       >
-                        usdesk@trueledgerconsulting.com
+                        connect@trueledgerconsulting.com
                       </a>
                     </div>
                   </div>

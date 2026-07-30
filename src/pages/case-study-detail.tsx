@@ -154,7 +154,7 @@ export default function CaseStudyDetailPage() {
                     className="text-base px-8 h-13 font-semibold border-0 text-white cursor-pointer"
                     style={{
                       background:
-                        "linear-gradient(135deg, #EE672C, #B03B2D)",
+                        "linear-gradient(135deg, #4D397F, #362765)",
                     }}
                   >
                     Discuss Your Project

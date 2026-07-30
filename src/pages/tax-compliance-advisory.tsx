@@ -407,7 +407,7 @@ export default function TaxComplianceAdvisoryPage() {
                   <Button
                     size="lg"
                     className="text-base px-8 h-13 font-semibold shadow-xl shadow-primary/15 cursor-pointer"
-                    style={{ background: "linear-gradient(135deg, #EE672C, #B03B2D)" }}
+                    style={{ background: "linear-gradient(135deg, #4D397F, #362765)" }}
                   >
                     Book a Business Tax Consultation
                     <ChevronRight className="size-4" />
@@ -543,8 +543,8 @@ export default function TaxComplianceAdvisoryPage() {
               trigger={
                 <Button
                   size="lg"
-                  className="text-base px-8 h-13 font-semibold shadow-xl shadow-[#EE672C]/20 border-0 text-white cursor-pointer"
-                  style={{ background: "linear-gradient(135deg, #EE672C, #B03B2D)" }}
+                  className="text-base px-8 h-13 font-semibold shadow-xl shadow-[#4D397F]/20 border-0 text-white cursor-pointer"
+                  style={{ background: "linear-gradient(135deg, #4D397F, #362765)" }}
                 >
                   Book a Discovery Call Now
                   <ChevronRight className="size-4" />

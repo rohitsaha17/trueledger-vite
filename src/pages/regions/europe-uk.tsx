@@ -203,11 +203,11 @@ export default function EuropeUKPage() {
                 </p>
 
                 <a
-                  href="mailto:europedesk@trueledgerconsulting.com"
+                  href="mailto:connect@trueledgerconsulting.com"
                   className="inline-flex items-center gap-2 text-sm font-medium text-[#EE672C] hover:text-[#EE672C]/80 transition-colors mb-8"
                 >
                   <MapPin className="size-4" />
-                  europedesk@trueledgerconsulting.com
+                  connect@trueledgerconsulting.com
                 </a>
 
                 <div className="block">
@@ -215,10 +215,10 @@ export default function EuropeUKPage() {
                     trigger={
                       <Button
                         size="lg"
-                        className="text-base px-8 h-13 font-semibold shadow-xl shadow-[#EE672C]/20 border-0 text-white cursor-pointer"
+                        className="text-base px-8 h-13 font-semibold shadow-xl shadow-[#4D397F]/20 border-0 text-white cursor-pointer"
                         style={{
                           background:
-                            "linear-gradient(135deg, #EE672C, #B03B2D)",
+                            "linear-gradient(135deg, #4D397F, #362765)",
                         }}
                       >
                         Book a Consultation
