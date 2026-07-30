@@ -63,11 +63,21 @@ export function Footer() {
               </a>
               <div className="space-y-2">
                 <div className="flex items-start gap-2.5">
-                  <span className="text-xl leading-none mt-0.5 shrink-0">🇺🇸</span>
+                  <img
+                    src="https://flagcdn.com/us.svg"
+                    alt="United States"
+                    className="w-6 h-4 rounded-sm object-cover ring-1 ring-white/15 mt-0.5 shrink-0"
+                    loading="lazy"
+                  />
                   <span className="text-white/50">5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-xl leading-none mt-0.5 shrink-0">🇮🇳</span>
+                  <img
+                    src="https://flagcdn.com/in.svg"
+                    alt="India"
+                    className="w-6 h-4 rounded-sm object-cover ring-1 ring-white/15 mt-0.5 shrink-0"
+                    loading="lazy"
+                  />
                   <span className="text-white/50">A-42, South Extension II, NDSE 2, New Delhi – 110049</span>
                 </div>
               </div>

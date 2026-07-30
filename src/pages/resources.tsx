@@ -138,41 +138,32 @@ const categoryColors: Record<string, string> = {
 const IMG = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=70`;
 
-const STOCK: Record<string, string[]> = {
-  accounting: ["1554224155-6726b3ff858f", "1460925895917-afdab827c52f", "1551288049-bebda4e38f71", "1543286386-713bdd548da4"],
-  tax: ["1454165804606-c3d57bc86b40", "1450101499163-c8848c66ca85", "1517245386807-bb43f82c33c4", "1579532537598-459ecdaf39cc"],
-  advisory: ["1552664730-d307ca884978", "1521791136064-7986c2920216", "1590283603385-17ffb3a7f29f", "1573164713988-8665fc963095"],
-  cpa: ["1600880292203-757bb62b4baf", "1521737604893-d14cc237f11d", "1559526324-4b87b5e36e44", "1556742049-0cfed4f6a45d"],
-  global: ["1486406146926-c627a92ad1ab", "1444653614773-995cb1ef9efa", "1591696205602-2f950c417cb9", "1526778548025-fa2f459cd5c1"],
-  ai: ["1611974789855-9c2a0a7236a3", "1504384308090-c894fdcc538d"],
-};
+// Large pool of distinct, validated business/finance photos so cards don't repeat.
+const COVER_POOL = [
+  "1554224155-6726b3ff858f", "1450101499163-c8848c66ca85", "1460925895917-afdab827c52f",
+  "1454165804606-c3d57bc86b40", "1526778548025-fa2f459cd5c1", "1486406146926-c627a92ad1ab",
+  "1507842217343-583bb7270b66", "1600880292203-757bb62b4baf", "1504384308090-c894fdcc538d",
+  "1551288049-bebda4e38f71", "1521737604893-d14cc237f11d", "1521791136064-7986c2920216",
+  "1552664730-d307ca884978", "1556742049-0cfed4f6a45d", "1517245386807-bb43f82c33c4",
+  "1543286386-713bdd548da4", "1573164713988-8665fc963095", "1611974789855-9c2a0a7236a3",
+  "1559526324-4b87b5e36e44", "1590283603385-17ffb3a7f29f", "1579532537598-459ecdaf39cc",
+  "1554224154-26032ffc0d07", "1444653614773-995cb1ef9efa", "1591696205602-2f950c417cb9",
+  "1573497491208-6b1acb260507", "1556155092-490a1ba16284", "1542744173-8e7e53415bb0",
+  "1507003211169-0a1dd7228f2d", "1519085360753-af0119f7cbe7", "1560472354-b33ff0c44a43",
+  "1507679799987-c73779587ccf", "1591115765373-5207764f72e7", "1553877522-43269d4ea984",
+  "1542435503-956c469947f6", "1487017159836-4e23ece2e4cf", "1524749292158-7540c2494485",
+  "1568992687947-868a62a9f521", "1531973576160-7125cd663d86", "1552581234-26160f608093",
+  "1600607687939-ce8a6c25118c", "1521737711867-e3b97375f902", "1554774853-aae0a22c8aa4",
+  "1556742502-ec7c0e9f34b1", "1517048676732-d65bc937f952", "1519389950473-47ba0277781c",
+];
 
-function themeFor(r: Resource): keyof typeof STOCK {
-  const t = r.title.toLowerCase();
-  if (/\bai\b|automation|artificial|digits|due diligence/.test(t)) return "ai";
-  if (/tax|irs|gaap|h-1b|tariff|roth|deduction|filing|return|obba|refund|qbi/.test(t)) return "tax";
-  if (/india|uk|trade|entity|smsf|australia|singapore|cross-border|budget|nexus|multi-state|superannuation|safe/.test(t)) return "global";
-  if (/cpa|outsourc|firm/.test(t)) return "cpa";
-  if (/nonprofit|advisory|cfo|strategy|roi|forecast|scal|onboarding/.test(t)) return "advisory";
-  switch (r.service) {
-    case "Tax Compliance & Advisory": return "tax";
-    case "Global Entity Setup": return "global";
-    case "CPA Support": return "cpa";
-    case "Business Advisory": return "advisory";
-    default: return "accounting";
-  }
-}
+// Stable position of each resource so every card gets a distinct image.
+const coverOrder = new Map(resources.map((r, i) => [r.id, i]));
 
-function hashStr(s: string): number {
-  let h = 0;
-  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) >>> 0;
-  return h;
-}
-
-/** Deterministic, topic-relevant stock photo for a resource card. */
+/** Distinct real/stock photo per resource — no repeats within the pool. */
 export function coverFor(r: Resource): string {
-  const pool = STOCK[themeFor(r)];
-  return IMG(pool[hashStr(r.title) % pool.length]);
+  const idx = coverOrder.get(r.id) ?? 0;
+  return IMG(COVER_POOL[idx % COVER_POOL.length]);
 }
 
 /* ------------------------------------------------------------------ */
@@ -384,6 +375,41 @@ export default function ResourcesPage() {
               })}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Newsletter subscribe */}
+      <section className="pb-20 md:pb-28">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="rounded-2xl bg-brand-tint/60 border border-black/[0.06] p-8 md:p-12 text-center">
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#EE672C] mb-3">
+                Stay in the loop
+              </p>
+              <h2 className="font-heading font-bold text-2xl md:text-3xl text-ink mb-3">
+                Subscribe to Insights
+              </h2>
+              <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto mb-6">
+                Get our latest whitepapers, guides, and tax updates delivered
+                straight to your inbox.
+              </p>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="Your work email"
+                  className="flex-1 h-11 rounded-full border border-black/10 bg-white px-4 text-sm outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/20"
+                />
+                <Button type="submit" size="lg" className="rounded-full shrink-0">
+                  Subscribe
+                  <ChevronRight className="size-4" />
+                </Button>
+              </form>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

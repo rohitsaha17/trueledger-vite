@@ -204,9 +204,6 @@ export default function SmallMidSizeBusinessesPage() {
                 }}
                 whileHover={{ y: -4 }}
               >
-                <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.04] leading-none select-none pointer-events-none">
-                  {item.num}
-                </span>
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EE672C]/60 via-[#4D397F]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="inline-flex items-center gap-2 mb-4">
                   <span className="text-xs font-bold tracking-wider text-[#EE672C]/80 font-mono bg-[#EE672C]/[0.1] px-2.5 py-1 rounded-md">
@@ -274,9 +271,6 @@ export default function SmallMidSizeBusinessesPage() {
                   }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">
-                    {num}
-                  </span>
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="inline-flex items-center gap-2 mb-4">
                     <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">
@@ -312,9 +306,6 @@ export default function SmallMidSizeBusinessesPage() {
                   }}
                   whileHover={{ y: -4 }}
                 >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">
-                    {num}
-                  </span>
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="inline-flex items-center gap-2 mb-4">
                     <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">

@@ -250,7 +250,7 @@ export default function BusinessAdvisoryPage() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-xl overflow-hidden h-[280px] cursor-pointer"
+                  className="group relative rounded-xl overflow-hidden cursor-pointer"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
@@ -263,9 +263,9 @@ export default function BusinessAdvisoryPage() {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/60 to-[#140e2a]/30 group-hover:from-[#140e2a]/98 group-hover:via-[#140e2a]/70 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/75 to-[#140e2a]/45" />
 
-                  <div className="absolute inset-0 flex flex-col justify-end p-4">
+                  <div className="relative flex flex-col justify-end p-4 min-h-[280px]">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="size-8 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
                         <Icon className="size-4 text-white" />
@@ -273,7 +273,7 @@ export default function BusinessAdvisoryPage() {
                       <span className="text-white/25 font-heading font-black text-2xl leading-none select-none">{num}</span>
                     </div>
                     <h3 className="font-heading font-bold text-sm text-white leading-snug mb-1.5">{item.title}</h3>
-                    <p className="text-[11px] text-white/55 leading-relaxed line-clamp-3">{item.description}</p>
+                    <p className="text-[11px] text-white/70 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
               );

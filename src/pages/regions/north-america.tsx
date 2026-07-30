@@ -21,8 +21,9 @@ import { ServicePageHero } from "@/components/shared/service-page-hero";
 interface ServiceCategory {
   icon: typeof Building2;
   title: string;
-  us: string[];
-  canada: string[];
+  us?: string[];
+  canada?: string[];
+  combined?: string[];
 }
 
 const serviceCategories: ServiceCategory[] = [
@@ -45,16 +46,10 @@ const serviceCategories: ServiceCategory[] = [
   {
     icon: Calculator,
     title: "Managed Accounting & Bookkeeping",
-    us: [
+    combined: [
       "Multi-entity, multi-currency bookkeeping on QuickBooks Online, Xero",
       "AP/AR management & month-end close",
-      "Payroll processing (Gusto, ADP, Paychex)",
-      "Industry-specific support: restaurants, SaaS, real estate",
-    ],
-    canada: [
-      "Multi-entity, multi-currency bookkeeping on QuickBooks Online, Xero",
-      "AP/AR management & month-end close",
-      "Payroll processing (Wagepoint)",
+      "Payroll processing (Gusto, ADP, Paychex, Wagepoint)",
       "Industry-specific support: restaurants, SaaS, real estate",
     ],
   },
@@ -79,14 +74,7 @@ const serviceCategories: ServiceCategory[] = [
   {
     icon: Users,
     title: "Support to CPAs & Accounting Firms",
-    us: [
-      "White-label bookkeeping",
-      "Tax prep (Drake, Lacerte, CCH Tax)",
-      "Payroll support",
-      "Scaled around peak season",
-      "Matches your existing review process",
-    ],
-    canada: [
+    combined: [
       "White-label bookkeeping",
       "Tax prep (Drake, Lacerte, CCH Tax)",
       "Payroll support",
@@ -97,13 +85,7 @@ const serviceCategories: ServiceCategory[] = [
   {
     icon: Briefcase,
     title: "Business Advisory",
-    us: [
-      "Fractional CFO support",
-      "Fundraise & investor due diligence prep",
-      "Governance and internal control frameworks for IPO-track",
-      "Accounting automation",
-    ],
-    canada: [
+    combined: [
       "Fractional CFO support",
       "Fundraise & investor due diligence prep",
       "Governance and internal control frameworks for IPO-track",
@@ -185,41 +167,63 @@ export default function NorthAmericaPage() {
                       {category.title}
                     </h3>
 
-                    {/* US */}
-                    <div className="mb-4">
-                      <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
-                        United States
-                      </p>
-                      <ul className="space-y-1.5">
-                        {category.us.map((item) => (
-                          <li
-                            key={item}
-                            className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
-                          >
-                            <ChevronRight className="size-3.5 text-[#EE672C] mt-0.5 shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {category.combined ? (
+                      /* Combined US & Canada */
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
+                          United States &amp; Canada
+                        </p>
+                        <ul className="space-y-1.5">
+                          {category.combined.map((item) => (
+                            <li
+                              key={item}
+                              className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                            >
+                              <ChevronRight className="size-3.5 text-[#EE672C] mt-0.5 shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <>
+                        {/* US */}
+                        <div className="mb-4">
+                          <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
+                            United States
+                          </p>
+                          <ul className="space-y-1.5">
+                            {category.us?.map((item) => (
+                              <li
+                                key={item}
+                                className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                              >
+                                <ChevronRight className="size-3.5 text-[#EE672C] mt-0.5 shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
 
-                    {/* Canada */}
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
-                        Canada
-                      </p>
-                      <ul className="space-y-1.5">
-                        {category.canada.map((item) => (
-                          <li
-                            key={item}
-                            className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
-                          >
-                            <ChevronRight className="size-3.5 text-[#EE672C] mt-0.5 shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                        {/* Canada */}
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
+                            Canada
+                          </p>
+                          <ul className="space-y-1.5">
+                            {category.canada?.map((item) => (
+                              <li
+                                key={item}
+                                className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                              >
+                                <ChevronRight className="size-3.5 text-[#EE672C] mt-0.5 shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </motion.div>
               );

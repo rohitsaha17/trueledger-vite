@@ -17,6 +17,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const clients = [
   {
     country: "Michigan, USA",
+    sector: "Technology Services Company",
     flag: "🇺🇸",
     tag: "End-to-End Accounting",
     image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_144911_1ba7e70a-6904-48da-9b86-708584dee5c0_min.webp",
@@ -24,6 +25,7 @@ const clients = [
   },
   {
     country: "New York, USA",
+    sector: "Full-Scale Restaurant",
     flag: "🇺🇸",
     tag: "Full Financial Operations",
     image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_144914_fad1ab72-7b3d-4067-9ba4-1b24491d3548_min.webp",
@@ -31,6 +33,7 @@ const clients = [
   },
   {
     country: "India",
+    sector: "Global Hotel Chain",
     flag: "🇮🇳",
     tag: "Payroll & Sales Tax",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
@@ -38,6 +41,7 @@ const clients = [
   },
   {
     country: "Canada",
+    sector: "Realty & Hospitality Group",
     flag: "🇨🇦",
     tag: "Bookkeeping & Payroll",
     image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145017_54d2f084-689f-43ee-8df1-99b9426c335b_min.webp",
@@ -45,6 +49,7 @@ const clients = [
   },
   {
     country: "Melbourne, Australia",
+    sector: "FMCG & Beverage Group",
     flag: "🇦🇺",
     tag: "Accounts Payable",
     image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145019_8444f3a6-836d-4a21-a01c-c2fc4256e6a5_min.webp",
@@ -99,13 +104,18 @@ export function TrustedClients() {
                           className="w-full h-full object-cover"
                           loading={i === 0 ? "eager" : "lazy"}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                        <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                          <span className="text-2xl">{c.flag}</span>
-                          <span className="inline-flex items-center gap-1 font-heading font-semibold text-sm text-white drop-shadow-md">
-                            <MapPin className="size-3.5 text-orange" />
-                            {c.country}
-                          </span>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                        <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="font-heading font-bold text-base sm:text-lg text-white drop-shadow-md leading-tight">
+                              {c.sector}
+                            </p>
+                            <span className="inline-flex items-center gap-1 text-white/85 text-xs sm:text-sm drop-shadow-md mt-0.5">
+                              <MapPin className="size-3.5 text-orange" />
+                              {c.country}
+                            </span>
+                          </div>
+                          <span className="text-2xl shrink-0">{c.flag}</span>
                         </div>
                         <div className="absolute top-3 right-3">
                           <Badge className="bg-white/90 text-foreground backdrop-blur-sm border-0 shadow-sm">

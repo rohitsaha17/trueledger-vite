@@ -113,7 +113,6 @@ export function GlobalPresence() {
         {/* Country row — single line, equal height */}
         <div className="flex items-end justify-center gap-6 md:gap-8 lg:gap-10 flex-wrap lg:flex-nowrap">
           {countries.map((country, i) => {
-            const [, , w, h] = country.viewBox.split(" ").map(Number);
             return (
               <motion.div
                 key={country.name}
@@ -127,41 +126,15 @@ export function GlobalPresence() {
                   to={country.href}
                   className="group flex flex-col items-center text-center"
                 >
-                {/* Map silhouette */}
-                <div
-                  className="relative flex items-center justify-center"
-                  style={{ height: 120 }}
-                >
-                  <div className="absolute inset-0 rounded-xl bg-[#EE672C]/0 group-hover:bg-[#EE672C]/8 blur-2xl transition-all duration-500" />
-                  <svg
-                    viewBox={country.viewBox}
-                    className="relative transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_0_15px_rgba(238,103,44,0.12)]"
-                    style={{
-                      height: 120,
-                      width: 120 * (w / h),
-                    }}
-                  >
-                    <defs>
-                      <clipPath id={`geo-${country.code}`}>
-                        <path d={country.path} />
-                      </clipPath>
-                    </defs>
-                    <path
-                      d={country.path}
-                      fill="none"
-                      stroke="rgba(255,255,255,0.06)"
-                      strokeWidth={country.code === "sg" ? 0.15 : 1}
-                    />
-                    <image
-                      href={`https://flagcdn.com/w640/${country.code}.png`}
-                      x={country.viewBox.split(" ")[0]}
-                      y={country.viewBox.split(" ")[1]}
-                      width={w}
-                      height={h}
-                      clipPath={`url(#geo-${country.code})`}
-                      preserveAspectRatio="xMidYMid slice"
-                    />
-                  </svg>
+                {/* Rectangular flag tile */}
+                <div className="relative flex items-center justify-center">
+                  <div className="absolute inset-0 rounded-2xl bg-[#EE672C]/0 group-hover:bg-[#EE672C]/15 blur-2xl transition-all duration-500" />
+                  <img
+                    src={`https://flagcdn.com/${country.code}.svg`}
+                    alt={country.name}
+                    loading="lazy"
+                    className="relative w-[132px] h-[88px] object-cover rounded-xl ring-1 ring-white/15 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
 
                 {/* Label */}
