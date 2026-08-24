@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { FeatureCard } from "@/components/shared/feature-card";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ServiceFAQ } from "@/components/shared/service-faq";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -269,36 +270,14 @@ export default function TaxComplianceAdvisoryPage() {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-            {individualServices.map((item, i) => {
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.04] leading-none select-none pointer-events-none">
-                    {num}
-                  </span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand/60 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-brand/70 font-mono bg-brand/[0.06] px-2.5 py-1 rounded-md">
-                      {num}
-                    </span>
-                  </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </motion.div>
-              );
-            })}
+            {individualServices.map((item, i) => (
+              <FeatureCard
+                key={item.title}
+                index={i}
+                title={item.title}
+                description={item.description}
+              />
+            ))}
           </div>
 
           <AnimatedSection delay={0.3}>
@@ -350,54 +329,29 @@ export default function TaxComplianceAdvisoryPage() {
 
           {/* Top row: 3 cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-            {businessServices.slice(0, 3).map((item, i) => {
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl border p-6 sm:p-7 overflow-hidden transition-all duration-300 bg-white/[0.04] border-white/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:bg-white/[0.06]"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.06] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-brand/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-[#EE672C] font-mono bg-[#EE672C]/12 px-2.5 py-1 rounded-md">{num}</span>
-                  </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
+            {businessServices.slice(0, 3).map((item, i) => (
+              <FeatureCard
+                key={item.title}
+                index={i}
+                title={item.title}
+                description={item.description}
+                variant="dark-panel"
+              />
+            ))}
           </div>
 
           {/* Bottom row: 2 cards, centered */}
           <div className="flex flex-col sm:flex-row justify-center gap-5 lg:gap-6 mt-5 lg:mt-6">
-            {businessServices.slice(3).map((item, i) => {
-              const num = String(i + 4).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl border p-6 sm:p-7 overflow-hidden transition-all duration-300 bg-white/[0.04] border-white/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:bg-white/[0.06] w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: (i + 3) * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.06] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-brand/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-[#EE672C] font-mono bg-[#EE672C]/12 px-2.5 py-1 rounded-md">{num}</span>
-                  </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
+            {businessServices.slice(3).map((item, i) => (
+              <FeatureCard
+                key={item.title}
+                index={i + 3}
+                title={item.title}
+                description={item.description}
+                variant="dark-panel"
+                className="w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
+              />
+            ))}
           </div>
 
           <AnimatedSection delay={0.3}>
