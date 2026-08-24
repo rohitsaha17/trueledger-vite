@@ -12,6 +12,15 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { FeatureCard } from "@/components/shared/feature-card";
+import {
+  CostAdvantageArt,
+  QualifiedTeamArt,
+  OnboardingArt,
+  DedicatedTeamArt,
+  VisibilityArt,
+  TimezoneArt,
+} from "@/components/shared/approach-illustrations";
 
 /* ------------------------------------------------------------------ */
 /*  How We Support Your Practice — card data                            */
@@ -46,31 +55,37 @@ const supportCards = [
 
 const differentiationCards = [
   {
+    art: CostAdvantageArt,
     title: "Strategic Cost Advantage",
     description:
       "Extending your capacity through a dedicated offshore team significantly reduces your cost per engagement — without reducing quality. Same standard of work at a fraction of the cost.",
   },
   {
+    art: QualifiedTeamArt,
     title: "Qualified Teams, Not Junior Resources",
     description:
       "Our teams are comprised of qualified accounting professionals — Chartered Accountants and experienced practitioners — not entry-level resources. You get professionals who understand accounting.",
   },
   {
+    art: OnboardingArt,
     title: "Smoother Onboarding & Client Handling",
     description:
       "We bring structured onboarding frameworks and pre-built checklists to every new client engagement — so the transition is clean, the setup is fast, and your team is not spending weeks getting us up to speed.",
   },
   {
+    art: DedicatedTeamArt,
     title: "Dedicated Team With Full Practice Management Integration",
     description:
       "Your offshore team is dedicated to your firm — not shared across dozens of other clients. We work within your existing workflow and practice management tools so your processes stay intact.",
   },
   {
+    art: VisibilityArt,
     title: "Transparent Visibility on Hours & Work",
     description:
       "No black box. You have full visibility into your team’s hours, task progress, and workflow status at all times — through the practice management tools you already use. Complete transparency.",
   },
   {
+    art: TimezoneArt,
     title: "Multi-Timezone Coverage",
     description:
       "With teams operating across the US, India, and other jurisdictions, we provide coverage across multiple time zones — ensuring work moves forward around the clock and deadlines are met.",
@@ -214,8 +229,8 @@ export default function SupportToCPAsPage() {
         >
           <source src="https://videos.pexels.com/video-files/3252858/3252858-hd_1920_1080_25fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#140e2a]/75" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/30" />
+        <div className="absolute inset-0 bg-[#140e2a]/85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/50 via-transparent to-[#140e2a]/50" />
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -234,28 +249,15 @@ export default function SupportToCPAsPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
-            {supportCards.map((item, i) => {
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl bg-white/[0.08] backdrop-blur-sm border border-white/[0.1] p-6 sm:p-7 overflow-hidden hover:bg-white/[0.12] transition-all duration-300"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-white/[0.04] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-primary font-mono bg-primary/[0.12] px-2.5 py-1 rounded-md">{num}</span>
-                  </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-white leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-white/60 leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
+            {supportCards.map((item, i) => (
+              <FeatureCard
+                key={item.title}
+                index={i}
+                title={item.title}
+                description={item.description}
+                variant="on-dark"
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -282,28 +284,15 @@ export default function SupportToCPAsPage() {
 
           {/* 6 cards — full 3×2 grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-            {differentiationCards.map((item, i) => {
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] shadow-sm p-6 sm:p-7 overflow-hidden hover:shadow-lg transition-all duration-300"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -4 }}
-                >
-                  <span className="absolute -top-3 -right-2 text-[5.5rem] font-heading font-black text-brand/[0.06] leading-none select-none pointer-events-none">{num}</span>
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/60 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span className="text-xs font-bold tracking-wider text-primary font-mono bg-primary/[0.12] px-2.5 py-1 rounded-md">{num}</span>
-                  </div>
-                  <h3 className="font-heading font-bold text-base sm:text-[1.05rem] text-ink leading-snug mb-3 pr-4">{item.title}</h3>
-                  <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
+            {differentiationCards.map((item, i) => (
+              <FeatureCard
+                key={item.title}
+                index={i}
+                title={item.title}
+                description={item.description}
+                art={item.art}
+              />
+            ))}
           </div>
         </div>
       </section>
