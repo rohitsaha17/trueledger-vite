@@ -332,9 +332,9 @@ export default function WhoWeWorkWithPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 2 — SECTOR GRID (Premium dark cards)                */}
+      {/*  SECTION 2 — SECTOR GRID  ·  LIGHT                           */}
       {/* ============================================================ */}
-      <section className="pt-20 md:pt-28 pb-10 md:pb-14 relative overflow-hidden">
+      <section className="pt-20 md:pt-28 pb-10 md:pb-14 relative overflow-hidden bg-background">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-coral/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -486,7 +486,7 @@ export default function WhoWeWorkWithPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 3 — BEYOND SECTORS                                  */}
+      {/*  SECTION 3 — BEYOND SECTORS  ·  DARK                         */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
         <img
@@ -579,25 +579,25 @@ export default function WhoWeWorkWithPage() {
       </section>
 
       {/* ============================================================ */}
-      {/*  SECTION 4 — CLOSING CTA (Glassmorphism card)                */}
+      {/*  SECTION 4 — CLOSING CTA  ·  LIGHT                           */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-20 md:py-28 relative overflow-hidden bg-background">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-[#140e2a]/85" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
-        <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute inset-0 bg-white/[0.92]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/85" />
+        <div className="absolute top-0 left-1/3 w-96 h-64 bg-brand/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-coral/[0.08] rounded-full blur-[80px] pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-            <div className="bg-white/[0.06] backdrop-blur-xl rounded-3xl border border-white/[0.10] p-8 sm:p-12 max-w-3xl mx-auto text-center">
-              <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <div className="bg-white/70 backdrop-blur-xl rounded-3xl border border-black/[0.06] shadow-xl shadow-brand/[0.06] p-8 sm:p-12 max-w-3xl mx-auto text-center">
+              <p className="text-coral text-xs font-semibold uppercase tracking-widest mb-4">
                 Let&rsquo;s Talk
               </p>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-ink mb-6 leading-tight">
                 Ready to explore how TrueLedger can support your business?
               </h2>
-              <p className="text-white/45 text-sm sm:text-base max-w-lg mx-auto mb-10">
+              <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto mb-10">
                 Whether you see your sector above or not, the conversation
                 starts the same way &mdash; with understanding what you need.
               </p>
