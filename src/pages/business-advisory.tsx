@@ -263,7 +263,7 @@ export default function BusinessAdvisoryPage() {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/75 to-[#140e2a]/45" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/75 to-[#140e2a]/45 transition-all duration-500 group-hover:from-[#140e2a] group-hover:via-[#140e2a]/88 group-hover:to-[#140e2a]/60" />
 
                   <div className="relative flex flex-col justify-end p-4 min-h-[280px]">
                     <div className="flex items-center gap-2 mb-2">
@@ -272,8 +272,17 @@ export default function BusinessAdvisoryPage() {
                       </div>
                       <span className="text-white/25 font-heading font-black text-2xl leading-none select-none">{num}</span>
                     </div>
-                    <h3 className="font-heading font-bold text-sm text-white leading-snug mb-1.5">{item.title}</h3>
-                    <p className="text-[11px] text-white/70 leading-relaxed">{item.description}</p>
+                    <h3 className="font-heading font-bold text-sm text-white leading-snug">{item.title}</h3>
+
+                    {/* Details — slide up from the bottom on hover (always visible below lg) */}
+                    <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+                      <div className="overflow-hidden">
+                        <p className="text-[11px] text-white/70 leading-relaxed pt-1.5 opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-500 delay-75 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+                          {item.description}
+                        </p>
+                        <span className="mt-3 block h-px w-0 lg:group-hover:w-full bg-gradient-to-r from-coral via-coral/40 to-transparent transition-all duration-700 delay-150 ease-out" />
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               );
