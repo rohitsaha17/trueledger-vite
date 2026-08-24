@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { FeatureCard } from "@/components/shared/feature-card";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
@@ -7,10 +6,10 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
-  Briefcase,
-  Clock,
-  Eye,
-  DollarSign,
+  Building2,
+  CalendarCheck,
+  Radar,
+  ReceiptText,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 
@@ -94,25 +93,25 @@ const businessServices: ServiceItem[] = [
 
 const approachSteps = [
   {
-    icon: Briefcase,
+    icon: Building2,
     title: "Industry Expertise",
     description:
       "We’ve worked with entrepreneurs across industries. Our deep expertise ensures tailored tax strategies that work for you.",
   },
   {
-    icon: Clock,
+    icon: CalendarCheck,
     title: "Year-Round Support",
     description:
       "Our team is here year-round, not just tax season. Get advice to make smarter decisions and meet deadlines.",
   },
   {
-    icon: Eye,
+    icon: Radar,
     title: "Proactive Approach",
     description:
       "By working with you throughout the year, we anticipate tax changes before they happen and uncover savings opportunities.",
   },
   {
-    icon: DollarSign,
+    icon: ReceiptText,
     title: "Transparent Pricing",
     description:
       "No hidden fees, no surprises — just clear, upfront pricing you can trust. Schedule a free consultation today for a custom quote.",
@@ -388,27 +387,31 @@ export default function TaxComplianceAdvisoryPage() {
           {/* Desktop: horizontal timeline */}
           <div className="hidden md:block">
             <div className="relative">
-              {/* Connecting line */}
-              <div className="absolute top-[3.25rem] left-0 right-0 h-px bg-brand/20" />
+              {/* Connector — meets the vertical centre of every node, then fades out */}
+              <div className="absolute top-7 left-7 right-0 h-px bg-gradient-to-r from-brand/35 via-brand/25 to-transparent" />
 
-              <div className="grid grid-cols-4 gap-8">
+              <div className="grid grid-cols-4 gap-8 lg:gap-10">
                 {approachSteps.map((step, i) => {
                   const Icon = step.icon;
                   return (
                     <AnimatedSection key={step.title} delay={0.1 + i * 0.12}>
-                      <div className="relative text-center">
-                        {/* Node dot on the line */}
-                        <div className="mx-auto size-14 rounded-2xl bg-white border-2 border-brand/20 flex items-center justify-center shadow-sm mb-6 relative z-10">
-                          <Icon className="size-6 text-brand" />
+                      <div className="group relative">
+                        {/* Node — opaque, so the connector reads as passing behind it */}
+                        <div className="relative z-10 mb-6 flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brand-dark shadow-lg shadow-brand/25 ring-4 ring-[#FAF9FC] transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-brand/35">
+                          <Icon className="size-6 text-white" strokeWidth={1.75} />
                         </div>
-                        {/* Step number */}
-                        <span className="text-xs font-semibold text-brand tracking-wider font-mono mb-2 block">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <h4 className="font-heading font-semibold text-base text-ink leading-snug mb-2">
+
+                        <div className="mb-2.5 flex items-center gap-2.5">
+                          <span className="font-mono text-[11px] font-semibold tracking-[0.2em] text-brand/70">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span className="h-px w-5 bg-brand/25 transition-all duration-500 ease-out group-hover:w-9 group-hover:bg-brand/50" />
+                        </div>
+
+                        <h4 className="mb-2 font-heading text-lg font-bold leading-snug text-ink">
                           {step.title}
                         </h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
+                        <p className="text-[15px] leading-relaxed text-muted-foreground">
                           {step.description}
                         </p>
                       </div>
@@ -421,28 +424,31 @@ export default function TaxComplianceAdvisoryPage() {
 
           {/* Mobile: vertical timeline */}
           <div className="md:hidden">
-            <div className="relative pl-8">
-              {/* Vertical connecting line */}
-              <div className="absolute left-[1.0625rem] top-0 bottom-0 w-px bg-brand/20" />
+            <div className="relative">
+              {/* Vertical connector — aligned to the centre of the 44px nodes */}
+              <div className="absolute left-[1.375rem] top-4 bottom-4 w-px bg-gradient-to-b from-brand/35 via-brand/25 to-coral/30" />
 
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-9">
                 {approachSteps.map((step, i) => {
                   const Icon = step.icon;
                   return (
                     <AnimatedSection key={step.title} delay={0.1 + i * 0.1}>
-                      <div className="relative flex items-start gap-5">
-                        {/* Node dot */}
-                        <div className="absolute -left-8 size-[2.125rem] rounded-xl bg-white border-2 border-brand/20 flex items-center justify-center shadow-sm z-10">
-                          <Icon className="size-4 text-brand" />
+                      <div className="group relative flex items-start gap-5">
+                        <div className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand-dark shadow-lg shadow-brand/25 ring-4 ring-[#FAF9FC]">
+                          <Icon className="size-5 text-white" strokeWidth={1.75} />
                         </div>
-                        <div>
-                          <span className="text-xs font-semibold text-brand tracking-wider font-mono mb-1 block">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <h4 className="font-heading font-semibold text-base text-ink leading-snug mb-1.5">
+
+                        <div className="pt-0.5">
+                          <div className="mb-1.5 flex items-center gap-2.5">
+                            <span className="font-mono text-[11px] font-semibold tracking-[0.2em] text-brand/70">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span className="h-px w-5 bg-brand/25" />
+                          </div>
+                          <h4 className="mb-1.5 font-heading text-lg font-bold leading-snug text-ink">
                             {step.title}
                           </h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
+                          <p className="text-[15px] leading-relaxed text-muted-foreground">
                             {step.description}
                           </p>
                         </div>
