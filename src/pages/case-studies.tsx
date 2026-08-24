@@ -399,9 +399,13 @@ export default function CaseStudiesPage() {
             </AnimatedSection>
           ) : (
             /* Study cards */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-wrap justify-center gap-8">
               {filteredStudies.map((study, i) => (
-                <AnimatedSection key={study.id} delay={0.1 + i * 0.06}>
+                <AnimatedSection
+                  key={study.id}
+                  delay={0.1 + i * 0.06}
+                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]"
+                >
                   <Link to={`/case-studies/${study.slug}`}>
                     <motion.div
                       className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col"
