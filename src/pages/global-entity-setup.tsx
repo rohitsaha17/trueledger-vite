@@ -1,4 +1,6 @@
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { DARK_PANEL_SURFACE } from "@/components/shared/feature-card";
+import { cn } from "@/lib/utils";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ServiceFAQ } from "@/components/shared/service-faq";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -335,22 +337,33 @@ export default function GlobalEntitySetupPage() {
                   key={service.title}
                   delay={i * 0.06}
                 >
-                  <div className="group relative h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 lg:p-7 hover:bg-white/[0.06] hover:border-white/[0.14] transition-all duration-300">
-                    <div className="flex items-start gap-5">
-                      <div className="shrink-0 size-12 rounded-xl bg-gradient-to-br from-[#4D397F]/30 to-[#362765]/20 border border-white/[0.08] flex items-center justify-center group-hover:from-[#4D397F]/40 group-hover:to-[#EE672C]/15 transition-all duration-300">
-                        <Icon className="size-5 text-[#9B8CC4] group-hover:text-white/90 transition-colors duration-300" />
+                  <div
+                    className={cn(
+                      "group relative h-full overflow-hidden rounded-2xl p-6 lg:p-7",
+                      "transition-[border-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-1",
+                      DARK_PANEL_SURFACE,
+                    )}
+                  >
+                    {/* Accent rail — wipes up from the bottom edge */}
+                    <span className="pointer-events-none absolute inset-y-0 left-0 w-[2px] origin-bottom scale-y-0 bg-gradient-to-t from-brand via-brand/70 to-coral transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-y-100" />
+                    {/* Soft wash that breathes in behind the corner */}
+                    <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-coral/20 opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100" />
+
+                    <div className="relative flex items-start gap-5">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand-dark shadow-lg shadow-brand/30 transition-transform duration-500 ease-out group-hover:scale-105">
+                        <Icon className="size-5 text-white" strokeWidth={1.75} />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-xs font-mono text-[#EE672C]/60 font-semibold">
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-2 flex items-center gap-3">
+                          <span className="font-mono text-xs font-semibold tracking-[0.2em] text-coral/90 transition-colors duration-500 group-hover:text-coral">
                             {String(i + 1).padStart(2, "0")}
                           </span>
-                          <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                          <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent transition-colors duration-500 group-hover:from-coral/50" />
                         </div>
-                        <h3 className="font-heading text-lg font-semibold text-white/90 mb-2 leading-snug">
+                        <h3 className="mb-2 font-heading text-lg font-bold leading-snug text-white">
                           {service.title}
                         </h3>
-                        <p className="text-white/40 text-sm leading-relaxed">
+                        <p className="text-sm leading-relaxed text-white/65">
                           {service.description}
                         </p>
                       </div>
@@ -386,18 +399,36 @@ export default function GlobalEntitySetupPage() {
               const Icon = item.icon;
               return (
                 <AnimatedSection key={item.text} delay={i * 0.1}>
-                  <div className={`relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group`}>
-                    <img src={item.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.22] group-hover:opacity-[0.32] transition-opacity duration-500 pointer-events-none" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/40 to-transparent pointer-events-none" />
+                  <div className="group relative h-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm transition-[border-color,box-shadow] duration-500 ease-out hover:border-brand/25 hover:shadow-[0_20px_44px_-16px_rgba(77,57,127,0.22)]">
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.20] transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/40" />
 
-                    <div className="relative z-10 p-6 lg:p-7 flex flex-col items-center text-center">
-                      <div className="size-14 rounded-2xl bg-brand-tint flex items-center justify-center border border-brand/10 mb-5 group-hover:scale-110 group-hover:bg-brand/10 transition-all duration-300">
-                        <Icon className="size-6 text-brand" />
+                    {/* Resting state — sized to its content, vertically centred */}
+                    <div className="relative z-10 flex h-full min-h-[190px] flex-col items-center justify-center gap-3.5 p-6 text-center">
+                      <div className="flex size-14 items-center justify-center rounded-2xl border border-brand/10 bg-brand-tint transition-all duration-500 ease-out group-hover:scale-105 group-hover:border-brand/25 group-hover:bg-brand/10">
+                        <Icon className="size-6 text-brand" strokeWidth={1.75} />
                       </div>
-                      <h3 className="font-heading font-bold text-base text-ink mb-2">
+                      <h3 className="font-heading text-base font-bold leading-snug text-ink">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      {/* No hover on touch devices — show the detail inline instead */}
+                      <p className="text-sm leading-relaxed text-muted-foreground lg:hidden">
+                        {item.text}
+                      </p>
+                    </div>
+
+                    {/* Detail panel — slides up from the bottom edge on hover */}
+                    <div className="absolute inset-0 z-20 hidden translate-y-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand to-brand-dark p-6 text-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:translate-y-0 lg:flex">
+                      <Icon className="size-6 text-white/70" strokeWidth={1.75} />
+                      <h3 className="font-heading text-base font-bold leading-snug text-white">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-white/75 opacity-0 transition-opacity delay-150 duration-500 group-hover:opacity-100">
                         {item.text}
                       </p>
                     </div>

@@ -26,6 +26,16 @@ interface FeatureCardProps {
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
+/**
+ * Raised slab for cards sitting on a near-black (#140e2a-ish) backdrop.
+ * An opaque surface several stops lighter than the section, a lit top edge,
+ * and a deep cast shadow — so the card reads as an object rather than a
+ * slightly-tinted patch of the background. Exported so sections with their
+ * own card markup can share the exact treatment.
+ */
+export const DARK_PANEL_SURFACE =
+  "bg-[#221a45] bg-gradient-to-b from-white/[0.07] to-transparent border border-white/[0.13] hover:border-coral/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_20px_48px_-20px_rgba(0,0,0,0.85)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_30px_64px_-20px_rgba(0,0,0,0.95)]";
+
 /* Per-variant surface + type treatment. Kept in one place so the three
    tones stay in step when the card is tweaked. */
 const TONE: Record<
@@ -63,8 +73,7 @@ const TONE: Record<
   /* Raised slab: sits several stops lighter than a #140e2a backdrop, with a
      lit top edge and a deep cast shadow so it reads as a distinct object. */
   "dark-panel": {
-    surface:
-      "bg-[#221a45] bg-gradient-to-b from-white/[0.07] to-transparent border border-white/[0.13] hover:border-coral/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_20px_48px_-20px_rgba(0,0,0,0.85)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_30px_64px_-20px_rgba(0,0,0,0.95)]",
+    surface: DARK_PANEL_SURFACE,
     wash: "bg-coral/20",
     art: "text-white/15 group-hover:text-white/30",
     num: "text-coral/90 group-hover:text-coral",
