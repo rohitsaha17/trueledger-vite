@@ -135,13 +135,13 @@ export default function NorthAmericaPage() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-7">
             {serviceCategories.map((category, i) => {
               const Icon = category.icon;
               return (
                 <motion.div
                   key={category.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                  className="group relative w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.167rem)] rounded-2xl bg-white border border-black/[0.06] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
@@ -361,7 +361,7 @@ export default function NorthAmericaPage() {
                     trigger={
                       <Button
                         size="lg"
-                        className="rounded-full px-8 bg-[#EE672C] hover:bg-[#EE672C]/90 text-white"
+                        className="rounded-full px-8 bg-white text-brand-dark hover:bg-white/90 shadow-lg shadow-black/20"
                       >
                         Schedule a Scoping Call
                         <ChevronRight className="size-4" />

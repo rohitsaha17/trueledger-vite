@@ -27,14 +27,6 @@ const countries = [
     path: "M950 227.5l-4.9-3.7-3.9.3.8 3.2-1.1 3.2 2.9-.1 3.5 1.3 2.7-4.2zm13-24.3l-5.5.5-3.6-.4-3.7 4.8-1.9 6.1 2.2 3 .1 5.8 2.6-2.8 1.4 1.6-1.7 2.7 1 1.6 5.7 1.1h.1l3.1 3.8-.8 3.5-7.1-.6-1 4 2.6 3.3-5.1 1.9 1.3 2.4 7.5 1-4.3 1.3-7.3 6.5 2.5 1.2 3.5-2.3 4.5.7 3.3-2.9 2.2 1.2 8.3-1.7 6.5.1 4.3-3.3-1.9-3.1 2.4-1.8.5-3.9-5.8-1.2-1.3-2.3-2.9-6.9-3.2-1-4.1-7.1-.4-.6-4.8-.4 4.2-5.3 1.3-4.9h-5l-4.7.8 5-6.4z",
   },
   {
-    name: "India",
-    code: "in",
-    href: "/regions/apac",
-    label: "GST, TDS & Corporate Filings",
-    viewBox: "1348 344 159 180",
-    path: "M1414.1 380.1l-8.5-4.4-6.2-4-3.2-7 4.1.9-.6-3.3-3-3.3-.8-5.2-7.6-7.5-3.7 5.4-5.7 1-8.5-1.6-1.9 2.8 3.2 5.6 2.9 4.3 5 3.1-3.7 3.7 1 4.5-3.9 6.3-2.1 6.5-4.5 6.7-6.4-.5-4.9 6.6 4 2.9 1.3 4.9 3.5 3.2 1.8 5.5h-12l-3.2 4.2 7.1 5.4 1.9 2.5-2.4 2.3 8 7.7 4 .8 7.6-3.8 1.7 5.9.8 7.8 2.5 8.1 3.6 12.3 5.8 8.8 1.3 3.9 2 8 3.4 6.1 2.2 3 2.5 6.4 3.1 8.9 5.5 6 2.2-1.8 1.7-4.4 5-1.8-1.8-2.1 2.2-4.8 2.9-.3-.7-10.8 1.9-6.1-.7-5.3-1.9-8.2 1.2-4.9 2.5-.3 4.8-2.3 2.6-1.6-.3-2.9 5-4.2 3.7-4 5.3-7.5 7.4-4.2 2.4-3.8-.9-4.8 6.6-1.3 3.7.1.5-2.4-1.6-5.2-2.6-4.8.4-3.8-3.7-1.7.8-2.3 3.1-2.4-4.6-3.4 1.2-4.3 4.8 2.7 2.7.4 1.2 4.4 5.4.9 5-.1 3.4 1.1-1.6 5.3-2.4.4-1.1 3.6 3.5 3.3.2-4 1.5-.1 4.5 10.1 2.4-1.5-.9-2.7.9-2.1-.9-6.6 4.6 1.4 1.5-5.2-.3-3.1 2.1-5.4-.9-3.6 6.1-4.4 4.1 1.1-1.3-3.9 1.6-1.2-.9-2.4-6.1-.9 1.2-2.7-3.5-3.9-3.2 2.6-4.9-1.5-5.3 4-3.9 4.8-4.2.8 2.7 2 .4 3.9-4.4.2-4.7-.4-3.2 1-5.5-2.5-.3-1.2-1.5-5.1-3 1.4.1 2.7 1.5 4.1-.1 2.5-4.6.1-6.8-1.5-4.3-.6-3.8-3.2-7.6-.9-7.7-3.5-5.8-3.1-5.7-2.5.9-5.9 2.8-2.9z",
-  },
-  {
     name: "Australia",
     code: "au",
     href: "/regions/apac",
@@ -103,7 +95,7 @@ export function GlobalPresence() {
             Serving Clients Across{" "}
             <span className="text-[#EE672C]">Geographies</span>
           </h2>
-          <p className="text-white/40 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto">
             From entity setup to ongoing compliance — wherever you operate, we
             deliver accounting, tax, and advisory support built for that
             jurisdiction.
@@ -138,10 +130,10 @@ export function GlobalPresence() {
                 </div>
 
                 {/* Label */}
-                <h3 className="text-white font-heading font-semibold text-sm mt-4 mb-1 group-hover:text-[#EE672C] transition-colors duration-300">
+                <h3 className="text-white font-heading font-semibold text-base mt-4 mb-1.5 group-hover:text-[#EE672C] transition-colors duration-300">
                   {country.name}
                 </h3>
-                <p className="text-white/30 text-[11px] leading-tight max-w-[110px]">
+                <p className="text-white/55 text-[13px] leading-snug max-w-[132px]">
                   {country.label}
                 </p>
                 </Link>
@@ -159,7 +151,7 @@ export function GlobalPresence() {
           className="mt-16 md:mt-20 mx-auto max-w-4xl"
         >
           <div className="h-px bg-gradient-to-r from-transparent via-[#EE672C]/30 to-transparent" />
-          <p className="text-center text-white/30 text-sm mt-6">
+          <p className="text-center text-white/50 text-[15px] mt-6">
             Offices in New Delhi &amp; Austin, Texas — delivering across
             borders, time zones, and jurisdictions
           </p>

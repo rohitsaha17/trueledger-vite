@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { AnimatedSection } from "@/components/shared/animated-section";
 
@@ -8,17 +7,15 @@ const cards = [
     title: "Deep Expertise, Personal Commitment",
     description:
       "We bring years of experience across global markets and complex business structures — applied personally to every client we work with. You get senior-level thinking, not junior execution.",
-    gradient: "from-brand/20 via-brand-soft to-brand-tint",
-    iconBg: "bg-brand/15",
     image:
       "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165821_ae8f5541-03f3-450c-b62a-d7740b512d10_min.webp",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="size-7">
-        <circle cx="24" cy="16" r="8" stroke="currentColor" strokeWidth="2.5" />
+      <svg viewBox="0 0 48 48" fill="none" className="size-6">
+        <circle cx="24" cy="16" r="8" stroke="currentColor" strokeWidth="2" />
         <path
           d="M10 40c0-7.732 6.268-14 14-14s14 6.268 14 14"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
         />
         <path
@@ -35,12 +32,10 @@ const cards = [
     title: "Responsive and Reliable Communication",
     description:
       "No chasing, no waiting, no surprises. You'll always have a dedicated point of contact who knows your business inside out and stays ahead of what it needs next.",
-    gradient: "from-primary/15 via-brand-soft to-brand-tint",
-    iconBg: "bg-primary/10",
     image:
       "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165822_01a41f97-2fe8-412f-a494-bf7fe4ec6f12_min.webp",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="size-7">
+      <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <rect
           x="4"
           y="10"
@@ -48,16 +43,16 @@ const cards = [
           height="20"
           rx="4"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
         />
         <path
           d="M14 36l4-6h20a4 4 0 004-4V16"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
         />
-        <circle cx="14" cy="20" r="2" fill="currentColor" />
-        <circle cx="22" cy="20" r="2" fill="currentColor" />
+        <circle cx="14" cy="20" r="1.75" fill="currentColor" />
+        <circle cx="22" cy="20" r="1.75" fill="currentColor" />
       </svg>
     ),
   },
@@ -65,23 +60,21 @@ const cards = [
     title: "Grows As Your Business Grows",
     description:
       "From startup to scale-up, from domestic to global — our advisory evolves with you. The more your business demands, the more we bring to the table.",
-    gradient: "from-coral/15 via-brand-soft/40 to-brand-tint",
-    iconBg: "bg-coral/10",
     image:
       "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165825_b8c21a16-bb17-4825-b26d-3026f283e654_min.webp",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="size-7">
+      <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <path
           d="M8 36L18 22l8 8 14-18"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M30 12h10v10"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -92,12 +85,10 @@ const cards = [
     title: "Accurate Financials. Delivered On Time.",
     description:
       "Your financials are only valuable if they're right and ready when you need them. We operate on disciplined timelines and rigorous review standards.",
-    gradient: "from-brand-dark/10 via-brand-soft to-brand-tint",
-    iconBg: "bg-brand-dark/10",
     image:
       "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165826_ac572644-f557-4a5c-989f-6df5b060ab68_min.webp",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="size-7">
+      <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <rect
           x="8"
           y="6"
@@ -105,18 +96,18 @@ const cards = [
           height="36"
           rx="4"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
         />
         <path
           d="M16 18h16M16 26h12M16 34h8"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.75"
           strokeLinecap="round"
         />
         <path
           d="M32 28l-6 6-3-3"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -151,42 +142,42 @@ export function Approach() {
           />
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto">
           {cards.map((card, i) => (
             <AnimatedSection key={card.title} delay={i * 0.1}>
               <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.25 }}
+                className="group relative h-full overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-6 shadow-[0_1px_2px_rgba(20,14,42,0.04)] transition-[border-color,box-shadow] duration-500 ease-out hover:border-brand/25 hover:shadow-[0_20px_44px_-16px_rgba(77,57,127,0.22)] sm:p-7"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <Card className="group cursor-pointer h-full overflow-hidden border-border/50 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 bg-white relative">
-                  {/* Background image at low opacity */}
-                  <img
-                    src={card.image}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-500 pointer-events-none"
-                    loading="lazy"
-                  />
+                {/* Background image at low opacity */}
+                <img
+                  src={card.image}
+                  alt=""
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.06] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-[0.11]"
+                  loading="lazy"
+                />
 
-                  <CardContent className="relative z-10 p-5">
-                    <div
-                      className={`size-10 rounded-lg ${card.iconBg} flex items-center justify-center mb-3 text-primary group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      {card.icon}
-                    </div>
+                {/* Accent rail — wipes up from the bottom edge */}
+                <span className="pointer-events-none absolute inset-y-0 left-0 w-[2px] origin-bottom scale-y-0 bg-gradient-to-t from-brand via-brand/70 to-coral transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-y-100" />
 
-                    <h3 className="font-heading font-bold text-base mb-2">
+                {/* Soft wash that breathes in behind the corner */}
+                <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-brand/[0.07] opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100" />
+
+                <div className="relative z-10 flex items-start gap-5">
+                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand-dark text-white shadow-lg shadow-brand/25 transition-transform duration-500 ease-out group-hover:scale-105">
+                    {card.icon}
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-2.5 font-heading text-[1.05rem] font-bold leading-snug text-ink transition-transform duration-500 ease-out group-hover:translate-x-0.5 sm:text-[1.15rem]">
                       {card.title}
                     </h3>
-
-                    <p className="text-muted-foreground text-[13px] leading-relaxed">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {card.description}
                     </p>
-                  </CardContent>
-
-                  <div
-                    className={`h-0.5 w-full bg-gradient-to-r ${card.gradient} rounded-b-xl`}
-                  />
-                </Card>
+                  </div>
+                </div>
               </motion.div>
             </AnimatedSection>
           ))}

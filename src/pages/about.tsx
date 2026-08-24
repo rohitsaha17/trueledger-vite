@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { MethodologyStacking } from "@/components/shared/methodology-stacking";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
@@ -404,6 +405,11 @@ export default function AboutPage() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* ============================================================ */}
+      {/*  SECTION 5.5 — OUR METHODOLOGY (scroll-stacking panels)       */}
+      {/* ============================================================ */}
+      <MethodologyStacking />
 
       {/* ============================================================ */}
       {/*  SECTION 6 — DATA SECURITY                                    */}

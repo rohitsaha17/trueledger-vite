@@ -101,14 +101,14 @@ export default function APACPage() {
             />
           </AnimatedSection>
 
-          {/* Top row: 4 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          {/* 4 per row; a trailing row of one to three sits centred */}
+          <div className="flex flex-wrap justify-center gap-5 lg:gap-6">
             {services.slice(0, 4).map((item, i) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                  className="group relative w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(25%-1.125rem)] rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
@@ -136,14 +136,13 @@ export default function APACPage() {
             })}
           </div>
 
-          {/* Bottom row: 3 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 mt-5 lg:mt-6">
+          <div className="flex flex-wrap justify-center gap-5 lg:gap-6 mt-5 lg:mt-6">
             {services.slice(4).map((item, i) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={item.title}
-                  className="group relative rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
+                  className="group relative w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(25%-1.125rem)] rounded-2xl bg-white border border-black/[0.06] p-6 sm:p-7 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-300"
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}

@@ -89,11 +89,15 @@ export default function EuropeUKPage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-5 lg:gap-6 max-w-6xl mx-auto">
             {services.map((service, i) => {
               const Icon = service.icon;
               return (
-                <AnimatedSection key={service.title} delay={i * 0.08}>
+                <AnimatedSection
+                  key={service.title}
+                  delay={i * 0.08}
+                  className="w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
+                >
                   <div className="group relative h-full rounded-2xl bg-white border border-black/[0.06] shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden">
                     {/* Left accent bar */}
                     <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-gradient-to-b from-[#4D397F] to-[#4D397F]/30 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
