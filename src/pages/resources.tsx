@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { WhitepaperDownloadModal } from "@/components/shared/whitepaper-download-modal";
+import { SubscribeInsights } from "@/components/home/subscribe-insights";
 import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
@@ -132,38 +133,73 @@ const categoryColors: Record<string, string> = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Cover images — varied real/stock photos chosen by topic            */
+/*  Cover images — one topic-matched photo per resource                */
 /* ------------------------------------------------------------------ */
 
 const IMG = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=70`;
 
-// Large pool of distinct, validated business/finance photos so cards don't repeat.
-const COVER_POOL = [
-  "1554224155-6726b3ff858f", "1450101499163-c8848c66ca85", "1460925895917-afdab827c52f",
-  "1454165804606-c3d57bc86b40", "1526778548025-fa2f459cd5c1", "1486406146926-c627a92ad1ab",
-  "1507842217343-583bb7270b66", "1600880292203-757bb62b4baf", "1504384308090-c894fdcc538d",
-  "1551288049-bebda4e38f71", "1521737604893-d14cc237f11d", "1521791136064-7986c2920216",
-  "1552664730-d307ca884978", "1556742049-0cfed4f6a45d", "1517245386807-bb43f82c33c4",
-  "1543286386-713bdd548da4", "1573164713988-8665fc963095", "1611974789855-9c2a0a7236a3",
-  "1559526324-4b87b5e36e44", "1590283603385-17ffb3a7f29f", "1579532537598-459ecdaf39cc",
-  "1554224154-26032ffc0d07", "1444653614773-995cb1ef9efa", "1591696205602-2f950c417cb9",
-  "1573497491208-6b1acb260507", "1556155092-490a1ba16284", "1542744173-8e7e53415bb0",
-  "1507003211169-0a1dd7228f2d", "1519085360753-af0119f7cbe7", "1560472354-b33ff0c44a43",
-  "1507679799987-c73779587ccf", "1591115765373-5207764f72e7", "1553877522-43269d4ea984",
-  "1542435503-956c469947f6", "1487017159836-4e23ece2e4cf", "1524749292158-7540c2494485",
-  "1568992687947-868a62a9f521", "1531973576160-7125cd663d86", "1552581234-26160f608093",
-  "1600607687939-ce8a6c25118c", "1521737711867-e3b97375f902", "1554774853-aae0a22c8aa4",
-  "1556742502-ec7c0e9f34b1", "1517048676732-d65bc937f952", "1519389950473-47ba0277781c",
-];
+/**
+ * Each cover is chosen to match what that specific piece is actually about
+ * — containers for the tariff papers, a passport for the H-1B checklist,
+ * Sydney for the SMSF paper — rather than being assigned round-robin.
+ * The trailing comment on each line describes the photo.
+ */
+const COVERS: Record<string, string> = {
+  "wp-nonprofit": "1560220604-1985ebfe28b1", /* volunteers in the field */
+  "wp-ai-cas": "1694903089438-bf28d4697d9a", /* robot and human hands meeting */
+  "wp-ai-dd": "1743796055664-3473eedab36e", /* magnifying glass beside a laptop */
+  "wp-usgaap": "1461749280684-dccba630e2f6", /* software source code on a monitor */
+  "wp-clean-books": "1768839724256-28cd4a373209", /* calculator, magnifier and charts */
+  "wp-ieepa": "1494412519320-aa613dfb7738", /* aerial view of a container yard */
+  "wp-h1b": "1655722724451-0df658a2ab23", /* US passport open on a world map */
+  "wp-mexico": "1605745341112-85968b19335b", /* cargo ship at sea */
+  "wp-india-budget": "1565374392032-8007fb37c26e", /* Indian rupee banknotes */
+  "wp-smsf": "1506973035872-a4ec16b8e8d9", /* Sydney Opera House */
+  "wp-multistate": "1487730202306-21b1a371bab0", /* US flag outside a municipal building */
+  g1: "1554224154-26032ffc0d07", /* tax withholding certificate and pen */
+  g2: "1761558794306-466448dab4bc", /* hand filling in a clipboard checklist */
+  g3: "1744640326166-433469d102f2", /* AI chip glowing on a circuit board */
+  g4: "1607863680198-23d4b2565df0", /* piggy bank savings */
+  g5: "1772588627354-ca3617853217", /* tax forms with a calculator */
+  g6: "1560518883-ce09059eeffa", /* model house on a desk */
+  g7: "1541746972996-4e0b0f43e02a", /* client meeting around a table */
+  g8: "1764231467852-b609a742e082", /* hands signing an agreement */
+  g9: "1772413438617-937e44f2642e", /* stacked coins with a rising arrow */
+  g10: "1586486855514-8c633cc6fd38", /* pen resting on a completed tax return */
+  g11: "1551288049-bebda4e38f71", /* performance dashboards on a laptop */
+  v1: "1616531770192-6eaea74c2456", /* laptop showing a live product demo */
+  v2: "1588196749597-9ff075ee6b5b", /* laptop screen during a walkthrough call */
+  v3: "1616587226960-4a03badbe8bf", /* presenter working through a demo on a laptop */
+  v4: "1686061592689-312bbfb5c055", /* reporting dashboard with bar charts */
+  n1: "1677442136019-21780ecad995", /* AI rendered in 3D type */
+  b1: "1522071820081-009f0129c71c", /* startup founders working together */
+  b2: "1553697388-94e804e2f0f6", /* hand holding passports */
+  b3: "1516383274235-5f42d6c6426d", /* forecast graph on screen */
+  b4: "1729505305192-610539203144", /* house key beside a calculator */
+  b5: "1516738901171-8eb4fc13bd20", /* world map marked with pins */
+  b6: "1648275913341-7973ae7bc9b3", /* market ticker board */
+  b7: "1771931322109-180bb1b35bf8", /* blocks spelling RISK beside a magnifier */
+  b8: "1655393001768-d946c97d6fd1", /* robotic arm on an automated line */
+  b9: "1592495989226-03f88104f8cc", /* rising bar chart made of banknotes */
+  b10: "1633158829875-e5316a358c6f", /* coins in a jar with a seedling */
+  b11: "1768839724098-d2541fe1311d", /* piggy bank beside a calculator */
+  b12: "1557804506-669a67965ba0", /* leadership team in a working session */
+  b13: "1706531008577-071672e7bf50", /* magnifying glass over paperwork */
+  b14: "1672380135241-c024f7fbfa13", /* advisor and client shaking hands */
+  b15: "1556761175-4b46a572b786", /* startup workspace with monitors */
+  b16: "1697577418970-95d99b5a55cf", /* AI chip close-up */
+  b17: "1638262052640-82e94d64664a", /* handshake across a table */
+  b18: "1513635269975-59663e0ac1ad", /* London skyline from the air */
+  b19: "1590497008432-598f04441de8", /* busy shipping port with cranes */
+};
 
-// Stable position of each resource so every card gets a distinct image.
-const coverOrder = new Map(resources.map((r, i) => [r.id, i]));
+/** Neutral desk/laptop shot used if a resource has no explicit cover yet. */
+const FALLBACK_COVER = "1460925895917-afdab827c52f";
 
-/** Distinct real/stock photo per resource — no repeats within the pool. */
+/** Topic-matched cover photo for a resource. */
 export function coverFor(r: Resource): string {
-  const idx = coverOrder.get(r.id) ?? 0;
-  return IMG(COVER_POOL[idx % COVER_POOL.length]);
+  return IMG(COVERS[r.id] ?? FALLBACK_COVER);
 }
 
 /* ------------------------------------------------------------------ */
@@ -378,40 +414,8 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Newsletter subscribe */}
-      <section className="pb-20 md:pb-28">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="rounded-2xl bg-brand-tint/60 border border-black/[0.06] p-8 md:p-12 text-center">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#EE672C] mb-3">
-                Stay in the loop
-              </p>
-              <h2 className="font-heading font-bold text-2xl md:text-3xl text-ink mb-3">
-                Subscribe to Insights
-              </h2>
-              <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto mb-6">
-                Get our latest whitepapers, guides, and tax updates delivered
-                straight to your inbox.
-              </p>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-              >
-                <input
-                  type="email"
-                  required
-                  placeholder="Your work email"
-                  className="flex-1 h-11 rounded-full border border-black/10 bg-white px-4 text-sm outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/20"
-                />
-                <Button type="submit" size="lg" className="rounded-full shrink-0">
-                  Subscribe
-                  <ChevronRight className="size-4" />
-                </Button>
-              </form>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/* Newsletter subscribe — same treatment as the home page */}
+      <SubscribeInsights />
 
       {/* CTA */}
       <section className="py-20 md:py-28 relative overflow-hidden">

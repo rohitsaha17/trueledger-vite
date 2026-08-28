@@ -4,9 +4,8 @@ import { FeatureCard } from "@/components/shared/feature-card";
 import { methodologySteps } from "@/components/shared/methodology-steps";
 
 /* ------------------------------------------------------------------ */
-/*  Landing-page methodology — minimal cards that stagger in on scroll. */
-/*  The scroll-stacking treatment of the same steps lives on the About  */
-/*  page (see components/shared/methodology-stacking.tsx).              */
+/*  Our Methodology — minimal cards that stagger in on scroll.          */
+/*  Rendered on the About page.                                        */
 /* ------------------------------------------------------------------ */
 
 export function Methodology() {
