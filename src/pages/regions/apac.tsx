@@ -91,7 +91,7 @@ export default function APACPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — WHAT WE DO IN AUSTRALIA & SINGAPORE               */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <SectionHeading
@@ -175,29 +175,32 @@ export default function APACPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — LEADERSHIP                                       */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-brand-tint/40 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14">
-                {/* Gradient avatar placeholder */}
+                {/* Portrait */}
                 <div className="shrink-0">
-                  <div className="size-36 md:size-44 rounded-full bg-gradient-to-br from-[#4D397F] via-[#4D397F]/70 to-[#EE672C]/60 flex items-center justify-center shadow-xl shadow-[#4D397F]/15">
-                    <span className="text-4xl md:text-5xl font-heading font-bold text-white/90 select-none">
-                      HR
-                    </span>
+                  <div className="relative size-40 md:size-48 rounded-full overflow-hidden bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 ring-4 ring-white shadow-xl shadow-[#4D397F]/15">
+                    <img
+                      src="/images/team/hrithvik-raj.jpg"
+                      alt="CA Hrithvik Raj, Partner, TrueLedger"
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
 
                 {/* Bio */}
                 <div className="text-center md:text-left">
-                  <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-2">
+                  <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-2">
                     Practice Lead
                   </p>
-                  <h2 className="font-heading font-bold text-2xl md:text-3xl text-ink leading-snug mb-4">
+                  <h2 className="font-heading font-bold text-3xl md:text-4xl text-ink leading-snug mb-4">
                     Led by CA Hrithvik Raj, Partner, TrueLedger
                   </h2>
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                  <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                     Hrithvik leads TrueLedger&rsquo;s Australia and broader APAC
                     practice with 15&nbsp;years of experience spanning foreign
                     reporting, statutory compliance, and auditing across Big&nbsp;4
@@ -217,7 +220,7 @@ export default function APACPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — CLOSING CTA                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         {/* Dark background */}
         <div className="absolute inset-0 bg-[#140e2a]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -240,7 +243,7 @@ export default function APACPage() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+                <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
                   Get in Touch
                 </p>
                 <h2 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-white mb-4 leading-tight">

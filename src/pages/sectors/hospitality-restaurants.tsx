@@ -300,7 +300,7 @@ export default function HospitalityRestaurantsPage() {
                   {item.description}
                 </p>
                 <div className="bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#EE672C] mb-1">
+                  <p className="text-[15px] font-semibold uppercase tracking-wider text-[#EE672C] mb-1">
                     Result
                   </p>
                   <p className="text-sm font-medium text-white/90">
@@ -387,7 +387,7 @@ export default function HospitalityRestaurantsPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">

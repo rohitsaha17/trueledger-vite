@@ -24,7 +24,7 @@ export function ServiceFAQ({
   description,
 }: ServiceFAQProps) {
   return (
-    <section className="py-20 md:py-28 bg-brand-tint/30">
+    <section className="py-16 md:py-20 bg-brand-tint/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <SectionHeading title={title} description={description} />

@@ -53,7 +53,7 @@ export function ServicePageHero({
   accentColor = "#EE672C",
 }: ServicePageHeroProps) {
   return (
-    <section className="pt-6 pb-8">
+    <section className="pt-4 pb-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden min-h-[420px] md:min-h-[500px] flex items-center">
           {/* Background media */}

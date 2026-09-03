@@ -70,7 +70,7 @@ function ToolTile({ tool, hidden }: { tool: Tool; hidden: boolean }) {
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-      className={`group flex-col items-center justify-center gap-3 rounded-2xl border border-black/[0.06] bg-white px-4 py-6 text-center shadow-[0_1px_3px_rgba(0,0,0,0.03)] transition-shadow duration-300 hover:border-brand/20 hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)] ${
+      className={`group flex-col items-center justify-start gap-3 px-2 py-4 text-center ${
         hidden ? "hidden" : "flex"
       }`}
     >
@@ -92,10 +92,10 @@ function ToolTile({ tool, hidden }: { tool: Tool; hidden: boolean }) {
       </div>
 
       <div className="space-y-0.5">
-        <p className="text-sm font-semibold leading-tight text-ink">
+        <p className="text-[15px] font-semibold leading-tight text-ink">
           {tool.name}
         </p>
-        <p className="text-[0.65rem] font-medium uppercase tracking-wider text-muted-foreground/70">
+        <p className="text-[13px] font-medium uppercase tracking-wider text-muted-foreground/70">
           {tool.category}
         </p>
       </div>
@@ -107,7 +107,7 @@ export function SoftwareExpertise() {
   const [active, setActive] = useState<Category>("All");
 
   return (
-    <section className="relative overflow-hidden bg-white py-16 md:py-24">
+    <section className="relative overflow-hidden bg-white py-14 md:py-18">
       <div className="pointer-events-none absolute left-1/4 top-0 h-[300px] w-[500px] rounded-full bg-brand/[0.04] blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-1/4 h-[250px] w-[400px] rounded-full bg-primary/[0.03] blur-[100px]" />
 
@@ -121,12 +121,12 @@ export function SoftwareExpertise() {
 
         {/* Category filters */}
         <AnimatedSection delay={0.05}>
-          <div className="mb-10 flex flex-wrap justify-center gap-2">
+          <div className="mb-8 flex flex-wrap justify-center gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
+                className={`cursor-pointer rounded-full px-4 py-1.5 text-[15px] font-medium transition-all duration-200 ${
                   active === cat
                     ? "bg-brand-dark text-white shadow-sm"
                     : "bg-brand-tint text-muted-foreground hover:bg-brand-soft"
@@ -140,14 +140,18 @@ export function SoftwareExpertise() {
 
         {/* Logo wall */}
         <AnimatedSection delay={0.1}>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
-            {tools.map((tool) => (
-              <ToolTile
-                key={tool.name}
-                tool={tool}
-                hidden={active !== "All" && tool.category !== active}
-              />
-            ))}
+          {/* A single container holds the whole wall — the logos themselves
+              carry no individual boxes. */}
+          <div className="rounded-3xl border border-black/[0.06] bg-brand-tint/40 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] sm:p-8">
+            <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 sm:gap-x-4 lg:grid-cols-6">
+              {tools.map((tool) => (
+                <ToolTile
+                  key={tool.name}
+                  tool={tool}
+                  hidden={active !== "All" && tool.category !== active}
+                />
+              ))}
+            </div>
           </div>
         </AnimatedSection>
       </div>

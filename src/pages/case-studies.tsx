@@ -335,7 +335,7 @@ export default function CaseStudiesPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Real Results
             </p>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
@@ -422,7 +422,7 @@ export default function CaseStudiesPage() {
                       )}
                       <div className="p-6 flex-1 flex flex-col">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs font-medium text-brand uppercase tracking-wider">
+                          <span className="text-[13px] font-medium text-brand uppercase tracking-wider">
                             {study.industry}
                           </span>
                           <span className="text-muted-foreground/40">|</span>
@@ -464,7 +464,7 @@ export default function CaseStudiesPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Your story could be next
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6 leading-tight max-w-2xl mx-auto">

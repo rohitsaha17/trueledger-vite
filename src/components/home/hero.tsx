@@ -152,8 +152,10 @@ function Globe() {
         "position:absolute;display:flex;align-items:center;gap:8px;z-index:20;" +
         "pointer-events:auto;cursor:pointer;transform:translate(6px,-50%);transition:opacity 0.3s;opacity:0;white-space:nowrap;";
       el.innerHTML =
-        `<img src="${m.flag}" alt="${m.label}" style="width:30px;height:30px;border-radius:5px;box-shadow:0 2px 6px rgba(0,0,0,.18);" />` +
-        `<span style="font-size:14px;font-weight:700;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);` +
+        /* Flags keep their native 3:2 ratio — squeezing them into a square
+           visibly skewed the asymmetric ones (Singapore worst of all). */
+        `<img src="${m.flag}" alt="${m.label}" style="width:33px;height:22px;flex:0 0 auto;object-fit:cover;object-position:center;display:block;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.18);" />` +
+        `<span style="font-size:15px;font-weight:700;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);` +
         `padding:4px 14px;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.12);color:#5a3555;letter-spacing:0.02em;transition:background 0.2s,color 0.2s;">${m.label}</span>`;
       el.addEventListener("click", () => {
         window.location.href = m.href;
@@ -470,7 +472,7 @@ export function Hero() {
         &rsaquo;
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text side */}
           <motion.div
@@ -508,7 +510,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-wrap gap-6 sm:gap-10 mt-10 pt-8 border-t border-border/60"
+              className="flex flex-wrap gap-6 sm:gap-10 mt-8 pt-7 border-t border-border/60"
             >
               {[
                 { value: 150, suffix: "+", label: "Clients Served" },
@@ -519,7 +521,7 @@ export function Hero() {
                   <span className="text-3xl sm:text-4xl font-bold text-foreground font-heading">
                     <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                   </span>
-                  <span className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                  <span className="text-sm sm:text-base text-muted-foreground mt-0.5">
                     {stat.label}
                   </span>
                 </div>

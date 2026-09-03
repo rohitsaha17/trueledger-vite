@@ -123,7 +123,7 @@ export default function NorthAmericaPage() {
       {/* ============================================================ */}
       {/*  SECTION: What We Do Across the US & Canada                   */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-white via-[#f9f8fc] to-white">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-gradient-to-b from-white via-[#f9f8fc] to-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="mb-14 md:mb-16 text-center">
@@ -170,7 +170,7 @@ export default function NorthAmericaPage() {
                     {category.combined ? (
                       /* Combined US & Canada */
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
+                        <p className="text-[15px] font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
                           United States &amp; Canada
                         </p>
                         <ul className="space-y-1.5">
@@ -189,7 +189,7 @@ export default function NorthAmericaPage() {
                       <>
                         {/* US */}
                         <div className="mb-4">
-                          <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
+                          <p className="text-[15px] font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
                             United States
                           </p>
                           <ul className="space-y-1.5">
@@ -207,7 +207,7 @@ export default function NorthAmericaPage() {
 
                         {/* Canada */}
                         <div>
-                          <p className="text-xs font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
+                          <p className="text-[15px] font-semibold uppercase tracking-widest text-[#4D397F] mb-2">
                             Canada
                           </p>
                           <ul className="space-y-1.5">
@@ -235,7 +235,7 @@ export default function NorthAmericaPage() {
       {/* ============================================================ */}
       {/*  SECTION: Leadership                                          */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-white">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="mb-14 md:mb-16">
@@ -253,25 +253,25 @@ export default function NorthAmericaPage() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
-            {/* Photo placeholder */}
+            {/* Photo */}
             <div className="flex justify-center lg:justify-start">
-              <div className="relative size-56 lg:size-64 rounded-2xl overflow-hidden shadow-lg">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4D397F] via-[#4D397F]/80 to-[#EE672C]/60" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-white/90 text-5xl font-heading font-bold">
-                    MA
-                  </span>
-                </div>
+              <div className="relative size-56 lg:size-64 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
+                <img
+                  src="/images/team/manish-aggarwal.png"
+                  alt="CA Manish Aggarwal, Partner, TrueLedger"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
             </div>
 
             {/* Bio */}
             <div>
-              <h3 className="font-heading text-2xl sm:text-3xl font-semibold text-ink mb-2">
+              <h3 className="font-heading text-3xl sm:text-4xl font-bold text-ink mb-2">
                 Manish Aggarwal
               </h3>
-              <p className="text-sm font-medium text-[#4D397F] mb-6">
+              <p className="text-base font-semibold text-[#4D397F] mb-6">
                 Partner, TrueLedger
               </p>
               <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl">
@@ -305,7 +305,7 @@ export default function NorthAmericaPage() {
       {/* ============================================================ */}
       {/*  SECTION: CTA                                                 */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-[#140e2a]">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-[#140e2a]">
         {/* Overlay gradients */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#4D397F]/20 via-transparent to-[#EE672C]/10" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(77,57,127,0.15),transparent_60%)]" />

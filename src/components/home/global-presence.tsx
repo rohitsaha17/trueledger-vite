@@ -46,7 +46,7 @@ const countries = [
 
 export function GlobalPresence() {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#0a0818]">
+    <section className="py-14 md:py-18 relative overflow-hidden bg-[#0a0818]">
       {/* Dotted world map background */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none">
         <svg
@@ -86,9 +86,9 @@ export function GlobalPresence() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12 md:mb-14"
         >
-          <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+          <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-[0.2em] mb-4">
             Our Global Reach
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
@@ -103,7 +103,7 @@ export function GlobalPresence() {
         </motion.div>
 
         {/* Country row — single line, equal height */}
-        <div className="flex items-end justify-center gap-6 md:gap-8 lg:gap-10 flex-wrap lg:flex-nowrap">
+        <div className="flex items-start justify-center gap-6 md:gap-8 lg:gap-10 flex-wrap lg:flex-nowrap">
           {countries.map((country, i) => {
             return (
               <motion.div
@@ -133,7 +133,7 @@ export function GlobalPresence() {
                 <h3 className="text-white font-heading font-semibold text-base mt-4 mb-1.5 group-hover:text-[#EE672C] transition-colors duration-300">
                   {country.name}
                 </h3>
-                <p className="text-white/55 text-[13px] leading-snug max-w-[132px]">
+                <p className="text-white/55 text-sm leading-snug max-w-[132px]">
                   {country.label}
                 </p>
                 </Link>
@@ -148,10 +148,10 @@ export function GlobalPresence() {
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 1.2, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16 md:mt-20 mx-auto max-w-4xl"
+          className="mt-12 md:mt-14 mx-auto max-w-4xl"
         >
           <div className="h-px bg-gradient-to-r from-transparent via-[#EE672C]/30 to-transparent" />
-          <p className="text-center text-white/50 text-[15px] mt-6">
+          <p className="text-center text-white/50 text-[15px] mt-5">
             Offices in New Delhi &amp; Austin, Texas — delivering across
             borders, time zones, and jurisdictions
           </p>

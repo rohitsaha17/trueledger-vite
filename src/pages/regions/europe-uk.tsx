@@ -80,7 +80,7 @@ export default function EuropeUKPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — WHAT WE DO IN THE UK                             */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <SectionHeading
@@ -126,7 +126,7 @@ export default function EuropeUKPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — LEADERSHIP                                       */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-brand-tint/40 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#4D397F]/8 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -135,10 +135,13 @@ export default function EuropeUKPage() {
             <AnimatedSection>
               <div className="flex justify-center lg:justify-start">
                 <div className="relative size-44 md:size-52 rounded-full bg-gradient-to-br from-[#4D397F] via-[#6B5A9E] to-[#EE672C]/60 p-1 shadow-xl shadow-[#4D397F]/15">
-                  <div className="size-full rounded-full bg-gradient-to-br from-[#4D397F]/20 via-white to-[#EE672C]/10 flex items-center justify-center">
-                    <span className="font-heading text-4xl md:text-5xl font-bold text-[#4D397F]/70 select-none">
-                      AC
-                    </span>
+                  <div className="relative size-full overflow-hidden rounded-full bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
+                    <img
+                      src="/images/team/aseem-chawla.jpg"
+                      alt="Aseem Chawla, Senior Advisor to TrueLedger"
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>
@@ -147,10 +150,10 @@ export default function EuropeUKPage() {
             {/* Bio */}
             <AnimatedSection delay={0.12}>
               <div>
-                <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-3">
+                <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-3">
                   Senior Advisor
                 </p>
-                <h2 className="font-heading text-2xl sm:text-3xl md:text-[2.25rem] font-bold text-ink leading-tight mb-5">
+                <h2 className="font-heading text-3xl sm:text-4xl md:text-[2.5rem] font-bold text-ink leading-tight mb-5">
                   Led by Aseem Chawla,{" "}
                   <span className="text-[#4D397F]">
                     Senior Advisor to TrueLedger
@@ -174,7 +177,7 @@ export default function EuropeUKPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — CLOSING CTA                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-[#140e2a] via-[#1a1338] to-[#140e2a]">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-gradient-to-b from-[#140e2a] via-[#1a1338] to-[#140e2a]">
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />
 
@@ -194,7 +197,7 @@ export default function EuropeUKPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-[#4D397F]/[0.04] pointer-events-none" />
 
               <div className="relative z-10">
-                <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+                <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
                   Get in Touch
                 </p>
                 <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-4 leading-tight">

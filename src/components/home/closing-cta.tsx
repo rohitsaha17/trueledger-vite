@@ -6,7 +6,7 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 
 export function ClosingCta() {
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden">
+    <section className="py-14 md:py-18 relative overflow-hidden">
       {/* Background image */}
       <img
         src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
@@ -24,7 +24,7 @@ export function ClosingCta() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <AnimatedSection>
-          <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+          <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
             Ready to get started?
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
@@ -83,7 +83,7 @@ export function ClosingCta() {
               </div>
               <div className="text-left">
                 <p className="text-white font-heading font-bold text-sm sm:text-base">ISO 27001</p>
-                <p className="text-white/40 text-xs sm:text-sm">Certified</p>
+                <p className="text-white/40 text-sm">Certified</p>
               </div>
             </div>
 
@@ -115,7 +115,7 @@ export function ClosingCta() {
               </div>
               <div className="text-left">
                 <p className="text-white font-heading font-bold text-sm sm:text-base">QuickBooks</p>
-                <p className="text-white/40 text-xs sm:text-sm">ProAdvisor</p>
+                <p className="text-white/40 text-sm">ProAdvisor</p>
               </div>
             </div>
 
@@ -128,7 +128,7 @@ export function ClosingCta() {
               </div>
               <div className="text-left">
                 <p className="text-white font-heading font-bold text-sm sm:text-base">Digits</p>
-                <p className="text-white/40 text-xs sm:text-sm">Partner</p>
+                <p className="text-white/40 text-sm">Partner</p>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export function ClosingCta() {
               </div>
               <div className="text-left">
                 <p className="text-white font-heading font-bold text-sm sm:text-base">Gusto</p>
-                <p className="text-white/40 text-xs sm:text-sm">Partner</p>
+                <p className="text-white/40 text-sm">Partner</p>
               </div>
             </div>
           </motion.div>

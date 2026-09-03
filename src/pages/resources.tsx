@@ -241,7 +241,7 @@ export default function ResourcesPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Insights &amp; Resources
             </p>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
@@ -263,7 +263,7 @@ export default function ResourcesPage() {
             <div className="mb-12 space-y-6">
               {/* Content Type */}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                <p className="text-[15px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">
                   Content Type
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -285,7 +285,7 @@ export default function ResourcesPage() {
 
               {/* Service Area */}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                <p className="text-[15px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">
                   Service Area
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -353,7 +353,7 @@ export default function ResourcesPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/75 via-[#140e2a]/10 to-transparent" />
                       <span
-                        className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm"
+                        className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[13px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm"
                         style={{ backgroundColor: `${color}cc` }}
                       >
                         <Icon className="size-3.5" />
@@ -429,7 +429,7 @@ export default function ResourcesPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Need expert guidance?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6 leading-tight max-w-2xl mx-auto">

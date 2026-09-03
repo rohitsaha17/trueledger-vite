@@ -334,7 +334,7 @@ export default function WhoWeWorkWithPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — SECTOR GRID  ·  LIGHT                           */}
       {/* ============================================================ */}
-      <section className="pt-20 md:pt-28 pb-10 md:pb-14 relative overflow-hidden bg-background">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-background">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-coral/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -581,7 +581,7 @@ export default function WhoWeWorkWithPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — CLOSING CTA  ·  LIGHT                           */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-background">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-background">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-white/[0.92]" />
         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/85" />
@@ -591,7 +591,7 @@ export default function WhoWeWorkWithPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="bg-white/70 backdrop-blur-xl rounded-3xl border border-black/[0.06] shadow-xl shadow-brand/[0.06] p-8 sm:p-12 max-w-3xl mx-auto text-center">
-              <p className="text-coral text-xs font-semibold uppercase tracking-widest mb-4">
+              <p className="text-coral text-[15px] font-semibold uppercase tracking-widest mb-4">
                 Let&rsquo;s Talk
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-ink mb-6 leading-tight">

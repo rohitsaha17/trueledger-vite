@@ -16,6 +16,7 @@ import {
   Cpu,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
 
 /* ================================================================== */
 /*  Data                                                               */
@@ -74,85 +75,6 @@ const audiences = [
     text: "Operators who know their finance function needs upgrading but aren’t sure where to start",
   },
 ];
-
-const blogArticles = [
-  {
-    title: "How to Know When Your Business Needs a CFO-Level Advisor",
-    category: "Advisory",
-  },
-  {
-    title: "5 Financial Models Every Founder Should Understand",
-    category: "Strategy",
-  },
-  {
-    title: "SOC 2 Readiness: A Practical Guide for Startups",
-    category: "Compliance",
-  },
-  {
-    title: "Preparing Your Data Room for Due Diligence",
-    category: "Fundraising",
-  },
-  {
-    title: "ERP Migration: When and How to Make the Move",
-    category: "Technology",
-  },
-  {
-    title: "Building Investor-Grade Financial Reporting",
-    category: "Reporting",
-  },
-];
-
-/* ================================================================== */
-/*  Blog Ticker component                                              */
-/* ================================================================== */
-
-function BlogTicker() {
-  const cards = [...blogArticles, ...blogArticles];
-
-  return (
-    <div className="overflow-hidden py-4">
-      <div
-        className="flex gap-6"
-        style={{
-          animation: "ticker-scroll 40s linear infinite",
-          width: "max-content",
-        }}
-      >
-        {cards.map((article, i) => (
-          <div
-            key={`${article.title}-${i}`}
-            className="w-72 shrink-0 bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 group"
-          >
-            <div className="h-36 bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
-              <div className="absolute bottom-3 left-3">
-                <span className="text-xs font-medium bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary">
-                  {article.category}
-                </span>
-              </div>
-            </div>
-            <div className="p-4">
-              <h4 className="font-heading font-semibold text-sm text-ink leading-snug mb-3">
-                {article.title}
-              </h4>
-              <span className="text-xs font-medium text-brand group-hover:text-brand-dark transition-colors inline-flex items-center gap-1">
-                Read More
-                <ChevronRight className="size-3" />
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes ticker-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-    </div>
-  );
-}
 
 /* ================================================================== */
 /*  Main Page Component                                                */
@@ -217,7 +139,7 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — FOUR ADVISORY PILLARS (Grid Layout)             */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
           alt=""
@@ -294,7 +216,7 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — WHO OUR ADVISORY PRACTICE IS BUILT FOR          */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/30">
+      <section className="py-16 md:py-20 bg-brand-tint/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -389,15 +311,22 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — RELATED CONTENT (Blog Ticker)                   */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24 bg-brand-tint/50 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8">
+      <section className="py-16 md:py-20 bg-brand-tint/50 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-6">
           <AnimatedSection>
             <SectionHeading
               title="From Our Knowledge Base"
+              description="Advisory resources from our library — every card opens the piece it names."
+              className="mb-0"
             />
           </AnimatedSection>
         </div>
-        <BlogTicker />
+
+        <div className="relative w-full">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F5F3F8] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F5F3F8] to-transparent" />
+          <ResourceTicker items={resourcesForService("Business Advisory")} />
+        </div>
       </section>
 
       {/* ============================================================ */}
@@ -408,7 +337,7 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — CLOSING CTA                                     */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -417,7 +346,7 @@ export default function BusinessAdvisoryPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">

@@ -94,14 +94,13 @@ export default function MediaGalleryPage() {
 
   const years = useMemo(() => ["All", ...mediaYears.map((y) => y.year)], []);
 
-  const stats = useMemo(() => {
-    const events = mediaYears.flatMap((y) => y.events);
-    return {
-      years: mediaYears.length,
-      events: events.length,
-      photos: events.reduce((s, e) => s + e.images.length, 0),
-    };
-  }, []);
+  const totalPhotos = useMemo(
+    () =>
+      mediaYears
+        .flatMap((y) => y.events)
+        .reduce((s, e) => s + e.images.length, 0),
+    [],
+  );
 
   /* A slow drifting strip of photos behind the hero */
   const heroStrip = useMemo(
@@ -155,7 +154,7 @@ export default function MediaGalleryPage() {
       {/* ============================================================ */}
       {/*  HERO                                                        */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-[#140e2a] pt-20 md:pt-28">
+      <section className="relative overflow-hidden bg-[#140e2a] pt-16 md:pt-20">
         {/* Soft drifting glow */}
         <motion.div
           className="pointer-events-none absolute -top-40 -left-32 size-[520px] rounded-full bg-brand/40 blur-[120px]"
@@ -170,7 +169,7 @@ export default function MediaGalleryPage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
-            <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+            <p className="text-coral text-[15px] font-semibold uppercase tracking-[0.2em] mb-4">
               Gallery
             </p>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
@@ -181,35 +180,11 @@ export default function MediaGalleryPage() {
               year, from our most recent appearances back to where we started.
             </p>
           </AnimatedSection>
-
-          {/* Stat strip */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
-            {[
-              { value: stats.events, label: "Highlights" },
-              { value: stats.photos, label: "Photos" },
-              { value: stats.years, label: "Years" },
-            ].map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 + i * 0.1 }}
-                className="text-center"
-              >
-                <p className="font-heading font-bold text-3xl sm:text-4xl text-white">
-                  {s.value}
-                </p>
-                <p className="text-[11px] uppercase tracking-[0.18em] text-white/45 mt-1">
-                  {s.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
         </div>
 
         {/* Drifting photo strip */}
         {heroStrip.length > 0 && (
-          <div className="relative z-10 mt-14 overflow-hidden pb-14 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+          <div className="relative z-10 mt-12 overflow-hidden pb-12 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
             <motion.div
               className="flex w-max gap-4"
               animate={{ x: ["0%", "-50%"] }}
@@ -275,7 +250,7 @@ export default function MediaGalleryPage() {
       {/* ============================================================ */}
       {/*  YEAR-WISE TIMELINE                                          */}
       {/* ============================================================ */}
-      <section className="py-14 md:py-20">
+      <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatePresence mode="wait">
             <motion.div
@@ -301,7 +276,7 @@ export default function MediaGalleryPage() {
                         </h2>
                         <div className="flex flex-1 items-center gap-4">
                           <span className="h-px flex-1 bg-gradient-to-r from-brand/25 to-transparent" />
-                          <span className="whitespace-nowrap text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                          <span className="whitespace-nowrap text-[15px] uppercase tracking-[0.15em] text-muted-foreground">
                             {yearBlock.events.length} highlights
                             {photoCount > 0 && ` · ${photoCount} photos`}
                           </span>
@@ -311,12 +286,12 @@ export default function MediaGalleryPage() {
 
                     {/* Timeline rail + cards */}
                     <div className="relative">
-                      <span className="pointer-events-none absolute left-[21px] top-4 bottom-4 hidden w-px bg-gradient-to-b from-brand/30 via-brand/12 to-transparent lg:block" />
+                      <span className="pointer-events-none absolute left-[21px] top-[1.9rem] bottom-4 hidden w-px bg-gradient-to-b from-brand/30 via-brand/12 to-transparent lg:block" />
                       <div className="space-y-6 lg:space-y-8 lg:pl-16">
                         {yearBlock.events.map((event, i) => (
                           <div key={event.slug} className="relative">
                             <motion.span
-                              className="absolute -left-[41px] top-10 hidden size-3 rounded-full bg-brand ring-4 ring-brand/12 lg:block"
+                              className="absolute -left-[41px] top-7 hidden size-3 rounded-full bg-brand ring-4 ring-brand/12 lg:block"
                               initial={{ scale: 0, opacity: 0 }}
                               whileInView={{ scale: 1, opacity: 1 }}
                               viewport={{ once: true, margin: "-80px" }}
@@ -348,7 +323,7 @@ export default function MediaGalleryPage() {
       {/*  ADMIN-MANAGED EXTRAS                                        */}
       {/* ============================================================ */}
       {!loading && items.length > 0 && (
-        <section className="border-t border-black/[0.06] bg-brand-tint/40 py-14 md:py-20">
+        <section className="border-t border-black/[0.06] bg-brand-tint/40 py-16 md:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <h2 className="mb-8 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -401,7 +376,7 @@ export default function MediaGalleryPage() {
         </section>
       )}
 
-      {stats.photos === 0 && (
+      {totalPhotos === 0 && (
         <div className="pb-20 text-center">
           <Camera className="mx-auto mb-6 size-16 text-brand/20" />
           <p className="text-muted-foreground">
@@ -472,7 +447,7 @@ function EventCard({
             <Icon className="size-3.5" />
             {event.kind}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 text-[15px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
             <CalendarDays className="size-3.5" />
             {event.dateLabel}
           </span>

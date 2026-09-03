@@ -156,7 +156,7 @@ export function FeatureCard({
       >
         {title}
       </h3>
-      <p className={cn("relative text-sm leading-relaxed", tone.body)}>
+      <p className={cn("relative text-[15px] leading-relaxed", tone.body)}>
         {description}
       </p>
     </motion.div>

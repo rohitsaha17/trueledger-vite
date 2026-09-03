@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ServiceFAQ } from "@/components/shared/service-faq";
+import { FeatureCard } from "@/components/shared/feature-card";
+import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
 import type { ZigzagStep } from "@/components/shared/zigzag-timeline";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, Check, BarChart3 } from "lucide-react";
+import { ChevronRight, Check } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { TechPyramid3D } from "@/components/shared/tech-pyramid-3d";
 
 /* ================================================================== */
@@ -192,14 +195,6 @@ const techStack = [
   },
 ];
 
-const blogArticles = [
-  { title: "Why Accrual Accounting Matters for Growing Startups", category: "Accounting" },
-  { title: "ASC 606 Revenue Recognition: A Practical Guide", category: "Compliance" },
-  { title: "5 Signs You've Outgrown DIY Bookkeeping", category: "Bookkeeping" },
-  { title: "Cash Flow Forecasting for SaaS Businesses", category: "Finance" },
-  { title: "Multi-State Payroll: What Every Founder Should Know", category: "Payroll" },
-  { title: "Building Investor-Ready Financials", category: "Advisory" },
-];
 
 
 /* ================================================================== */
@@ -228,7 +223,7 @@ function HeroSection() {
 
 function WhatWeProvideSection() {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section className="py-16 md:py-20 relative overflow-hidden">
       <video
         autoPlay
         muted
@@ -243,13 +238,13 @@ function WhatWeProvideSection() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12 md:mb-14"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
+          <p className="text-brand text-[15px] font-semibold uppercase tracking-widest mb-3">
             What We Deliver
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading">
@@ -257,87 +252,17 @@ function WhatWeProvideSection() {
           </h2>
         </motion.div>
 
-        <div className="relative">
-          {/* Vertical connector line — desktop only */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-brand/20 via-brand/40 to-brand/20 -translate-x-1/2" />
-
-          <div className="flex flex-col gap-6 md:gap-0">
-            {whatWeProvide.map((step, i) => {
-              const stepNum = String(i + 1).padStart(2, "0");
-              const isEven = i % 2 === 0;
-              return (
-                <motion.div
-                  key={step.title}
-                  className="relative"
-                  initial={{ opacity: 0, x: isEven ? -40 : 40, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                >
-                  {/* Desktop: alternating two-column with connector */}
-                  <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] items-center gap-0 py-4">
-                    {/* Left column */}
-                    <div className={`flex items-center ${isEven ? "justify-end pr-8" : "justify-end pr-8"}`}>
-                      {isEven ? (
-                        <div className="text-right">
-                          <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
-                          <h3 className="font-heading font-bold text-lg text-ink leading-snug mt-0.5">
-                            {step.title}
-                          </h3>
-                        </div>
-                      ) : (
-                        <div className="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-sm border border-black/[0.06] hover:shadow-md transition-shadow duration-300 max-w-md">
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            {step.description}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Center — node dot */}
-                    <div className="relative z-10 flex items-center justify-center">
-                      <motion.div
-                        className="size-4 rounded-full bg-brand border-[3px] border-white shadow-md shadow-brand/20"
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: 0.2 }}
-                      />
-                    </div>
-
-                    {/* Right column */}
-                    <div className={`${isEven ? "pl-8" : "pl-8"}`}>
-                      {isEven ? (
-                        <div className="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-sm border border-black/[0.06] hover:shadow-md transition-shadow duration-300 max-w-md">
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            {step.description}
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="text-left">
-                          <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
-                          <h3 className="font-heading font-bold text-lg text-ink leading-snug mt-0.5">
-                            {step.title}
-                          </h3>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Mobile: stacked card */}
-                  <div className="md:hidden bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-sm border border-black/[0.06]">
-                    <span className="text-xs font-bold text-brand/40 tracking-widest">{stepNum}</span>
-                    <h3 className="font-heading font-bold text-base text-ink leading-snug mt-1 mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+        {/* Centred flex-wrap so the trailing row of cards sits centred */}
+        <div className="flex flex-wrap justify-center gap-5 lg:gap-6">
+          {whatWeProvide.map((step, i) => (
+            <FeatureCard
+              key={step.title}
+              index={i}
+              title={step.title}
+              description={step.description}
+              className="w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -346,8 +271,19 @@ function WhatWeProvideSection() {
 
 function HowWeWorkSection() {
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+      {/* Low-opacity background image */}
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
+          alt=""
+          className="w-full h-full object-cover opacity-[0.07]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
@@ -417,7 +353,7 @@ function HowWeWorkSection() {
 
 function PricingSection() {
   return (
-    <section className="py-20 md:py-28 bg-brand-tint">
+    <section className="py-16 md:py-20 bg-brand-tint">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-12 md:mb-16">
@@ -455,7 +391,7 @@ function PricingSection() {
                   )}
 
                   {/* Label */}
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand mb-1">
+                  <p className="text-[15px] font-semibold uppercase tracking-widest text-brand mb-1">
                     {tier.label}
                   </p>
 
@@ -478,7 +414,7 @@ function PricingSection() {
 
                   {/* Includes label */}
                   {tier.includes && (
-                    <p className="text-xs font-semibold uppercase tracking-wider text-ink/60 mb-3">
+                    <p className="text-[15px] font-semibold uppercase tracking-wider text-ink/60 mb-3">
                       {tier.includes}
                     </p>
                   )}
@@ -540,7 +476,7 @@ function PricingSection() {
 
 function TechAdvantageSection() {
   return (
-    <section className="py-20 md:py-28 bg-[#140e2a] relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-[#140e2a] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(238,103,44,0.08),transparent_60%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(77,57,127,0.12),transparent_65%)] pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -564,77 +500,27 @@ function TechAdvantageSection() {
 }
 
 function RelatedContentSection() {
-  const duplicated = [...blogArticles, ...blogArticles];
-
-  // Generate a gradient thumbnail color per card for visual variety
-  const gradients = [
-    "from-brand/40 to-primary/30",
-    "from-primary/30 to-coral/30",
-    "from-coral/30 to-brand/40",
-    "from-brand-dark/30 to-brand/30",
-    "from-primary/40 to-brand-soft",
-    "from-coral/40 to-primary/30",
-  ];
+  /* Pulled straight from the Resources page, so only pieces that actually
+     exist there are shown — and each card opens that resource. */
+  const items = resourcesForService("Accounting & Bookkeeping");
 
   return (
     <section className="py-16 md:py-20 bg-brand-tint overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-6">
         <AnimatedSection>
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold text-ink leading-tight font-heading">
-              Latest Insights
-            </h2>
-          </div>
+          <SectionHeading
+            title="Latest Insights"
+            description="Accounting &amp; bookkeeping resources from our library — every card opens the piece it names."
+            className="mb-0"
+          />
         </AnimatedSection>
       </div>
 
-      {/* Ticker strip */}
-      <div className="relative overflow-hidden w-full">
+      <div className="relative w-full">
         {/* Edge fades */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-brand-tint to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-brand-tint to-transparent" />
-
-        <motion.div
-          className="flex gap-6 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 40,
-              ease: "linear",
-            },
-          }}
-        >
-          {duplicated.map((article, i) => {
-            const gradientIdx = i % gradients.length;
-            return (
-              <div
-                key={`article-${i}`}
-                className="flex-shrink-0 w-72 bg-white rounded-xl border border-black/[0.06] shadow-[0_2px_12px_rgba(0,0,0,0.04)] overflow-hidden group cursor-pointer hover:shadow-lg transition-shadow duration-300"
-              >
-                {/* Gradient thumbnail */}
-                <div className={`h-32 bg-gradient-to-br ${gradients[gradientIdx]} flex items-center justify-center`}>
-                  <div className="size-10 rounded-full bg-white/20 flex items-center justify-center">
-                    <BarChart3 className="size-5 text-white/70" />
-                  </div>
-                </div>
-                <div className="p-4">
-                  <span className="inline-block text-[0.65rem] font-semibold uppercase tracking-widest text-brand mb-2 bg-brand-tint px-2 py-0.5 rounded-full">
-                    {article.category}
-                  </span>
-                  <h4 className="font-heading font-semibold text-sm text-ink leading-snug mb-2 line-clamp-2">
-                    {article.title}
-                  </h4>
-                  <span className="text-xs font-medium text-brand group-hover:text-primary transition-colors inline-flex items-center gap-1">
-                    Read More
-                    <ChevronRight className="size-3" />
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </motion.div>
+        <ResourceTicker items={items} />
       </div>
     </section>
   );
@@ -677,7 +563,7 @@ function LinkedInVideoSection() {
 
                 {/* Text */}
                 <div className="text-center sm:text-left">
-                  <p className="text-white/50 text-xs font-semibold uppercase tracking-widest mb-2">
+                  <p className="text-white/50 text-[15px] font-semibold uppercase tracking-widest mb-2">
                     Watch on LinkedIn
                   </p>
                   <h3 className="font-heading font-bold text-xl sm:text-2xl text-white mb-2">
@@ -743,7 +629,7 @@ function FAQSection() {
 
 function ClosingCtaSection() {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section className="py-16 md:py-20 relative overflow-hidden">
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       <div className="absolute inset-0 bg-[#140e2a]/85" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -752,7 +638,7 @@ function ClosingCtaSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <AnimatedSection>
-          <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+          <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
             Ready to get started?
           </p>
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">

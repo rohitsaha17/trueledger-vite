@@ -93,7 +93,7 @@ export function Footer() {
 
           {/* Company */}
           <div className="lg:col-span-2">
-            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4">Company</h4>
+            <h4 className="font-heading font-semibold text-white text-[15px] uppercase tracking-wider mb-4">Company</h4>
             <ul className="space-y-2.5">
               {companyLinks.map((l) => (
                 <li key={l.href}>
@@ -105,7 +105,7 @@ export function Footer() {
 
           {/* Resources + Sectors */}
           <div className="lg:col-span-2">
-            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4">Resources</h4>
+            <h4 className="font-heading font-semibold text-white text-[15px] uppercase tracking-wider mb-4">Resources</h4>
             <ul className="space-y-2.5">
               {resourceLinks.map((l) => (
                 <li key={l.href}>
@@ -113,7 +113,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4 mt-6">Sectors</h4>
+            <h4 className="font-heading font-semibold text-white text-[15px] uppercase tracking-wider mb-4 mt-6">Sectors</h4>
             <ul className="space-y-2.5">
               {sectorLinks.map((l) => (
                 <li key={l.href}>
@@ -121,7 +121,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4 mt-6">Regions</h4>
+            <h4 className="font-heading font-semibold text-white text-[15px] uppercase tracking-wider mb-4 mt-6">Regions</h4>
             <ul className="space-y-2.5">
               {regionLinks.map((l) => (
                 <li key={l.href}>
@@ -133,7 +133,7 @@ export function Footer() {
 
           {/* Legal + Subscribe */}
           <div className="lg:col-span-4">
-            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4">Legal</h4>
+            <h4 className="font-heading font-semibold text-white text-[15px] uppercase tracking-wider mb-4">Legal</h4>
             <ul className="space-y-2.5 mb-8">
               {legalLinks.map((l) => (
                 <li key={l.href}>
@@ -141,7 +141,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-3">Subscribe to Insights</h4>
+            <h4 className="font-heading font-semibold text-white text-[15px] uppercase tracking-wider mb-3">Subscribe to Insights</h4>
             <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
               <Input
                 type="email"
@@ -157,7 +157,7 @@ export function Footer() {
 
         {/* Certifications */}
         <div className="mt-12 pt-10 border-t border-white/10">
-          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-6">Certifications & Partnerships</p>
+          <p className="text-center text-[13px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-6">Certifications & Partnerships</p>
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-10">
             {/* ISO 27001 */}
             <div className="flex items-center gap-3">

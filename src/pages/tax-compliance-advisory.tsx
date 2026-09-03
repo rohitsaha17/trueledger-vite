@@ -12,6 +12,7 @@ import {
   ReceiptText,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
 
 /* ------------------------------------------------------------------ */
 /*  Individual & HNW service cards data                                 */
@@ -118,71 +119,6 @@ const approachSteps = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Related articles data                                               */
-/* ------------------------------------------------------------------ */
-
-const relatedArticles = [
-  { title: "Year-End Tax Planning: A Checklist for Individuals", category: "Tax Planning" },
-  { title: "S-Corp vs LLC: Which Is Right for Your Business?", category: "Entity Structure" },
-  { title: "Understanding Capital Gains Tax on Real Estate", category: "Capital Gains" },
-  { title: "Top Tax Credits Small Businesses Overlook", category: "Tax Credits" },
-  { title: "NRI Tax Guide: Returning to India After Years Abroad", category: "Cross-Border" },
-  { title: "Multi-State Tax Compliance: What Growing Businesses Need to Know", category: "Compliance" },
-];
-
-/* ------------------------------------------------------------------ */
-/*  Blog Ticker component                                               */
-/* ------------------------------------------------------------------ */
-
-function BlogTicker() {
-  const cards = [...relatedArticles, ...relatedArticles];
-
-  return (
-    <div className="overflow-hidden py-4">
-      <div
-        className="flex gap-6"
-        style={{
-          animation: "ticker-scroll 40s linear infinite",
-          width: "max-content",
-        }}
-      >
-        {cards.map((article, i) => (
-          <div
-            key={`${article.title}-${i}`}
-            className="w-72 shrink-0 bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 group"
-          >
-            <div className="h-36 bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
-              <div className="absolute bottom-3 left-3">
-                <span className="text-xs font-medium bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary">
-                  {article.category}
-                </span>
-              </div>
-            </div>
-            <div className="p-4">
-              <h4 className="font-heading font-semibold text-sm text-ink leading-snug mb-3">
-                {article.title}
-              </h4>
-              <span className="text-xs font-medium text-brand group-hover:text-brand-dark transition-colors inline-flex items-center gap-1">
-                Read More
-                <ChevronRight className="size-3" />
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes ticker-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-    </div>
-  );
-}
-
 /* ================================================================== */
 /*  Main Page Component                                                 */
 /* ================================================================== */
@@ -244,7 +180,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — For Individuals & High Net Worth Clients         */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <video
           autoPlay
           muted
@@ -258,7 +194,7 @@ export default function TaxComplianceAdvisoryPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-            <div className="mb-14 md:mb-16">
+            <div className="mb-10 md:mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight font-heading mb-4">
                 For Individuals &amp; High&nbsp;Net&nbsp;Worth&nbsp;Clients
               </h2>
@@ -280,7 +216,7 @@ export default function TaxComplianceAdvisoryPage() {
           </div>
 
           <AnimatedSection delay={0.3}>
-            <div className="flex justify-center mt-12">
+            <div className="flex justify-center mt-10">
               <ConsultationModal
                 trigger={
                   <Button
@@ -300,7 +236,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — For Businesses & Business Owners                 */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-[#140e2a]">
+      <section className="py-16 md:py-20 relative overflow-hidden bg-[#140e2a]">
         <video
           autoPlay
           muted
@@ -316,7 +252,7 @@ export default function TaxComplianceAdvisoryPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-            <div className="mb-14 md:mb-16">
+            <div className="mb-10 md:mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white leading-tight font-heading mb-4">
                 For Businesses &amp; Business&nbsp;Owners
               </h2>
@@ -354,7 +290,7 @@ export default function TaxComplianceAdvisoryPage() {
           </div>
 
           <AnimatedSection delay={0.3}>
-            <div className="flex justify-center mt-12">
+            <div className="flex justify-center mt-10">
               <ConsultationModal
                 trigger={
                   <Button
@@ -375,7 +311,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — OUR APPROACH (Timeline)                          */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/50">
+      <section className="py-16 md:py-20 bg-brand-tint/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -402,7 +338,7 @@ export default function TaxComplianceAdvisoryPage() {
                         </div>
 
                         <div className="mb-2.5 flex items-center gap-2.5">
-                          <span className="font-mono text-[11px] font-semibold tracking-[0.2em] text-brand/70">
+                          <span className="font-mono text-[13px] font-semibold tracking-[0.2em] text-brand/70">
                             {String(i + 1).padStart(2, "0")}
                           </span>
                           <span className="h-px w-5 bg-brand/25 transition-all duration-500 ease-out group-hover:w-9 group-hover:bg-brand/50" />
@@ -440,7 +376,7 @@ export default function TaxComplianceAdvisoryPage() {
 
                         <div className="pt-0.5">
                           <div className="mb-1.5 flex items-center gap-2.5">
-                            <span className="font-mono text-[11px] font-semibold tracking-[0.2em] text-brand/70">
+                            <span className="font-mono text-[13px] font-semibold tracking-[0.2em] text-brand/70">
                               {String(i + 1).padStart(2, "0")}
                             </span>
                             <span className="h-px w-5 bg-brand/25" />
@@ -465,15 +401,22 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — RELATED CONTENT (Blog Ticker)                    */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24 bg-brand-tint/50 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8">
+      <section className="py-16 md:py-20 bg-brand-tint/50 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-6">
           <AnimatedSection>
             <SectionHeading
               title="From Our Knowledge Base"
+              description="Tax resources from our library — every card opens the piece it names."
+              className="mb-0"
             />
           </AnimatedSection>
         </div>
-        <BlogTicker />
+
+        <div className="relative w-full">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F5F3F8] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F5F3F8] to-transparent" />
+          <ResourceTicker items={resourcesForService("Tax Compliance & Advisory")} />
+        </div>
       </section>
 
       {/* ============================================================ */}
@@ -484,7 +427,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — CLOSING CTA                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -493,7 +436,7 @@ export default function TaxComplianceAdvisoryPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">

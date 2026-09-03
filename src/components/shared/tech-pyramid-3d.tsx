@@ -166,7 +166,7 @@ export function TechPyramid3D({ tiers }: { tiers: TechTier[] }) {
               style={{ height: TIER_H, marginTop: i === 0 ? CAP_H + GAP : GAP }}
             >
               <Bracket h={TIER_H * 0.7} />
-              <span className="text-white/80 text-[11px] font-bold uppercase tracking-wider leading-snug">
+              <span className="text-white/80 text-[13px] font-bold uppercase tracking-wider leading-snug">
                 {tier.label}
               </span>
             </div>
@@ -186,7 +186,7 @@ export function TechPyramid3D({ tiers }: { tiers: TechTier[] }) {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.05 * i, duration: 0.4 }}
           >
-            <div className="text-white/85 text-[10px] font-bold uppercase tracking-widest text-center mb-2">
+            <div className="text-white/85 text-[13px] font-bold uppercase tracking-widest text-center mb-2">
               {tier.label}
             </div>
             <div className="flex flex-wrap items-center justify-center gap-2">

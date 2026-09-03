@@ -237,7 +237,7 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — EMBEDDED VIDEO                                   */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <video
           autoPlay
           muted
@@ -254,7 +254,7 @@ export default function GlobalEntitySetupPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <AnimatedSection>
               <div>
-                <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
+                <p className="text-brand text-[15px] font-semibold uppercase tracking-widest mb-3">
                   See How It Works
                 </p>
                 <h2 className="font-heading text-3xl sm:text-4xl font-bold text-ink leading-tight mb-4">
@@ -312,7 +312,7 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — WHAT WE COVER (Bento Grid)                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-[#140e2a] via-[#1a1338] to-[#140e2a] relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-gradient-to-b from-[#140e2a] via-[#1a1338] to-[#140e2a] relative overflow-hidden">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#4D397F]/15 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE672C]/8 rounded-full blur-[120px] pointer-events-none" />
 
@@ -377,7 +377,7 @@ export default function GlobalEntitySetupPage() {
           {/* Bottom accent line */}
           <div className="mt-12 flex items-center gap-4 max-w-md">
             <div className="h-px flex-1 bg-gradient-to-r from-[#EE672C]/40 to-transparent" />
-            <span className="text-xs text-white/25 uppercase tracking-widest">6 services, one team</span>
+            <span className="text-[13px] text-white/25 uppercase tracking-widest">6 services, one team</span>
             <div className="h-px flex-1 bg-gradient-to-l from-[#4D397F]/40 to-transparent" />
           </div>
         </div>
@@ -386,8 +386,19 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — WHO THIS IS FOR                                  */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 md:py-20">
+        {/* Section background — subtle global-network artwork */}
+        <div className="pointer-events-none absolute inset-0">
+          <img
+            src="/images/backgrounds/global-network.webp"
+            alt=""
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/25 to-white" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
               title="Who This Is For"
@@ -443,7 +454,7 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — RELATED CONTENT (Blog Ticker)                    */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24 bg-brand-tint/50 overflow-hidden">
+      <section className="py-16 md:py-20 bg-brand-tint/50 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8">
           <AnimatedSection>
             <SectionHeading
@@ -462,7 +473,7 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       {/*  SECTION 6 — CLOSING CTA                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -471,7 +482,7 @@ export default function GlobalEntitySetupPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">

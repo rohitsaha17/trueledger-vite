@@ -48,11 +48,4 @@ export const methodologySteps: StackingProject[] = [
     src: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
     color: "#a85c56",
   },
-  {
-    title: "Industry-Specific Processes. Purpose-Built Solutions.",
-    description:
-      "Our frameworks, tools, and workflows are tailored to your industry — delivering precision that a generic approach simply cannot.",
-    src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-    color: "#c06a48",
-  },
 ];

@@ -208,7 +208,7 @@ function DesktopTimeline({ steps, stickyTopOffset = 0 }: ScrollFlipTimelineProps
 
                       {/* Marker label */}
                       <span
-                        className={`text-[13px] font-bold uppercase tracking-wider transition-colors duration-300 ${
+                        className={`text-[14px] font-bold uppercase tracking-wider transition-colors duration-300 ${
                           isActive
                             ? "text-brand"
                             : isPast
@@ -295,7 +295,7 @@ function DesktopTimeline({ steps, stickyTopOffset = 0 }: ScrollFlipTimelineProps
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.3, duration: 0.45 }}
                         >
-                          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-white/90 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 mb-3">
+                          <span className="inline-block text-[13px] font-bold uppercase tracking-[0.2em] text-white/90 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 mb-3">
                             {step.marker}
                           </span>
                           <p className="text-white/85 text-sm leading-relaxed line-clamp-3">
@@ -383,7 +383,7 @@ function MobileTimeline({ steps }: ScrollFlipTimelineProps) {
                 </div>
 
                 <div className="absolute bottom-3 left-3">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
+                  <span className="text-[13px] font-bold uppercase tracking-[0.15em] text-white bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
                     {step.marker}
                   </span>
                 </div>

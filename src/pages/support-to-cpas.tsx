@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
 import { FeatureCard } from "@/components/shared/feature-card";
 import {
   CostAdvantageArt,
@@ -92,71 +93,6 @@ const differentiationCards = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Related articles data                                               */
-/* ------------------------------------------------------------------ */
-
-const relatedArticles = [
-  { title: "How CPA Firms Are Scaling with Offshore Teams", category: "Insights" },
-  { title: "The True Cost of In-House vs Offshore Accounting", category: "Cost Analysis" },
-  { title: "Offshore Onboarding: Getting It Right from Day One", category: "Operations" },
-  { title: "Multi-State Sales Tax: A CPA’s Guide", category: "Tax Compliance" },
-  { title: "Practice Management Tools That Support Remote Teams", category: "Technology" },
-  { title: "Building Quality Control in Offshore Engagements", category: "Best Practices" },
-];
-
-/* ------------------------------------------------------------------ */
-/*  Blog Ticker component                                               */
-/* ------------------------------------------------------------------ */
-
-function BlogTicker() {
-  const cards = [...relatedArticles, ...relatedArticles];
-
-  return (
-    <div className="overflow-hidden py-4">
-      <div
-        className="flex gap-6"
-        style={{
-          animation: "ticker-scroll 40s linear infinite",
-          width: "max-content",
-        }}
-      >
-        {cards.map((article, i) => (
-          <div
-            key={`${article.title}-${i}`}
-            className="w-72 shrink-0 bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 group"
-          >
-            <div className="h-36 bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
-              <div className="absolute bottom-3 left-3">
-                <span className="text-xs font-medium bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary">
-                  {article.category}
-                </span>
-              </div>
-            </div>
-            <div className="p-4">
-              <h4 className="font-heading font-semibold text-sm text-ink leading-snug mb-3">
-                {article.title}
-              </h4>
-              <span className="text-xs font-medium text-brand group-hover:text-brand-dark transition-colors inline-flex items-center gap-1">
-                Read More
-                <ChevronRight className="size-3" />
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes ticker-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-    </div>
-  );
-}
-
 /* ================================================================== */
 /*  Main Page Component                                                 */
 /* ================================================================== */
@@ -219,7 +155,7 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — HOW WE SUPPORT YOUR PRACTICE (Grid)              */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <video
           autoPlay
           muted
@@ -265,7 +201,7 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — APPROACH AND DIFFERENTIATION (Grid)               */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40">
+      <section className="py-16 md:py-20 bg-brand-tint/40">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-14 md:mb-18"
@@ -300,7 +236,7 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 4 — WHITEPAPERS & GUIDES                             */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -308,26 +244,33 @@ export default function SupportToCPAsPage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* Whitepaper 1 */}
-            <AnimatedSection delay={0.1}>
-              <div className="bg-white rounded-2xl border border-black/[0.06] shadow-lg overflow-hidden">
-                <div className="h-48 bg-gradient-to-br from-brand/10 via-brand-soft to-brand-tint flex items-center justify-center">
-                  <div className="size-20 rounded-2xl bg-white/80 backdrop-blur-sm shadow-sm flex items-center justify-center">
-                    <FileText className="size-10 text-brand" />
+            <AnimatedSection delay={0.1} className="h-full">
+              <div className="group bg-white rounded-2xl border border-black/[0.06] shadow-lg overflow-hidden h-full flex flex-col">
+                <div className="relative h-48 shrink-0 overflow-hidden bg-[#140e2a]">
+                  <img
+                    src="/images/services/support-cpas.webp"
+                    alt="Offshore partnership model for CPA firms"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/80 via-[#140e2a]/25 to-transparent" />
+                  <div className="absolute bottom-4 left-4 size-14 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center">
+                    <FileText className="size-7 text-brand" />
                   </div>
                 </div>
-                <div className="p-6 sm:p-8">
+                <div className="p-6 sm:p-8 flex flex-1 flex-col">
                   <h3 className="font-heading font-semibold text-lg text-ink mb-3">
                     TrueLedger&rsquo;s Position for CPA Firms
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
                     How a dedicated offshore partnership model works &mdash; and
                     why it is different from traditional outsourcing.
                   </p>
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-brand-dark transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-brand-dark transition-colors mt-auto self-start"
                   >
                     <Download className="size-4" />
                     Download the Whitepaper
@@ -337,23 +280,30 @@ export default function SupportToCPAsPage() {
             </AnimatedSection>
 
             {/* Whitepaper 2 */}
-            <AnimatedSection delay={0.18}>
-              <div className="bg-white rounded-2xl border border-black/[0.06] shadow-lg overflow-hidden">
-                <div className="h-48 bg-gradient-to-br from-brand/10 via-brand-soft to-brand-tint flex items-center justify-center">
-                  <div className="size-20 rounded-2xl bg-white/80 backdrop-blur-sm shadow-sm flex items-center justify-center">
-                    <FileText className="size-10 text-brand" />
+            <AnimatedSection delay={0.18} className="h-full">
+              <div className="group bg-white rounded-2xl border border-black/[0.06] shadow-lg overflow-hidden h-full flex flex-col">
+                <div className="relative h-48 shrink-0 overflow-hidden bg-[#140e2a]">
+                  <img
+                    src="/images/services/business-advisory.webp"
+                    alt="CPA firm offshoring readiness assessment"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/80 via-[#140e2a]/25 to-transparent" />
+                  <div className="absolute bottom-4 left-4 size-14 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center">
+                    <FileText className="size-7 text-brand" />
                   </div>
                 </div>
-                <div className="p-6 sm:p-8">
+                <div className="p-6 sm:p-8 flex flex-1 flex-col">
                   <h3 className="font-heading font-semibold text-lg text-ink mb-3">
                     CPA Firm Offshoring Readiness Assessment Checklist
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
                     Before you offshore &mdash; know where your firm stands.
                   </p>
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-brand-dark transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-brand-dark transition-colors mt-auto self-start"
                   >
                     <Download className="size-4" />
                     Download the Checklist
@@ -368,13 +318,13 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — WHO WE WORK WITH (FEATURED CASE STUDIES)          */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40">
+      <section className="py-16 md:py-20 bg-brand-tint/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-14">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Globe className="size-5 text-brand" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+                <span className="text-[15px] font-semibold uppercase tracking-widest text-primary">
                   Who We Work With
                 </span>
               </div>
@@ -387,15 +337,16 @@ export default function SupportToCPAsPage() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
             <motion.div
+              className="h-full"
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <Link to="/case-studies/florida-cpa-peak-season" className="group block bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-52 overflow-hidden">
+              <Link to="/case-studies/florida-cpa-peak-season" className="group flex h-full flex-col bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="h-52 shrink-0 overflow-hidden">
                   <img
                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
                     alt="Tax season documents"
@@ -403,19 +354,19 @@ export default function SupportToCPAsPage() {
                     loading="lazy"
                   />
                 </div>
-                <div className="p-6 sm:p-7">
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-[#EE672C]">Professional Services</span>
+                    <span className="text-[13px] font-semibold uppercase tracking-wider text-[#EE672C]">Professional Services</span>
                     <span className="text-muted-foreground text-xs">|</span>
                     <span className="text-[0.65rem] text-muted-foreground">CPA Firm Support</span>
                   </div>
                   <h3 className="font-heading font-bold text-lg text-ink mb-3 group-hover:text-primary transition-colors leading-snug">
                     Absorbing Peak Tax-Season Volume for a Florida CPA Firm
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
                     In the final weeks of April tax season, a Florida-based CPA firm needed extra hands on a stack of complex returns &mdash; clients with multi-country income and layered reporting requirements.
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-brand-dark transition-colors">
+                  <span className="mt-auto inline-flex items-center gap-1.5 self-start text-sm font-semibold text-primary group-hover:text-brand-dark transition-colors">
                     Read Case Study
                     <ChevronRight className="size-3.5" />
                   </span>
@@ -424,13 +375,14 @@ export default function SupportToCPAsPage() {
             </motion.div>
 
             <motion.div
+              className="h-full"
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Link to="/case-studies/texas-cpa-real-estate" className="group block bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-52 overflow-hidden">
+              <Link to="/case-studies/texas-cpa-real-estate" className="group flex h-full flex-col bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="h-52 shrink-0 overflow-hidden">
                   <img
                     src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
                     alt="Real estate property"
@@ -438,19 +390,19 @@ export default function SupportToCPAsPage() {
                     loading="lazy"
                   />
                 </div>
-                <div className="p-6 sm:p-7">
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-[#EE672C]">Real Estate</span>
+                    <span className="text-[13px] font-semibold uppercase tracking-wider text-[#EE672C]">Real Estate</span>
                     <span className="text-muted-foreground text-xs">|</span>
                     <span className="text-[0.65rem] text-muted-foreground">CPA Firm Support</span>
                   </div>
                   <h3 className="font-heading font-bold text-lg text-ink mb-3 group-hover:text-primary transition-colors leading-snug">
                     Running Real Estate Portfolio Accounting for a Texas CPA Firm
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
                     A Texas-based CPA managing a portfolio of real estate rental entities needed consistent, audit-ready monthly accounting across every property.
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-brand-dark transition-colors">
+                  <span className="mt-auto inline-flex items-center gap-1.5 self-start text-sm font-semibold text-primary group-hover:text-brand-dark transition-colors">
                     Read Case Study
                     <ChevronRight className="size-3.5" />
                   </span>
@@ -469,7 +421,7 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 6 — CLOSING CTA                                       */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -478,7 +430,7 @@ export default function SupportToCPAsPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight max-w-3xl mx-auto">
@@ -517,15 +469,22 @@ export default function SupportToCPAsPage() {
       {/* ============================================================ */}
       {/*  SECTION 7 — RELATED CONTENT (Blog Ticker)                     */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-24 bg-brand-tint/50 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8">
+      <section className="py-16 md:py-20 bg-brand-tint/50 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-6">
           <AnimatedSection>
             <SectionHeading
               title="From Our Knowledge Base"
+              description="CPA support resources from our library — every card opens the piece it names."
+              className="mb-0"
             />
           </AnimatedSection>
         </div>
-        <BlogTicker />
+
+        <div className="relative w-full">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F5F3F8] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F5F3F8] to-transparent" />
+          <ResourceTicker items={resourcesForService("CPA Support")} />
+        </div>
       </section>
     </>
   );

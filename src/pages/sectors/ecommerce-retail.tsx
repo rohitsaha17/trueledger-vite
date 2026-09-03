@@ -378,7 +378,7 @@ export default function EcommerceRetailPage() {
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#EE672C] mb-1.5 block">
+                    <span className="text-[15px] font-semibold uppercase tracking-wider text-[#EE672C] mb-1.5 block">
                       The Problem
                     </span>
                     <p className="text-sm text-white/60 leading-relaxed">
@@ -386,7 +386,7 @@ export default function EcommerceRetailPage() {
                     </p>
                   </div>
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#EE672C] mb-1.5 block">
+                    <span className="text-[15px] font-semibold uppercase tracking-wider text-[#EE672C] mb-1.5 block">
                       What We Did
                     </span>
                     <p className="text-sm text-white/60 leading-relaxed">
@@ -394,7 +394,7 @@ export default function EcommerceRetailPage() {
                     </p>
                   </div>
                   <div className="pt-2 border-t border-white/[0.08]">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#EE672C] mb-1.5 block">
+                    <span className="text-[15px] font-semibold uppercase tracking-wider text-[#EE672C] mb-1.5 block">
                       Result
                     </span>
                     <p className="text-sm text-white font-medium leading-relaxed">
@@ -473,7 +473,7 @@ export default function EcommerceRetailPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">

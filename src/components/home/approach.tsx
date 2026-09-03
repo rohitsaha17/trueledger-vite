@@ -118,7 +118,7 @@ const cards = [
 
 export function Approach() {
   return (
-    <section className="py-10 md:py-14 relative overflow-hidden">
+    <section className="py-14 md:py-18 relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 pointer-events-none">
         <img
@@ -173,7 +173,7 @@ export function Approach() {
                     <h3 className="mb-2.5 font-heading text-[1.05rem] font-bold leading-snug text-ink transition-transform duration-500 ease-out group-hover:translate-x-0.5 sm:text-[1.15rem]">
                       {card.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
+                    <p className="text-[15px] leading-relaxed text-muted-foreground">
                       {card.description}
                     </p>
                   </div>

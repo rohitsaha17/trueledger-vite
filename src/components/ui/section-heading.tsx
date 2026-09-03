@@ -21,11 +21,11 @@ export function SectionHeading({
       {eyebrow && (
         <div
           className={cn(
-            "inline-flex items-center gap-1.5 text-xs font-medium text-primary-dark mb-3",
-            "bg-primary-soft px-3 py-1 rounded-[var(--radius-pill)]"
+            "inline-flex items-center gap-1.5 text-[15px] font-semibold uppercase tracking-wider text-primary-dark mb-3",
+            "bg-primary-soft px-3.5 py-1.5 rounded-[var(--radius-pill)]"
           )}
         >
-          <ChevronRight className="w-3 h-3" />
+          <ChevronRight className="w-3.5 h-3.5" />
           {eyebrow}
         </div>
       )}

@@ -333,7 +333,7 @@ export default function AISaaSStartupsPage() {
                   {study.description}
                 </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-white/[0.08]">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#EE672C]">
+                  <span className="text-[15px] font-semibold uppercase tracking-wider text-[#EE672C]">
                     Result
                   </span>
                   <span className="text-sm font-medium text-white/90">
@@ -405,7 +405,7 @@ export default function AISaaSStartupsPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="text-center rounded-2xl bg-white/[0.08] backdrop-blur-sm border border-white/[0.1] p-10 sm:p-14">
-              <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+              <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
                 Let&rsquo;s talk
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-[2.75rem] text-white mb-4 leading-tight">

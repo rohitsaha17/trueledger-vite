@@ -128,7 +128,7 @@ function ReviewCard({ review }: { review: Review }) {
         </div>
 
         {/* Quote text */}
-        <p className="text-white/85 text-sm sm:text-[0.9375rem] leading-relaxed flex-1">
+        <p className="text-white/85 text-[15px] sm:text-base leading-relaxed flex-1">
           &ldquo;{review.text}&rdquo;
         </p>
 
@@ -145,14 +145,14 @@ function ReviewCard({ review }: { review: Review }) {
             {review.name.split(" ").map(w => w[0]).join("").slice(0, 2)}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-white font-heading font-semibold text-sm truncate">
+            <p className="text-white font-heading font-semibold text-[15px] truncate">
               {review.name}
             </p>
-            <p className="text-white/50 text-xs truncate">
+            <p className="text-white/50 text-sm truncate">
               {review.role}
             </p>
           </div>
-          <div className="shrink-0 flex items-center gap-1.5 text-white/40 text-xs">
+          <div className="shrink-0 flex items-center gap-1.5 text-white/40 text-sm">
             <span className="text-base">{review.flag}</span>
             <span className="hidden sm:inline">{review.location}</span>
           </div>
@@ -179,7 +179,7 @@ export function Testimonials() {
   }, [api, onSelect]);
 
   return (
-    <section className="py-14 md:py-20 bg-[#140e2a] relative overflow-hidden">
+    <section className="py-14 md:py-18 bg-[#140e2a] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full blur-[160px] bg-[#4D397F]/30 pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[350px] rounded-full blur-[140px] bg-[#EE672C]/10 pointer-events-none" />
@@ -187,7 +187,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-10">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#EE672C] mb-3">
+            <p className="text-[15px] font-semibold uppercase tracking-widest text-[#EE672C] mb-3">
               What Our Clients Say
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-white leading-tight mb-4">
@@ -203,7 +203,7 @@ export function Testimonials() {
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="size-4" />
                 <Stars />
                 <span className="text-sm font-semibold text-white">5.0</span>
-                <span className="text-xs text-white/50">on Google</span>
+                <span className="text-sm text-white/50">on Google</span>
               </div>
             </div>
           </div>

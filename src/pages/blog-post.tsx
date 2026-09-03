@@ -72,7 +72,7 @@ export default function BlogPostPage() {
 
           <div className="flex items-center gap-3 mb-4">
             {post.category && (
-              <span className="text-xs font-medium text-brand uppercase tracking-wider bg-brand-tint px-2.5 py-1 rounded-md">
+              <span className="text-[13px] font-medium text-brand uppercase tracking-wider bg-brand-tint px-2.5 py-1 rounded-md">
                 {post.category}
               </span>
             )}

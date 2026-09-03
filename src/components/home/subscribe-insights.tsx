@@ -14,14 +14,14 @@ function TabletMockup() {
           <div className="bg-gradient-to-br from-[#4D397F] to-[#362765] px-5 pt-5 pb-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="size-6 rounded-md bg-white/20 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-white">TL</span>
+                <span className="text-[11px] font-bold text-white">TL</span>
               </div>
-              <span className="text-[10px] font-heading font-semibold text-white/80">TrueLedger Insights</span>
+              <span className="text-[11px] font-heading font-semibold text-white/80">TrueLedger Insights</span>
             </div>
             <p className="text-white font-heading font-bold text-sm leading-tight">
               5 Tax Strategies Every Business Owner Should Know
             </p>
-            <p className="text-white/50 text-[10px] mt-1.5">June 2026 Edition</p>
+            <p className="text-white/50 text-[11px] mt-1.5">June 2026 Edition</p>
           </div>
 
           {/* Article preview image */}
@@ -68,7 +68,7 @@ function TabletMockup() {
 
 export function SubscribeInsights() {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-14 md:py-18">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#faf9f7] via-white to-[#f5f0eb] border border-black/[0.06] shadow-lg">
@@ -106,7 +106,7 @@ export function SubscribeInsights() {
                 <h2 className="font-heading font-bold text-2xl md:text-[1.75rem] text-gray-900 mb-2 leading-snug">
                   Subscribe to Our Monthly Newsletter
                 </h2>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-md">
+                <p className="text-gray-500 text-[15px] leading-relaxed mb-6 max-w-md">
                   Stay informed with tips, important tax deadline reminders, and expert insights to help you make the best financial decisions.
                 </p>
 
@@ -128,7 +128,7 @@ export function SubscribeInsights() {
                   </Button>
                 </form>
 
-                <p className="text-gray-400 text-xs mt-4">
+                <p className="text-gray-400 text-sm mt-4">
                   No spam, ever. Unsubscribe anytime.
                 </p>
               </div>

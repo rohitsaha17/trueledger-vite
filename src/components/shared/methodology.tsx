@@ -10,7 +10,7 @@ import { methodologySteps } from "@/components/shared/methodology-steps";
 
 export function Methodology() {
   return (
-    <section className="py-20 md:py-28 bg-brand-tint/40">
+    <section className="py-16 md:py-20 bg-brand-tint/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <SectionHeading

@@ -19,7 +19,6 @@ import {
   Server,
   Camera,
   HardDrive,
-  Printer,
   Mail,
   KeyRound,
   UserCheck,
@@ -121,11 +120,9 @@ const securityPanels = [
     title: "Offices & Staff",
     icon: Building2,
     items: [
-      { icon: HardDrive, text: "No external storage devices allowed" },
-      { icon: Printer, text: "Use of printers not allowed" },
+      /* Trimmed to three so the panel matches its two siblings in height. */
+      { icon: HardDrive, text: "No external storage devices or printers allowed" },
       { icon: Mail, text: "Access to external mail and storage is blocked" },
-      { icon: Lock, text: "Lockers provided for employees" },
-      { icon: KeyRound, text: "Secure login gateway & server management" },
       { icon: Camera, text: "Premises under 24/7 CCTV surveillance" },
     ],
   },
@@ -227,7 +224,7 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — THE STORY                                        */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -299,7 +296,7 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — OUR LEADERSHIP                                   */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -354,7 +351,7 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — WHY TRUELEDGER                                   */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 bg-brand-tint/40">
+      <section className="py-16 md:py-20 bg-brand-tint/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -414,13 +411,13 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 6 — DATA SECURITY                                    */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_203624_f982825f-72b5-42d9-acac-210e86af9acb_min.webp"
+            src="/images/backgrounds/security-shield.webp"
             alt=""
-            className="w-full h-full object-cover opacity-[0.08]"
+            className="w-full h-full object-cover opacity-[0.18]"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
@@ -434,12 +431,12 @@ export default function AboutPage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
             {securityPanels.map((panel, i) => {
               const PanelIcon = panel.icon;
               return (
-                <AnimatedSection key={panel.title} delay={0.1 + i * 0.1}>
-                  <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full">
+                <AnimatedSection key={panel.title} delay={0.1 + i * 0.1} className="h-full">
+                  <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
                     {/* Panel header */}
                     <div className="bg-gradient-to-r from-brand-tint to-brand-soft p-5 border-b border-brand/10">
                       <div className="flex items-center gap-3">
@@ -453,7 +450,7 @@ export default function AboutPage() {
                     </div>
 
                     {/* Checklist items */}
-                    <div className="p-5 space-y-3.5">
+                    <div className="p-5 space-y-3.5 flex-1">
                       {panel.items.map((item) => {
                         const ItemIcon = item.icon;
                         return (
@@ -508,7 +505,7 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 8 — OUR TEAM                                         */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -533,7 +530,7 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 9 — CLOSING CTA                                      */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         {/* Background image */}
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
@@ -550,7 +547,7 @@ export default function AboutPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
-            <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+            <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
               Ready to get started?
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight max-w-3xl mx-auto">

@@ -82,7 +82,7 @@ export default function CaseStudyDetailPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                <span className="text-white/60 text-xs font-semibold uppercase tracking-widest mb-2 block">
+                <span className="text-white/60 text-[15px] font-semibold uppercase tracking-widest mb-2 block">
                   {study.industry}
                 </span>
                 <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-3xl">
@@ -108,7 +108,7 @@ export default function CaseStudyDetailPage() {
 
             {!study.featured_image && (
               <>
-                <span className="text-brand text-xs font-semibold uppercase tracking-widest mb-2 block">
+                <span className="text-brand text-[15px] font-semibold uppercase tracking-widest mb-2 block">
                   {study.industry}
                 </span>
                 <h1 className="font-heading font-bold text-3xl md:text-4xl text-ink leading-tight mb-6">

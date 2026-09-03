@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -135,15 +134,22 @@ export default function ContactPage() {
       {/* ============================================================ */}
       {/*  SECTION 1 — HERO                                            */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-tint via-background to-background">
-        {/* World map background */}
-        <WorldMapSVG />
+      <section className="relative overflow-hidden bg-[#140e2a]">
+        {/* Team photo — the people you actually reach */}
+        <img
+          src="/images/team/team-group.jpg"
+          alt="The TrueLedger team"
+          className="absolute inset-0 h-full w-full object-cover object-[center_25%]"
+        />
+        <div className="absolute inset-0 bg-[#140e2a]/82" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/70 via-transparent to-[#140e2a]" />
 
-        {/* Static country dots */}
+        {/* World map + country dots, kept from the previous header */}
+        <WorldMapSVG />
         {mapDots.map((dot, i) => (
           <div
             key={i}
-            className="absolute size-2.5 rounded-full bg-brand/50 pointer-events-none"
+            className="absolute size-2.5 rounded-full bg-white/25 pointer-events-none"
             style={{
               left: `${(dot.x / 1000) * 100}%`,
               top: `${(dot.y / 500) * 100}%`,
@@ -151,23 +157,22 @@ export default function ContactPage() {
           />
         ))}
 
-        {/* Gradient orbs */}
-        <div className="absolute top-20 right-[10%] w-80 h-80 bg-brand/[0.04] rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
+        {/* Accent glows */}
+        <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/25 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-36">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Badge variant="secondary" className="mb-6 gap-1.5">
-                <ChevronRight className="size-3" />
+              <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
                 Contact
-              </Badge>
+              </p>
 
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08] mb-8 text-ink">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08] mb-6 text-white">
                 Get in Touch
               </h1>
             </motion.div>
@@ -177,7 +182,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
-              <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto font-medium">
+              <p className="text-lg sm:text-xl text-white/65 leading-relaxed max-w-2xl mx-auto">
                 Have a question or ready to get started? We&rsquo;d love to hear
                 from you.
               </p>
@@ -189,12 +194,12 @@ export default function ContactPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — FORM + CONTACT INFO (Asymmetric 2-col)          */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[55%_1fr] gap-12 lg:gap-16">
+      <section className="py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 lg:gap-10 items-start">
             {/* LEFT — Contact Form */}
             <AnimatedSection>
-              <div className="bg-white rounded-2xl border border-black/[0.06] shadow-lg shadow-brand/[0.03] p-6 sm:p-8">
+              <div className="bg-white rounded-2xl border border-black/[0.06] shadow-lg shadow-brand/[0.03] p-6 sm:p-7">
                 {/* Decorative step indicator */}
                 <div className="flex items-center justify-center gap-0 mb-8">
                   {formSteps.map((step, i) => (
@@ -258,7 +263,7 @@ export default function ContactPage() {
                     >
                       {/* Group 1: Your Information */}
                       <div>
-                        <p className="text-xs font-medium uppercase tracking-wider text-brand mb-3">
+                        <p className="text-[15px] font-medium uppercase tracking-wider text-brand mb-3">
                           Your Information
                         </p>
                         <div className="grid gap-4">
@@ -304,7 +309,7 @@ export default function ContactPage() {
 
                       {/* Group 2: Business Details */}
                       <div>
-                        <p className="text-xs font-medium uppercase tracking-wider text-brand mb-3">
+                        <p className="text-[15px] font-medium uppercase tracking-wider text-brand mb-3">
                           Business Details
                         </p>
                         <div className="grid gap-4">
@@ -337,7 +342,7 @@ export default function ContactPage() {
 
                       {/* Group 3: Your Message */}
                       <div>
-                        <p className="text-xs font-medium uppercase tracking-wider text-brand mb-3">
+                        <p className="text-[15px] font-medium uppercase tracking-wider text-brand mb-3">
                           Your Message
                         </p>
                         <div className="grid gap-2">
@@ -368,33 +373,30 @@ export default function ContactPage() {
             {/* RIGHT — Contact Info + CTA */}
             <AnimatedSection delay={0.15}>
               <div className="relative">
-                {/* Dotted connecting line */}
-                <div className="absolute left-6 top-12 bottom-12 border-l-2 border-dashed border-brand/15 pointer-events-none hidden lg:block" />
-
-                <div className="space-y-4 relative">
+                <div className="space-y-3">
                   {contactInfo.map((item) => {
                     const Icon = item.icon;
                     return (
                       <div
                         key={item.label}
-                        className="bg-white rounded-2xl border border-black/[0.06] shadow-sm p-5 sm:p-6 flex items-start gap-4 relative"
+                        className="bg-white rounded-2xl border border-black/[0.06] shadow-sm p-4 sm:p-5 flex items-start gap-4 transition-shadow duration-300 hover:shadow-md"
                       >
-                        <div className="shrink-0 size-12 rounded-2xl bg-gradient-to-br from-brand-tint to-brand-soft flex items-center justify-center border border-brand/10">
+                        <div className="shrink-0 size-11 rounded-xl bg-gradient-to-br from-brand-tint to-brand-soft flex items-center justify-center border border-brand/10">
                           <Icon className="size-5 text-brand" />
                         </div>
-                        <div>
-                          <p className="font-heading font-semibold text-sm text-ink mb-1">
+                        <div className="min-w-0">
+                          <p className="font-heading font-semibold text-[15px] uppercase tracking-wider text-ink/60 mb-1">
                             {item.label}
                           </p>
                           {item.href ? (
                             <a
                               href={item.href}
-                              className="text-muted-foreground text-sm leading-relaxed hover:text-brand transition-colors"
+                              className="text-ink text-[15px] leading-relaxed break-words hover:text-brand transition-colors"
                             >
                               {item.value}
                             </a>
                           ) : (
-                            <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
+                            <p className="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line">
                               {item.value}
                             </p>
                           )}
@@ -404,23 +406,23 @@ export default function ContactPage() {
                   })}
 
                   {/* Book a Consultation card */}
-                  <div className="bg-brand-dark text-white rounded-2xl p-6 relative overflow-hidden">
+                  <div className="bg-brand-dark text-white rounded-2xl p-5 sm:p-6 relative overflow-hidden mt-1">
                     <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/[0.05] rounded-full blur-2xl" />
                     <div className="relative z-10">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="size-12 rounded-2xl bg-white/10 flex items-center justify-center">
+                        <div className="size-11 rounded-xl bg-white/10 flex items-center justify-center">
                           <Calendar className="size-5 text-white" />
                         </div>
                         <div>
-                          <p className="font-heading font-semibold text-sm">
+                          <p className="font-heading font-semibold text-base">
                             Book a Consultation
                           </p>
-                          <p className="text-white/50 text-xs">
+                          <p className="text-white/55 text-sm">
                             Free 30-minute discovery call
                           </p>
                         </div>
                       </div>
-                      <p className="text-white/60 text-sm mb-4">
+                      <p className="text-white/60 text-[15px] mb-4">
                         Get clear, honest answers from our team — no commitment
                         required.
                       </p>
@@ -447,7 +449,7 @@ export default function ContactPage() {
       {/* ============================================================ */}
       {/*  SECTION 3 — CLOSING CTA                                     */}
       {/* ============================================================ */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative overflow-hidden">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
@@ -457,7 +459,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="bg-white/[0.06] backdrop-blur-xl rounded-3xl border border-white/[0.10] p-10 md:p-14 text-center max-w-3xl mx-auto">
-              <p className="text-[#EE672C] text-xs font-semibold uppercase tracking-widest mb-4">
+              <p className="text-[#EE672C] text-[15px] font-semibold uppercase tracking-widest mb-4">
                 Ready to get started?
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">

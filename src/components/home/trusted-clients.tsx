@@ -74,7 +74,7 @@ export function TrustedClients() {
   }, [api, onSelect]);
 
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden">
+    <section className="py-14 md:py-18 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-tint/30 to-transparent pointer-events-none" />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -110,7 +110,7 @@ export function TrustedClients() {
                             <p className="font-heading font-bold text-base sm:text-lg text-white drop-shadow-md leading-tight">
                               {c.sector}
                             </p>
-                            <span className="inline-flex items-center gap-1 text-white/85 text-xs sm:text-sm drop-shadow-md mt-0.5">
+                            <span className="inline-flex items-center gap-1 text-white/85 text-sm drop-shadow-md mt-0.5">
                               <MapPin className="size-3.5 text-orange" />
                               {c.country}
                             </span>
@@ -126,7 +126,7 @@ export function TrustedClients() {
 
                       {/* Content */}
                       <CardContent className="pt-5 pb-6 px-6">
-                        <p className="text-muted-foreground text-sm leading-relaxed">
+                        <p className="text-muted-foreground text-[15px] leading-relaxed">
                           {c.text}
                         </p>
                       </CardContent>
