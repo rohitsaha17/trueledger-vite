@@ -1,5 +1,23 @@
 import { motion } from "framer-motion";
 import type { ComponentType, SVGProps } from "react";
+import {
+  BarChart3,
+  BookOpenCheck,
+  Calculator,
+  CalendarClock,
+  CheckCircle2,
+  ClipboardCheck,
+  FileCheck2,
+  Globe2,
+  Handshake,
+  Landmark,
+  LineChart,
+  ListChecks,
+  Settings2,
+  ShieldCheck,
+  UsersRound,
+  WalletCards,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -25,6 +43,33 @@ interface FeatureCardProps {
 }
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
+
+interface TitleIconProps {
+  title: string;
+  className: string;
+}
+
+function TitleIcon({ title, className }: TitleIconProps) {
+  const normalizedTitle = title.toLowerCase();
+
+  if (/tax|payroll|filing|compliance/.test(normalizedTitle)) return <CalendarClock aria-hidden="true" className={className} />;
+  if (/book|accounting|ledger|financial statement|close/.test(normalizedTitle)) return <Calculator aria-hidden="true" className={className} />;
+  if (/report|dashboard|forecast|metric|visibility|decision/.test(normalizedTitle)) return <BarChart3 aria-hidden="true" className={className} />;
+  if (/team|people|client handling|practice/.test(normalizedTitle)) return <UsersRound aria-hidden="true" className={className} />;
+  if (/onboard|process|workflow|methodology/.test(normalizedTitle)) return <ClipboardCheck aria-hidden="true" className={className} />;
+  if (/audit|review|quality|accuracy|checklist/.test(normalizedTitle)) return <ShieldCheck aria-hidden="true" className={className} />;
+  if (/pricing|cost|spend|budget/.test(normalizedTitle)) return <WalletCards aria-hidden="true" className={className} />;
+  if (/global|timezone|cross-border|international/.test(normalizedTitle)) return <Globe2 aria-hidden="true" className={className} />;
+  if (/advisory|planning|strategy|approach/.test(normalizedTitle)) return <LineChart aria-hidden="true" className={className} />;
+  if (/security|protect/.test(normalizedTitle)) return <FileCheck2 aria-hidden="true" className={className} />;
+  if (/integration|software|tech/.test(normalizedTitle)) return <Settings2 aria-hidden="true" className={className} />;
+  if (/resource|guide|education|knowledge/.test(normalizedTitle)) return <BookOpenCheck aria-hidden="true" className={className} />;
+  if (/partner|support/.test(normalizedTitle)) return <Handshake aria-hidden="true" className={className} />;
+  if (/list|task/.test(normalizedTitle)) return <ListChecks aria-hidden="true" className={className} />;
+  if (/real estate|property/.test(normalizedTitle)) return <Landmark aria-hidden="true" className={className} />;
+
+  return <CheckCircle2 aria-hidden="true" className={className} />;
+}
 
 /**
  * Raised slab for cards sitting on a near-black (#140e2a-ish) backdrop.
@@ -129,6 +174,16 @@ export function FeatureCard({
         />
       )}
 
+      {!Art && (
+        <TitleIcon
+          title={title}
+          className={cn(
+            "pointer-events-none absolute right-5 top-5 size-12 select-none stroke-[1.5] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1 group-hover:rotate-6 group-hover:scale-110",
+            tone.art,
+          )}
+        />
+      )}
+
       {/* Index + hairline rule that extends on hover */}
       <div className="relative mb-4 flex items-center gap-3">
         <span
@@ -151,7 +206,7 @@ export function FeatureCard({
         className={cn(
           "relative mb-2.5 font-heading text-[1.05rem] font-bold leading-snug transition-transform duration-500 ease-out group-hover:translate-x-0.5 sm:text-[1.15rem]",
           tone.title,
-          Art && "pr-20",
+          "pr-20",
         )}
       >
         {title}
