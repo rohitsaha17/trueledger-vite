@@ -374,12 +374,7 @@ export default function GlobalEntitySetupPage() {
             })}
           </div>
 
-          {/* Bottom accent line */}
-          <div className="mt-12 flex items-center gap-4 max-w-md">
-            <div className="h-px flex-1 bg-gradient-to-r from-[#EE672C]/40 to-transparent" />
-            <span className="text-[13px] text-white/25 uppercase tracking-widest">6 services, one team</span>
-            <div className="h-px flex-1 bg-gradient-to-l from-[#4D397F]/40 to-transparent" />
-          </div>
+
         </div>
       </section>
 

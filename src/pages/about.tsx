@@ -351,8 +351,16 @@ export default function AboutPage() {
       {/* ============================================================ */}
       {/*  SECTION 5 — WHY TRUELEDGER                                   */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-20 bg-brand-tint/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 bg-brand-tint/40 relative">
+        {/* Subtle texture overlay */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
+          <filter id="violetNoiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise" seed="3" />
+            <feColorMatrix in="noise" type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" fill="#000000" filter="url(#violetNoiseFilter)" />
+        </svg>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <SectionHeading
               title="Why Trueledger"
@@ -360,7 +368,7 @@ export default function AboutPage() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch justify-center gap-10 md:gap-14 relative">
+            <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch justify-center gap-10 md:gap-14 relative z-10">
               {/* Decorative glow */}
               <div className="size-[520px] rounded-full absolute blur-[300px] -z-10 bg-brand/[0.06]" />
 
@@ -421,6 +429,29 @@ export default function AboutPage() {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
+
+          {/* Texture overlay - diagonal lines pattern */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.12]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="diagonalLines" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="20" stroke="#6366f1" strokeWidth="1" opacity="0.6" />
+              </pattern>
+              <pattern id="noisePattern" x="0" y="0" width="100%" height="100%" patternUnits="objectBoundingBox">
+                <filter id="securityNoise">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="5" result="noise" seed="42" />
+                  <feColorMatrix in="noise" type="saturate" values="0" />
+                  <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+                </filter>
+                <rect width="100%" height="100%" fill="#6366f1" opacity="0.05" filter="url(#securityNoise)" />
+              </pattern>
+            </defs>
+
+            {/* Diagonal line pattern */}
+            <rect width="100%" height="100%" fill="url(#diagonalLines)" />
+
+            {/* Noise texture */}
+            <rect width="100%" height="100%" fill="url(#noisePattern)" />
+          </svg>
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -484,6 +515,26 @@ export default function AboutPage() {
         <div className="absolute top-0 left-1/4 w-72 h-72 bg-brand/15 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-primary/10 rounded-full blur-3xl" />
 
+        {/* Texture overlay - more prominent */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.35]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            {/* Coarse noise pattern */}
+            <filter id="statsNoise">
+              <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="6" result="noise" seed="5" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+            </filter>
+            {/* Grid pattern */}
+            <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <rect width="40" height="40" fill="none" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" strokeWidth="0.5" opacity="0.3" />
+            </pattern>
+          </defs>
+          {/* Grid background */}
+          <rect width="100%" height="100%" fill="url(#gridPattern)" />
+          {/* Noise texture overlay */}
+          <rect width="100%" height="100%" fill="#ffffff" opacity="0.2" filter="url(#statsNoise)" />
+        </svg>
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
             {stats.map((stat, i) => (
@@ -540,6 +591,15 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-[#140e2a]/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
+
+        {/* Subtle texture overlay */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" seed="2" />
+            <feColorMatrix in="noise" type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" fill="#ffffff" filter="url(#noiseFilter)" />
+        </svg>
 
         {/* Accent glows */}
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
