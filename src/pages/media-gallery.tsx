@@ -286,7 +286,7 @@ export default function MediaGalleryPage() {
 
                     {/* Timeline rail + cards */}
                     <div className="relative">
-                      <span className="pointer-events-none absolute left-[21px] top-[1.9rem] bottom-4 hidden w-px bg-gradient-to-b from-brand/30 via-brand/12 to-transparent lg:block" />
+                      <span className="pointer-events-none absolute left-[29px] top-[34px] bottom-4 hidden w-px bg-gradient-to-b from-brand/30 via-brand/12 to-transparent lg:block" />
                       <div className="space-y-6 lg:space-y-8 lg:pl-16">
                         {yearBlock.events.map((event, i) => (
                           <div key={event.slug} className="relative">
