@@ -59,7 +59,7 @@ export function ServicesBrief() {
           className="w-full h-full object-cover opacity-[0.7]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-transparent to-white/35" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

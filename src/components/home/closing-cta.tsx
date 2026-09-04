@@ -15,7 +15,7 @@ export function ClosingCta() {
         loading="lazy"
       />
       {/* Color overlays */}
-      <div className="absolute inset-0 bg-[#140e2a]/85" />
+      <div className="absolute inset-0 bg-[#140e2a]/70" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
 
       {/* Accent glows */}

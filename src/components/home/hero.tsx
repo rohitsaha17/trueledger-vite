@@ -1,422 +1,134 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import createGlobe from "cobe";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  Marker data — positions spread for clear label visibility          */
-/* ------------------------------------------------------------------ */
-const markerData = [
-  { location: [39, -98] as [number, number], size: 0.10, id: "usa", flag: "/logos/flags/us.svg", label: "USA", href: "/regions/north-america" },
-  { location: [56, -106] as [number, number], size: 0.09, id: "canada", flag: "/logos/flags/ca.svg", label: "Canada", href: "/regions/north-america" },
-  { location: [51.5, -0.1] as [number, number], size: 0.09, id: "uk", flag: "/logos/flags/gb.svg", label: "UK", href: "/regions/europe-uk" },
-  { location: [28.6, 77.2] as [number, number], size: 0.10, id: "india", flag: "/logos/flags/in.svg", label: "India", href: "/about" },
-  { location: [1.35, 103.8] as [number, number], size: 0.08, id: "singapore", flag: "/logos/flags/sg.svg", label: "Singapore", href: "/regions/apac" },
-  { location: [-37.8, 144.9] as [number, number], size: 0.09, id: "australia", flag: "/logos/flags/au.svg", label: "Australia", href: "/regions/apac" },
+/* ================================================================== */
+/*  Carousel slides data                                               */
+/* ================================================================== */
+const carouselSlides = [
+  {
+    id: 1,
+    title: "MODERN ACCOUNTING & TAX SOLUTIONS",
+    subtitle: "for Businesses Across the Globe",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 2,
+    title: "Solve Complex Cross-Border Tax Issues.",
+    subtitle: "Build with Certainty.",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 3,
+    title: "Scale Confidently With Expert Finance Advice",
+    subtitle: "and Strategy",
+    image: "https://images.unsplash.com/photo-1559027615-cd2628902d4a?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 4,
+    title: "Unlock Operational Efficiency",
+    subtitle: "with Trusted Expertise.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+  },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Network connections (index pairs into markerData)                   */
-/* ------------------------------------------------------------------ */
-// Every point connected to every other point (full mesh)
-const connections: [number, number][] = [];
-for (let i = 0; i < 6; i++) {
-  for (let j = i + 1; j < 6; j++) {
-    connections.push([i, j]);
-  }
-}
+/* ================================================================== */
+/*  Image Carousel Component                                           */
+/* ================================================================== */
+function ImageCarousel() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-/* ------------------------------------------------------------------ */
-/*  Constants                                                          */
-/* ------------------------------------------------------------------ */
-const GLOBE_THETA = 0.25;
-const ARC_SEGMENTS = 50;
-const ARC_MAX_HEIGHT = 0.12;
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
 
-/* ------------------------------------------------------------------ */
-/*  Math helpers                                                       */
-/* ------------------------------------------------------------------ */
-
-function clamp(v: number, lo: number, hi: number) {
-  return Math.max(lo, Math.min(hi, v));
-}
-
-/** Project lat/lng + optional altitude to 2D position on the globe */
-function projectToGlobe(
-  location: [number, number],
-  phi: number,
-  altitude = 0,
-): { x: number; y: number; visible: boolean } {
-  const latRad = (location[0] * Math.PI) / 180;
-  const lngRad = (location[1] * Math.PI) / 180 - Math.PI;
-  const cosLat = Math.cos(latRad);
-
-  const px = -cosLat * Math.cos(lngRad);
-  const py = Math.sin(latRad);
-  const pz = cosLat * Math.sin(lngRad);
-
-  const r = 0.85 + altitude;
-  const sx = px * r;
-  const sy = py * r;
-  const sz = pz * r;
-
-  const cp = Math.cos(phi);
-  const sp = Math.sin(phi);
-  const ct = Math.cos(GLOBE_THETA);
-  const st = Math.sin(GLOBE_THETA);
-
-  const x2d = cp * sx + sp * sz;
-  const y2d = sp * st * sx + ct * sy - cp * st * sz;
-  const z = -sp * ct * sx + st * sy + cp * ct * sz;
-
-  return { x: (x2d + 1) / 2, y: (-y2d + 1) / 2, visible: z >= 0 };
-}
-
-/** Compute great-circle arc points with parabolic elevation */
-function computeArcPoints(
-  from: [number, number],
-  to: [number, number],
-): { lat: number; lng: number; alt: number }[] {
-  const lat1 = (from[0] * Math.PI) / 180;
-  const lng1 = (from[1] * Math.PI) / 180;
-  const lat2 = (to[0] * Math.PI) / 180;
-  const lng2 = (to[1] * Math.PI) / 180;
-
-  const d = Math.acos(
-    clamp(
-      Math.sin(lat1) * Math.sin(lat2) +
-        Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1),
-      -1,
-      1,
-    ),
-  );
-
-  const points: { lat: number; lng: number; alt: number }[] = [];
-  for (let i = 0; i <= ARC_SEGMENTS; i++) {
-    const t = i / ARC_SEGMENTS;
-    let lat: number, lng: number;
-
-    if (d < 0.001) {
-      lat = from[0];
-      lng = from[1];
-    } else {
-      const A = Math.sin((1 - t) * d) / Math.sin(d);
-      const B = Math.sin(t * d) / Math.sin(d);
-      const x = A * Math.cos(lat1) * Math.cos(lng1) + B * Math.cos(lat2) * Math.cos(lng2);
-      const y = A * Math.cos(lat1) * Math.sin(lng1) + B * Math.cos(lat2) * Math.sin(lng2);
-      const z = A * Math.sin(lat1) + B * Math.sin(lat2);
-      lat = Math.atan2(z, Math.sqrt(x * x + y * y)) * (180 / Math.PI);
-      lng = Math.atan2(y, x) * (180 / Math.PI);
-    }
-
-    // Parabolic arc — peaks at midpoint
-    const alt = ARC_MAX_HEIGHT * 4 * t * (1 - t);
-    points.push({ lat, lng, alt });
-  }
-  return points;
-}
-
-/* ------------------------------------------------------------------ */
-/*  Globe component                                                    */
-/* ------------------------------------------------------------------ */
-
-function Globe() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const labelsRef = useRef<HTMLDivElement>(null);
-  const pointerInteracting = useRef<number | null>(null);
-  const pointerInteractionMovement = useRef(0);
-  const phiRef = useRef(0);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const labelsContainer = labelsRef.current;
-    if (!container || !labelsContainer) return;
-
-    let destroyed = false;
-    let globe: ReturnType<typeof createGlobe> | null = null;
-    let animFrame = 0;
-
-    // Pre-compute arc geometries (never changes)
-    const arcs = connections.map(([fromIdx, toIdx]) =>
-      computeArcPoints(markerData[fromIdx].location, markerData[toIdx].location),
-    );
-
-    // Create label DOM elements (managed outside React for perf)
-    const labelEls = new Map<string, HTMLDivElement>();
-    markerData.forEach((m) => {
-      const el = document.createElement("div");
-      el.style.cssText =
-        "position:absolute;display:flex;align-items:center;gap:8px;z-index:20;" +
-        "pointer-events:auto;cursor:pointer;transform:translate(6px,-50%);transition:opacity 0.3s;opacity:0;white-space:nowrap;";
-      el.innerHTML =
-        /* Flags keep their native 3:2 ratio — squeezing them into a square
-           visibly skewed the asymmetric ones (Singapore worst of all). */
-        `<img src="${m.flag}" alt="${m.label}" style="width:33px;height:22px;flex:0 0 auto;object-fit:cover;object-position:center;display:block;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.18);" />` +
-        `<span style="font-size:15px;font-weight:700;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);` +
-        `padding:4px 14px;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.12);color:#5a3555;letter-spacing:0.02em;transition:background 0.2s,color 0.2s;">${m.label}</span>`;
-      el.addEventListener("click", () => {
-        window.location.href = m.href;
-      });
-      el.addEventListener("mouseenter", () => {
-        const span = el.querySelector("span");
-        if (span) { span.style.background = "#4D397F"; span.style.color = "#fff"; }
-      });
-      el.addEventListener("mouseleave", () => {
-        const span = el.querySelector("span");
-        if (span) { span.style.background = "rgba(255,255,255,.95)"; span.style.color = "#5a3555"; }
-      });
-      labelsContainer.appendChild(el);
-      labelEls.set(m.id, el);
-    });
-
-    const timer = setTimeout(() => {
-      if (destroyed) return;
-
-      const dpr = window.devicePixelRatio || 1;
-
-      // --- Cobe canvas ---
-      const canvas = document.createElement("canvas");
-      canvas.style.cssText =
-        "width:100%;height:100%;cursor:grab;position:relative;z-index:10;";
-      container.appendChild(canvas);
-
-      // --- Arc overlay canvas ---
-      const arcCanvas = document.createElement("canvas");
-      arcCanvas.style.cssText =
-        "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:12;";
-      container.appendChild(arcCanvas);
-      const arcCtx = arcCanvas.getContext("2d")!;
-
-      const initWidth = container.offsetWidth || 560;
-      arcCanvas.width = Math.round(initWidth * dpr);
-      arcCanvas.height = Math.round(initWidth * dpr);
-
-      globe = createGlobe(canvas, {
-        devicePixelRatio: 2,
-        width: initWidth * 2,
-        height: initWidth * 2,
-        phi: 0,
-        theta: GLOBE_THETA,
-        dark: 0,
-        diffuse: 3,
-        mapSamples: 40000,
-        mapBrightness: 1.2,
-        baseColor: [0.94, 0.88, 0.94],
-        markerColor: [0.76, 0.29, 0.68],
-        glowColor: [0.96, 0.92, 0.96],
-        markers: markerData.map((m) => ({
-          location: m.location,
-          size: m.size,
-          id: m.id,
-        })),
-      });
-
-      // --- Pointer events ---
-      canvas.addEventListener("pointerdown", (e) => {
-        pointerInteracting.current =
-          e.clientX - pointerInteractionMovement.current;
-        canvas.style.cursor = "grabbing";
-      });
-      canvas.addEventListener("pointerup", () => {
-        pointerInteracting.current = null;
-        canvas.style.cursor = "grab";
-      });
-      canvas.addEventListener("pointerout", () => {
-        pointerInteracting.current = null;
-        canvas.style.cursor = "grab";
-      });
-      canvas.addEventListener("mousemove", (e) => {
-        if (pointerInteracting.current !== null) {
-          pointerInteractionMovement.current =
-            (e.clientX - pointerInteracting.current) / 100;
-        }
-      });
-      canvas.addEventListener("touchmove", (e) => {
-        if (pointerInteracting.current !== null && e.touches[0]) {
-          pointerInteractionMovement.current =
-            (e.touches[0].clientX - pointerInteracting.current) / 100;
-        }
-      });
-
-      // --- Animation loop ---
-      let lastCanvasW = arcCanvas.width;
-
-      function animate() {
-        if (destroyed || !globe) return;
-        if (!pointerInteracting.current) {
-          phiRef.current += 0.003;
-        }
-
-        const currentPhi =
-          phiRef.current + pointerInteractionMovement.current;
-        const containerW = container?.offsetWidth || 560;
-
-        // Update cobe globe
-        globe.update({
-          phi: currentPhi,
-          width: containerW * 2,
-          height: containerW * 2,
-        });
-
-        // --- Resize arc canvas if needed ---
-        const canvasW = Math.round(containerW * dpr);
-        if (canvasW !== lastCanvasW) {
-          arcCanvas.width = canvasW;
-          arcCanvas.height = canvasW;
-          lastCanvasW = canvasW;
-        }
-
-        // --- Draw arc overlays ---
-        arcCtx.clearRect(0, 0, canvasW, canvasW);
-        const now = Date.now();
-
-        // Draw each connection arc
-        arcs.forEach((arcPoints, connIdx) => {
-          // Project all arc points
-          const projected = arcPoints.map((p) =>
-            projectToGlobe([p.lat, p.lng], currentPhi, p.alt),
-          );
-
-          // Build visible path segments
-          const drawPath = () => {
-            arcCtx.beginPath();
-            let drawing = false;
-            for (let i = 0; i < projected.length; i++) {
-              const p = projected[i];
-              if (!p.visible) { drawing = false; continue; }
-              const px = p.x * canvasW;
-              const py = p.y * canvasW;
-              if (!drawing) { arcCtx.moveTo(px, py); drawing = true; }
-              else { arcCtx.lineTo(px, py); }
-            }
-          };
-
-          // Glow pass (wide + soft)
-          drawPath();
-          arcCtx.strokeStyle = "rgba(77, 57, 127, 0.06)";
-          arcCtx.lineWidth = 4 * dpr;
-          arcCtx.stroke();
-
-          // Main arc line
-          drawPath();
-          arcCtx.strokeStyle = "rgba(77, 57, 127, 0.2)";
-          arcCtx.lineWidth = 1 * dpr;
-          arcCtx.stroke();
-
-          // --- Traveling dot ---
-          const speed = 3500 + connIdx * 300;
-          const phase = ((now / speed + connIdx * 0.07) % 1);
-          const idx = Math.floor(phase * (projected.length - 1));
-          const dot = projected[clamp(idx, 0, projected.length - 1)];
-
-          if (dot && dot.visible) {
-            const dx = dot.x * canvasW;
-            const dy = dot.y * canvasW;
-
-            // Radial glow
-            const grad = arcCtx.createRadialGradient(dx, dy, 0, dx, dy, 6 * dpr);
-            grad.addColorStop(0, "rgba(77, 57, 127, 0.5)");
-            grad.addColorStop(1, "rgba(77, 57, 127, 0)");
-            arcCtx.beginPath();
-            arcCtx.arc(dx, dy, 6 * dpr, 0, Math.PI * 2);
-            arcCtx.fillStyle = grad;
-            arcCtx.fill();
-
-            // Core dot
-            arcCtx.beginPath();
-            arcCtx.arc(dx, dy, 1.8 * dpr, 0, Math.PI * 2);
-            arcCtx.fillStyle = "rgba(77, 57, 127, 0.85)";
-            arcCtx.fill();
-          }
-        });
-
-        // --- Pulsing halos at each marker ---
-        markerData.forEach((m) => {
-          const pos = projectToGlobe(m.location, currentPhi);
-          if (!pos.visible) return;
-
-          const px = pos.x * canvasW;
-          const py = pos.y * canvasW;
-
-          // Double-ring ripple
-          for (let ring = 0; ring < 2; ring++) {
-            const phase = ((now / 2200 + ring * 0.45) % 1);
-            const radius = (4 + phase * 18) * dpr;
-            const alpha = 0.35 * (1 - phase);
-
-            arcCtx.beginPath();
-            arcCtx.arc(px, py, radius, 0, Math.PI * 2);
-            arcCtx.strokeStyle = `rgba(77, 57, 127, ${alpha})`;
-            arcCtx.lineWidth = 1.2 * dpr;
-            arcCtx.stroke();
-          }
-
-          // Solid center dot
-          arcCtx.beginPath();
-          arcCtx.arc(px, py, 3.5 * dpr, 0, Math.PI * 2);
-          arcCtx.fillStyle = "rgba(77, 57, 127, 0.65)";
-          arcCtx.fill();
-        });
-
-        // --- Update HTML labels ---
-        markerData.forEach((m) => {
-          const el = labelEls.get(m.id);
-          if (!el) return;
-          const pos = projectToGlobe(m.location, currentPhi);
-          el.style.left = `${pos.x * 100}%`;
-          el.style.top = `${pos.y * 100}%`;
-          el.style.opacity = pos.visible ? "1" : "0";
-        });
-
-        animFrame = requestAnimationFrame(animate);
-      }
-
-      animFrame = requestAnimationFrame(animate);
-    }, 50);
-
-    return () => {
-      destroyed = true;
-      clearTimeout(timer);
-      cancelAnimationFrame(animFrame);
-      if (globe) {
-        try { globe.destroy(); } catch { /* safe */ }
-        globe = null;
-      }
-      while (container.firstChild) {
-        container.removeChild(container.firstChild);
-      }
-      labelEls.forEach((el) => el.remove());
-      labelEls.clear();
-    };
-  }, []);
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setCurrentSlide((prev) => (prev + newDirection + carouselSlides.length) % carouselSlides.length);
+  };
 
   return (
-    <div className="relative w-full aspect-square max-w-[680px] mx-auto">
-      {/* Glow behind globe */}
-      <div className="absolute inset-[10%] rounded-full bg-gradient-to-br from-brand/10 via-brand-soft/20 to-transparent blur-3xl" />
+    <div className="relative w-full h-full rounded-2xl overflow-hidden">
+      <AnimatePresence initial={false} custom={direction} mode="wait">
+        <motion.div
+          key={currentSlide}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.5 },
+          }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img
+            src={carouselSlides[currentSlide].image}
+            alt={carouselSlides[currentSlide].title}
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay gradient - lighter for better image visibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-black/15 to-transparent" />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Container for cobe canvas + arc overlay */}
-      <div ref={containerRef} className="w-full h-full relative z-10" />
+      {/* Navigation arrows */}
+      <button
+        onClick={() => paginate(-1)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="size-6 text-white group-hover:scale-110 transition-transform" />
+      </button>
 
-      {/* Labels overlay — same dimensions, projected here */}
-      <div
-        ref={labelsRef}
-        className="absolute inset-0 z-20 pointer-events-none overflow-visible"
-      />
+      <button
+        onClick={() => paginate(1)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="size-6 text-white group-hover:scale-110 transition-transform" />
+      </button>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {carouselSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              setDirection(i > currentSlide ? 1 : -1);
+              setCurrentSlide(i);
+            }}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === currentSlide ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/75"
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Hero section                                                       */
-/* ------------------------------------------------------------------ */
-
-/* ------------------------------------------------------------------ */
+/* ================================================================== */
 /*  Animated counter                                                    */
-/* ------------------------------------------------------------------ */
+/* ================================================================== */
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
@@ -450,11 +162,13 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
   return <span ref={ref}>0{suffix}</span>;
 }
 
+/* ================================================================== */
+/*  Hero section                                                       */
+/* ================================================================== */
 export function Hero() {
-  const isMobile = useIsMobile();
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-tint via-background to-background">
-      {/* Gradient orbs — static on mobile, animated on desktop */}
+      {/* Gradient orbs */}
       <div
         className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-[100px] opacity-80"
         style={{ background: "radial-gradient(circle, rgba(77,57,127,0.12), transparent 70%)" }}
@@ -529,17 +243,15 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Globe side — skipped on mobile for performance */}
-          {!isMobile && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
-            >
-              <Globe />
-            </motion.div>
-          )}
+          {/* Image Carousel */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl"
+          >
+            <ImageCarousel />
+          </motion.div>
         </div>
       </div>
     </section>

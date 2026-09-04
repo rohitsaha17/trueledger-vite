@@ -163,7 +163,7 @@ export default function EcommerceRetailPage() {
         imageSrc="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
         videoSrc="https://videos.pexels.com/video-files/6774202/6774202-hd_1920_1080_25fps.mp4"
         accentColor="#EE672C"
-        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
 
       {/* ============================================================ */}
@@ -176,7 +176,7 @@ export default function EcommerceRetailPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#140e2a]/80" />
+        <div className="absolute inset-0 bg-[#140e2a]/66" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/20 via-transparent to-[#140e2a]/20" />
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -418,7 +418,7 @@ export default function EcommerceRetailPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#140e2a]/80" />
+        <div className="absolute inset-0 bg-[#140e2a]/66" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/30" />
 
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -466,7 +466,7 @@ export default function EcommerceRetailPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#140e2a]/85" />
+        <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />

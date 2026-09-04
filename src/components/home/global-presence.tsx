@@ -48,7 +48,7 @@ export function GlobalPresence() {
   return (
     <section className="py-14 md:py-18 relative overflow-hidden bg-[#0a0818]">
       {/* Dotted world map background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center opacity-[0.12] pointer-events-none">
         <svg
           viewBox="0 0 1000 500"
           className="w-[140%] max-w-none"

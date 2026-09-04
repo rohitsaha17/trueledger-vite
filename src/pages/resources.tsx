@@ -237,7 +237,7 @@ export default function ResourcesPage() {
         >
           <source src="/videos/resources-hero.mp4" type="video/mp4" />
         </motion.video>
-        <div className="absolute inset-0 bg-[#140e2a]/88" />
+        <div className="absolute inset-0 bg-[#140e2a]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
@@ -425,7 +425,7 @@ export default function ResourcesPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#140e2a]/85" />
+        <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>

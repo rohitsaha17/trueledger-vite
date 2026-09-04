@@ -74,7 +74,7 @@ export default function EuropeUKPage() {
         imageSrc="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80"
         videoSrc="https://videos.pexels.com/video-files/5765154/5765154-uhd_2560_1440_24fps.mp4"
         accentColor="#EE672C"
-        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
 
       {/* ============================================================ */}

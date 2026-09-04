@@ -124,10 +124,10 @@ export function Approach() {
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
           alt=""
-          className="w-full h-full object-cover opacity-[0.05]"
+          className="w-full h-full object-cover opacity-[0.22]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/70" />
       </div>
 
       {/* Soft gradient blobs */}
@@ -154,7 +154,7 @@ export function Approach() {
                 <img
                   src={card.image}
                   alt=""
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.06] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-[0.11]"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.20] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-[0.32]"
                   loading="lazy"
                 />
 

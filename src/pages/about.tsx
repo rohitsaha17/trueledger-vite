@@ -425,10 +425,10 @@ export default function AboutPage() {
           <img
             src="/images/backgrounds/security-shield.webp"
             alt=""
-            className="w-full h-full object-cover opacity-[0.18]"
+            className="w-full h-full object-cover opacity-[0.38]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/40" />
 
           {/* Texture overlay - diagonal lines pattern */}
           <svg className="absolute inset-0 w-full h-full opacity-[0.12]" xmlns="http://www.w3.org/2000/svg">
@@ -589,7 +589,7 @@ export default function AboutPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#140e2a]/85" />
+        <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
 
         {/* Subtle texture overlay */}

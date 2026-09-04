@@ -216,7 +216,7 @@ function HeroSection() {
         imageSrc="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80"
         videoSrc="https://videos.pexels.com/video-files/8479064/8479064-hd_1920_1080_25fps.mp4"
         accentColor="#EE672C"
-        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.82) 0%, rgba(20,14,42,0.65) 35%, rgba(20,14,42,0.35) 65%, rgba(77,57,127,0.12) 100%)"
+        overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
   );
 }
@@ -277,10 +277,10 @@ function HowWeWorkSection() {
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
           alt=""
-          className="w-full h-full object-cover opacity-[0.07]"
+          className="w-full h-full object-cover opacity-[0.24]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/20 to-white/70" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -478,7 +478,7 @@ function TechAdvantageSection() {
   return (
     <section className="py-16 md:py-20 bg-[#140e2a] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(238,103,44,0.08),transparent_60%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(77,57,127,0.12),transparent_65%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(77,57,127,0.06),transparent_65%)] pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -631,7 +631,7 @@ function ClosingCtaSection() {
   return (
     <section className="py-16 md:py-20 relative overflow-hidden">
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      <div className="absolute inset-0 bg-[#140e2a]/85" />
+      <div className="absolute inset-0 bg-[#140e2a]/70" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
       <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-[#EE672C]/10 rounded-full blur-[80px] pointer-events-none" />

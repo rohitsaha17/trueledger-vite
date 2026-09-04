@@ -495,7 +495,7 @@ export default function WhoWeWorkWithPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#140e2a]/88" />
+        <div className="absolute inset-0 bg-[#140e2a]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/60 via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/4 w-96 h-64 bg-brand/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-72 h-48 bg-coral/8 rounded-full blur-[80px] pointer-events-none" />
@@ -584,7 +584,7 @@ export default function WhoWeWorkWithPage() {
       <section className="py-16 md:py-20 relative overflow-hidden bg-background">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-white/[0.92]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/85" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/40 to-white/55" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-brand/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/3 w-72 h-48 bg-coral/[0.08] rounded-full blur-[80px] pointer-events-none" />
 
