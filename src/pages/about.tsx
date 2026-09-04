@@ -511,6 +511,18 @@ export default function AboutPage() {
       {/*  SECTION 7 — KEY STATS & CERTIFICATIONS                       */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 bg-brand-dark relative overflow-hidden">
+        {/* Watercolour wash background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src="/images/textures/watercolor-indigo.webp"
+            alt=""
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          {/* Deepen the wash so the white stats keep their contrast */}
+          <div className="absolute inset-0 bg-brand-dark/65" />
+        </div>
+
         {/* Static background orbs */}
         <div className="absolute top-0 left-1/4 w-72 h-72 bg-brand/15 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-primary/10 rounded-full blur-3xl" />

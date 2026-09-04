@@ -1,10 +1,10 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Globe, BookOpen, Calculator, Lightbulb, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { AnimatedSection } from "@/components/shared/animated-section";
 
 const services = [
   {
-    icon: Globe,
     title: "Global Entity Setup",
     description:
       "Establish a compliant, tax-efficient presence — US LLC or C-Corp, or entering India, Canada, Singapore, or Australia.",
@@ -12,7 +12,6 @@ const services = [
     accent: "#4D397F",
   },
   {
-    icon: BookOpen,
     title: "Managed Accounting & Bookkeeping",
     description:
       "Real-time books that stay compliant, financially clean, and growth-ready — every single day.",
@@ -20,7 +19,6 @@ const services = [
     accent: "#362765",
   },
   {
-    icon: Calculator,
     title: "Tax Compliance & Planning",
     description:
       "Deep expertise across global tax laws, cross-border structures, and owner-level tax planning.",
@@ -28,7 +26,6 @@ const services = [
     accent: "#EE672C",
   },
   {
-    icon: Users,
     title: "Support to CPAs & Accounting Firms",
     description:
       "A natural extension of your team — onboarding, bookkeeping, month-end close, reporting, payroll, and filings.",
@@ -36,7 +33,6 @@ const services = [
     accent: "#4D397F",
   },
   {
-    icon: Lightbulb,
     title: "Advisory Services",
     description:
       "Beyond the numbers — strategy, governance, fundraising readiness, financial controls, and technology.",
@@ -78,47 +74,46 @@ export function ServicesBrief() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <div className="space-y-2.5">
-                {services.map((service) => {
-                  const Icon = service.icon;
-                  return (
-                    <Link
-                      key={service.title}
-                      to={service.href}
-                      className="group flex items-start gap-3.5 rounded-xl px-4 py-4 bg-white/60 hover:bg-white transition-colors duration-200 shadow-[0_1px_8px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.07)]"
-                      style={{ borderLeft: `3px solid ${service.accent}` }}
-                    >
-                      <div
-                        className="size-10 rounded-lg flex items-center justify-center shrink-0"
-                        style={{ backgroundColor: `${service.accent}15` }}
-                      >
-                        <Icon className="size-5" style={{ color: service.accent }} />
+              {/* Editorial rows: oversized index number, title + copy beside it,
+                  separated by hairline dividers instead of cards. Each row
+                  carries its brand accent in --accent, revealed on hover. */}
+              <div>
+                {services.map((service, index) => (
+                  <Link
+                    key={service.title}
+                    to={service.href}
+                    style={{ "--accent": service.accent } as CSSProperties}
+                    className="group flex items-baseline gap-4 sm:gap-6 py-5 sm:py-6 border-t border-gray-900/10 first:border-t-0 first:pt-0"
+                  >
+                    <span className="font-heading font-bold leading-none tabular-nums shrink-0 text-3xl sm:text-4xl lg:text-5xl text-gray-900/15 group-hover:text-[var(--accent)] transition-colors duration-200">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="font-heading font-semibold text-base sm:text-2xl text-gray-900 group-hover:text-[var(--accent)] transition-colors duration-200">
+                          {service.title}
+                        </span>
+                        <ArrowRight className="size-4 text-gray-300 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all shrink-0" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-heading font-semibold text-base sm:text-lg text-gray-900">
-                            {service.title}
-                          </span>
-                          <ArrowRight className="size-4 text-gray-300 group-hover:text-gray-700 group-hover:translate-x-0.5 transition-all shrink-0" />
-                        </div>
-                        <p className="text-[15px] text-gray-500 leading-relaxed mt-1">
-                          {service.description}
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
+                      <p className="text-[18 px] text-gray-500 leading-relaxed mt-1.5">
+                        {service.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </AnimatedSection>
           </div>
 
           {/* Right: one static image, stretched to the column height */}
-          <AnimatedSection delay={0.2} className="lg:h-full">
-            <div className="relative w-full h-full min-h-[280px] sm:min-h-[360px] lg:min-h-0 rounded-2xl overflow-hidden shadow-xl">
+          <AnimatedSection delay={0.2} className="lg:h-full lg:flex lg:items-center">
+            {/* Fixed aspect ratio, capped height and top-anchored crop so the
+                taller service list can't stretch or over-zoom the photo. */}
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] lg:max-h-[560px] rounded-2xl overflow-hidden shadow-xl">
               <img
                 src={sideImage}
                 alt="TrueLedger financial services"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover object-top"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1e143a]/70 via-[#362765]/20 to-transparent" />
