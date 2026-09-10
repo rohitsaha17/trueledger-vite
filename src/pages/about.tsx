@@ -50,7 +50,7 @@ const leaders = [
     role: "Co-Founder & Partner",
     bio: "Manish Aggarwal is a Chartered Accountant and legal professional with extensive international tax experience, specializing in cross-border taxation, transfer pricing, and global mobility. Having worked with PwC, EY, and Deloitte, Manish brings hands-on experience managing tax strategies for companies across North America, Europe, Asia, and the Middle East. He is a thought leader in tax compliance and outsourcing solutions, and actively contributes to professional publications and forums.",
     linkedin: "https://www.linkedin.com/in/camanishtax/",
-    image: "/images/team/manish-aggarwal.png",
+    image: "/images/team/manish-aggarwal.jpeg",
   },
   {
     name: "CA Hrithvik Raj",

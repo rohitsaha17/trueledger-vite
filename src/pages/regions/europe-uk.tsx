@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { LinkedInButton } from "@/components/shared/linkedin-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -133,7 +134,7 @@ export default function EuropeUKPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
             {/* Avatar placeholder */}
             <AnimatedSection>
-              <div className="flex justify-center lg:justify-start">
+              <div className="flex flex-col items-center gap-4 lg:items-start">
                 <div className="relative size-44 md:size-52 rounded-full bg-gradient-to-br from-[#4D397F] via-[#6B5A9E] to-[#EE672C]/60 p-1 shadow-xl shadow-[#4D397F]/15">
                   <div className="relative size-full overflow-hidden rounded-full bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
                     <img
@@ -144,6 +145,10 @@ export default function EuropeUKPage() {
                     />
                   </div>
                 </div>
+                <LinkedInButton
+                  href="https://www.linkedin.com/in/aseem-chawla/"
+                  name="Aseem Chawla"
+                />
               </div>
             </AnimatedSection>
 

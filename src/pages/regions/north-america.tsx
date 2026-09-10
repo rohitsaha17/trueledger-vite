@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { LinkedInButton } from "@/components/shared/linkedin-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -254,16 +255,20 @@ export default function NorthAmericaPage() {
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
             {/* Photo */}
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex flex-col items-center gap-4 lg:items-start">
               <div className="relative size-56 lg:size-64 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
                 <img
-                  src="/images/team/manish-aggarwal.png"
+                  src="/images/team/manish-aggarwal.jpeg"
                   alt="CA Manish Aggarwal, Partner, TrueLedger"
                   className="absolute inset-0 h-full w-full object-cover object-top"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
+              <LinkedInButton
+                href="https://www.linkedin.com/in/camanishtax/"
+                name="CA Manish Aggarwal"
+              />
             </div>
 
             {/* Bio */}

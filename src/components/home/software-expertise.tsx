@@ -57,7 +57,6 @@ const tools: Tool[] = [
   /* ── Forecasting & Reporting ────────────────────────────────────── */
   { name: "Spotlight Reporting", category: "Forecasting & Reporting", logo: "https://cdn.prod.website-files.com/5efc103e2e619592c6612ab2/64f6a58454e53ad531820231_Spotlight.png" },
   { name: "FloQast", category: "Forecasting & Reporting", logo: "https://cdn.prod.website-files.com/67a1db1fd2f32256b80d22ff/67cb7363a73d6b2adb7181e8_256x256-1.jpg" },
-  { name: "Reach Reporting", category: "Forecasting & Reporting", logo: "https://wpcdn.reachreporting.com/wp-content/uploads/2024/05/28151000/cropped-appcard-1e584df9-2a27-4825-ab36-e47f70b6965a-1-192x192.png" },
 ];
 
 /**

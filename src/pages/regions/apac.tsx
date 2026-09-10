@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { LinkedInButton } from "@/components/shared/linkedin-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -181,7 +182,7 @@ export default function APACPage() {
             <div className="max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14">
                 {/* Portrait */}
-                <div className="shrink-0">
+                <div className="shrink-0 flex flex-col items-center gap-4">
                   <div className="relative size-40 md:size-48 rounded-full overflow-hidden bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 ring-4 ring-white shadow-xl shadow-[#4D397F]/15">
                     <img
                       src="/images/team/hrithvik-raj.jpg"
@@ -190,6 +191,10 @@ export default function APACPage() {
                       loading="lazy"
                     />
                   </div>
+                  <LinkedInButton
+                    href="https://www.linkedin.com/in/hrithvik-raj-90358895/"
+                    name="CA Hrithvik Raj"
+                  />
                 </div>
 
                 {/* Bio */}
