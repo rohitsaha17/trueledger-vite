@@ -30,6 +30,23 @@ const advisoryPhases = [
     description:
       "Financial modeling, scenario analysis, and valuation frameworks that give you a clear, defensible picture of what your business is worth.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    tagline: "Where Your Numbers Meet Your Strategy.",
+    intro:
+      "We work alongside leadership teams to model, stress-test, and validate the decisions that shape a business — before they are made, not after.",
+    details: [
+      {
+        title: "Financial Modeling",
+        text: "Robust models that reflect the true economics of your business.",
+      },
+      {
+        title: "Scenario & Sensitivity Analysis",
+        text: "Understand the impact of key decisions under different conditions.",
+      },
+      {
+        title: "Valuation Frameworks",
+        text: "A clear, defensible picture of what your business is worth — and what drives that value.",
+      },
+    ],
   },
   {
     icon: ShieldCheck,
@@ -38,6 +55,27 @@ const advisoryPhases = [
     description:
       "Governance structures, financial controls, policy documentation, and SOC certification readiness — before you need them.",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+    tagline: "Build the Foundation That Earns Trust.",
+    intro:
+      "Growth without structure creates risk. We help businesses build these frameworks before they need them, not in response to a crisis.",
+    details: [
+      {
+        title: "Governance & Risk Management Framework",
+        text: "Decision rights, financial authorities, and oversight mechanisms appropriate for your stage.",
+      },
+      {
+        title: "Financial Controls Design",
+        text: "Approval workflows, spend authorisation, segregation of duties, and reconciliation procedures.",
+      },
+      {
+        title: "Policy & Procedure Documentation",
+        text: "Formalised policies for how your business manages money, reports results, and handles exceptions.",
+      },
+      {
+        title: "SOC Certification Readiness",
+        text: "Close the gap between the controls you have today and SOC 1 / SOC 2 expectations.",
+      },
+    ],
   },
   {
     icon: Banknote,
@@ -46,6 +84,31 @@ const advisoryPhases = [
     description:
       "Fundraising preparation, due diligence, investor reporting, and historical cleanup — so you are ready when the conversation starts.",
     image: "https://images.unsplash.com/photo-1553729459-uj1ef3fc8bde?auto=format&fit=crop&w=800&q=80",
+    tagline: "Get Capital-Ready Before the Conversation Starts.",
+    intro:
+      "We prepare businesses for the full spectrum of capital events — ensuring that when the conversation starts, you are ready.",
+    details: [
+      {
+        title: "Fundraising Readiness",
+        text: "Clean historical books, well-structured projections, and data rooms that stand up to scrutiny.",
+      },
+      {
+        title: "Securities Listing & Public Market Advisory",
+        text: "SPAC listings, direct listings, and US GAAP conversion for access to US capital markets.",
+      },
+      {
+        title: "Audit & Due Diligence Readiness",
+        text: "Readiness reviews that surface gaps before an investor or acquirer does.",
+      },
+      {
+        title: "Board & Investor Reporting Frameworks",
+        text: "The cadence, format, and content sophisticated investors expect.",
+      },
+      {
+        title: "Historical Cleanup & Transaction Reconstruction",
+        text: "Cleanup work that creates a clean, reliable baseline to build from.",
+      },
+    ],
   },
   {
     icon: Cpu,
@@ -54,6 +117,27 @@ const advisoryPhases = [
     description:
       "Tech stack design, workflow automation, ERP implementation, and SOC-compliant technology frameworks for every stage.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    tagline: "The Right Tools, Properly Implemented, Transform a Finance Function.",
+    intro:
+      "We advise on, design, and implement finance technology for businesses at every stage — from a first stack to outgrown tools.",
+    details: [
+      {
+        title: "Finance Tech Stack Design",
+        text: "Platform-agnostic recommendations across accounting, payroll, AP, AR, expense, and reporting.",
+      },
+      {
+        title: "Workflow Automation",
+        text: "Integrations that eliminate manual, repetitive finance processes and the errors they create.",
+      },
+      {
+        title: "System Migration & ERP Implementation",
+        text: "Data migration, chart of accounts restructuring, process redesign, and team training.",
+      },
+      {
+        title: "SOC-Compliant Technology Frameworks",
+        text: "Technology controls, access management, and change management for a clean SOC audit.",
+      },
+    ],
   },
 ];
 
@@ -139,7 +223,7 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       {/*  SECTION 2 — FOUR ADVISORY PILLARS (Grid Layout)             */}
       {/* ============================================================ */}
-      <section className="py-16 md:py-20 relative overflow-hidden">
+      <section className="py-16 md:py-20 relative z-20">
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
           alt=""
@@ -165,48 +249,94 @@ export default function BusinessAdvisoryPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto relative">
             {advisoryPhases.map((item, i) => {
               const Icon = item.icon;
               const num = String(i + 1).padStart(2, "0");
+              // Keep the callout inside the grid width: right-align the last two columns
+              const alignRight = i >= 2;
               return (
-                <motion.div
-                  key={item.title}
-                  className="group relative rounded-xl overflow-hidden cursor-pointer"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -6 }}
-                >
-                  <img
-                    src={item.image}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/75 to-[#140e2a]/45 transition-all duration-500 group-hover:from-[#140e2a] group-hover:via-[#140e2a]/88 group-hover:to-[#140e2a]/60" />
+                <div key={item.title} className="group relative lg:hover:z-50">
+                  <motion.div
+                    className="relative rounded-xl overflow-hidden cursor-pointer"
+                    initial={{ opacity: 0, y: 32 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                    whileHover={{ y: -6 }}
+                  >
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a]/95 via-[#140e2a]/75 to-[#140e2a]/45 transition-all duration-500 group-hover:from-[#140e2a] group-hover:via-[#140e2a]/88 group-hover:to-[#140e2a]/60" />
 
-                  <div className="relative flex flex-col justify-end p-4 min-h-[280px]">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="size-8 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                        <Icon className="size-4 text-white" />
+                    <div className="relative flex flex-col justify-end p-4 min-h-[280px]">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="size-8 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                          <Icon className="size-4 text-white" />
+                        </div>
+                        <span className="text-white/25 font-heading font-black text-2xl leading-none select-none">{num}</span>
                       </div>
-                      <span className="text-white/25 font-heading font-black text-2xl leading-none select-none">{num}</span>
-                    </div>
-                    <h3 className="font-heading font-bold text-sm text-white leading-snug">{item.title}</h3>
+                      <h3 className="font-heading font-bold text-sm text-white leading-snug">{item.title}</h3>
 
-                    {/* Details — slide up from the bottom on hover (always visible below lg) */}
-                    <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
-                      <div className="overflow-hidden">
-                        <p className="text-[11px] text-white/70 leading-relaxed pt-1.5 opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-500 delay-75 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
-                          {item.description}
+                      {/* Details — slide up from the bottom on hover (always visible below lg) */}
+                      <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+                        <div className="overflow-hidden">
+                          <p className="text-[11px] text-white/70 leading-relaxed pt-1.5 opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-500 delay-75 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+                            {item.description}
+                          </p>
+                          <span className="mt-3 block h-px w-0 lg:group-hover:w-full bg-gradient-to-r from-coral via-coral/40 to-transparent transition-all duration-700 delay-150 ease-out" />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Hover callout — detailed scope, lg and up only */}
+                  <div
+                    className={`hidden lg:block absolute top-full pt-3 w-[350px] z-50 pointer-events-none opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+                      alignRight ? "right-0" : "left-0"
+                    }`}
+                    role="tooltip"
+                    aria-hidden="true"
+                  >
+                    {/* Pointer — sits above the (clipping) callout body */}
+                    <span
+                      className={`absolute top-[7px] size-3 rotate-45 rounded-[2px] bg-gradient-to-br ${item.gradient} ${
+                        alignRight ? "right-8" : "left-8"
+                      }`}
+                    />
+                    <div className="relative rounded-xl bg-white shadow-2xl shadow-[#140e2a]/40 ring-1 ring-brand/10 overflow-hidden">
+                      <span className={`absolute top-0 h-1 w-full bg-gradient-to-r ${item.gradient}`} />
+
+                      <div className="relative p-4 pt-5">
+                        <p className="font-heading font-bold text-[13px] text-brand-dark leading-snug">
+                          {item.title}
                         </p>
-                        <span className="mt-3 block h-px w-0 lg:group-hover:w-full bg-gradient-to-r from-coral via-coral/40 to-transparent transition-all duration-700 delay-150 ease-out" />
+                        <p className="mt-1 text-[11px] font-semibold text-coral leading-snug">
+                          {item.tagline}
+                        </p>
+                        <p className="mt-2 text-[11px] text-slate-600 leading-relaxed">
+                          {item.intro}
+                        </p>
+
+                        <ul className="mt-3 space-y-2 border-t border-brand/10 pt-3">
+                          {item.details.map((d) => (
+                            <li key={d.title} className="flex gap-2">
+                              <ChevronRight className="size-3 shrink-0 mt-[3px] text-coral" />
+                              <span className="text-[11px] leading-relaxed">
+                                <span className="font-semibold text-brand-dark">{d.title}</span>
+                                <span className="text-slate-600"> — {d.text}</span>
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

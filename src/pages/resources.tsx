@@ -48,17 +48,17 @@ export const resources: Resource[] = [
   { id: "wp-multistate", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552" },
 
   /* ── Guides / Checklists / Infographics ──────────────────────────── */
-  { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/2z2xhq7hi01vef3" },
-  { id: "g2", title: "Outsourcing Assessment Checklist", category: "Guide", service: "CPA Support", link: "https://canva.link/wl62p4jorsf5yfc" },
-  { id: "g3", title: "AI Due Diligence Checklist", category: "Guide", service: "CPA Support", link: "https://canva.link/qpbhbaw1z5388n3" },
-  { id: "g4", title: "How Trump's Account Works", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/vk220gen0f1p2jp" },
-  { id: "g5", title: "Qualified Business Income Deductions", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/t54clnh3fwemhoy" },
-  { id: "g6", title: "Gain Exclusion on Sale of a Principal Residence", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/s9qilp16wjy3qih" },
-  { id: "g7", title: "Client Onboarding Interview Guide", category: "Guide", service: "Accounting & Bookkeeping", link: "https://canva.link/5v5htqgqhmic8dl" },
-  { id: "g8", title: "SAFE Instruments — Explained", category: "Guide", service: "Global Entity Setup", link: "https://canva.link/qnjd1oj271pu0xo" },
-  { id: "g9", title: "5 Tips for Cash Flow Discipline", category: "Guide", service: "Accounting & Bookkeeping", link: "https://canva.link/cojtqas287hevnx" },
-  { id: "g10", title: "Top Mistakes to Avoid While Filing Individual Taxes", category: "Guide", service: "Tax Compliance & Advisory", link: "https://canva.link/on5qthzl8rnqvob" },
-  { id: "g11", title: "Building a Better Firm — Selecting the Right Technology", category: "Guide", service: "Business Advisory", link: "https://canva.link/403as3boaqeqtkk" },
+  { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/us-tax-season-2025-faq.pdf" },
+  { id: "g2", title: "Outsourcing Assessment Checklist", category: "Guide", service: "CPA Support", link: "/resources/outsourcing-assessment-checklist.pdf" },
+  { id: "g3", title: "AI Due Diligence Checklist", category: "Guide", service: "CPA Support", link: "/resources/ai-due-diligence-checklist.pdf" },
+  { id: "g4", title: "How Trump's Account Works", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/trump-accounts.pdf" },
+  { id: "g5", title: "Qualified Business Income Deductions", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/qbi-deduction.pdf" },
+  { id: "g6", title: "Gain Exclusion on Sale of a Principal Residence", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/principal-residence-gain-exclusion.pdf" },
+  { id: "g7", title: "Client Onboarding Interview Guide", category: "Guide", service: "Accounting & Bookkeeping", link: "/resources/client-onboarding-interview-guide.pdf" },
+  { id: "g8", title: "SAFE Instruments — Explained", category: "Guide", service: "Global Entity Setup", link: "/resources/safe-instruments-explained.pdf" },
+  { id: "g9", title: "5 Tips for Cash Flow Discipline", category: "Guide", service: "Accounting & Bookkeeping", link: "/resources/cash-flow-discipline.pdf" },
+  { id: "g10", title: "Top Mistakes to Avoid While Filing Individual Taxes", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/top-individual-tax-filing-mistakes.pdf" },
+  { id: "g11", title: "Building a Better Firm — Selecting the Right Technology", category: "Guide", service: "Business Advisory", link: "/resources/selecting-the-right-technology.pdf" },
 
   /* ── Videos ──────────────────────────────────────────────────────── */
   { id: "v1", title: "AI Tools — Kick Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/epi0FcveBSU?si=vBOu5ETioajUGav1" },
@@ -67,7 +67,7 @@ export const resources: Resource[] = [
   { id: "v4", title: "AI Tools — Spotlight Reporting Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/KS29lMb-G58?si=oMhJrPP5pAbR8I4Z" },
 
   /* ── Newsletter ──────────────────────────────────────────────────── */
-  { id: "n1", title: "AI Developments", category: "Newsletter", service: "Business Advisory", link: "https://canva.link/8y7fd76xgb6n5ln" },
+  { id: "n1", title: "AI Developments", category: "Newsletter", service: "Business Advisory", link: "/resources/ai-developments-newsletter.pdf" },
 
   /* ── Blog Posts ──────────────────────────────────────────────────── */
   { id: "b1", title: "OBBA and Founders Tax", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7468561334834475008" },
@@ -85,10 +85,10 @@ export const resources: Resource[] = [
   { id: "b13", title: "Audit Triggers Most Businesses Miss", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7447579650052001793" },
   { id: "b14", title: "Planning Ideas for Your Clients", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7441849656910905345" },
   { id: "b15", title: "Startups Driving the Next Wave of Innovation in the Accounting Profession", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7438175389698445312" },
-  { id: "b16", title: "5 Startups Using AI and Automation to Transform Accounting, Audit, and Tax", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://canva.link/zlulummtdgm9h1w" },
+  { id: "b16", title: "5 Startups Using AI and Automation to Transform Accounting, Audit, and Tax", category: "Blog Post", service: "Accounting & Bookkeeping", link: "/resources/five-startups-ai-accounting.pdf" },
   { id: "b17", title: "Analysis of India–USA Bilateral Trade Deal", category: "Blog Post", service: "Global Entity Setup", link: "https://canva.link/j3r01gnhxif1ykt" },
-  { id: "b18", title: "India–UK Free Trade Agreement Signed", category: "Blog Post", service: "Global Entity Setup", link: "https://canva.link/6e4o8lp9zyvm7ey" },
-  { id: "b19", title: "Navigating Tariffs — Accounting Implications", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://canva.link/mbjp2dntd2kb6a7" },
+  { id: "b18", title: "India–UK Free Trade Agreement Signed", category: "Blog Post", service: "Global Entity Setup", link: "/resources/india-uk-free-trade-agreement.pdf" },
+  { id: "b19", title: "Navigating Tariffs — Accounting Implications", category: "Blog Post", service: "Accounting & Bookkeeping", link: "/resources/navigating-tariffs.pdf" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -334,11 +334,15 @@ export default function ResourcesPage() {
                 const Icon = categoryIcons[res.category] ?? FileText;
                 const color = categoryColors[res.category] ?? "#4D397F";
                 const cover = coverFor(res);
-                const cta = res.pdf
-                  ? "Read PDF"
-                  : res.category === "Video"
+                // Anything that resolves to a PDF (hosted or gated) reads as a
+                // document; external links (LinkedIn, Canva) just "Open".
+                const isPdf = Boolean(res.pdf) || res.link.endsWith(".pdf");
+                const cta =
+                  res.category === "Video"
                     ? "Watch"
-                    : "Open";
+                    : isPdf
+                      ? "Read PDF"
+                      : "Open";
                 const card = (
                   <motion.div
                     className="group bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col cursor-pointer"
@@ -379,7 +383,7 @@ export default function ResourcesPage() {
                         </span>
                         <span className="inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:gap-2 transition-all whitespace-nowrap">
                           {cta}
-                          {res.pdf ? (
+                          {isPdf ? (
                             <Download className="size-3.5" />
                           ) : (
                             <ArrowUpRight className="size-3.5" />
