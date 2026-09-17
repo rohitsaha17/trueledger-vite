@@ -55,22 +55,33 @@ export function ServicePageHero({
   return (
     <section className="pt-4 pb-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden min-h-[420px] md:min-h-[500px] flex items-center">
+        <div className="relative rounded-3xl overflow-hidden min-h-[420px] md:min-h-[500px] flex items-center bg-[#140e2a]">
           {/* Background media */}
           {videoSrc ? (
-            <motion.video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={imageSrc}
-              className="absolute inset-0 w-full h-full object-cover"
-              initial={{ scale: 1.08 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              <source src={videoSrc} type="video/mp4" />
-            </motion.video>
+            <>
+              {/* Still image underneath the video: on a slow or failed
+                  connection the hero shows this instead of an empty panel. */}
+              <img
+                src={imageSrc}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              <motion.video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster={imageSrc}
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ scale: 1.08 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <source src={videoSrc} type="video/mp4" />
+              </motion.video>
+            </>
           ) : (
             <motion.img
               src={imageSrc}

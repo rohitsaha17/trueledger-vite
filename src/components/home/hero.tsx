@@ -39,6 +39,9 @@ const carouselSlides = [
 /** How long each headline / slide stays on screen. */
 const SLIDE_INTERVAL = 5500;
 
+/** Horizontal travel (px) a touch must cover before it counts as a swipe. */
+const SWIPE_THRESHOLD = 45;
+
 /* ================================================================== */
 /*  Rotating headline — each line rises in from the bottom             */
 /* ================================================================== */
@@ -198,14 +201,45 @@ export function Hero() {
   }, []);
 
   /* Auto-advance. The timer restarts whenever the slide changes, so a manual
-     click still gives the new slide a full interval on screen. */
+     click or swipe still gives the new slide a full interval on screen. */
   useEffect(() => {
     const timer = setTimeout(() => goTo(currentSlide + 1, 1), SLIDE_INTERVAL);
     return () => clearTimeout(timer);
   }, [currentSlide, goTo]);
 
+  /* Touch swiping — the only way to drive the carousel by hand on phones and
+     tablets, where the arrow buttons are hidden. Nothing is preventDefault-ed
+     and a mostly-vertical gesture is ignored, so the page still scrolls
+     normally through the hero. */
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start) return;
+
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+
+    /* Too short to be deliberate, or really a vertical scroll. */
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return;
+
+    const dir = dx < 0 ? 1 : -1;
+    goTo(currentSlide + dir, dir);
+  };
+
   return (
-    <section className="relative isolate flex min-h-[calc(100vh-72px)] items-center overflow-hidden bg-brand-dark">
+    <section
+      className="relative isolate flex min-h-[calc(100vh-72px)] items-center overflow-hidden bg-brand-dark touch-pan-y"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Full-bleed slide artwork — the carousel *is* the background */}
       <BackgroundCarousel currentSlide={currentSlide} direction={direction} />
 

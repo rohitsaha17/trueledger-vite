@@ -132,10 +132,12 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
-              <SheetHeader>
+              <SheetHeader className="shrink-0 pb-2">
                 <SheetTitle>TrueLedger Consulting</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-1 px-6">
+              {/* Links scroll on their own so the sticky CTA below is never
+                  pushed past the bottom of the viewport. */}
+              <nav className="flex flex-col gap-1 px-6 pb-4 flex-1 min-h-0 overflow-y-auto overscroll-contain">
                 {navLinks.map((link) =>
                   link.children ? (
                     <div key={link.label}>
@@ -184,12 +186,15 @@ export function Navbar() {
                     </Link>
                   )
                 )}
-                <div className="pt-4 mt-2 border-t">
-                  <ConsultationModal
-                    trigger={<Button className="w-full">Book a Consultation</Button>}
-                  />
-                </div>
               </nav>
+
+              {/* Pinned footer CTA — always reachable, clear of the phone's
+                  home-indicator inset. */}
+              <div className="shrink-0 border-t px-6 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+                <ConsultationModal
+                  trigger={<Button className="w-full">Book a Consultation</Button>}
+                />
+              </div>
             </SheetContent>
           </Sheet>
         </div>

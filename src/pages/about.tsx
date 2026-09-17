@@ -188,14 +188,24 @@ export default function AboutPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative overflow-hidden aspect-[1/1] sm:aspect-[16/9] md:aspect-[2.4/1] rounded-b-2xl md:rounded-b-3xl"
+            className="relative overflow-hidden bg-[#140e2a] aspect-[1/1] sm:aspect-[16/9] md:aspect-[2.4/1] rounded-b-2xl md:rounded-b-3xl"
           >
+            {/* Still of the video's opening frame, sitting underneath it: on a
+                slow or failed connection the hero shows this instead of black. */}
+            <img
+              src="/images/posters/about-hero-seedance.webp"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
             <video
               autoPlay
               muted
               loop
               playsInline
               preload="auto"
+              poster="/images/posters/about-hero-seedance.webp"
               className="absolute inset-0 w-full h-full object-cover"
             >
               <source src="/videos/about-hero-seedance.mp4" type="video/mp4" />
@@ -369,8 +379,9 @@ export default function AboutPage() {
 
           <AnimatedSection delay={0.1}>
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch justify-center gap-10 md:gap-14 relative z-10">
-              {/* Decorative glow */}
-              <div className="size-[520px] rounded-full absolute blur-[300px] -z-10 bg-brand/[0.06]" />
+              {/* Decorative glow — centred and capped to the container, so the
+                  520px circle can never push the page wider than the screen. */}
+              <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[520px] max-w-full rounded-full blur-[300px] -z-10 bg-brand/[0.06]" />
 
               {/* Image — height driven by the pointers column */}
               <div className="md:w-[40%] shrink-0 rounded-2xl shadow-lg border border-brand/10 overflow-hidden relative min-h-[300px]">

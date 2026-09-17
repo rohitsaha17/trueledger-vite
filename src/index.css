@@ -69,6 +69,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Never let the page lay out wider than the screen ──
+   Decorative absolutely-positioned glows, oversized artwork and the like
+   would otherwise widen the document, which on a phone means the browser
+   zooms out to fit and leaves dead space down one side.
+   `clip` rather than `hidden`: it trims the overspill without turning these
+   elements into scroll containers, so the sticky navbar keeps working. */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Safari < 16 and other engines without overflow: clip. Applied to <html>
+   only — on <body> it would break position: sticky. */
+@supports not (overflow: clip) {
+  html {
+    overflow-x: hidden;
+  }
+}
+
 /* Smooth scroll only on desktop — causes jank on mobile */
 @media (min-width: 1024px) {
   html { scroll-behavior: smooth; }

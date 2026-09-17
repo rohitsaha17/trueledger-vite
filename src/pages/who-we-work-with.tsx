@@ -257,13 +257,23 @@ export default function WhoWeWorkWithPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative overflow-hidden aspect-[3/4] sm:aspect-[16/9] md:aspect-[2.2/1] rounded-b-2xl md:rounded-b-3xl"
+            className="relative overflow-hidden bg-[#140e2a] aspect-[3/4] sm:aspect-[16/9] md:aspect-[2.2/1] rounded-b-2xl md:rounded-b-3xl"
           >
+            {/* Still of the video's opening frame, sitting underneath it: on a
+                slow or failed connection the hero shows this instead of black. */}
+            <img
+              src="/images/posters/about-hero-cinematic.webp"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
             <video
               autoPlay
               muted
               loop
               playsInline
+              poster="/images/posters/about-hero-cinematic.webp"
               className="absolute inset-0 w-full h-full object-cover"
             >
               <source src="/videos/about-hero-cinematic.mp4" type="video/mp4" />

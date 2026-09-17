@@ -223,13 +223,22 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
+      <section className="py-20 md:py-28 relative overflow-hidden bg-[#140e2a]">
+        {/* Still of the video's opening frame, sitting underneath it: on a
+            slow or failed connection the hero shows this instead of black. */}
+        <img
+          src="/images/posters/resources-hero.webp"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
         <motion.video
           autoPlay
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80"
+          poster="/images/posters/resources-hero.webp"
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
