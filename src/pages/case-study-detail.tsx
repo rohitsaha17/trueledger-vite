@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useSeo } from "@/hooks/use-seo";
 import type { CaseStudy } from "@/types/database";
 import { staticStudies } from "@/pages/case-studies";
 import type { DisplayStudy } from "@/pages/case-studies";
@@ -34,6 +35,19 @@ export default function CaseStudyDetailPage() {
         setLoading(false);
       });
   }, [slug]);
+
+  // Per-study title/description/canonical once the study has loaded.
+  useSeo(
+    study
+      ? {
+          title: `${study.title} | Case Study | TrueLedger Consulting LLP`,
+          description: study.challenge.replace(/\s+/g, " ").trim().slice(0, 300),
+          path: `/case-studies/${study.slug}`,
+          type: "article",
+          image: study.featured_image || undefined,
+        }
+      : null
+  );
 
   if (loading) {
     return (

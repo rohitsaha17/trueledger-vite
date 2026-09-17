@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/shared/cookie-consent";
+import { RouteSeo } from "@/components/shared/route-seo";
 import { AdminGuard } from "@/components/admin/admin-guard";
 import HomePage from "@/pages/home";
 import GlobalEntitySetupPage from "@/pages/global-entity-setup";
@@ -49,6 +50,7 @@ function ScrollToTop() {
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen">
+      <RouteSeo />
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
@@ -63,22 +65,25 @@ function App() {
 
   if (isAdmin) {
     return (
-      <Routes>
-        <Route path="/admin/login" element={<AdminLoginPage />} />
-        <Route
-          path="/admin"
-          element={
-            <AdminGuard>
-              <AdminLayout />
-            </AdminGuard>
-          }
-        >
-          <Route index element={<AdminDashboard />} />
-          <Route path="case-studies" element={<AdminCaseStudies />} />
-          <Route path="media" element={<AdminMedia />} />
-          <Route path="blog" element={<AdminBlog />} />
-        </Route>
-      </Routes>
+      <>
+        <RouteSeo />
+        <Routes>
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminGuard>
+                <AdminLayout />
+              </AdminGuard>
+            }
+          >
+            <Route index element={<AdminDashboard />} />
+            <Route path="case-studies" element={<AdminCaseStudies />} />
+            <Route path="media" element={<AdminMedia />} />
+            <Route path="blog" element={<AdminBlog />} />
+          </Route>
+        </Routes>
+      </>
     );
   }
 

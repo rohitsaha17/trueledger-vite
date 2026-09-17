@@ -1,0 +1,13 @@
+# https://www.trueledgerconsulting.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Admin console — authenticated only, nothing to index.
+Disallow: /admin
+Disallow: /admin/
+
+# Placeholder route, no published content yet.
+Disallow: /insights
+
+Sitemap: https://www.trueledgerconsulting.com/sitemap.xml

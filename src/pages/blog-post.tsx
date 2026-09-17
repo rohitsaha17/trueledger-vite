@@ -4,6 +4,7 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useSeo } from "@/hooks/use-seo";
 import type { BlogPost } from "@/types/database";
 
 export default function BlogPostPage() {
@@ -24,6 +25,19 @@ export default function BlogPostPage() {
         setLoading(false);
       });
   }, [slug]);
+
+  // Per-post title/description/canonical once the post has loaded.
+  useSeo(
+    post
+      ? {
+          title: `${post.title} | TrueLedger Consulting LLP`,
+          description: post.excerpt,
+          path: `/resources/${post.slug}`,
+          type: "article",
+          image: post.featured_image || undefined,
+        }
+      : null
+  );
 
   if (loading) {
     return (

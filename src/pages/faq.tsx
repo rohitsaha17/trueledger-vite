@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { JsonLd } from "@/components/shared/json-ld";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
@@ -255,6 +256,24 @@ const faqs: { question: string; answer: string; category: Category }[] = [
 /*  Main Page Component                                                 */
 /* ================================================================== */
 
+/* ------------------------------------------------------------------ */
+/*  FAQPage structured data, generated from the same `faqs` array that  */
+/*  renders on the page — nothing here is authored separately.          */
+/* ------------------------------------------------------------------ */
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.answer,
+    },
+  })),
+};
+
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
 
@@ -265,6 +284,8 @@ export default function FAQPage() {
 
   return (
     <>
+      <JsonLd data={faqJsonLd} />
+
       {/* ============================================================ */}
       {/*  SECTION 1 — HERO                                            */}
       {/* ============================================================ */}
