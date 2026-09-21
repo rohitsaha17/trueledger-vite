@@ -151,7 +151,7 @@ const storyBeats = [
   },
   {
     marker: "The Experience",
-    text: "Our founders had spent years working with global companies — navigating multi-jurisdictional compliance, tax controversy and disputes, managing cross-border accounting complexities, and building financial operations across some of the world’s most demanding markets.",
+    text: "Our founders had spent years working with global companies — navigating multi-jurisdictional compliance, tax controversies and disputes, managing cross-border accounting complexities, and building financial operations across some of the world’s most demanding markets.",
     image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114125_37c4434f-726d-4bb3-b527-dad9f6221ffb.png",
   },
   {

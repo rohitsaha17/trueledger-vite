@@ -66,7 +66,7 @@ export function Footer() {
                   <img
                     src="https://flagcdn.com/us.svg"
                     alt="United States"
-                    className="w-6 h-4 rounded-sm object-cover ring-1 ring-white/15 mt-0.5 shrink-0"
+                    className="size-4 rounded-full object-cover ring-1 ring-white/15 mt-0.5 shrink-0"
                     loading="lazy"
                   />
                   <span className="text-white/50">5900 Balcones Drive, STE-100, Austin, Texas, USA – 78731</span>
@@ -75,7 +75,7 @@ export function Footer() {
                   <img
                     src="https://flagcdn.com/in.svg"
                     alt="India"
-                    className="w-6 h-4 rounded-sm object-cover ring-1 ring-white/15 mt-0.5 shrink-0"
+                    className="size-4 rounded-full object-cover ring-1 ring-white/15 mt-0.5 shrink-0"
                     loading="lazy"
                   />
                   <span className="text-white/50">A-42, South Extension II, NDSE 2, New Delhi – 110049</span>

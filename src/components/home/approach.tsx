@@ -154,9 +154,12 @@ export function Approach() {
                 <img
                   src={card.image}
                   alt=""
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.20] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-[0.32]"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.14] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-[0.22]"
                   loading="lazy"
                 />
+
+                {/* White scrim so copy stays legible over the image */}
+                <span className="pointer-events-none absolute inset-0 bg-white/40" />
 
                 {/* Accent rail — wipes up from the bottom edge */}
                 <span className="pointer-events-none absolute inset-y-0 left-0 w-[2px] origin-bottom scale-y-0 bg-gradient-to-t from-brand via-brand/70 to-coral transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-y-100" />

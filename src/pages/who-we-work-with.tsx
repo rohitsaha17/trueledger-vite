@@ -380,13 +380,13 @@ export default function WhoWeWorkWithPage() {
                       <img
                         src={sector.bgImage}
                         alt=""
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="absolute inset-0 w-full h-full object-cover scale-110 blur-[3px] transition-transform duration-700 group-hover:scale-125"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-white/55 group-hover:bg-white/45 transition-colors duration-500 backdrop-blur-[2px]" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
+                      <div className="absolute inset-0 bg-white/86 group-hover:bg-white/80 transition-colors duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-white/40 to-white/35" />
 
-                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-[#4D397F]/[0.06] leading-none select-none pointer-events-none group-hover:text-[#4D397F]/[0.10] transition-colors duration-500">
+                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-[#4D397F]/[0.12] leading-none select-none pointer-events-none group-hover:text-[#4D397F]/[0.18] transition-colors duration-500">
                         {num}
                       </span>
 
@@ -402,7 +402,7 @@ export default function WhoWeWorkWithPage() {
                       <h3 className="relative font-heading font-bold text-lg text-[#140e2a] leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="relative text-[#140e2a]/60 text-sm leading-relaxed group-hover:text-[#140e2a]/75 transition-colors duration-300 mb-4">
+                      <p className="relative text-[#140e2a]/85 text-sm leading-relaxed group-hover:text-[#140e2a] transition-colors duration-300 mb-4">
                         {sector.description}
                       </p>
 
@@ -449,13 +449,13 @@ export default function WhoWeWorkWithPage() {
                       <img
                         src={sector.bgImage}
                         alt=""
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="absolute inset-0 w-full h-full object-cover scale-110 blur-[3px] transition-transform duration-700 group-hover:scale-125"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-white/55 group-hover:bg-white/45 transition-colors duration-500 backdrop-blur-[2px]" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
+                      <div className="absolute inset-0 bg-white/86 group-hover:bg-white/80 transition-colors duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-white/40 to-white/35" />
 
-                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-[#4D397F]/[0.06] leading-none select-none pointer-events-none group-hover:text-[#4D397F]/[0.10] transition-colors duration-500">
+                      <span className="absolute top-4 right-5 font-heading text-6xl font-bold text-[#4D397F]/[0.12] leading-none select-none pointer-events-none group-hover:text-[#4D397F]/[0.18] transition-colors duration-500">
                         {num}
                       </span>
 
@@ -471,7 +471,7 @@ export default function WhoWeWorkWithPage() {
                       <h3 className="relative font-heading font-bold text-lg text-[#140e2a] leading-snug mb-3">
                         {sector.title}
                       </h3>
-                      <p className="relative text-[#140e2a]/60 text-sm leading-relaxed group-hover:text-[#140e2a]/75 transition-colors duration-300 mb-4">
+                      <p className="relative text-[#140e2a]/85 text-sm leading-relaxed group-hover:text-[#140e2a] transition-colors duration-300 mb-4">
                         {sector.description}
                       </p>
 
