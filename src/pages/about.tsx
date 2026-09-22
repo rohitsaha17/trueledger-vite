@@ -188,7 +188,7 @@ export default function AboutPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative overflow-hidden bg-[#140e2a] aspect-[1/1] sm:aspect-[16/9] md:aspect-[2.4/1] rounded-b-2xl md:rounded-b-3xl"
+            className="relative overflow-hidden bg-[#140e2a] aspect-square sm:aspect-video md:aspect-[2.4/1] rounded-b-2xl md:rounded-b-3xl"
           >
             {/* Still of the video's opening frame, sitting underneath it: on a
                 slow or failed connection the hero shows this instead of black. */}
@@ -252,11 +252,11 @@ export default function AboutPage() {
               <AnimatedSection key={beat.marker} delay={0.1}>
                 <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center`}>
                   <div className={i % 2 === 1 ? "md:order-2" : ""}>
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-black/[0.06]">
+                    <div className="rounded-2xl overflow-hidden shadow-lg border border-black/6">
                       <img
                         src={beat.image}
                         alt={beat.marker}
-                        className="w-full aspect-[4/3] object-cover"
+                        className="w-full aspect-4/3 object-cover"
                         loading="lazy"
                       />
                     </div>
@@ -317,9 +317,9 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {leaders.map((leader, i) => (
               <AnimatedSection key={leader.name} delay={0.1 + i * 0.1}>
-                <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                <div className="bg-white rounded-2xl border border-black/6 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
                   {/* Photo — fixed aspect ratio, no crop */}
-                  <div className="aspect-[3/4] bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 relative flex items-center justify-center p-4">
+                  <div className="aspect-3/4 bg-linear-to-br from-brand-soft via-brand-tint to-brand/10 relative flex items-center justify-center p-4">
                     <img
                       src={leader.image}
                       alt={leader.name}
@@ -381,10 +381,10 @@ export default function AboutPage() {
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch justify-center gap-10 md:gap-14 relative z-10">
               {/* Decorative glow — centred and capped to the container, so the
                   520px circle can never push the page wider than the screen. */}
-              <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[520px] max-w-full rounded-full blur-[300px] -z-10 bg-brand/[0.06]" />
+              <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-130 max-w-full rounded-full blur-[300px] -z-10 bg-brand/6" />
 
               {/* Image — height driven by the pointers column */}
-              <div className="md:w-[40%] shrink-0 rounded-2xl shadow-lg border border-brand/10 overflow-hidden relative min-h-[300px]">
+              <div className="md:w-[40%] shrink-0 rounded-2xl shadow-lg border border-brand/10 overflow-hidden relative min-h-75">
                 <img
                   className="absolute inset-0 w-full h-full object-cover"
                   src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=830&h=844&auto=format&fit=crop"
@@ -439,7 +439,7 @@ export default function AboutPage() {
             className="w-full h-full object-cover opacity-[0.38]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/40" />
+          <div className="absolute inset-0 bg-linear-to-b from-white/40 via-transparent to-white/40" />
 
           {/* Texture overlay - diagonal lines pattern */}
           <svg className="absolute inset-0 w-full h-full opacity-[0.12]" xmlns="http://www.w3.org/2000/svg">
@@ -478,9 +478,9 @@ export default function AboutPage() {
               const PanelIcon = panel.icon;
               return (
                 <AnimatedSection key={panel.title} delay={0.1 + i * 0.1} className="h-full">
-                  <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                  <div className="bg-white rounded-2xl border border-black/6 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
                     {/* Panel header */}
-                    <div className="bg-gradient-to-r from-brand-tint to-brand-soft p-5 border-b border-brand/10">
+                    <div className="bg-linear-to-r from-brand-tint to-brand-soft p-5 border-b border-brand/10">
                       <div className="flex items-center gap-3">
                         <div className="size-10 rounded-xl bg-white/80 flex items-center justify-center">
                           <PanelIcon className="size-5 text-brand" />
@@ -589,7 +589,7 @@ export default function AboutPage() {
 
           <AnimatedSection delay={0.15}>
             <div className="max-w-4xl mx-auto">
-              <div className="rounded-2xl overflow-hidden shadow-lg border border-black/[0.06]">
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-black/6">
                 <img
                   src="/images/team/team-group.jpg"
                   alt="The TrueLedger team"
@@ -613,7 +613,7 @@ export default function AboutPage() {
           loading="lazy"
         />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
 
         {/* Subtle texture overlay */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
