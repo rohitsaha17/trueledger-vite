@@ -51,6 +51,64 @@ export function analyticsAllowed(): boolean {
   }
 }
 
+let linkTrackingInstalled = false;
+
+/** wa.me, whatsapp.com and its subdomains, or the whatsapp: scheme. */
+function isWhatsAppLink(href: string): boolean {
+  if (href.toLowerCase().startsWith("whatsapp:")) return true;
+  try {
+    const host = new URL(href, window.location.origin).hostname.toLowerCase();
+    return host === "wa.me" || host === "whatsapp.com" || host.endsWith(".whatsapp.com");
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * One delegated listener on the document, rather than an onClick on every
+ * link. Contact details appear in the footer, on the contact page and in
+ * seven policy/region pages, so handler-per-link would mean editing ten
+ * files and remembering to do it again for every link added later.
+ *
+ * Capture phase, so a click is still recorded if something downstream
+ * stops propagation.
+ */
+function installLinkTracking() {
+  if (linkTrackingInstalled) return;
+  linkTrackingInstalled = true;
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const anchor = target.closest("a[href]");
+      if (!(anchor instanceof HTMLAnchorElement)) return;
+
+      const href = anchor.getAttribute("href") ?? "";
+      const name = href.startsWith("tel:")
+        ? "click_phone"
+        : href.startsWith("mailto:")
+          ? "click_email"
+          : isWhatsAppLink(href)
+            ? "whatsapp_click"
+            : null;
+
+      if (!name) return;
+
+      trackEvent(name, {
+        link_url: href,
+        // Where on the site the click happened, so the report shows which
+        // pages actually drive contact rather than just a total.
+        page_path: window.location.pathname + window.location.search,
+        link_text: (anchor.textContent ?? "").trim().slice(0, 100) || undefined,
+      });
+    },
+    { capture: true }
+  );
+}
+
 /** Injects gtag.js once, if we have an ID and the visitor has opted in. */
 export function initAnalytics() {
   if (loaded) return;
@@ -68,6 +126,8 @@ export function initAnalytics() {
 
   gtag("js", new Date());
   gtag("config", MEASUREMENT_ID, { send_page_view: false });
+
+  installLinkTracking();
 }
 
 export function trackPageView(path: string) {
