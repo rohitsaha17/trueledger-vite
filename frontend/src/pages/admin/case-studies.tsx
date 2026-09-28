@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
+import { CASE_STUDY_SERVICES } from "@/lib/case-studies";
 import { UploadButton } from "@/components/admin/upload-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -115,6 +116,25 @@ export default function AdminCaseStudies() {
               />
             </div>
             <div>
+              <Label>Service (tab on the Case Studies page)</Label>
+              <select
+                value={editing.service ?? ""}
+                onChange={(e) =>
+                  setEditing({ ...editing, service: e.target.value })
+                }
+                className="mt-1 h-10 w-full rounded-lg border border-input bg-transparent px-3 text-sm"
+              >
+                <option value="">Select a service</option>
+                {CASE_STUDY_SERVICES.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-[1fr_10rem] gap-5">
+            <div>
               <Label>Featured Image</Label>
               <div className="flex gap-2 mt-1">
                 <Input
@@ -130,7 +150,25 @@ export default function AdminCaseStudies() {
                 />
               </div>
             </div>
+            <div>
+              <Label>Display order</Label>
+              <Input
+                type="number"
+                value={editing.sort_order ?? 0}
+                onChange={(e) =>
+                  setEditing({ ...editing, sort_order: Number(e.target.value) })
+                }
+                className="mt-1"
+              />
+            </div>
           </div>
+          {editing.featured_image && (
+            <img
+              src={resolveAssetUrl(editing.featured_image)}
+              alt="Preview"
+              className="rounded-lg max-h-48 object-cover border"
+            />
+          )}
           <div>
             <Label>Challenge</Label>
             <Textarea
@@ -209,6 +247,9 @@ export default function AdminCaseStudies() {
                   Title
                 </th>
                 <th className="text-left px-4 py-3 font-medium text-muted-foreground">
+                  Service
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">
                   Industry
                 </th>
                 <th className="text-left px-4 py-3 font-medium text-muted-foreground">
@@ -224,6 +265,9 @@ export default function AdminCaseStudies() {
                 <tr key={item.id} className="border-b last:border-0">
                   <td className="px-4 py-3 font-medium text-ink">
                     {item.title}
+                  </td>
+                  <td className="px-4 py-3 text-muted-foreground">
+                    {item.service}
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">
                     {item.industry}
@@ -245,7 +289,7 @@ export default function AdminCaseStudies() {
                       {item.published ? "Live" : "Draft"}
                     </button>
                   </td>
-                  <td className="px-4 py-3 text-right">
+                  <td className="px-4 py-3 text-right whitespace-nowrap">
                     <button
                       onClick={() => setEditing(item)}
                       className="p-1.5 text-muted-foreground hover:text-brand cursor-pointer"

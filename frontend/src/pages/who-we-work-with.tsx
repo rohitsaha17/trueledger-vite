@@ -272,6 +272,7 @@ export default function WhoWeWorkWithPage() {
             />
 
             <video
+              key={asset("who-we-work-with.hero.video")}
               autoPlay
               muted
               loop

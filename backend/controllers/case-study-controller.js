@@ -2,13 +2,13 @@ import CaseStudy from "../models/case-study.js";
 
 // GET /api/case-studies — published only (public website)
 export async function getPublished(req, res) {
-  const items = await CaseStudy.find({ published: true }).sort({ created_at: -1 });
+  const items = await CaseStudy.find({ published: true }).sort({ sort_order: 1, created_at: -1 });
   res.json(items);
 }
 
 // GET /api/case-studies/all — everything (admin panel)
 export async function getAll(req, res) {
-  const items = await CaseStudy.find().sort({ created_at: -1 });
+  const items = await CaseStudy.find().sort({ sort_order: 1, created_at: -1 });
   res.json(items);
 }
 

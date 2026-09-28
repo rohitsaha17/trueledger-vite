@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { api, resolveAssetUrl } from "@/lib/api";
 import { useAssets } from "@/hooks/use-site-assets";
-import { assetDefaults } from "@/data/site-assets";
-import type { BlogPost } from "@/types/database";
+import { useResources } from "@/hooks/use-resources";
+import { coverFor, RESOURCE_CATEGORIES, RESOURCE_SERVICES } from "@/lib/resources";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { WhitepaperDownloadModal } from "@/components/shared/whitepaper-download-modal";
 import { SubscribeInsights } from "@/components/home/subscribe-insights";
@@ -23,102 +22,14 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Resource data from docx content                                    */
-/* ------------------------------------------------------------------ */
-
-export interface Resource {
-  id: string;
-  title: string;
-  category: ContentType;
-  service: string;
-  link: string;
-  /** Local hosted PDF path. When set, cards link here instead of `link`. */
-  pdf?: string;
-  /** Local cover image path shown as the card header. */
-  cover?: string;
-}
-
-export const resources: Resource[] = [
-  /* ── WhitePapers (hosted PDFs) ───────────────────────────────────── */
-  { id: "wp-nonprofit", title: "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/nonprofit-practice.pdf", pdf: "/whitepapers/nonprofit-practice.pdf" },
-  { id: "wp-ai-cas", title: "Practical AI Adoption in Client Accounting Services (CAS)", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ai-adoption-cas.pdf", pdf: "/whitepapers/ai-adoption-cas.pdf" },
-  { id: "wp-ai-dd", title: "AI Solution Due Diligence for Accounting Firms", category: "WhitePaper", service: "CPA Support", link: "/whitepapers/ai-due-diligence.pdf", pdf: "/whitepapers/ai-due-diligence.pdf" },
-  { id: "wp-usgaap", title: "US GAAP Revenue Recognition for AI-Native SaaS Companies", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/usgaap-ai-saas.pdf", pdf: "/whitepapers/usgaap-ai-saas.pdf" },
-  { id: "wp-clean-books", title: "Clean Books & Compliance: Why They Matter for CFOs & Advisors", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/clean-books.pdf", pdf: "/whitepapers/clean-books.pdf" },
-  { id: "wp-ieepa", title: "IEEPA Tariff Refund Claims: Technical Accounting Analysis", category: "WhitePaper", service: "Accounting & Bookkeeping", link: "/whitepapers/ieepa-refund.pdf", pdf: "/whitepapers/ieepa-refund.pdf" },
-  { id: "wp-h1b", title: "Laid Off on H-1B in 2026? The US Tax Checklist", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "/whitepapers/h1b-tax.pdf", pdf: "/whitepapers/h1b-tax.pdf" },
-  { id: "wp-mexico", title: "Mexico Tariff Hike: Impact on Indian Exports", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/mexico-tariff.pdf", pdf: "/whitepapers/mexico-tariff.pdf" },
-  { id: "wp-india-budget", title: "Navigating India's Investment Frontier: Union Budget 2026-27", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/india-budget.pdf", pdf: "/whitepapers/india-budget.pdf" },
-  { id: "wp-smsf", title: "Self-Managed Superannuation Fund (SMSF) in Australia", category: "WhitePaper", service: "Global Entity Setup", link: "/whitepapers/smsf-australia.pdf", pdf: "/whitepapers/smsf-australia.pdf" },
-  { id: "wp-multistate", title: "Multi-State Income Taxes — Case Study", category: "WhitePaper", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552" },
-
-  /* ── Guides / Checklists / Infographics ──────────────────────────── */
-  { id: "g1", title: "US Tax Season 2025 — Practitioner FAQ Reference", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/us-tax-season-2025-faq.pdf" },
-  { id: "g2", title: "Outsourcing Assessment Checklist", category: "Guide", service: "CPA Support", link: "/resources/outsourcing-assessment-checklist.pdf" },
-  { id: "g3", title: "AI Due Diligence Checklist", category: "Guide", service: "CPA Support", link: "/resources/ai-due-diligence-checklist.pdf" },
-  { id: "g4", title: "How Trump's Account Works", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/trump-accounts.pdf" },
-  { id: "g5", title: "Qualified Business Income Deductions", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/qbi-deduction.pdf" },
-  { id: "g6", title: "Gain Exclusion on Sale of a Principal Residence", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/principal-residence-gain-exclusion.pdf" },
-  { id: "g7", title: "Client Onboarding Interview Guide", category: "Guide", service: "Accounting & Bookkeeping", link: "/resources/client-onboarding-interview-guide.pdf" },
-  { id: "g8", title: "SAFE Instruments — Explained", category: "Guide", service: "Global Entity Setup", link: "/resources/safe-instruments-explained.pdf" },
-  { id: "g9", title: "5 Tips for Cash Flow Discipline", category: "Guide", service: "Accounting & Bookkeeping", link: "/resources/cash-flow-discipline.pdf" },
-  { id: "g10", title: "Top Mistakes to Avoid While Filing Individual Taxes", category: "Guide", service: "Tax Compliance & Advisory", link: "/resources/top-individual-tax-filing-mistakes.pdf" },
-  { id: "g11", title: "Building a Better Firm — Selecting the Right Technology", category: "Guide", service: "Business Advisory", link: "/resources/selecting-the-right-technology.pdf" },
-
-  /* ── Videos ──────────────────────────────────────────────────────── */
-  { id: "v1", title: "AI Tools — Kick Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/epi0FcveBSU?si=vBOu5ETioajUGav1" },
-  { id: "v2", title: "AI Tools — Holistiplan Demo", category: "Video", service: "Tax Compliance & Advisory", link: "https://canva.link/cyoxx48rz858lxs" },
-  { id: "v3", title: "AI Tools — AICPA Josi Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/SrWSjImK6DQ?si=TuLs50TrZSWq-uD_" },
-  { id: "v4", title: "AI Tools — Spotlight Reporting Demo", category: "Video", service: "Accounting & Bookkeeping", link: "https://youtu.be/KS29lMb-G58?si=oMhJrPP5pAbR8I4Z" },
-
-  /* ── Newsletter ──────────────────────────────────────────────────── */
-  { id: "n1", title: "AI Developments", category: "Newsletter", service: "Business Advisory", link: "/resources/ai-developments-newsletter.pdf" },
-
-  /* ── Blog Posts ──────────────────────────────────────────────────── */
-  { id: "b1", title: "OBBA and Founders Tax", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7468561334834475008" },
-  { id: "b2", title: "H1B Laid Off — Tax Implications", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7468212225095192576" },
-  { id: "b3", title: "13-Week Cash Flow Forecast", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7467596800900628480" },
-  { id: "b4", title: "Real Estate Tax Issues", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7467150846783533056" },
-  { id: "b5", title: "Complex Cross-Border Returns", category: "Blog Post", service: "CPA Support", link: "https://www.linkedin.com/feed/update/urn:li:activity:7465644754534445056" },
-  { id: "b6", title: "SEC Reporting Changes", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7460992869420421120" },
-  { id: "b7", title: "AI Risk", category: "Blog Post", service: "Business Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7458043336856322048" },
-  { id: "b8", title: "How Finance Teams Are Using Automation", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7457474051050053632" },
-  { id: "b9", title: "Measuring AI ROI", category: "Blog Post", service: "Business Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7456961203966455808" },
-  { id: "b10", title: "Tips for Cash Flow Discipline in New Business", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7455129689959878657" },
-  { id: "b11", title: "Should You Do a Roth Conversion?", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7454910555083100161" },
-  { id: "b12", title: "Executive Turnover Is Down. AI Clarity Is Not.", category: "Blog Post", service: "Business Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7449509327331033088" },
-  { id: "b13", title: "Audit Triggers Most Businesses Miss", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7447579650052001793" },
-  { id: "b14", title: "Planning Ideas for Your Clients", category: "Blog Post", service: "Tax Compliance & Advisory", link: "https://www.linkedin.com/feed/update/urn:li:activity:7441849656910905345" },
-  { id: "b15", title: "Startups Driving the Next Wave of Innovation in the Accounting Profession", category: "Blog Post", service: "Accounting & Bookkeeping", link: "https://www.linkedin.com/feed/update/urn:li:activity:7438175389698445312" },
-  { id: "b16", title: "5 Startups Using AI and Automation to Transform Accounting, Audit, and Tax", category: "Blog Post", service: "Accounting & Bookkeeping", link: "/resources/five-startups-ai-accounting.pdf" },
-  { id: "b17", title: "Analysis of India–USA Bilateral Trade Deal", category: "Blog Post", service: "Global Entity Setup", link: "https://canva.link/j3r01gnhxif1ykt" },
-  { id: "b18", title: "India–UK Free Trade Agreement Signed", category: "Blog Post", service: "Global Entity Setup", link: "/resources/india-uk-free-trade-agreement.pdf" },
-  { id: "b19", title: "Navigating Tariffs — Accounting Implications", category: "Blog Post", service: "Accounting & Bookkeeping", link: "/resources/navigating-tariffs.pdf" },
-];
-
-/* ------------------------------------------------------------------ */
 /*  Filter options                                                     */
 /* ------------------------------------------------------------------ */
 
-const contentTypes = [
-  "All",
-  "WhitePaper",
-  "Guide",
-  "Video",
-  "Blog Post",
-  "Newsletter",
-] as const;
+const contentTypes = ["All", ...RESOURCE_CATEGORIES] as const;
 
-const serviceTypes = [
-  "All Services",
-  "Accounting & Bookkeeping",
-  "Tax Compliance & Advisory",
-  "Business Advisory",
-  "CPA Support",
-  "Global Entity Setup",
-] as const;
+const serviceTypes = ["All Services", ...RESOURCE_SERVICES] as const;
 
-type ContentType = (typeof contentTypes)[number] | "All";
+type ContentType = (typeof contentTypes)[number];
 type ServiceType = (typeof serviceTypes)[number];
 
 const categoryIcons: Record<string, typeof FileText> = {
@@ -138,73 +49,24 @@ const categoryColors: Record<string, string> = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Cover images — editable in Admin → Site Assets → Resources         */
-/* ------------------------------------------------------------------ */
-
-const staticResourceIds = new Set(resources.map((r) => r.id));
-
-const defaultAsset = (key: string) => assetDefaults[key];
-
-/**
- * Cover photo for a resource. Pass `asset` from `useAssets()` so admin
- * overrides apply; without it the registry default is used.
- */
-export function coverFor(
-  r: Resource,
-  asset: (key: string) => string = defaultAsset,
-): string {
-  return (
-    r.cover ??
-    asset(
-      staticResourceIds.has(r.id)
-        ? `resources.covers.${r.id}`
-        : "resources.covers.fallback",
-    )
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
 export default function ResourcesPage() {
   const [activeContent, setActiveContent] = useState<ContentType>("All");
   const [activeService, setActiveService] = useState<ServiceType>("All Services");
-  const [posts, setPosts] = useState<BlogPost[]>([]);
   const asset = useAssets();
-
-  /* Blog posts written in the admin panel, shown alongside the static list */
-  useEffect(() => {
-    api
-      .get<BlogPost[]>("/blog")
-      .then(setPosts)
-      .catch(() => setPosts([]));
-  }, []);
-
-  const allResources: Resource[] = useMemo(
-    () => [
-      ...posts.map((post) => ({
-        id: post.id,
-        title: post.title,
-        category: "Blog Post" as ContentType,
-        service: post.category || "Business Advisory",
-        link: `/resources/${post.slug}`,
-        cover: post.featured_image ? resolveAssetUrl(post.featured_image) : undefined,
-      })),
-      ...resources,
-    ],
-    [posts],
-  );
+  const resources = useResources();
 
   const filtered = useMemo(() => {
-    return allResources.filter((r) => {
+    return resources.filter((r) => {
       const contentMatch =
         activeContent === "All" || r.category === activeContent;
       const serviceMatch =
         activeService === "All Services" || r.service === activeService;
       return contentMatch && serviceMatch;
     });
-  }, [allResources, activeContent, activeService]);
+  }, [resources, activeContent, activeService]);
 
   return (
     <>
@@ -220,6 +82,7 @@ export default function ResourcesPage() {
         />
 
         <motion.video
+          key={asset("resources.hero.video")}
           autoPlay
           muted
           loop
@@ -305,7 +168,7 @@ export default function ResourcesPage() {
           {/* Results count */}
           <AnimatedSection>
             <p className="text-sm text-muted-foreground mb-6">
-              Showing {filtered.length} of {allResources.length} resources
+              Showing {filtered.length} of {resources.length} resources
             </p>
           </AnimatedSection>
 

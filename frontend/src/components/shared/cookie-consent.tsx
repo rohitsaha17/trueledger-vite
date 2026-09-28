@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { grantAnalyticsConsent } from "@/lib/analytics";
+import { grantMarketingConsent } from "@/lib/meta-pixel";
 
 const STORAGE_KEY = "tl-cookie-consent";
 
@@ -23,8 +24,9 @@ export function CookieConsent() {
   function save(choice: string) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ choice, ts: Date.now() }));
     setVisible(false);
-    // No-ops unless the saved choice actually allows analytics cookies.
+    // Each no-ops unless the saved choice actually allows that kind of cookie.
     grantAnalyticsConsent();
+    grantMarketingConsent();
   }
 
   return (

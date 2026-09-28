@@ -6,7 +6,7 @@ import {
   create,
   update,
   remove,
-} from "../controllers/media-controller.js";
+} from "../controllers/media-event-controller.js";
 
 const router = Router();
 

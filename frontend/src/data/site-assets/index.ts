@@ -16,7 +16,6 @@ import { northAmericaAssets } from "./north-america";
 import { europeUkAssets } from "./europe-uk";
 import { apacAssets } from "./apac";
 import { caseStudiesAssets } from "./case-studies";
-import { mediaAssets } from "./media";
 import { resourcesAssets } from "./resources";
 import { contactAssets } from "./contact";
 import { faqAssets } from "./faq";
@@ -42,7 +41,6 @@ export const assetPages: AssetPage[] = [
   europeUkAssets,
   apacAssets,
   caseStudiesAssets,
-  mediaAssets,
   resourcesAssets,
   contactAssets,
   faqAssets,

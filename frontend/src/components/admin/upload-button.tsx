@@ -5,28 +5,37 @@ import { Upload } from "lucide-react";
 
 const MAX_BYTES = 50 * 1024 * 1024;
 
-interface UploadButtonProps {
+type UploadButtonProps = {
   /** e.g. "image/*" or "video/*" */
   accept: string;
-  onUploaded: (url: string) => void | Promise<void>;
   label?: string;
-}
+} & (
+  | { multiple?: false; onUploaded: (url: string) => void | Promise<void> }
+  /** Several files at once; the callback gets every url in the order picked */
+  | { multiple: true; onUploaded: (urls: string[]) => void | Promise<void> }
+);
 
-/** Picks a file, uploads it to the backend and hands back its stored url. */
-export function UploadButton({ accept, onUploaded, label = "Upload" }: UploadButtonProps) {
+/** Picks a file (or files), uploads it to the backend and hands back its stored url(s). */
+export function UploadButton({ accept, label = "Upload", ...props }: UploadButtonProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
-  async function handleFile(file: File | undefined) {
-    if (!file) return;
-    if (file.size > MAX_BYTES) {
-      alert("File is too large — the limit is 50 MB.");
+  async function handleFiles(fileList: FileList | null) {
+    const files = [...(fileList ?? [])];
+    if (files.length === 0) return;
+    const tooBig = files.find((file) => file.size > MAX_BYTES);
+    if (tooBig) {
+      alert(`"${tooBig.name}" is too large — the limit is 50 MB.`);
+      if (inputRef.current) inputRef.current.value = "";
       return;
     }
 
     setUploading(true);
     try {
-      await onUploaded(await uploadFile(file));
+      const urls: string[] = [];
+      for (const file of files) urls.push(await uploadFile(file));
+      if (props.multiple) await props.onUploaded(urls);
+      else await props.onUploaded(urls[0]);
     } catch (err) {
       alert(err instanceof Error ? err.message : "Upload failed");
     } finally {
@@ -41,8 +50,9 @@ export function UploadButton({ accept, onUploaded, label = "Upload" }: UploadBut
         ref={inputRef}
         type="file"
         accept={accept}
+        multiple={props.multiple}
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0])}
+        onChange={(e) => handleFiles(e.target.files)}
       />
       <Button
         type="button"

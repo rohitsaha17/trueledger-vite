@@ -6,33 +6,23 @@ import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { api, resolveAssetUrl } from "@/lib/api";
 import { useSeo } from "@/hooks/use-seo";
-import { useAssets } from "@/hooks/use-site-assets";
 import type { CaseStudy } from "@/types/database";
-import { staticStudies } from "@/pages/case-studies";
-import type { StaticStudy } from "@/pages/case-studies";
-
-type StudyData = CaseStudy | StaticStudy;
 
 export default function CaseStudyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [study, setStudy] = useState<StudyData | null>(null);
+  const [study, setStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
-  const asset = useAssets();
 
   useEffect(() => {
     if (!slug) return;
     api
       .get<CaseStudy>(`/case-studies/${slug}`)
       .then(setStudy)
-      .catch(() => setStudy(staticStudies.find((s) => s.slug === slug) ?? null))
+      .catch(() => setStudy(null))
       .finally(() => setLoading(false));
   }, [slug]);
 
-  const featuredImage = study
-    ? "featuredImageKey" in study
-      ? asset(study.featuredImageKey)
-      : resolveAssetUrl(study.featured_image ?? "")
-    : "";
+  const featuredImage = resolveAssetUrl(study?.featured_image ?? "");
 
   // Per-study title/description/canonical once the study has loaded.
   useSeo(

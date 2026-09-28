@@ -19,7 +19,8 @@ import {
   Wallet,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
-import { resources, coverFor } from "./resources";
+import { coverFor } from "@/lib/resources";
+import { useResourcesForService } from "@/hooks/use-resources";
 import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
@@ -66,20 +67,6 @@ const services = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Related insights data                                               */
-/* ------------------------------------------------------------------ */
-
-// Pull real, Global-Entity-Setup–relevant items from the Resources page data.
-const relatedArticles = resources
-  .filter((r) => r.service === "Global Entity Setup")
-  .map((r) => ({
-    title: r.title,
-    category: r.category,
-    href: r.pdf ?? r.link,
-    resource: r,
-  }));
-
-/* ------------------------------------------------------------------ */
 /*  Who This Is For data                                                */
 /* ------------------------------------------------------------------ */
 
@@ -120,10 +107,14 @@ const audiences = [
 
 function BlogTicker() {
   const asset = useAssets();
-  const cards = [...relatedArticles, ...relatedArticles].map((article) => ({
-    ...article,
-    cover: coverFor(article.resource, asset),
-  })); // duplicate for seamless loop
+  // Global-Entity-Setup items from the Resources page (managed in Admin → Resources)
+  const relatedArticles = useResourcesForService("Global Entity Setup", Infinity).map((r) => ({
+    title: r.title,
+    category: r.category,
+    href: r.pdf ?? r.link,
+    cover: coverFor(r, asset),
+  }));
+  const cards = [...relatedArticles, ...relatedArticles]; // duplicate for seamless loop
 
   return (
     <div className="overflow-hidden py-4">
@@ -245,6 +236,7 @@ export default function GlobalEntitySetupPage() {
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
         <video
+          key={asset("global-entity-setup.see-how-it-works.background-video")}
           autoPlay
           muted
           loop

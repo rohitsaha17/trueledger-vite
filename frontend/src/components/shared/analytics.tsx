@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
+import { initMetaPixel, trackMetaPageView } from "@/lib/meta-pixel";
 
 /**
  * Renders nothing. Mounted inside the public layout directly after
@@ -14,6 +15,8 @@ export function Analytics() {
   useEffect(() => {
     initAnalytics();
     trackPageView(pathname + search);
+    initMetaPixel();
+    trackMetaPageView();
   }, [pathname, search]);
 
   return null;

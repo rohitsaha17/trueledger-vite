@@ -6,14 +6,14 @@ function bucket() {
   return new mongoose.mongo.GridFSBucket(mongoose.connection.db, { bucketName: "uploads" });
 }
 
-const ALLOWED_TYPES = /^(image|video)\//;
+const ALLOWED_TYPES = /^(image\/|video\/|application\/pdf$)/;
 
 // POST /api/uploads — admin only. Body is the raw file; Content-Type is its mime type
 // and the X-Filename header carries the original name.
 export async function upload(req, res) {
   const contentType = req.headers["content-type"] ?? "";
   if (!ALLOWED_TYPES.test(contentType)) {
-    return res.status(400).json({ message: "Only image and video files can be uploaded" });
+    return res.status(400).json({ message: "Only images, videos and PDFs can be uploaded" });
   }
   if (!Buffer.isBuffer(req.body) || req.body.length === 0) {
     return res.status(400).json({ message: "File is empty" });
@@ -44,10 +44,13 @@ export async function serve(req, res) {
     "Content-Type": file.metadata?.contentType ?? "application/octet-stream",
     "Cache-Control": "public, max-age=31536000, immutable",
     "Accept-Ranges": "bytes",
-    // Stops an uploaded SVG from running script if opened directly
-    "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; sandbox",
     "X-Content-Type-Options": "nosniff",
   });
+  // Stops an uploaded SVG from running script if opened directly
+  // (not applied to PDFs: Chrome refuses to display sandboxed PDFs)
+  if (file.metadata?.contentType === "image/svg+xml") {
+    res.set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; sandbox");
+  }
 
   // Browsers request videos in byte ranges (Safari won't play them otherwise)
   const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range ?? "");

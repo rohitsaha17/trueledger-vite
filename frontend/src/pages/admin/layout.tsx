@@ -3,9 +3,9 @@ import { clearToken } from "@/lib/api";
 import {
   LayoutDashboard,
   Briefcase,
+  BookOpen,
   Image,
   Images,
-  FileText,
   Inbox,
   Mails,
   LogOut,
@@ -16,8 +16,8 @@ const sidebarLinks = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Site Assets", href: "/admin/site-assets", icon: Images },
   { label: "Case Studies", href: "/admin/case-studies", icon: Briefcase },
+  { label: "Resources", href: "/admin/resources", icon: BookOpen },
   { label: "Media Gallery", href: "/admin/media", icon: Image },
-  { label: "Blog Posts", href: "/admin/blog", icon: FileText },
   { label: "Enquiries", href: "/admin/enquiries", icon: Inbox },
   { label: "Subscribers", href: "/admin/subscribers", icon: Mails },
 ];

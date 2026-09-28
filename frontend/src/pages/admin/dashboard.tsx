@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/lib/api";
-import { Briefcase, Image, FileText, Inbox, Mails, Plus } from "lucide-react";
+import { Briefcase, Image, BookOpen, Inbox, Mails, Plus } from "lucide-react";
 
 interface Stats {
   caseStudies: number;
-  media: number;
-  blogPosts: number;
+  mediaEvents: number;
+  resources: number;
   enquiries: number;
   subscribers: number;
 }
@@ -14,8 +14,8 @@ interface Stats {
 export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats>({
     caseStudies: 0,
-    media: 0,
-    blogPosts: 0,
+    mediaEvents: 0,
+    resources: 0,
     enquiries: 0,
     subscribers: 0,
   });
@@ -33,17 +33,17 @@ export default function AdminDashboard() {
       color: "bg-brand-tint text-brand",
     },
     {
-      label: "Media Items",
-      count: stats.media,
+      label: "Media Events",
+      count: stats.mediaEvents,
       icon: Image,
       href: "/admin/media",
       color: "bg-coral/10 text-coral",
     },
     {
-      label: "Blog Posts",
-      count: stats.blogPosts,
-      icon: FileText,
-      href: "/admin/blog",
+      label: "Resources",
+      count: stats.resources,
+      icon: BookOpen,
+      href: "/admin/resources",
       color: "bg-brand-soft text-brand-dark",
     },
     {
@@ -101,8 +101,8 @@ export default function AdminDashboard() {
       <div className="flex flex-wrap gap-3">
         {[
           { label: "New Case Study", href: "/admin/case-studies?new=1" },
-          { label: "Upload Media", href: "/admin/media?new=1" },
-          { label: "New Blog Post", href: "/admin/blog?new=1" },
+          { label: "New Media Event", href: "/admin/media?new=1" },
+          { label: "New Resource", href: "/admin/resources?new=1" },
         ].map((action) => (
           <Link
             key={action.label}

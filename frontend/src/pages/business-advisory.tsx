@@ -16,7 +16,8 @@ import {
   Cpu,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
-import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
+import { ResourceTicker } from "@/components/shared/resource-ticker";
+import { useResourcesForService } from "@/hooks/use-resources";
 import { useAssets } from "@/hooks/use-site-assets";
 
 /* ================================================================== */
@@ -167,6 +168,7 @@ const audiences = [
 
 export default function BusinessAdvisoryPage() {
   const asset = useAssets();
+  const resourceItems = useResourcesForService("Business Advisory");
   const faqs = [
     {
       question: "What does business advisory include at TrueLedger?",
@@ -457,7 +459,7 @@ export default function BusinessAdvisoryPage() {
         <div className="relative w-full">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F5F3F8] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F5F3F8] to-transparent" />
-          <ResourceTicker items={resourcesForService("Business Advisory")} />
+          <ResourceTicker items={resourceItems} />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import { ArrowUpRight, Download, FileText, ListChecks, Newspaper, PenLine, PlayCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WhitepaperDownloadModal } from "@/components/shared/whitepaper-download-modal";
-import { resources, coverFor, type Resource } from "@/pages/resources";
+import { coverFor, type Resource } from "@/lib/resources";
 import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
@@ -25,11 +25,6 @@ const categoryColors: Record<string, string> = {
   "Blog Post": "#3b82f6",
   Newsletter: "#B03B2D",
 };
-
-/** Resources filed under the given service area on the Resources page. */
-export function resourcesForService(service: string, limit = 8): Resource[] {
-  return resources.filter((r) => r.service === service).slice(0, limit);
-}
 
 function ResourceCard({ res }: { res: Resource }) {
   const asset = useAssets();

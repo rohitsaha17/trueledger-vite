@@ -230,6 +230,7 @@ export default function SmallMidSizeBusinessesPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <video
+          key={asset("small-mid-size-businesses.services.background-video")}
           autoPlay
           muted
           loop

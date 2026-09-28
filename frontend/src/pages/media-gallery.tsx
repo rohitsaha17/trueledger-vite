@@ -19,15 +19,13 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { api, resolveAssetUrl } from "@/lib/api";
-import { useAssets } from "@/hooks/use-site-assets";
 import { cn } from "@/lib/utils";
-import type { MediaItem } from "@/types/database";
 import {
-  mediaYears,
+  fetchMediaYears,
   type MediaEvent,
   type MediaEventKind,
-} from "@/data/media-events";
+  type MediaYear,
+} from "@/lib/media-events";
 
 /* ------------------------------------------------------------------ */
 /*  Per-kind styling                                                    */
@@ -76,42 +74,20 @@ interface LightboxState {
 /* ------------------------------------------------------------------ */
 
 export default function MediaGalleryPage() {
-  const [items, setItems] = useState<MediaItem[]>([]);
+  /* Events are managed in Admin → Media Gallery */
+  const [eventYears, setEventYears] = useState<MediaYear[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeYear, setActiveYear] = useState("All");
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
-  const asset = useAssets();
 
   useEffect(() => {
-    api
-      .get<MediaItem[]>("/media")
-      .then(setItems)
-      .catch(() => setItems([]))
+    fetchMediaYears()
+      .then(setEventYears)
+      .catch(() => setEventYears([]))
       .finally(() => setLoading(false));
   }, []);
 
-  /* Event photos resolved through Site Assets so the admin can replace them */
-  const eventYears = useMemo(
-    () =>
-      mediaYears.map((y) => ({
-        ...y,
-        events: y.events.map((e) => ({
-          ...e,
-          images: e.images.map((_, i) => asset(`media.events.${e.slug}.${i + 1}`)),
-        })),
-      })),
-    [asset],
-  );
-
-  const years = useMemo(() => ["All", ...mediaYears.map((y) => y.year)], []);
-
-  const totalPhotos = useMemo(
-    () =>
-      mediaYears
-        .flatMap((y) => y.events)
-        .reduce((s, e) => s + e.images.length, 0),
-    [],
-  );
+  const years = useMemo(() => ["All", ...eventYears.map((y) => y.year)], [eventYears]);
 
   /* A slow drifting strip of photos behind the hero */
   const heroStrip = useMemo(
@@ -330,64 +306,7 @@ export default function MediaGalleryPage() {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  ADMIN-MANAGED EXTRAS                                        */}
-      {/* ============================================================ */}
-      {!loading && items.length > 0 && (
-        <section className="border-t border-black/[0.06] bg-brand-tint/40 py-16 md:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <h2 className="mb-8 font-heading text-2xl font-bold text-ink md:text-3xl">
-                More from TrueLedger
-              </h2>
-            </AnimatedSection>
-            <div className="columns-2 gap-4 space-y-4 md:columns-3 lg:columns-4">
-              {items.map((item, i) => (
-                <motion.button
-                  key={item.id}
-                  className="group block w-full break-inside-avoid cursor-pointer text-left"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: Math.min(i, 8) * 0.05 }}
-                  whileHover={{ y: -3 }}
-                  onClick={() =>
-                    openLightbox([resolveAssetUrl(item.image_url)], 0, item.title ?? "")
-                  }
-                >
-                  <div className="overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-[0_18px_40px_-18px_rgba(77,57,127,0.35)]">
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={resolveAssetUrl(item.image_url)}
-                        alt={item.title}
-                        className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <span className="absolute inset-0 bg-brand/0 transition-colors duration-300 group-hover:bg-brand/10" />
-                    </div>
-                    {(item.title || item.description) && (
-                      <div className="p-4">
-                        {item.title && (
-                          <h3 className="mb-1 font-heading text-sm font-semibold text-ink">
-                            {item.title}
-                          </h3>
-                        )}
-                        {item.description && (
-                          <p className="line-clamp-2 text-xs text-muted-foreground">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {totalPhotos === 0 && (
+      {!loading && eventYears.length === 0 && (
         <div className="pb-20 text-center">
           <Camera className="mx-auto mb-6 size-16 text-brand/20" />
           <p className="text-muted-foreground">

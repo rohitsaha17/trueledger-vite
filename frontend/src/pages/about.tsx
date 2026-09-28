@@ -203,6 +203,7 @@ export default function AboutPage() {
             />
 
             <video
+              key={asset("about.hero.video")}
               autoPlay
               muted
               loop

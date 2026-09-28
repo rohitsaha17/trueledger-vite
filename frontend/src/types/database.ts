@@ -4,35 +4,46 @@ export interface CaseStudy {
   slug: string;
   client_name: string;
   industry: string;
+  service: string;
   challenge: string;
   solution: string;
   results: string;
   featured_image: string;
   published: boolean;
+  sort_order: number;
   created_at: string;
   updated_at: string;
 }
 
-export interface MediaItem {
+export interface ResourceItem {
   id: string;
   title: string;
-  description: string;
-  image_url: string;
   category: string;
+  service: string;
+  link: string;
+  pdf: string;
+  cover: string;
   published: boolean;
+  sort_order: number;
   created_at: string;
+  updated_at: string;
 }
 
-export interface BlogPost {
+export interface MediaEventItem {
   id: string;
   title: string;
   slug: string;
-  excerpt: string;
-  content: string;
-  featured_image: string;
-  author: string;
-  category: string;
+  year: string;
+  date_label: string;
+  kind: string;
+  description: string;
+  images: string[];
+  poster: boolean;
+  video_url: string;
+  doc_url: string;
+  doc_label: string;
   published: boolean;
+  sort_order: number;
   created_at: string;
   updated_at: string;
 }

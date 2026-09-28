@@ -12,7 +12,8 @@ import {
   ReceiptText,
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
-import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
+import { ResourceTicker } from "@/components/shared/resource-ticker";
+import { useResourcesForService } from "@/hooks/use-resources";
 import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
@@ -126,6 +127,7 @@ const approachSteps = [
 
 export default function TaxComplianceAdvisoryPage() {
   const asset = useAssets();
+  const resourceItems = useResourcesForService("Tax Compliance & Advisory");
   const faqs = [
     {
       question: "Which jurisdictions do you handle tax filings for?",
@@ -184,6 +186,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
         <video
+          key={asset("tax-compliance-advisory.individuals.background-video")}
           autoPlay
           muted
           loop
@@ -240,6 +243,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden bg-[#140e2a]">
         <video
+          key={asset("tax-compliance-advisory.businesses.background-video")}
           autoPlay
           muted
           loop
@@ -417,7 +421,7 @@ export default function TaxComplianceAdvisoryPage() {
         <div className="relative w-full">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F5F3F8] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F5F3F8] to-transparent" />
-          <ResourceTicker items={resourcesForService("Tax Compliance & Advisory")} />
+          <ResourceTicker items={resourceItems} />
         </div>
       </section>
 

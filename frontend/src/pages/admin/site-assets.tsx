@@ -188,7 +188,7 @@ function AssetCard({
               label="Replace"
               onUploaded={onChange}
             />
-            <Button size="sm" variant="ghost" onClick={() => setUrlInput(override ?? "")}>
+            <Button size="sm" variant="ghost" onClick={() => setUrlInput("")}>
               <Link2 className="size-3.5" /> Use URL
             </Button>
             {override && (

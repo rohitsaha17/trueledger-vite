@@ -1,0 +1,462 @@
+[
+  {
+    "title": "Building a Scalable Nonprofit Accounting & Advisory Practice in the United States",
+    "category": "WhitePaper",
+    "service": "Accounting & Bookkeeping",
+    "link": "/whitepapers/nonprofit-practice.pdf",
+    "pdf": "/whitepapers/nonprofit-practice.pdf",
+    "cover": "https://images.unsplash.com/photo-1560220604-1985ebfe28b1?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 1
+  },
+  {
+    "title": "Practical AI Adoption in Client Accounting Services (CAS)",
+    "category": "WhitePaper",
+    "service": "Accounting & Bookkeeping",
+    "link": "/whitepapers/ai-adoption-cas.pdf",
+    "pdf": "/whitepapers/ai-adoption-cas.pdf",
+    "cover": "https://images.unsplash.com/photo-1694903089438-bf28d4697d9a?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 2
+  },
+  {
+    "title": "AI Solution Due Diligence for Accounting Firms",
+    "category": "WhitePaper",
+    "service": "CPA Support",
+    "link": "/whitepapers/ai-due-diligence.pdf",
+    "pdf": "/whitepapers/ai-due-diligence.pdf",
+    "cover": "https://images.unsplash.com/photo-1743796055664-3473eedab36e?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 3
+  },
+  {
+    "title": "US GAAP Revenue Recognition for AI-Native SaaS Companies",
+    "category": "WhitePaper",
+    "service": "Accounting & Bookkeeping",
+    "link": "/whitepapers/usgaap-ai-saas.pdf",
+    "pdf": "/whitepapers/usgaap-ai-saas.pdf",
+    "cover": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 4
+  },
+  {
+    "title": "Clean Books & Compliance: Why They Matter for CFOs & Advisors",
+    "category": "WhitePaper",
+    "service": "Accounting & Bookkeeping",
+    "link": "/whitepapers/clean-books.pdf",
+    "pdf": "/whitepapers/clean-books.pdf",
+    "cover": "https://images.unsplash.com/photo-1768839724256-28cd4a373209?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 5
+  },
+  {
+    "title": "IEEPA Tariff Refund Claims: Technical Accounting Analysis",
+    "category": "WhitePaper",
+    "service": "Accounting & Bookkeeping",
+    "link": "/whitepapers/ieepa-refund.pdf",
+    "pdf": "/whitepapers/ieepa-refund.pdf",
+    "cover": "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 6
+  },
+  {
+    "title": "Laid Off on H-1B in 2026? The US Tax Checklist",
+    "category": "WhitePaper",
+    "service": "Tax Compliance & Advisory",
+    "link": "/whitepapers/h1b-tax.pdf",
+    "pdf": "/whitepapers/h1b-tax.pdf",
+    "cover": "https://images.unsplash.com/photo-1655722724451-0df658a2ab23?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 7
+  },
+  {
+    "title": "Mexico Tariff Hike: Impact on Indian Exports",
+    "category": "WhitePaper",
+    "service": "Global Entity Setup",
+    "link": "/whitepapers/mexico-tariff.pdf",
+    "pdf": "/whitepapers/mexico-tariff.pdf",
+    "cover": "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 8
+  },
+  {
+    "title": "Navigating India's Investment Frontier: Union Budget 2026-27",
+    "category": "WhitePaper",
+    "service": "Global Entity Setup",
+    "link": "/whitepapers/india-budget.pdf",
+    "pdf": "/whitepapers/india-budget.pdf",
+    "cover": "https://images.unsplash.com/photo-1565374392032-8007fb37c26e?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 9
+  },
+  {
+    "title": "Self-Managed Superannuation Fund (SMSF) in Australia",
+    "category": "WhitePaper",
+    "service": "Global Entity Setup",
+    "link": "/whitepapers/smsf-australia.pdf",
+    "pdf": "/whitepapers/smsf-australia.pdf",
+    "cover": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 10
+  },
+  {
+    "title": "Multi-State Income Taxes — Case Study",
+    "category": "WhitePaper",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7442633798724247552",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1487730202306-21b1a371bab0?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 11
+  },
+  {
+    "title": "US Tax Season 2025 — Practitioner FAQ Reference",
+    "category": "Guide",
+    "service": "Tax Compliance & Advisory",
+    "link": "/resources/us-tax-season-2025-faq.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 12
+  },
+  {
+    "title": "Outsourcing Assessment Checklist",
+    "category": "Guide",
+    "service": "CPA Support",
+    "link": "/resources/outsourcing-assessment-checklist.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1761558794306-466448dab4bc?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 13
+  },
+  {
+    "title": "AI Due Diligence Checklist",
+    "category": "Guide",
+    "service": "CPA Support",
+    "link": "/resources/ai-due-diligence-checklist.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1744640326166-433469d102f2?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 14
+  },
+  {
+    "title": "How Trump's Account Works",
+    "category": "Guide",
+    "service": "Tax Compliance & Advisory",
+    "link": "/resources/trump-accounts.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1607863680198-23d4b2565df0?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 15
+  },
+  {
+    "title": "Qualified Business Income Deductions",
+    "category": "Guide",
+    "service": "Tax Compliance & Advisory",
+    "link": "/resources/qbi-deduction.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1772588627354-ca3617853217?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 16
+  },
+  {
+    "title": "Gain Exclusion on Sale of a Principal Residence",
+    "category": "Guide",
+    "service": "Tax Compliance & Advisory",
+    "link": "/resources/principal-residence-gain-exclusion.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 17
+  },
+  {
+    "title": "Client Onboarding Interview Guide",
+    "category": "Guide",
+    "service": "Accounting & Bookkeeping",
+    "link": "/resources/client-onboarding-interview-guide.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 18
+  },
+  {
+    "title": "SAFE Instruments — Explained",
+    "category": "Guide",
+    "service": "Global Entity Setup",
+    "link": "/resources/safe-instruments-explained.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1764231467852-b609a742e082?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 19
+  },
+  {
+    "title": "5 Tips for Cash Flow Discipline",
+    "category": "Guide",
+    "service": "Accounting & Bookkeeping",
+    "link": "/resources/cash-flow-discipline.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1772413438617-937e44f2642e?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 20
+  },
+  {
+    "title": "Top Mistakes to Avoid While Filing Individual Taxes",
+    "category": "Guide",
+    "service": "Tax Compliance & Advisory",
+    "link": "/resources/top-individual-tax-filing-mistakes.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 21
+  },
+  {
+    "title": "Building a Better Firm — Selecting the Right Technology",
+    "category": "Guide",
+    "service": "Business Advisory",
+    "link": "/resources/selecting-the-right-technology.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 22
+  },
+  {
+    "title": "AI Tools — Kick Demo",
+    "category": "Video",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://youtu.be/epi0FcveBSU?si=vBOu5ETioajUGav1",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1616531770192-6eaea74c2456?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 23
+  },
+  {
+    "title": "AI Tools — Holistiplan Demo",
+    "category": "Video",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://canva.link/cyoxx48rz858lxs",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 24
+  },
+  {
+    "title": "AI Tools — AICPA Josi Demo",
+    "category": "Video",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://youtu.be/SrWSjImK6DQ?si=TuLs50TrZSWq-uD_",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 25
+  },
+  {
+    "title": "AI Tools — Spotlight Reporting Demo",
+    "category": "Video",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://youtu.be/KS29lMb-G58?si=oMhJrPP5pAbR8I4Z",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1686061592689-312bbfb5c055?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 26
+  },
+  {
+    "title": "AI Developments",
+    "category": "Newsletter",
+    "service": "Business Advisory",
+    "link": "/resources/ai-developments-newsletter.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 27
+  },
+  {
+    "title": "OBBA and Founders Tax",
+    "category": "Blog Post",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7468561334834475008",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 28
+  },
+  {
+    "title": "H1B Laid Off — Tax Implications",
+    "category": "Blog Post",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7468212225095192576",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1553697388-94e804e2f0f6?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 29
+  },
+  {
+    "title": "13-Week Cash Flow Forecast",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7467596800900628480",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1516383274235-5f42d6c6426d?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 30
+  },
+  {
+    "title": "Real Estate Tax Issues",
+    "category": "Blog Post",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7467150846783533056",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1729505305192-610539203144?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 31
+  },
+  {
+    "title": "Complex Cross-Border Returns",
+    "category": "Blog Post",
+    "service": "CPA Support",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7465644754534445056",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 32
+  },
+  {
+    "title": "SEC Reporting Changes",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7460992869420421120",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1648275913341-7973ae7bc9b3?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 33
+  },
+  {
+    "title": "AI Risk",
+    "category": "Blog Post",
+    "service": "Business Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7458043336856322048",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1771931322109-180bb1b35bf8?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 34
+  },
+  {
+    "title": "How Finance Teams Are Using Automation",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7457474051050053632",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 35
+  },
+  {
+    "title": "Measuring AI ROI",
+    "category": "Blog Post",
+    "service": "Business Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7456961203966455808",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1592495989226-03f88104f8cc?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 36
+  },
+  {
+    "title": "Tips for Cash Flow Discipline in New Business",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7455129689959878657",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1633158829875-e5316a358c6f?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 37
+  },
+  {
+    "title": "Should You Do a Roth Conversion?",
+    "category": "Blog Post",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7454910555083100161",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1768839724098-d2541fe1311d?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 38
+  },
+  {
+    "title": "Executive Turnover Is Down. AI Clarity Is Not.",
+    "category": "Blog Post",
+    "service": "Business Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7449509327331033088",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 39
+  },
+  {
+    "title": "Audit Triggers Most Businesses Miss",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7447579650052001793",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1706531008577-071672e7bf50?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 40
+  },
+  {
+    "title": "Planning Ideas for Your Clients",
+    "category": "Blog Post",
+    "service": "Tax Compliance & Advisory",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7441849656910905345",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1672380135241-c024f7fbfa13?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 41
+  },
+  {
+    "title": "Startups Driving the Next Wave of Innovation in the Accounting Profession",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7438175389698445312",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 42
+  },
+  {
+    "title": "5 Startups Using AI and Automation to Transform Accounting, Audit, and Tax",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "/resources/five-startups-ai-accounting.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 43
+  },
+  {
+    "title": "Analysis of India–USA Bilateral Trade Deal",
+    "category": "Blog Post",
+    "service": "Global Entity Setup",
+    "link": "https://canva.link/j3r01gnhxif1ykt",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1638262052640-82e94d64664a?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 44
+  },
+  {
+    "title": "India–UK Free Trade Agreement Signed",
+    "category": "Blog Post",
+    "service": "Global Entity Setup",
+    "link": "/resources/india-uk-free-trade-agreement.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 45
+  },
+  {
+    "title": "Navigating Tariffs — Accounting Implications",
+    "category": "Blog Post",
+    "service": "Accounting & Bookkeeping",
+    "link": "/resources/navigating-tariffs.pdf",
+    "pdf": "",
+    "cover": "https://images.unsplash.com/photo-1590497008432-598f04441de8?auto=format&fit=crop&w=800&q=70",
+    "published": true,
+    "sort_order": 46
+  }
+]

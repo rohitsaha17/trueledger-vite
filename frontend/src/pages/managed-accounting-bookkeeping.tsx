@@ -3,7 +3,8 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ServiceFAQ } from "@/components/shared/service-faq";
 import { FeatureCard } from "@/components/shared/feature-card";
-import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
+import { ResourceTicker } from "@/components/shared/resource-ticker";
+import { useResourcesForService } from "@/hooks/use-resources";
 import type { ZigzagStep } from "@/components/shared/zigzag-timeline";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -228,6 +229,7 @@ function WhatWeProvideSection() {
   return (
     <section className="py-16 md:py-20 relative overflow-hidden">
       <video
+        key={asset("managed-accounting-bookkeeping.what-we-deliver.background-video")}
         autoPlay
         muted
         loop
@@ -512,7 +514,7 @@ function TechAdvantageSection() {
 function RelatedContentSection() {
   /* Pulled straight from the Resources page, so only pieces that actually
      exist there are shown — and each card opens that resource. */
-  const items = resourcesForService("Accounting & Bookkeeping");
+  const items = useResourcesForService("Accounting & Bookkeeping");
 
   return (
     <section className="py-16 md:py-20 bg-brand-tint overflow-hidden">

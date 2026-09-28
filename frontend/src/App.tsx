@@ -25,7 +25,6 @@ import CaseStudiesPage from "@/pages/case-studies";
 import CaseStudyDetailPage from "@/pages/case-study-detail";
 import MediaGalleryPage from "@/pages/media-gallery";
 import ResourcesPage from "@/pages/resources";
-import BlogPostPage from "@/pages/blog-post";
 import AISaaSStartupsPage from "@/pages/sectors/ai-saas-startups";
 import HospitalityRestaurantsPage from "@/pages/sectors/hospitality-restaurants";
 import SmallMidSizeBusinessesPage from "@/pages/sectors/small-mid-size-businesses";
@@ -37,8 +36,8 @@ import AdminLoginPage from "@/pages/admin/login";
 import AdminLayout from "@/pages/admin/layout";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminCaseStudies from "@/pages/admin/case-studies";
+import AdminResources from "@/pages/admin/resources";
 import AdminMedia from "@/pages/admin/media";
-import AdminBlog from "@/pages/admin/blog";
 import AdminEnquiries from "@/pages/admin/enquiries";
 import AdminSubscribers from "@/pages/admin/subscribers";
 import AdminSiteAssets from "@/pages/admin/site-assets";
@@ -87,8 +86,8 @@ function App() {
           >
             <Route index element={<AdminDashboard />} />
             <Route path="case-studies" element={<AdminCaseStudies />} />
+            <Route path="resources" element={<AdminResources />} />
             <Route path="media" element={<AdminMedia />} />
-            <Route path="blog" element={<AdminBlog />} />
             <Route path="enquiries" element={<AdminEnquiries />} />
             <Route path="subscribers" element={<AdminSubscribers />} />
             <Route path="site-assets" element={<AdminSiteAssets />} />
@@ -128,7 +127,6 @@ function App() {
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
         <Route path="/media" element={<MediaGalleryPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
-        <Route path="/resources/:slug" element={<BlogPostPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/insights" element={<PlaceholderPage />} />
         <Route path="/faq" element={<FAQPage />} />
