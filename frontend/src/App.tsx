@@ -5,6 +5,7 @@ import { CookieConsent } from "@/components/shared/cookie-consent";
 import { RouteSeo } from "@/components/shared/route-seo";
 import { Analytics } from "@/components/shared/analytics";
 import { AdminGuard } from "@/components/admin/admin-guard";
+import { SiteAssetsProvider } from "@/components/shared/site-assets-provider";
 import HomePage from "@/pages/home";
 import GlobalEntitySetupPage from "@/pages/global-entity-setup";
 import ManagedAccountingBookkeepingPage from "@/pages/managed-accounting-bookkeeping";
@@ -40,6 +41,7 @@ import AdminMedia from "@/pages/admin/media";
 import AdminBlog from "@/pages/admin/blog";
 import AdminEnquiries from "@/pages/admin/enquiries";
 import AdminSubscribers from "@/pages/admin/subscribers";
+import AdminSiteAssets from "@/pages/admin/site-assets";
 import { useEffect } from "react";
 
 function ScrollToTop() {
@@ -52,14 +54,16 @@ function ScrollToTop() {
 
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <RouteSeo />
-      <Analytics />
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer />
-      <CookieConsent />
-    </div>
+    <SiteAssetsProvider>
+      <div className="flex flex-col min-h-screen">
+        <RouteSeo />
+        <Analytics />
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <CookieConsent />
+      </div>
+    </SiteAssetsProvider>
   );
 }
 
@@ -87,6 +91,7 @@ function App() {
             <Route path="blog" element={<AdminBlog />} />
             <Route path="enquiries" element={<AdminEnquiries />} />
             <Route path="subscribers" element={<AdminSubscribers />} />
+            <Route path="site-assets" element={<AdminSiteAssets />} />
           </Route>
         </Routes>
       </>

@@ -13,6 +13,7 @@ import {
 import { api } from "@/lib/api";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -122,6 +123,7 @@ const mapDots = [
 const formSteps = ["Your Info", "Details", "Message"];
 
 export default function ContactPage() {
+  const asset = useAssets();
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -158,7 +160,7 @@ export default function ContactPage() {
       <section className="relative overflow-hidden bg-[#140e2a]">
         {/* Team photo — the people you actually reach */}
         <img
-          src="/images/team/team-group.jpg"
+          src={asset("contact.hero.team-photo")}
           alt="The TrueLedger team"
           className="absolute inset-0 h-full w-full object-cover object-[center_25%]"
         />
@@ -478,7 +480,7 @@ export default function ContactPage() {
       {/*  SECTION 3 — CLOSING CTA                                     */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("contact.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

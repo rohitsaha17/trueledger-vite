@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/carousel";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { useAssets } from "@/hooks/use-site-assets";
 
 const clients = [
   {
@@ -20,7 +21,7 @@ const clients = [
     sector: "Technology Services Company",
     flag: "🇺🇸",
     tag: "End-to-End Accounting",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_144911_1ba7e70a-6904-48da-9b86-708584dee5c0_min.webp",
+    imageKey: "home.clients.michigan-technology-services",
     text: "An award-winning AI and data analytics firm serving Fortune 500 companies, with a strong footprint in the automotive industry across the US and India. TrueLedger manages their end-to-end accounting function — from bookkeeping and financial reporting to AP, AR, and payroll processing.",
   },
   {
@@ -28,7 +29,7 @@ const clients = [
     sector: "Full-Scale Restaurant",
     flag: "🇺🇸",
     tag: "Full Financial Operations",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_144914_fad1ab72-7b3d-4067-9ba4-1b24491d3548_min.webp",
+    imageKey: "home.clients.new-york-restaurant",
     text: "A dynamic multi-venue hospitality group operating in one of the world's most competitive restaurant and bar markets. TrueLedger handles their full financial operations — accounting, AP processing, entity formation, tax compliance, and management reporting.",
   },
   {
@@ -36,7 +37,7 @@ const clients = [
     sector: "Global Hotel Chain",
     flag: "🇮🇳",
     tag: "Payroll & Sales Tax",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+    imageKey: "home.clients.india-hotel-chain",
     text: "A global hospitality chain founded in India, rapidly expanding its footprint across the United States. TrueLedger supported US operations with payroll management and multi-state sales tax registrations across their property portfolio.",
   },
   {
@@ -44,7 +45,7 @@ const clients = [
     sector: "Realty & Hospitality Group",
     flag: "🇨🇦",
     tag: "Bookkeeping & Payroll",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145017_54d2f084-689f-43ee-8df1-99b9426c335b_min.webp",
+    imageKey: "home.clients.canada-realty-hospitality",
     text: "A Canadian real estate investment group with a reputation built on results, operating across multiple business verticals. TrueLedger provides bookkeeping, payroll processing, and financial reporting to support their growing operations.",
   },
   {
@@ -52,12 +53,13 @@ const clients = [
     sector: "FMCG & Beverage Group",
     flag: "🇦🇺",
     tag: "Accounts Payable",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_145019_8444f3a6-836d-4a21-a01c-c2fc4256e6a5_min.webp",
+    imageKey: "home.clients.melbourne-fmcg-beverage",
     text: "An innovative Australian food and beverage company behind category-leading products sold across 20,000 retail outlets nationally and exported across Asia. TrueLedger supports their accounts payable operations across their multi-location business.",
   },
 ];
 
 export function TrustedClients() {
+  const asset = useAssets();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -99,7 +101,7 @@ export function TrustedClients() {
                       {/* Industry image */}
                       <div className="relative h-48 sm:h-56 overflow-hidden">
                         <img
-                          src={c.image}
+                          src={asset(c.imageKey)}
                           alt={c.tag}
                           className="w-full h-full object-cover"
                           loading={i === 0 ? "eager" : "lazy"}

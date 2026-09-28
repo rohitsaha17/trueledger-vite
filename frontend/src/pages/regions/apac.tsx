@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { LinkedInButton } from "@/components/shared/linkedin-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
@@ -70,6 +71,8 @@ const services = [
 /* ================================================================== */
 
 export default function APACPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -85,8 +88,8 @@ export default function APACPage() {
           </>
         }
         description="TrueLedger's APAC practice runs through direct partnerships with a Singapore-based licensed tax agent and a fellow CPA Australia member — giving clients ATO- and IRAS-fluent compliance coordinated end-to-end through a single TrueLedger point of contact."
-        imageSrc="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4"
+        imageSrc={asset("apac.hero.image")}
+        videoSrc={asset("apac.hero.video")}
       />
 
       {/* ============================================================ */}
@@ -185,7 +188,7 @@ export default function APACPage() {
                 <div className="shrink-0 flex flex-col items-center gap-4">
                   <div className="relative size-40 md:size-48 rounded-full overflow-hidden bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10 ring-4 ring-white shadow-xl shadow-[#4D397F]/15">
                     <img
-                      src="/images/team/hrithvik-raj.jpg"
+                      src={asset("apac.leadership.hrithvik-raj")}
                       alt="CA Hrithvik Raj, Partner, TrueLedger"
                       className="absolute inset-0 h-full w-full object-cover object-top"
                       loading="lazy"

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { LinkedInButton } from "@/components/shared/linkedin-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
@@ -57,6 +58,8 @@ const services = [
 /* ================================================================== */
 
 export default function EuropeUKPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -72,8 +75,8 @@ export default function EuropeUKPage() {
           </>
         }
         description="TrueLedger's European practice operates through direct collaboration with a UK-qualified Chartered Accountant, giving clients HMRC- and Companies House-fluent support without the overhead of building an in-house UK team."
-        imageSrc="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/5765154/5765154-uhd_2560_1440_24fps.mp4"
+        imageSrc={asset("europe-uk.hero.image")}
+        videoSrc={asset("europe-uk.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -138,7 +141,7 @@ export default function EuropeUKPage() {
                 <div className="relative size-44 md:size-52 rounded-full bg-gradient-to-br from-[#4D397F] via-[#6B5A9E] to-[#EE672C]/60 p-1 shadow-xl shadow-[#4D397F]/15">
                   <div className="relative size-full overflow-hidden rounded-full bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
                     <img
-                      src="/images/team/aseem-chawla.jpg"
+                      src={asset("europe-uk.leadership.aseem-chawla")}
                       alt="Aseem Chawla, Senior Advisor to TrueLedger"
                       className="absolute inset-0 h-full w-full object-cover object-top"
                       loading="lazy"

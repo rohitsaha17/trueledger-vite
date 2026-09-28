@@ -11,6 +11,7 @@ import { ChevronRight, Check } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechPyramid3D } from "@/components/shared/tech-pyramid-3d";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ================================================================== */
 /*  Data                                                               */
@@ -152,45 +153,45 @@ const techStack = [
   {
     label: "Cloud Based Accounting",
     tools: [
-      { name: "QuickBooks", logo: "https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128" },
-      { name: "Xero", logo: "https://www.google.com/s2/favicons?domain=xero.com&sz=128" },
+      { name: "QuickBooks", logoKey: "managed-accounting-bookkeeping.tech-stack.quickbooks" },
+      { name: "Xero", logoKey: "managed-accounting-bookkeeping.tech-stack.xero" },
     ],
   },
   {
     label: "Bill Processing",
     tools: [
-      { name: "Bill.com", logo: "https://www.google.com/s2/favicons?domain=bill.com&sz=128" },
-      { name: "Dext", logo: "/logos/software/dext.png" },
-      { name: "Stampli", logo: "https://www.google.com/s2/favicons?domain=stampli.com&sz=128" },
+      { name: "Bill.com", logoKey: "managed-accounting-bookkeeping.tech-stack.bill" },
+      { name: "Dext", logoKey: "managed-accounting-bookkeeping.tech-stack.dext" },
+      { name: "Stampli", logoKey: "managed-accounting-bookkeeping.tech-stack.stampli" },
     ],
   },
   {
     label: "AI Native",
     tools: [
-      { name: "Campfire", logo: "https://www.google.com/s2/favicons?domain=campfire.ai&sz=128" },
-      { name: "Digits", logo: "https://www.google.com/s2/favicons?domain=digits.com&sz=128" },
-      { name: "Kick", logo: "https://www.google.com/s2/favicons?domain=kick.co&sz=128" },
-      { name: "Puzzle", logo: "https://www.google.com/s2/favicons?domain=puzzle.io&sz=128" },
+      { name: "Campfire", logoKey: "managed-accounting-bookkeeping.tech-stack.campfire" },
+      { name: "Digits", logoKey: "managed-accounting-bookkeeping.tech-stack.digits" },
+      { name: "Kick", logoKey: "managed-accounting-bookkeeping.tech-stack.kick" },
+      { name: "Puzzle", logoKey: "managed-accounting-bookkeeping.tech-stack.puzzle" },
     ],
   },
   {
     label: "Payroll & Workflow",
     tools: [
-      { name: "ADP", logo: "https://www.google.com/s2/favicons?domain=adp.com&sz=128" },
-      { name: "Rippling", logo: "https://www.google.com/s2/favicons?domain=rippling.com&sz=128" },
-      { name: "Gusto", logo: "https://www.google.com/s2/favicons?domain=gusto.com&sz=128" },
-      { name: "Karbon", logo: "https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" },
-      { name: "Canopy", logo: "https://www.google.com/s2/favicons?domain=canopytax.com&sz=128" },
+      { name: "ADP", logoKey: "managed-accounting-bookkeeping.tech-stack.adp" },
+      { name: "Rippling", logoKey: "managed-accounting-bookkeeping.tech-stack.rippling" },
+      { name: "Gusto", logoKey: "managed-accounting-bookkeeping.tech-stack.gusto" },
+      { name: "Karbon", logoKey: "managed-accounting-bookkeeping.tech-stack.karbon" },
+      { name: "Canopy", logoKey: "managed-accounting-bookkeeping.tech-stack.canopy" },
     ],
   },
   {
     label: "Close & Reporting",
     tools: [
-      { name: "Double", logo: "https://www.google.com/s2/favicons?domain=doublehq.com&sz=128" },
-      { name: "Financial Cents", logo: "https://www.google.com/s2/favicons?domain=financial-cents.com&sz=128" },
-      { name: "Spotlight", logo: "https://www.google.com/s2/favicons?domain=spotlightreporting.com&sz=128" },
-      { name: "FloQast", logo: "https://www.google.com/s2/favicons?domain=floqast.com&sz=128" },
-      { name: "Reach Reporting", logo: "https://www.google.com/s2/favicons?domain=reachreporting.com&sz=128" },
+      { name: "Double", logoKey: "managed-accounting-bookkeeping.tech-stack.double" },
+      { name: "Financial Cents", logoKey: "managed-accounting-bookkeeping.tech-stack.financial-cents" },
+      { name: "Spotlight", logoKey: "managed-accounting-bookkeeping.tech-stack.spotlight" },
+      { name: "FloQast", logoKey: "managed-accounting-bookkeeping.tech-stack.floqast" },
+      { name: "Reach Reporting", logoKey: "managed-accounting-bookkeeping.tech-stack.reach-reporting" },
     ],
   },
 ];
@@ -202,6 +203,7 @@ const techStack = [
 /* ================================================================== */
 
 function HeroSection() {
+  const asset = useAssets();
   return (
       <ServicePageHero
         eyebrow="Managed Accounting & Bookkeeping"
@@ -213,8 +215,8 @@ function HeroSection() {
           </>
         }
         description="Growth demands financial clarity. Accurate books, timely reports, and disciplined compliance don’t just keep you organized — they sharpen your decision-making and give you the confidence to scale."
-        imageSrc="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80"
-        videoSrc="https://videos.pexels.com/video-files/8479064/8479064-hd_1920_1080_25fps.mp4"
+        imageSrc={asset("managed-accounting-bookkeeping.hero.image")}
+        videoSrc={asset("managed-accounting-bookkeeping.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -222,6 +224,7 @@ function HeroSection() {
 }
 
 function WhatWeProvideSection() {
+  const asset = useAssets();
   return (
     <section className="py-16 md:py-20 relative overflow-hidden">
       <video
@@ -231,7 +234,7 @@ function WhatWeProvideSection() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="https://videos.pexels.com/video-files/8298072/8298072-hd_1920_1080_25fps.mp4" type="video/mp4" />
+        <source src={asset("managed-accounting-bookkeeping.what-we-deliver.background-video")} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-white/[0.93]" />
       <div className="absolute inset-0 bg-gradient-to-b from-brand-tint/60 via-transparent to-brand-tint/60" />
@@ -270,12 +273,13 @@ function WhatWeProvideSection() {
 }
 
 function HowWeWorkSection() {
+  const asset = useAssets();
   return (
     <section className="py-16 md:py-20 bg-white relative overflow-hidden">
       {/* Low-opacity background image */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
+          src={asset("managed-accounting-bookkeeping.our-process.background")}
           alt=""
           className="w-full h-full object-cover opacity-[0.24]"
           loading="lazy"
@@ -475,6 +479,12 @@ function PricingSection() {
 }
 
 function TechAdvantageSection() {
+  const asset = useAssets();
+  const tiers = techStack.map((tier) => ({
+    ...tier,
+    tools: tier.tools.map((tool) => ({ name: tool.name, logo: asset(tool.logoKey) })),
+  }));
+
   return (
     <section className="py-16 md:py-20 bg-[#140e2a] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(238,103,44,0.08),transparent_60%)] pointer-events-none" />
@@ -493,7 +503,7 @@ function TechAdvantageSection() {
           </div>
         </AnimatedSection>
 
-        <TechPyramid3D tiers={techStack} />
+        <TechPyramid3D tiers={tiers} />
       </div>
     </section>
   );
@@ -527,6 +537,7 @@ function RelatedContentSection() {
 }
 
 function LinkedInVideoSection() {
+  const asset = useAssets();
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -543,7 +554,7 @@ function LinkedInVideoSection() {
             <div className="relative max-w-3xl mx-auto rounded-2xl overflow-hidden border border-brand/20 shadow-xl shadow-brand/10">
               {/* Thumbnail image */}
               <img
-                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+                src={asset("managed-accounting-bookkeeping.latest-video.thumbnail")}
                 alt="Modern Finance — TrueLedger video"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
@@ -628,9 +639,10 @@ function FAQSection() {
 }
 
 function ClosingCtaSection() {
+  const asset = useAssets();
   return (
     <section className="py-16 md:py-20 relative overflow-hidden">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <img src={asset("managed-accounting-bookkeeping.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       <div className="absolute inset-0 bg-[#140e2a]/70" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
       <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

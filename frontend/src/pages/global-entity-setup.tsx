@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 import { resources, coverFor } from "./resources";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
 /*  Service cards data (new stacking card format)                       */
@@ -75,7 +76,7 @@ const relatedArticles = resources
     title: r.title,
     category: r.category,
     href: r.pdf ?? r.link,
-    cover: coverFor(r),
+    resource: r,
   }));
 
 /* ------------------------------------------------------------------ */
@@ -88,28 +89,28 @@ const audiences = [
     title: "International Founders",
     text: "Expanding into the US market and need the right entity structure from day one.",
     gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210852_c03a1c7c-fa32-4ff0-87c5-12b4d98cf851_min.webp",
+    imageKey: "global-entity-setup.who-this-is-for.international-founders",
   },
   {
     icon: Landmark,
     title: "Multi-State Businesses",
     text: "Establishing a presence in new states or countries with full compliance.",
     gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210853_70276300-ab05-4493-83dc-7e167f6bcc04_min.webp",
+    imageKey: "global-entity-setup.who-this-is-for.multi-state-businesses",
   },
   {
     icon: Rocket,
     title: "Growth-Stage Startups",
     text: "Preparing for investment rounds, cross-border operations, or restructuring.",
     gradient: "from-[#4D397F]/10 via-[#4D397F]/5 to-transparent",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210855_0d847833-42f5-4af2-8fc8-2de8266ec9f7_min.webp",
+    imageKey: "global-entity-setup.who-this-is-for.growth-stage-startups",
   },
   {
     icon: Target,
     title: "Detail-Oriented Owners",
     text: "Who want their structure done right — not just done fast — with long-term clarity.",
     gradient: "from-[#EE672C]/10 via-[#EE672C]/5 to-transparent",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_210856_d3fd93ca-d852-405b-96b7-dcc29808d0e0_min.webp",
+    imageKey: "global-entity-setup.who-this-is-for.detail-oriented-owners",
   },
 ];
 
@@ -118,7 +119,11 @@ const audiences = [
 /* ------------------------------------------------------------------ */
 
 function BlogTicker() {
-  const cards = [...relatedArticles, ...relatedArticles]; // duplicate for seamless loop
+  const asset = useAssets();
+  const cards = [...relatedArticles, ...relatedArticles].map((article) => ({
+    ...article,
+    cover: coverFor(article.resource, asset),
+  })); // duplicate for seamless loop
 
   return (
     <div className="overflow-hidden py-4">
@@ -182,6 +187,7 @@ function BlogTicker() {
 /* ================================================================== */
 
 export default function GlobalEntitySetupPage() {
+  const asset = useAssets();
   const faqs = [
     {
       question: "Which countries can you help set up entities in?",
@@ -228,8 +234,8 @@ export default function GlobalEntitySetupPage() {
           </>
         }
         description="Setting up a business entity is rarely just a formality. The structure you choose, the state you register in, the agreements you put in place — these decisions shape how your business operates, gets taxed, and scales."
-        imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
-        videoSrc="https://videos.pexels.com/video-files/4686756/4686756-hd_1920_1080_24fps.mp4"
+        imageSrc={asset("global-entity-setup.hero.image")}
+        videoSrc={asset("global-entity-setup.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -245,7 +251,7 @@ export default function GlobalEntitySetupPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/8347237/8347237-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          <source src={asset("global-entity-setup.see-how-it-works.background-video")} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-white/[0.92]" />
         <div className="absolute inset-0 bg-gradient-to-br from-brand-tint/80 via-transparent to-brand-soft/40" />
@@ -385,7 +391,7 @@ export default function GlobalEntitySetupPage() {
         {/* Section background — subtle global-network artwork */}
         <div className="pointer-events-none absolute inset-0">
           <img
-            src="/images/backgrounds/global-network.webp"
+            src={asset("global-entity-setup.who-this-is-for.background")}
             alt=""
             className="h-full w-full object-cove
             r"
@@ -408,7 +414,7 @@ export default function GlobalEntitySetupPage() {
                 <AnimatedSection key={item.text} delay={i * 0.1}>
                   <div className="group relative h-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm transition-[border-color,box-shadow] duration-500 ease-out hover:border-brand/25 hover:shadow-[0_20px_44px_-16px_rgba(77,57,127,0.22)]">
                     <img
-                      src={item.image}
+                      src={asset(item.imageKey)}
                       alt=""
                       className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.20] transition-transform duration-700 ease-out group-hover:scale-105"
                       loading="lazy"
@@ -470,7 +476,7 @@ export default function GlobalEntitySetupPage() {
       {/*  SECTION 6 — CLOSING CTA                                      */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("global-entity-setup.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
 import { useSeo } from "@/hooks/use-seo";
 import type { BlogPost } from "@/types/database";
 
@@ -29,7 +29,7 @@ export default function BlogPostPage() {
           description: post.excerpt,
           path: `/resources/${post.slug}`,
           type: "article",
-          image: post.featured_image || undefined,
+          image: post.featured_image ? resolveAssetUrl(post.featured_image) : undefined,
         }
       : null
   );
@@ -103,7 +103,7 @@ export default function BlogPostPage() {
           {post.featured_image && (
             <div className="rounded-2xl overflow-hidden mb-10 border border-black/[0.06]">
               <img
-                src={post.featured_image}
+                src={resolveAssetUrl(post.featured_image)}
                 alt={post.title}
                 className="w-full aspect-[2/1] object-cover"
               />

@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { useAssets } from "@/hooks/use-site-assets";
 
 const services = [
   {
@@ -41,16 +42,15 @@ const services = [
   },
 ];
 
-const sideImage =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165826_ac572644-f557-4a5c-989f-6df5b060ab68_min.webp";
-
 export function ServicesBrief() {
+  const asset = useAssets();
+
   return (
     <section className="py-14 md:py-18 relative overflow-hidden">
       {/* Section background image */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="/images/backgrounds/finance-abstract.webp"
+          src={asset("home.services.background")}
           alt=""
           className="w-full h-full object-cover opacity-[0.7]"
           loading="lazy"
@@ -111,7 +111,7 @@ export function ServicesBrief() {
                 taller service list can't stretch or over-zoom the photo. */}
             <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] lg:max-h-[560px] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src={sideImage}
+                src={asset("home.services.side-image")}
                 alt="TrueLedger financial services"
                 className="absolute inset-0 w-full h-full object-cover object-top"
                 loading="lazy"

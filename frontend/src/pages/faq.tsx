@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { JsonLd } from "@/components/shared/json-ld";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -275,6 +276,7 @@ const faqJsonLd = {
 };
 
 export default function FAQPage() {
+  const asset = useAssets();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
 
   const filteredFaqs =
@@ -404,7 +406,7 @@ export default function FAQPage() {
       {/*  SECTION 3 — CLOSING CTA                                     */}
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("faq.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

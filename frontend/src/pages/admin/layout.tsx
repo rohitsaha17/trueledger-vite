@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   Briefcase,
   Image,
+  Images,
   FileText,
   Inbox,
   Mails,
@@ -13,6 +14,7 @@ import {
 
 const sidebarLinks = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
+  { label: "Site Assets", href: "/admin/site-assets", icon: Images },
   { label: "Case Studies", href: "/admin/case-studies", icon: Briefcase },
   { label: "Media Gallery", href: "/admin/media", icon: Image },
   { label: "Blog Posts", href: "/admin/blog", icon: FileText },

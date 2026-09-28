@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { useAssets } from "@/hooks/use-site-assets";
 import {
   Carousel,
   CarouselContent,
@@ -163,6 +164,7 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 export function Testimonials() {
+  const asset = useAssets();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -200,7 +202,7 @@ export function Testimonials() {
             {/* Google badge */}
             <div className="flex justify-center mt-5">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
-                <img src="https://www.google.com/favicon.ico" alt="Google" className="size-4" />
+                <img src={asset("home.testimonials.google-logo")} alt="Google" className="size-4" />
                 <Stars />
                 <span className="text-sm font-semibold text-white">5.0</span>
                 <span className="text-sm text-white/50">on Google</span>

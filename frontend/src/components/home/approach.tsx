@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { useAssets } from "@/hooks/use-site-assets";
 
 const cards = [
   {
     title: "Deep Expertise, Personal Commitment",
     description:
       "We bring years of experience across global markets and complex business structures — applied personally to every client we work with. You get senior-level thinking, not junior execution.",
-    image:
-      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165821_ae8f5541-03f3-450c-b62a-d7740b512d10_min.webp",
+    imageKey: "home.approach.card-deep-expertise",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <circle cx="24" cy="16" r="8" stroke="currentColor" strokeWidth="2" />
@@ -32,8 +32,7 @@ const cards = [
     title: "Responsive and Reliable Communication",
     description:
       "No chasing, no waiting, no surprises. You'll always have a dedicated point of contact who knows your business inside out and stays ahead of what it needs next.",
-    image:
-      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165822_01a41f97-2fe8-412f-a494-bf7fe4ec6f12_min.webp",
+    imageKey: "home.approach.card-responsive-communication",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <rect
@@ -60,8 +59,7 @@ const cards = [
     title: "Grows As Your Business Grows",
     description:
       "From startup to scale-up, from domestic to global — our advisory evolves with you. The more your business demands, the more we bring to the table.",
-    image:
-      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165825_b8c21a16-bb17-4825-b26d-3026f283e654_min.webp",
+    imageKey: "home.approach.card-grows-with-you",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <path
@@ -85,8 +83,7 @@ const cards = [
     title: "Accurate Financials. Delivered On Time.",
     description:
       "Your financials are only valuable if they're right and ready when you need them. We operate on disciplined timelines and rigorous review standards.",
-    image:
-      "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_165826_ac572644-f557-4a5c-989f-6df5b060ab68_min.webp",
+    imageKey: "home.approach.card-accurate-financials",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="size-6">
         <rect
@@ -117,12 +114,14 @@ const cards = [
 ];
 
 export function Approach() {
+  const asset = useAssets();
+
   return (
     <section className="py-14 md:py-18 relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
+          src={asset("home.approach.background")}
           alt=""
           className="w-full h-full object-cover opacity-[0.22]"
           loading="lazy"
@@ -152,7 +151,7 @@ export function Approach() {
               >
                 {/* Background image at low opacity */}
                 <img
-                  src={card.image}
+                  src={asset(card.imageKey)}
                   alt=""
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.14] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-[0.22]"
                   loading="lazy"

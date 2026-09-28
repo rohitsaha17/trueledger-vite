@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +28,7 @@ const sectors = [
     iconGradient: "from-[#7c6aaf] to-[#4D397F]",
     glowColor: "rgba(77, 57, 127, 0.35)",
     accentColor: "#7c6aaf",
-    bgImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=60",
+    bgImageKey: "who-we-work-with.sectors.established-mid-size-businesses",
     href: "/sectors/small-mid-size-businesses",
   },
   {
@@ -39,7 +40,7 @@ const sectors = [
     iconGradient: "from-[#f7935e] to-[#EE672C]",
     glowColor: "rgba(238, 103, 44, 0.35)",
     accentColor: "#f7935e",
-    bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+    bgImageKey: "who-we-work-with.sectors.high-growth-startups",
     href: "/sectors/ai-saas-startups",
   },
   {
@@ -51,7 +52,7 @@ const sectors = [
     iconGradient: "from-[#5dade2] to-[#2e86c1]",
     glowColor: "rgba(46, 134, 193, 0.35)",
     accentColor: "#5dade2",
-    bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=60",
+    bgImageKey: "who-we-work-with.sectors.ecommerce-retail",
     href: "/sectors/ecommerce-retail",
   },
   {
@@ -63,7 +64,7 @@ const sectors = [
     iconGradient: "from-[#e8a87c] to-[#d4772c]",
     glowColor: "rgba(212, 119, 44, 0.35)",
     accentColor: "#e8a87c",
-    bgImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=60",
+    bgImageKey: "who-we-work-with.sectors.restaurants-supermarket-chains",
     href: "/sectors/hospitality-restaurants",
   },
   {
@@ -75,7 +76,7 @@ const sectors = [
     iconGradient: "from-[#a78bfa] to-[#7c3aed]",
     glowColor: "rgba(124, 58, 237, 0.35)",
     accentColor: "#a78bfa",
-    bgImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60",
+    bgImageKey: "who-we-work-with.sectors.cpa-firms",
     href: "/services/support-to-cpas",
   },
 ];
@@ -245,6 +246,8 @@ export function HeroIllustration() {
 /* ================================================================== */
 
 export default function WhoWeWorkWithPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -262,7 +265,7 @@ export default function WhoWeWorkWithPage() {
             {/* Still of the video's opening frame, sitting underneath it: on a
                 slow or failed connection the hero shows this instead of black. */}
             <img
-              src="/images/posters/about-hero-cinematic.webp"
+              src={asset("who-we-work-with.hero.fallback-image")}
               alt=""
               aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover"
@@ -273,10 +276,10 @@ export default function WhoWeWorkWithPage() {
               muted
               loop
               playsInline
-              poster="/images/posters/about-hero-cinematic.webp"
+              poster={asset("who-we-work-with.hero.video-poster")}
               className="absolute inset-0 w-full h-full object-cover"
             >
-              <source src="/videos/about-hero-cinematic.mp4" type="video/mp4" />
+              <source src={asset("who-we-work-with.hero.video")} type="video/mp4" />
             </video>
 
             {/* Gradient overlays for readability */}
@@ -378,7 +381,7 @@ export default function WhoWeWorkWithPage() {
                   >
                     <div className="relative h-full rounded-[15px] overflow-hidden p-7 sm:p-8">
                       <img
-                        src={sector.bgImage}
+                        src={asset(sector.bgImageKey)}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover scale-110 blur-[3px] transition-transform duration-700 group-hover:scale-125"
                         loading="lazy"
@@ -447,7 +450,7 @@ export default function WhoWeWorkWithPage() {
                   >
                     <div className="relative h-full rounded-[15px] overflow-hidden p-7 sm:p-8">
                       <img
-                        src={sector.bgImage}
+                        src={asset(sector.bgImageKey)}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover scale-110 blur-[3px] transition-transform duration-700 group-hover:scale-125"
                         loading="lazy"
@@ -500,7 +503,7 @@ export default function WhoWeWorkWithPage() {
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=60"
+          src={asset("who-we-work-with.beyond-sectors.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -592,7 +595,7 @@ export default function WhoWeWorkWithPage() {
       {/*  SECTION 4 — CLOSING CTA  ·  LIGHT                           */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden bg-background">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("who-we-work-with.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-white/[0.92]" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/40 to-white/55" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-brand/10 rounded-full blur-[100px] pointer-events-none" />

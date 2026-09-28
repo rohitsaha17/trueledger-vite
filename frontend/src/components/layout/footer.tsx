@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, Clock, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAssets } from "@/hooks/use-site-assets";
 
 const companyLinks = [
   { label: "About Us", href: "/about" },
@@ -44,6 +45,8 @@ function SocialIcon({ d, label, href }: { d: string; label: string; href: string
 }
 
 export function Footer() {
+  const asset = useAssets();
+
   return (
     <footer className="bg-foreground text-white/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
@@ -210,7 +213,7 @@ export function Footer() {
             {/* Digits Partner */}
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-[#1a1a2e] border border-[#6366f1]/30 flex items-center justify-center shrink-0">
-                <img src="https://digits.com/favicon/favicon-256.png?v=3" alt="Digits" className="w-7 h-7 object-contain" />
+                <img src={asset("global.footer.partner-digits")} alt="Digits" className="w-7 h-7 object-contain" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">Digits</p>
@@ -223,7 +226,7 @@ export function Footer() {
             {/* Gusto Partner */}
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-[#1a1a2e] border border-[#f45d48]/30 flex items-center justify-center shrink-0">
-                <img src="https://gusto.com/apple-touch-icon.png" alt="Gusto" className="w-7 h-7 object-contain rounded" />
+                <img src={asset("global.footer.partner-gusto")} alt="Gusto" className="w-7 h-7 object-contain rounded" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">Gusto</p>

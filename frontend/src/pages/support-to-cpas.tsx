@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
 import { FeatureCard } from "@/components/shared/feature-card";
+import { useAssets } from "@/hooks/use-site-assets";
 import {
   CostAdvantageArt,
   QualifiedTeamArt,
@@ -98,6 +99,7 @@ const differentiationCards = [
 /* ================================================================== */
 
 export default function SupportToCPAsPage() {
+  const asset = useAssets();
   const faqs = [
     {
       question: "How does your CPA firm support model work?",
@@ -146,8 +148,8 @@ export default function SupportToCPAsPage() {
           </>
         }
         description="A dedicated offshore accounting team that plugs into your practice — qualified, process-driven, and built to scale with your firm through every season."
-        imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031937_26d5554d-a1a9-4889-9e15-66a57de6358c_min.webp"
-        videoSrc="https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4"
+        imageSrc={asset("support-to-cpas.hero.image")}
+        videoSrc={asset("support-to-cpas.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -163,7 +165,7 @@ export default function SupportToCPAsPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/3252858/3252858-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          <source src={asset("support-to-cpas.how-we-support.background-video")} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/50 via-transparent to-[#140e2a]/50" />
@@ -250,7 +252,7 @@ export default function SupportToCPAsPage() {
               <div className="group bg-white rounded-2xl border border-black/[0.06] shadow-lg overflow-hidden h-full flex flex-col">
                 <div className="relative h-48 shrink-0 overflow-hidden bg-[#140e2a]">
                   <img
-                    src="/images/services/support-cpas.webp"
+                    src={asset("support-to-cpas.whitepapers.position-for-cpa-firms")}
                     alt="Offshore partnership model for CPA firms"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
@@ -284,7 +286,7 @@ export default function SupportToCPAsPage() {
               <div className="group bg-white rounded-2xl border border-black/[0.06] shadow-lg overflow-hidden h-full flex flex-col">
                 <div className="relative h-48 shrink-0 overflow-hidden bg-[#140e2a]">
                   <img
-                    src="/images/services/business-advisory.webp"
+                    src={asset("support-to-cpas.whitepapers.offshoring-readiness-checklist")}
                     alt="CPA firm offshoring readiness assessment"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
@@ -348,7 +350,7 @@ export default function SupportToCPAsPage() {
               <Link to="/case-studies/florida-cpa-peak-season" className="group flex h-full flex-col bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
                 <div className="h-52 shrink-0 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
+                    src={asset("support-to-cpas.case-studies.florida-cpa-peak-season")}
                     alt="Tax season documents"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
@@ -384,7 +386,7 @@ export default function SupportToCPAsPage() {
               <Link to="/case-studies/texas-cpa-real-estate" className="group flex h-full flex-col bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300">
                 <div className="h-52 shrink-0 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
+                    src={asset("support-to-cpas.case-studies.texas-cpa-real-estate")}
                     alt="Real estate property"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
@@ -422,7 +424,7 @@ export default function SupportToCPAsPage() {
       {/*  SECTION 6 — CLOSING CTA                                       */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("support-to-cpas.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

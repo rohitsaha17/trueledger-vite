@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ArrowRight, TrendingUp, FileText, Shield } from "lucide-react";
+import { useAssets } from "@/hooks/use-site-assets";
 
 function TabletMockup() {
+  const asset = useAssets();
+
   return (
     <div className="relative mx-auto w-[260px] sm:w-[280px]">
       {/* Tablet frame */}
@@ -28,7 +31,7 @@ function TabletMockup() {
 
           {/* Article preview image */}
           <img
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160951_87d38f12-9f15-45af-840f-a14eb5b250ef_min.webp"
+            src={asset("global.newsletter.preview-image")}
             alt=""
             className="w-full h-24 object-cover"
           />

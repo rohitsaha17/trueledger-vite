@@ -2,7 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
+import { useAssets } from "@/hooks/use-site-assets";
+import { assetDefaults } from "@/data/site-assets";
 import type { BlogPost } from "@/types/database";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { WhitepaperDownloadModal } from "@/components/shared/whitepaper-download-modal";
@@ -136,73 +138,29 @@ const categoryColors: Record<string, string> = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Cover images — one topic-matched photo per resource                */
+/*  Cover images — editable in Admin → Site Assets → Resources         */
 /* ------------------------------------------------------------------ */
 
-const IMG = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=70`;
+const staticResourceIds = new Set(resources.map((r) => r.id));
+
+const defaultAsset = (key: string) => assetDefaults[key];
 
 /**
- * Each cover is chosen to match what that specific piece is actually about
- * — containers for the tariff papers, a passport for the H-1B checklist,
- * Sydney for the SMSF paper — rather than being assigned round-robin.
- * The trailing comment on each line describes the photo.
+ * Cover photo for a resource. Pass `asset` from `useAssets()` so admin
+ * overrides apply; without it the registry default is used.
  */
-const COVERS: Record<string, string> = {
-  "wp-nonprofit": "1560220604-1985ebfe28b1", /* volunteers in the field */
-  "wp-ai-cas": "1694903089438-bf28d4697d9a", /* robot and human hands meeting */
-  "wp-ai-dd": "1743796055664-3473eedab36e", /* magnifying glass beside a laptop */
-  "wp-usgaap": "1461749280684-dccba630e2f6", /* software source code on a monitor */
-  "wp-clean-books": "1768839724256-28cd4a373209", /* calculator, magnifier and charts */
-  "wp-ieepa": "1494412519320-aa613dfb7738", /* aerial view of a container yard */
-  "wp-h1b": "1655722724451-0df658a2ab23", /* US passport open on a world map */
-  "wp-mexico": "1605745341112-85968b19335b", /* cargo ship at sea */
-  "wp-india-budget": "1565374392032-8007fb37c26e", /* Indian rupee banknotes */
-  "wp-smsf": "1506973035872-a4ec16b8e8d9", /* Sydney Opera House */
-  "wp-multistate": "1487730202306-21b1a371bab0", /* US flag outside a municipal building */
-  g1: "1554224154-26032ffc0d07", /* tax withholding certificate and pen */
-  g2: "1761558794306-466448dab4bc", /* hand filling in a clipboard checklist */
-  g3: "1744640326166-433469d102f2", /* AI chip glowing on a circuit board */
-  g4: "1607863680198-23d4b2565df0", /* piggy bank savings */
-  g5: "1772588627354-ca3617853217", /* tax forms with a calculator */
-  g6: "1560518883-ce09059eeffa", /* model house on a desk */
-  g7: "1541746972996-4e0b0f43e02a", /* client meeting around a table */
-  g8: "1764231467852-b609a742e082", /* hands signing an agreement */
-  g9: "1772413438617-937e44f2642e", /* stacked coins with a rising arrow */
-  g10: "1586486855514-8c633cc6fd38", /* pen resting on a completed tax return */
-  g11: "1551288049-bebda4e38f71", /* performance dashboards on a laptop */
-  v1: "1616531770192-6eaea74c2456", /* laptop showing a live product demo */
-  v2: "1588196749597-9ff075ee6b5b", /* laptop screen during a walkthrough call */
-  v3: "1616587226960-4a03badbe8bf", /* presenter working through a demo on a laptop */
-  v4: "1686061592689-312bbfb5c055", /* reporting dashboard with bar charts */
-  n1: "1677442136019-21780ecad995", /* AI rendered in 3D type */
-  b1: "1522071820081-009f0129c71c", /* startup founders working together */
-  b2: "1553697388-94e804e2f0f6", /* hand holding passports */
-  b3: "1516383274235-5f42d6c6426d", /* forecast graph on screen */
-  b4: "1729505305192-610539203144", /* house key beside a calculator */
-  b5: "1516738901171-8eb4fc13bd20", /* world map marked with pins */
-  b6: "1648275913341-7973ae7bc9b3", /* market ticker board */
-  b7: "1771931322109-180bb1b35bf8", /* blocks spelling RISK beside a magnifier */
-  b8: "1655393001768-d946c97d6fd1", /* robotic arm on an automated line */
-  b9: "1592495989226-03f88104f8cc", /* rising bar chart made of banknotes */
-  b10: "1633158829875-e5316a358c6f", /* coins in a jar with a seedling */
-  b11: "1768839724098-d2541fe1311d", /* piggy bank beside a calculator */
-  b12: "1557804506-669a67965ba0", /* leadership team in a working session */
-  b13: "1706531008577-071672e7bf50", /* magnifying glass over paperwork */
-  b14: "1672380135241-c024f7fbfa13", /* advisor and client shaking hands */
-  b15: "1556761175-4b46a572b786", /* startup workspace with monitors */
-  b16: "1697577418970-95d99b5a55cf", /* AI chip close-up */
-  b17: "1638262052640-82e94d64664a", /* handshake across a table */
-  b18: "1513635269975-59663e0ac1ad", /* London skyline from the air */
-  b19: "1590497008432-598f04441de8", /* busy shipping port with cranes */
-};
-
-/** Neutral desk/laptop shot used if a resource has no explicit cover yet. */
-const FALLBACK_COVER = "1460925895917-afdab827c52f";
-
-/** Topic-matched cover photo for a resource. */
-export function coverFor(r: Resource): string {
-  return r.cover ?? IMG(COVERS[r.id] ?? FALLBACK_COVER);
+export function coverFor(
+  r: Resource,
+  asset: (key: string) => string = defaultAsset,
+): string {
+  return (
+    r.cover ??
+    asset(
+      staticResourceIds.has(r.id)
+        ? `resources.covers.${r.id}`
+        : "resources.covers.fallback",
+    )
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -213,6 +171,7 @@ export default function ResourcesPage() {
   const [activeContent, setActiveContent] = useState<ContentType>("All");
   const [activeService, setActiveService] = useState<ServiceType>("All Services");
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const asset = useAssets();
 
   /* Blog posts written in the admin panel, shown alongside the static list */
   useEffect(() => {
@@ -230,7 +189,7 @@ export default function ResourcesPage() {
         category: "Blog Post" as ContentType,
         service: post.category || "Business Advisory",
         link: `/resources/${post.slug}`,
-        cover: post.featured_image || undefined,
+        cover: post.featured_image ? resolveAssetUrl(post.featured_image) : undefined,
       })),
       ...resources,
     ],
@@ -254,7 +213,7 @@ export default function ResourcesPage() {
         {/* Still of the video's opening frame, sitting underneath it: on a
             slow or failed connection the hero shows this instead of black. */}
         <img
-          src="/images/posters/resources-hero.webp"
+          src={asset("resources.hero.still")}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
@@ -265,13 +224,13 @@ export default function ResourcesPage() {
           muted
           loop
           playsInline
-          poster="/images/posters/resources-hero.webp"
+          poster={asset("resources.hero.poster")}
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <source src="/videos/resources-hero.mp4" type="video/mp4" />
+          <source src={asset("resources.hero.video")} type="video/mp4" />
         </motion.video>
         <div className="absolute inset-0 bg-[#140e2a]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
@@ -369,7 +328,7 @@ export default function ResourcesPage() {
               {filtered.map((res, i) => {
                 const Icon = categoryIcons[res.category] ?? FileText;
                 const color = categoryColors[res.category] ?? "#4D397F";
-                const cover = coverFor(res);
+                const cover = coverFor(res, asset);
                 // Anything that resolves to a PDF (hosted or gated) reads as a
                 // document; external links (LinkedIn, Canva) just "Open".
                 const isPdf = Boolean(res.pdf) || res.link.endsWith(".pdf");
@@ -465,7 +424,7 @@ export default function ResourcesPage() {
       {/* CTA */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
+          src={asset("resources.cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

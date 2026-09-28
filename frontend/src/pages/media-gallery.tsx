@@ -19,7 +19,8 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
+import { useAssets } from "@/hooks/use-site-assets";
 import { cn } from "@/lib/utils";
 import type { MediaItem } from "@/types/database";
 import {
@@ -79,6 +80,7 @@ export default function MediaGalleryPage() {
   const [loading, setLoading] = useState(true);
   const [activeYear, setActiveYear] = useState("All");
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+  const asset = useAssets();
 
   useEffect(() => {
     api
@@ -87,6 +89,19 @@ export default function MediaGalleryPage() {
       .catch(() => setItems([]))
       .finally(() => setLoading(false));
   }, []);
+
+  /* Event photos resolved through Site Assets so the admin can replace them */
+  const eventYears = useMemo(
+    () =>
+      mediaYears.map((y) => ({
+        ...y,
+        events: y.events.map((e) => ({
+          ...e,
+          images: e.images.map((_, i) => asset(`media.events.${e.slug}.${i + 1}`)),
+        })),
+      })),
+    [asset],
+  );
 
   const years = useMemo(() => ["All", ...mediaYears.map((y) => y.year)], []);
 
@@ -101,18 +116,18 @@ export default function MediaGalleryPage() {
   /* A slow drifting strip of photos behind the hero */
   const heroStrip = useMemo(
     () =>
-      mediaYears
+      eventYears
         .flatMap((y) => y.events)
         .filter((e) => !e.poster && e.images.length > 0)
         .map((e) => e.images[0])
         .slice(0, 8),
-    [],
+    [eventYears],
   );
 
   const visibleYears =
     activeYear === "All"
-      ? mediaYears
-      : mediaYears.filter((y) => y.year === activeYear);
+      ? eventYears
+      : eventYears.filter((y) => y.year === activeYear);
 
   const openLightbox = useCallback(
     (images: string[], index: number, title: string) =>
@@ -337,13 +352,13 @@ export default function MediaGalleryPage() {
                   transition={{ duration: 0.45, delay: Math.min(i, 8) * 0.05 }}
                   whileHover={{ y: -3 }}
                   onClick={() =>
-                    openLightbox([item.image_url], 0, item.title ?? "")
+                    openLightbox([resolveAssetUrl(item.image_url)], 0, item.title ?? "")
                   }
                 >
                   <div className="overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-[0_18px_40px_-18px_rgba(77,57,127,0.35)]">
                     <div className="relative overflow-hidden">
                       <img
-                        src={item.image_url}
+                        src={resolveAssetUrl(item.image_url)}
                         alt={item.title}
                         className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"

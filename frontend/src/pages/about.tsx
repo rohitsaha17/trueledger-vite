@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { Methodology } from "@/components/shared/methodology";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,21 +44,21 @@ const leaders = [
     role: "Mentor and Advisor",
     bio: "Aseem Chawla is a distinguished Senior Advocate and Fellow Chartered Accountant, with over two decades of expertise in tax law, international taxation, corporate advisory, and regulatory compliance. A Harvard Kennedy School alumnus, he is consistently ranked among the top legal experts in the Asia-Pacific region. Aseem has authored several respected publications on tax policy and frequently speaks at global forums, providing invaluable guidance to the leadership at TrueLedger Consulting.",
     linkedin: "https://www.linkedin.com/in/aseem-chawla/",
-    image: "/images/team/aseem-chawla.jpg",
+    imageKey: "about.leadership.aseem-chawla",
   },
   {
     name: "CA Manish Aggarwal",
     role: "Co-Founder & Partner",
     bio: "Manish Aggarwal is a Chartered Accountant and legal professional with extensive international tax experience, specializing in cross-border taxation, transfer pricing, and global mobility. Having worked with PwC, EY, and Deloitte, Manish brings hands-on experience managing tax strategies for companies across North America, Europe, Asia, and the Middle East. He is a thought leader in tax compliance and outsourcing solutions, and actively contributes to professional publications and forums.",
     linkedin: "https://www.linkedin.com/in/camanishtax/",
-    image: "/images/team/manish-aggarwal.jpeg",
+    imageKey: "about.leadership.manish-aggarwal",
   },
   {
     name: "CA Hrithvik Raj",
     role: "Co-Founder & Partner",
     bio: "CA Hrithvik Raj is a Chartered Accountant with over 12 years of experience in global accounting, auditing, and financial advisory. He has led risk-based assurance and financial reporting for clients across the USA, France, Singapore, and Bahrain. With expertise in industries such as manufacturing, healthcare, IT, and e-commerce, Hrithvik excels in delivering accurate and scalable solutions. His strong focus on compliance, internal controls, and international standards makes him a trusted advisor for global businesses.",
     linkedin: "https://www.linkedin.com/in/hrithvik-raj-90358895/",
-    image: "/images/team/hrithvik-raj.jpg",
+    imageKey: "about.leadership.hrithvik-raj",
   },
 ];
 
@@ -147,27 +148,27 @@ const storyBeats = [
   {
     marker: "The Spark",
     text: "Some of the best business ideas don’t start in boardrooms — they start at airports, between flights, in the kind of honest conversation that only happens when two people have nowhere else to be. That’s exactly how TrueLedger Consulting was born.",
-    image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=80",
+    imageKey: "about.story.the-spark",
   },
   {
     marker: "The Experience",
     text: "Our founders had spent years working with global companies — navigating multi-jurisdictional compliance, tax controversies and disputes, managing cross-border accounting complexities, and building financial operations across some of the world’s most demanding markets.",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114125_37c4434f-726d-4bb3-b527-dad9f6221ffb.png",
+    imageKey: "about.story.the-experience",
   },
   {
     marker: "The Gap",
     text: "They believe there is currently a lack of true business partners — partners businesses can rely upon not just for back-office or operational work, but who can be trusted as genuine advisors with knowledge of multi-jurisdiction accounting and tax regulatory frameworks.",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114128_25fe50fd-53c5-4d9f-8e84-40a218f26e64.png",
+    imageKey: "about.story.the-gap",
   },
   {
     marker: "The Insight",
     text: "They had seen what separated businesses that scaled smoothly from those that struggled: the quality of the expertise behind them. And yet, the market kept repeating the same mistake — businesses were hiring accountants when what they really needed were expert financial professionals who understood business, not just books.",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114830_d7020677-9647-4a01-88c5-19228771fe32.png",
+    imageKey: "about.story.the-insight",
   },
   {
     marker: "The Conviction",
     text: "That 20-minute conversation became a conviction: the world’s talent shortage in accounting and finance is real, but so is the solution. India is home to a deep, highly qualified pool of finance professionals — CPAs, chartered accountants, tax specialists, and compliance experts — whose talent remains largely untapped by the businesses that need them most. The opportunity was clear. The timing was right. TrueLedger was born.",
-    image: "https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260602_114132_37c24fa6-a971-4b27-8709-6c082494275a.png",
+    imageKey: "about.story.the-conviction",
   },
 ];
 
@@ -176,6 +177,8 @@ const storyBeats = [
 /* ================================================================== */
 
 export default function AboutPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -193,7 +196,7 @@ export default function AboutPage() {
             {/* Still of the video's opening frame, sitting underneath it: on a
                 slow or failed connection the hero shows this instead of black. */}
             <img
-              src="/images/posters/about-hero-seedance.webp"
+              src={asset("about.hero.fallback-image")}
               alt=""
               aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover"
@@ -205,10 +208,10 @@ export default function AboutPage() {
               loop
               playsInline
               preload="auto"
-              poster="/images/posters/about-hero-seedance.webp"
+              poster={asset("about.hero.video-poster")}
               className="absolute inset-0 w-full h-full object-cover"
             >
-              <source src="/videos/about-hero-seedance.mp4" type="video/mp4" />
+              <source src={asset("about.hero.video")} type="video/mp4" />
             </video>
 
             {/* Overlay for text readability */}
@@ -254,7 +257,7 @@ export default function AboutPage() {
                   <div className={i % 2 === 1 ? "md:order-2" : ""}>
                     <div className="rounded-2xl overflow-hidden shadow-lg border border-black/6">
                       <img
-                        src={beat.image}
+                        src={asset(beat.imageKey)}
                         alt={beat.marker}
                         className="w-full aspect-4/3 object-cover"
                         loading="lazy"
@@ -321,7 +324,7 @@ export default function AboutPage() {
                   {/* Photo — fixed aspect ratio, no crop */}
                   <div className="aspect-3/4 bg-linear-to-br from-brand-soft via-brand-tint to-brand/10 relative flex items-center justify-center p-4">
                     <img
-                      src={leader.image}
+                      src={asset(leader.imageKey)}
                       alt={leader.name}
                       className="w-full h-full object-contain"
                     />
@@ -387,7 +390,7 @@ export default function AboutPage() {
               <div className="md:w-[40%] shrink-0 rounded-2xl shadow-lg border border-brand/10 overflow-hidden relative min-h-75">
                 <img
                   className="absolute inset-0 w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=830&h=844&auto=format&fit=crop"
+                  src={asset("about.why-trueledger.image")}
                   alt="TrueLedger team collaboration"
                 />
               </div>
@@ -434,7 +437,7 @@ export default function AboutPage() {
         {/* Background image */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="/images/backgrounds/security-shield.webp"
+            src={asset("about.data-security.background")}
             alt=""
             className="w-full h-full object-cover opacity-[0.38]"
             loading="lazy"
@@ -525,7 +528,7 @@ export default function AboutPage() {
         {/* Watercolour wash background */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="/images/textures/watercolor-indigo.webp"
+            src={asset("about.stats.background")}
             alt=""
             className="w-full h-full object-cover"
             loading="lazy"
@@ -591,7 +594,7 @@ export default function AboutPage() {
             <div className="max-w-4xl mx-auto">
               <div className="rounded-2xl overflow-hidden shadow-lg border border-black/6">
                 <img
-                  src="/images/team/team-group.jpg"
+                  src={asset("about.team.group-photo")}
                   alt="The TrueLedger team"
                   className="w-full object-cover"
                 />
@@ -607,7 +610,7 @@ export default function AboutPage() {
       <section className="py-16 md:py-20 relative overflow-hidden">
         {/* Background image */}
         <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
+          src={asset("about.closing-cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

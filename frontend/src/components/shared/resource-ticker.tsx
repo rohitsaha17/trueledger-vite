@@ -2,6 +2,7 @@ import { ArrowUpRight, Download, FileText, ListChecks, Newspaper, PenLine, PlayC
 import { Link } from "react-router-dom";
 import { WhitepaperDownloadModal } from "@/components/shared/whitepaper-download-modal";
 import { resources, coverFor, type Resource } from "@/pages/resources";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
 /*  Resource ticker — a scrolling strip of real entries from the        */
@@ -31,6 +32,7 @@ export function resourcesForService(service: string, limit = 8): Resource[] {
 }
 
 function ResourceCard({ res }: { res: Resource }) {
+  const asset = useAssets();
   const Icon = categoryIcons[res.category] ?? FileText;
   const color = categoryColors[res.category] ?? "#4D397F";
   const cta = res.pdf ? "Read PDF" : res.category === "Video" ? "Watch" : "Open";
@@ -39,7 +41,7 @@ function ResourceCard({ res }: { res: Resource }) {
     <div className="flex h-full w-72 shrink-0 flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-shadow duration-300 group-hover:shadow-lg">
       <div className="relative h-36 overflow-hidden bg-[#140e2a]">
         <img
-          src={coverFor(res)}
+          src={coverFor(res, asset)}
           alt=""
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

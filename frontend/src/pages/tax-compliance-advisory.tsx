@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
 /*  Individual & HNW service cards data                                 */
@@ -124,6 +125,7 @@ const approachSteps = [
 /* ================================================================== */
 
 export default function TaxComplianceAdvisoryPage() {
+  const asset = useAssets();
   const faqs = [
     {
       question: "Which jurisdictions do you handle tax filings for?",
@@ -171,8 +173,8 @@ export default function TaxComplianceAdvisoryPage() {
           </>
         }
         description="Most people think about taxes once a year. We think about them all year round — and that difference is exactly what sets our services apart."
-        imageSrc="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1920&q=80"
-        videoSrc="https://videos.pexels.com/video-files/6962707/6962707-hd_1920_1080_25fps.mp4"
+        imageSrc={asset("tax-compliance-advisory.hero.image")}
+        videoSrc={asset("tax-compliance-advisory.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -188,7 +190,7 @@ export default function TaxComplianceAdvisoryPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-[0.38]"
         >
-          <source src="https://videos.pexels.com/video-files/7247815/7247815-hd_1920_1080_30fps.mp4" type="video/mp4" />
+          <source src={asset("tax-compliance-advisory.individuals.background-video")} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/40" />
 
@@ -244,7 +246,7 @@ export default function TaxComplianceAdvisoryPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-[0.30]"
         >
-          <source src="https://videos.pexels.com/video-files/7552423/7552423-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          <source src={asset("tax-compliance-advisory.businesses.background-video")} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-[#140e2a]/70 to-[#140e2a]" />
         <div className="absolute top-0 left-1/4 w-[500px] h-[300px] bg-[#4D397F]/15 rounded-full blur-[120px] pointer-events-none" />
@@ -428,7 +430,7 @@ export default function TaxComplianceAdvisoryPage() {
       {/*  SECTION 5 — CLOSING CTA                                      */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("tax-compliance-advisory.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

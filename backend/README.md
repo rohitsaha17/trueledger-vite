@@ -6,9 +6,19 @@ Express + MongoDB (Mongoose) API for the TrueLedger website and admin panel.
 
 ```bash
 npm install
-cp .env.example .env   # then fill in MONGODB_URI, JWT_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD
 npm run seed           # creates the admin login
 npm run dev            # http://localhost:5000
+```
+
+Create a `.env` in this folder first (it is gitignored):
+
+```
+MONGODB_URI=
+PORT=5000
+JWT_SECRET=
+CLIENT_URL=http://localhost:5173
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 ```
 
 ## Structure
@@ -37,6 +47,8 @@ Public — no token:
 | POST   | /api/enquiries           | contact form, consultation modal, whitepaper gate |
 | POST   | /api/subscribers         | newsletter form                  |
 | POST   | /api/auth/login          | admin login                      |
+| GET    | /api/site-assets         | every page (admin image/video overrides) |
+| GET    | /api/uploads/:id         | serves an uploaded file          |
 
 Admin — send `Authorization: Bearer <token>`:
 
@@ -52,6 +64,19 @@ Admin — send `Authorization: Bearer <token>`:
 | DELETE | /api/enquiries/:id       | delete an enquiry                |
 | GET    | /api/subscribers         | admin subscribers page           |
 | DELETE | /api/subscribers/:id     | remove a subscriber              |
+| PUT    | /api/site-assets/:key    | replace a site image/video       |
+| DELETE | /api/site-assets/:key    | reset it to the original         |
+| POST   | /api/uploads             | upload a file (raw body, max 50 MB) |
 
 Blog (`/api/blog`) and media (`/api/media`) follow the same pattern as case
 studies. Media has no `/:slug` route — it is only ever listed.
+
+## Site assets & uploads
+
+Every image/video slot on the website has a key (e.g. `home.hero.slide-1`) and a
+default, both listed in `frontend/src/data/site-assets/`. The `siteassets`
+collection only stores the slots an admin has replaced.
+
+Uploaded files are stored in MongoDB GridFS (`uploads.files` / `uploads.chunks`)
+and referenced as `/api/uploads/<id>`. They count toward the Atlas storage quota
+(512 MB on the free tier), so keep videos small.

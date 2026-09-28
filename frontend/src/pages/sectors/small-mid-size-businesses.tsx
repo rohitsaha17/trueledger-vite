@@ -4,6 +4,7 @@ import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ================================================================== */
 /*  Data                                                               */
@@ -138,6 +139,8 @@ const caseStudies: CaseStudyItem[] = [
 /* ================================================================== */
 
 export default function SmallMidSizeBusinessesPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -153,8 +156,8 @@ export default function SmallMidSizeBusinessesPage() {
           </>
         }
         description="At TrueLedger, we give small and mid-size businesses the financial infrastructure — accounting, tax, and advisory — that lets owners make decisions with confidence."
-        imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4"
+        imageSrc={asset("small-mid-size-businesses.hero.image")}
+        videoSrc={asset("small-mid-size-businesses.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -164,7 +167,7 @@ export default function SmallMidSizeBusinessesPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+          src={asset("small-mid-size-businesses.challenges.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -234,7 +237,7 @@ export default function SmallMidSizeBusinessesPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-[0.38]"
         >
           <source
-            src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4"
+            src={asset("small-mid-size-businesses.services.background-video")}
             type="video/mp4"
           />
         </video>
@@ -346,7 +349,7 @@ export default function SmallMidSizeBusinessesPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+          src={asset("small-mid-size-businesses.case-studies.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -409,7 +412,7 @@ export default function SmallMidSizeBusinessesPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=80"
+          src={asset("small-mid-size-businesses.testimonial.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -452,7 +455,7 @@ export default function SmallMidSizeBusinessesPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
+          src={asset("small-mid-size-businesses.cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowRight, Building2 } from "lucide-react";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
 import type { CaseStudy } from "@/types/database";
 
 /* ------------------------------------------------------------------ */
@@ -24,7 +25,12 @@ export interface DisplayStudy {
   featured_image: string;
 }
 
-export const staticStudies: DisplayStudy[] = [
+/** Static studies reference their image by site-asset key instead of a URL. */
+export type StaticStudy = Omit<DisplayStudy, "featured_image"> & {
+  featuredImageKey: string;
+};
+
+export const staticStudies: StaticStudy[] = [
   /* ── Entity Setup ──────────────────────────────────────────────── */
   {
     id: "s1",
@@ -38,8 +44,7 @@ export const staticStudies: DisplayStudy[] = [
       "We built the full legal and financial foundation: governance documents and internal policies, an ESOP pool agreement designed for future hires, and the international tax & transfer pricing structuring needed to manage exposure on both sides of the India–US border.\n\nStates Covered: California\n\nKey Registrations & Setup Handled: C-Corp formation, DBA filings, franchise tax registration, ESOP pool agreement design, legal governance documentation, banking setup, accounting setup, payroll setup.",
     results:
       "A compliant, cap-table-ready entity with clean governance and cross-border tax positioning in place before the company ever sat across the table from an investor.",
-    featured_image:
-      "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.defense-tech-us-entity",
   },
   {
     id: "s2",
@@ -53,8 +58,7 @@ export const staticStudies: DisplayStudy[] = [
       "We acted as the single point of coordination for the entire launch, from formation through to a fully running back office.\n\nStates Covered: New York, Delaware, Tennessee, Virginia\n\nKey Registrations & Setup Handled: LLC formation, state and local tax registrations, business licenses and permits, banking setup, accounting system setup, payroll setup.",
     results:
       "The client moved from incorporation to fully operational — banking, books, and payroll running in every state — without managing a single additional vendor relationship.",
-    featured_image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.restaurant-multi-state-setup",
   },
 
   /* ── Accounting & Bookkeeping ──────────────────────────────────── */
@@ -71,8 +75,7 @@ export const staticStudies: DisplayStudy[] = [
       "We rebuilt their AP and AR function from the ground up — full ownership of accounts payable (procure-to-pay) and accounts receivable (order-to-cash), including SOP design and an automation roadmap for both functions.\n\nTools/Software Used: SAP Business One for ERP; Stampli/Makers Hub — AI and automation layer for AP processing.",
     results:
       "A streamlined, automated AR/AP cycle; faster vendor payment turnaround; real-time visibility into customer payments; and early, systematic flagging of delays and mismatches before they became cash flow problems.",
-    featured_image:
-      "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.fmcg-beverage-ap-ar",
   },
   {
     id: "s4",
@@ -86,8 +89,7 @@ export const staticStudies: DisplayStudy[] = [
       "We took over weekly payroll, daily inventory management, POS sales reconciliation, sales and income tax compliance, statutory filings, month-end close, forecasting, and treasury.\n\nTools/Software Used: QuickBooks Online for Accounting; Gusto for Payroll; Toast and Xtrachef for POS integration; Avalara for Multi-State Sales Tax; Reach Reporting and Double for Forecasts, Dashboards, and Financial Reporting.",
     results:
       "Faster month-end close, restaurant-by-restaurant and item-level profitability visibility, stronger cash flow planning, and a payroll and benefits process the team could finally rely on.",
-    featured_image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.restaurant-chain-finance",
   },
   {
     id: "s5",
@@ -101,8 +103,7 @@ export const staticStudies: DisplayStudy[] = [
       "We embedded ourselves across invoicing, collections, HR, and month-end close as a true extension of their finance team — full order-to-cash cycle (estimates, invoicing, collections, overdue follow-up), HR management, payroll processing, tax compliance, employee expense claims, and month-end close.\n\nTools/Software Used: QuickBooks Enterprise Suite for GL Accounting/ERP; Dext and Ramp for Expense and Employee Claim Management; Paychex for Payroll Processing.",
     results:
       "Faster invoicing, clearer visibility into the sales pipeline, disciplined AP and vendor credit management through daily bill posting, and cost-center-level profitability tracking that informed real decisions.",
-    featured_image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.auto-oem-finance-ops",
   },
 
   /* ── Tax Compliance & Advisory ─────────────────────────────────── */
@@ -118,8 +119,7 @@ export const staticStudies: DisplayStudy[] = [
       "We mapped every reporting obligation before it became a deadline, advised on first-year residency and mark-to-market elections, and built a filing strategy that addressed each asset class on its own terms.",
     results:
       "A fully compliant first-year US filing, with the client confident he hadn't left exposure on the table in either country.",
-    featured_image:
-      "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.green-card-india-us",
   },
   {
     id: "s7",
@@ -133,8 +133,7 @@ export const staticStudies: DisplayStudy[] = [
       "We worked directly alongside the acquirer's counsel, modeling out each position and its downstream tax consequences before terms were finalized.",
     results:
       "A successfully negotiated tax position for the founder, with approximately $75M in value addressed across multiple filing years.",
-    featured_image:
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.saas-founder-spac-nyse",
   },
   {
     id: "s8",
@@ -148,8 +147,7 @@ export const staticStudies: DisplayStudy[] = [
       "We advised on credit eligibility and the practical application of those amortization principles to their specific structure.",
     results:
       "Full R&D credit optimization under IRC 41 with proper Section 174 amortization treatment mapped to the company's global research operations.",
-    featured_image:
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.rd-credit-pharma",
   },
   {
     id: "s9",
@@ -163,8 +161,7 @@ export const staticStudies: DisplayStudy[] = [
       "We assessed eligibility and built the claim mechanism for Employee Retention Credit, Work Opportunity Tax Credit, R&D and other applicable business credits.",
     results:
       "Previously unclaimed credits identified and captured across multiple tax years, significantly reducing the chain's effective tax burden.",
-    featured_image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.business-credits-hospitality",
   },
 
   /* ── CPA Support Services ──────────────────────────────────────── */
@@ -180,8 +177,7 @@ export const staticStudies: DisplayStudy[] = [
       "We integrated directly into the firm's existing workflow — working in Lacerte for tax prep, Canopy for client communication, and Intuit Tax Advisory for research. We owned the full return cycle: validating document intake, communicating with clients, researching complex positions against current IRS and AICPA guidance, and preparing audit-ready workpapers and binders for the CPA's final sign-off.",
     results:
       "The firm met its season-end deadlines without sacrificing quality — and the relationship has since grown beyond tax season into other service areas.",
-    featured_image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.florida-cpa-peak-season",
   },
   {
     id: "s11",
@@ -195,8 +191,7 @@ export const staticStudies: DisplayStudy[] = [
       "We took over the full monthly cycle: maintaining rental schedules, syncing collections and rental data from Yardi into QBO, tracking operating expenses across taxes, maintenance, and insurance, and closing the books with proper adjustments for depreciation, prepaids, and accruals.\n\nTools: Yardi, ADP, QBO, Double.",
     results:
       "A reliable, on-time monthly close and a clean reporting package the CPA could hand straight to stakeholders.",
-    featured_image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.texas-cpa-real-estate",
   },
 
   /* ── Business Advisory ─────────────────────────────────────────── */
@@ -212,8 +207,7 @@ export const staticStudies: DisplayStudy[] = [
       "We built the governance structure from the ground up: clear financial controls, a formal risk framework, and the reporting discipline auditors and institutional investors expect to see — designed specifically around the realities of a pre-IPO company, not a generic compliance template.",
     results:
       "A company that could walk into IPO due diligence with its financial house in order, rather than scrambling to retrofit controls under deadline pressure.",
-    featured_image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.ipo-ready-governance",
   },
   {
     id: "s13",
@@ -227,8 +221,7 @@ export const staticStudies: DisplayStudy[] = [
       "We designed and implemented a full-scale accounting automation system: consolidating data feeds from every source into one reporting window, with automated processing replacing manual entry at each step.",
     results:
       "Leadership gained a single source of truth for financial reporting — faster, more accurate, and no longer dependent on someone manually stitching spreadsheets together every month.",
-    featured_image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+    featuredImageKey: "case-studies.fallback-studies.canadian-hospitality-automation",
   },
 ];
 
@@ -258,7 +251,7 @@ function toDisplayStudy(cs: CaseStudy): DisplayStudy {
     challenge: cs.challenge,
     solution: cs.solution,
     results: cs.results,
-    featured_image: cs.featured_image,
+    featured_image: resolveAssetUrl(cs.featured_image ?? ""),
   };
 }
 
@@ -280,6 +273,7 @@ function inferService(industry: string): string {
 /* ------------------------------------------------------------------ */
 
 export default function CaseStudiesPage() {
+  const asset = useAssets();
   const [cmsStudies, setCmsStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<ServiceTab>("All");
@@ -298,7 +292,9 @@ export default function CaseStudiesPage() {
     const slugSet = new Set(cmsConverted.map((s) => s.slug));
     return [
       ...cmsConverted,
-      ...staticStudies.filter((s) => !slugSet.has(s.slug)),
+      ...staticStudies
+        .filter((s) => !slugSet.has(s.slug))
+        .map(({ featuredImageKey, ...s }) => ({ ...s, featured_image: asset(featuredImageKey) })),
     ];
   })();
 
@@ -317,7 +313,7 @@ export default function CaseStudiesPage() {
         {/* Still of the video's opening frame, sitting underneath it: on a
             slow or failed connection the hero shows this instead of black. */}
         <img
-          src="/images/posters/case-studies-hero.webp"
+          src={asset("case-studies.hero.fallback-image")}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
@@ -328,13 +324,13 @@ export default function CaseStudiesPage() {
           muted
           loop
           playsInline
-          poster="/images/posters/case-studies-hero.webp"
+          poster={asset("case-studies.hero.video-poster")}
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <source src="/videos/case-studies-hero.mp4" type="video/mp4" />
+          <source src={asset("case-studies.hero.video")} type="video/mp4" />
         </motion.video>
         <div className="absolute inset-0 bg-[#140e2a]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#140e2a]/30 via-transparent to-[#140e2a]/40" />
@@ -460,7 +456,7 @@ export default function CaseStudiesPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
+          src={asset("case-studies.closing-cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

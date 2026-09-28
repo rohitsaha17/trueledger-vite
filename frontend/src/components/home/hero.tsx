@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ================================================================== */
 /*  Carousel slides data                                               */
@@ -14,25 +15,25 @@ const carouselSlides = [
     id: 1,
     titleLines: ["MODERN", "ACCOUNTING", "& TAX SOLUTIONS"],
     subtitle: "for Businesses Across the Globe",
-    image: "/images/hero/hero-accounting-tax.webp",
+    imageKey: "home.hero.slide-1",
   },
   {
     id: 2,
     titleLines: ["Solve Complex", "Cross-Border", "Tax Issues."],
     subtitle: "Build with Certainty.",
-    image: "/images/hero/hero-cross-border-tax.webp",
+    imageKey: "home.hero.slide-2",
   },
   {
     id: 3,
     titleLines: ["Scale Confidently", "With Expert", "Finance Advice"],
     subtitle: "and Strategy",
-    image: "/images/hero/hero-scale-advice.webp",
+    imageKey: "home.hero.slide-3",
   },
   {
     id: 4,
     titleLines: ["Unlock", "Operational", "Efficiency"],
     subtitle: "with Trusted Expertise.",
-    image: "/images/hero/hero-operational-efficiency.webp",
+    imageKey: "home.hero.slide-4",
   },
 ];
 
@@ -102,6 +103,7 @@ function BackgroundCarousel({
   currentSlide: number;
   direction: number;
 }) {
+  const asset = useAssets();
   const slideVariants = {
     /* Percentage offsets so the travel scales with the full-bleed stage
        instead of a fixed pixel distance. */
@@ -140,7 +142,7 @@ function BackgroundCarousel({
           className="absolute inset-0 w-full h-full"
         >
           <img
-            src={carouselSlides[currentSlide].image}
+            src={asset(carouselSlides[currentSlide].imageKey)}
             alt={carouselSlides[currentSlide].titleLines.join(" ")}
             className="w-full h-full object-cover"
             loading={currentSlide === 0 ? "eager" : "lazy"}

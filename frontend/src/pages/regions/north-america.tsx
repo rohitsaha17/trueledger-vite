@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
+import { useAssets } from "@/hooks/use-site-assets";
 import { LinkedInButton } from "@/components/shared/linkedin-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
@@ -100,6 +101,8 @@ const serviceCategories: ServiceCategory[] = [
 /* ================================================================== */
 
 export default function NorthAmericaPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -115,8 +118,8 @@ export default function NorthAmericaPage() {
           </>
         }
         description="TrueLedger maintains a presence in Austin, Texas, giving US and Canada-based clients a team that knows local tax compliances, regulations and accounting procedures for both countries."
-        imageSrc="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/4611396/4611396-uhd_2560_1440_25fps.mp4"
+        imageSrc={asset("north-america.hero.image")}
+        videoSrc={asset("north-america.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -258,7 +261,7 @@ export default function NorthAmericaPage() {
             <div className="flex flex-col items-center gap-4 lg:items-start">
               <div className="relative size-56 lg:size-64 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-brand-soft via-brand-tint to-brand/10">
                 <img
-                  src="/images/team/manish-aggarwal.jpeg"
+                  src={asset("north-america.leadership.manish-aggarwal")}
                   alt="CA Manish Aggarwal, Partner, TrueLedger"
                   className="absolute inset-0 h-full w-full object-cover object-top"
                   loading="lazy"

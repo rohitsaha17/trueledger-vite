@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ================================================================== */
 /*  Data                                                               */
@@ -123,6 +124,8 @@ const caseStudies = [
 /* ================================================================== */
 
 export default function HospitalityRestaurantsPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -140,8 +143,8 @@ export default function HospitalityRestaurantsPage() {
           </>
         }
         description="Running a restaurant — or a group of them — means managing multi-location complexity, seasonal cash flows, and a workforce that spans tipped employees, contract staff, and kitchen teams across states. TrueLedger understands the hospitality P&L."
-        imageSrc="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/4253491/4253491-uhd_2560_1440_25fps.mp4"
+        imageSrc={asset("hospitality-restaurants.hero.image")}
+        videoSrc={asset("hospitality-restaurants.hero.video")}
         accentColor="#EE672C"
       />
 
@@ -150,7 +153,7 @@ export default function HospitalityRestaurantsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80"
+          src={asset("hospitality-restaurants.challenges.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -253,7 +256,7 @@ export default function HospitalityRestaurantsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=80"
+          src={asset("hospitality-restaurants.case-studies.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -334,7 +337,7 @@ export default function HospitalityRestaurantsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80"
+          src={asset("hospitality-restaurants.testimonial.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -375,7 +378,7 @@ export default function HospitalityRestaurantsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80"
+          src={asset("hospitality-restaurants.cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

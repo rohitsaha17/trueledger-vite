@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
 import { ResourceTicker, resourcesForService } from "@/components/shared/resource-ticker";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ================================================================== */
 /*  Data                                                               */
@@ -29,7 +30,7 @@ const advisoryPhases = [
     title: "Strategic & Business Advisory",
     description:
       "Financial modeling, scenario analysis, and valuation frameworks that give you a clear, defensible picture of what your business is worth.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    imageKey: "business-advisory.advisory-pillars.strategic-business-advisory",
     tagline: "Where Your Numbers Meet Your Strategy.",
     intro:
       "We work alongside leadership teams to model, stress-test, and validate the decisions that shape a business — before they are made, not after.",
@@ -54,7 +55,7 @@ const advisoryPhases = [
     title: "Governance, Controls & Compliance",
     description:
       "Governance structures, financial controls, policy documentation, and SOC certification readiness — before you need them.",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+    imageKey: "business-advisory.advisory-pillars.governance-controls-compliance",
     tagline: "Build the Foundation That Earns Trust.",
     intro:
       "Growth without structure creates risk. We help businesses build these frameworks before they need them, not in response to a crisis.",
@@ -83,7 +84,7 @@ const advisoryPhases = [
     title: "Capital, Funding & Fundraising Readiness",
     description:
       "Fundraising preparation, due diligence, investor reporting, and historical cleanup — so you are ready when the conversation starts.",
-    image: "https://images.unsplash.com/photo-1553729459-uj1ef3fc8bde?auto=format&fit=crop&w=800&q=80",
+    imageKey: "business-advisory.advisory-pillars.capital-funding-readiness",
     tagline: "Get Capital-Ready Before the Conversation Starts.",
     intro:
       "We prepare businesses for the full spectrum of capital events — ensuring that when the conversation starts, you are ready.",
@@ -116,7 +117,7 @@ const advisoryPhases = [
     title: "Finance Automation & Technology",
     description:
       "Tech stack design, workflow automation, ERP implementation, and SOC-compliant technology frameworks for every stage.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    imageKey: "business-advisory.advisory-pillars.finance-automation-technology",
     tagline: "The Right Tools, Properly Implemented, Transform a Finance Function.",
     intro:
       "We advise on, design, and implement finance technology for businesses at every stage — from a first stack to outgrown tools.",
@@ -165,6 +166,7 @@ const audiences = [
 /* ================================================================== */
 
 export default function BusinessAdvisoryPage() {
+  const asset = useAssets();
   const faqs = [
     {
       question: "What does business advisory include at TrueLedger?",
@@ -214,8 +216,8 @@ export default function BusinessAdvisoryPage() {
           </>
         }
         description="Most businesses don’t struggle because of a lack of effort. They struggle because the financial decisions — the structural ones, the strategic ones — were made without the right advisor in the room."
-        imageSrc="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260623_031452_6a4a4264-852a-470c-bfbb-49796401a094_min.webp"
-        videoSrc="https://videos.pexels.com/video-files/7552419/7552419-hd_1920_1080_25fps.mp4"
+        imageSrc={asset("business-advisory.hero.image")}
+        videoSrc={asset("business-advisory.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -225,7 +227,7 @@ export default function BusinessAdvisoryPage() {
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative z-20">
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+          src={asset("business-advisory.advisory-pillars.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -266,7 +268,7 @@ export default function BusinessAdvisoryPage() {
                     whileHover={{ y: -6 }}
                   >
                     <img
-                      src={item.image}
+                      src={asset(item.imageKey)}
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
@@ -400,7 +402,7 @@ export default function BusinessAdvisoryPage() {
                   transition={{ duration: 0.5 }}
                 />
                 <img
-                  src="/logos/TrueLedger primary Logo.png"
+                  src={asset("business-advisory.who-we-serve.center-logo")}
                   alt="TrueLedger"
                   className="w-20 object-contain"
                 />
@@ -468,7 +470,7 @@ export default function BusinessAdvisoryPage() {
       {/*  SECTION 5 — CLOSING CTA                                     */}
       {/* ============================================================ */}
       <section className="py-16 md:py-20 relative overflow-hidden">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={asset("business-advisory.closing-cta.background")} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[#140e2a]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#140e2a] via-transparent to-[#140e2a]/70" />
         <div className="absolute top-0 left-1/3 w-96 h-64 bg-[#4D397F]/20 rounded-full blur-[100px] pointer-events-none" />

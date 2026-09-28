@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
 /*  Challenges data                                                     */
@@ -145,6 +146,8 @@ const caseStudies: CaseStudy[] = [
 /* ================================================================== */
 
 export default function EcommerceRetailPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -160,8 +163,8 @@ export default function EcommerceRetailPage() {
           </>
         }
         description="Every market you enter creates a new layer of tax obligation, accounting complexity, and regulatory exposure. TrueLedger helps you scale across borders without leaving a compliance trail behind."
-        imageSrc="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/6774202/6774202-hd_1920_1080_25fps.mp4"
+        imageSrc={asset("ecommerce-retail.hero.image")}
+        videoSrc={asset("ecommerce-retail.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -171,7 +174,7 @@ export default function EcommerceRetailPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ecommerce-retail.challenges.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -413,7 +416,7 @@ export default function EcommerceRetailPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ecommerce-retail.testimonial.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -461,7 +464,7 @@ export default function EcommerceRetailPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ecommerce-retail.cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

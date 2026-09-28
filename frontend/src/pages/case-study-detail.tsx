@@ -4,18 +4,20 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { ArrowLeft, ChevronRight } from "lucide-react";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
 import { useSeo } from "@/hooks/use-seo";
+import { useAssets } from "@/hooks/use-site-assets";
 import type { CaseStudy } from "@/types/database";
 import { staticStudies } from "@/pages/case-studies";
-import type { DisplayStudy } from "@/pages/case-studies";
+import type { StaticStudy } from "@/pages/case-studies";
 
-type StudyData = CaseStudy | DisplayStudy;
+type StudyData = CaseStudy | StaticStudy;
 
 export default function CaseStudyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const [study, setStudy] = useState<StudyData | null>(null);
   const [loading, setLoading] = useState(true);
+  const asset = useAssets();
 
   useEffect(() => {
     if (!slug) return;
@@ -26,6 +28,12 @@ export default function CaseStudyDetailPage() {
       .finally(() => setLoading(false));
   }, [slug]);
 
+  const featuredImage = study
+    ? "featuredImageKey" in study
+      ? asset(study.featuredImageKey)
+      : resolveAssetUrl(study.featured_image ?? "")
+    : "";
+
   // Per-study title/description/canonical once the study has loaded.
   useSeo(
     study
@@ -34,7 +42,7 @@ export default function CaseStudyDetailPage() {
           description: study.challenge.replace(/\s+/g, " ").trim().slice(0, 300),
           path: `/case-studies/${study.slug}`,
           type: "article",
-          image: study.featured_image || undefined,
+          image: featuredImage || undefined,
         }
       : null
   );
@@ -75,12 +83,12 @@ export default function CaseStudyDetailPage() {
   return (
     <>
       {/* Hero */}
-      {study.featured_image && (
+      {featuredImage && (
         <section className="relative">
           <div className="px-0 md:px-2 lg:px-4">
             <div className="relative overflow-hidden aspect-[2.5/1] rounded-b-2xl md:rounded-b-3xl">
               <img
-                src={study.featured_image}
+                src={featuredImage}
                 alt={study.title}
                 className="w-full h-full object-cover"
               />
@@ -110,7 +118,7 @@ export default function CaseStudyDetailPage() {
               All Case Studies
             </Link>
 
-            {!study.featured_image && (
+            {!featuredImage && (
               <>
                 <span className="text-brand text-[15px] font-semibold uppercase tracking-widest mb-2 block">
                   {study.industry}

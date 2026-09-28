@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { ServicePageHero } from "@/components/shared/service-page-hero";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
 /*  Challenge cards data                                                */
@@ -124,6 +125,8 @@ const caseStudies = [
 /* ================================================================== */
 
 export default function AISaaSStartupsPage() {
+  const asset = useAssets();
+
   return (
     <>
       {/* ============================================================ */}
@@ -139,8 +142,8 @@ export default function AISaaSStartupsPage() {
           </>
         }
         description="Your equity structure, international team, and product revenue model create tax and compliance complexity most traditional accountants are not equipped to handle. TrueLedger is."
-        imageSrc="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80"
-        videoSrc="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
+        imageSrc={asset("ai-saas-startups.hero.image")}
+        videoSrc={asset("ai-saas-startups.hero.video")}
         accentColor="#EE672C"
         overlayGradient="linear-gradient(to right, rgba(20,14,42,0.72) 0%, rgba(20,14,42,0.52) 35%, rgba(20,14,42,0.25) 65%, rgba(77,57,127,0.06) 100%)"
       />
@@ -150,7 +153,7 @@ export default function AISaaSStartupsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ai-saas-startups.challenges.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -289,7 +292,7 @@ export default function AISaaSStartupsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ai-saas-startups.case-studies.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -351,7 +354,7 @@ export default function AISaaSStartupsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ai-saas-startups.testimonial.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -392,7 +395,7 @@ export default function AISaaSStartupsPage() {
       {/* ============================================================ */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+          src={asset("ai-saas-startups.cta.background")}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

@@ -3,13 +3,16 @@ import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { useAssets } from "@/hooks/use-site-assets";
 
 export function ClosingCta() {
+  const asset = useAssets();
+
   return (
     <section className="py-14 md:py-18 relative overflow-hidden">
       {/* Background image */}
       <img
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_3DODoDlhnsFSxTWjEmFMsGCcrYu/hf_20260622_160952_6e56e9ac-87fc-4170-9fca-9a970f9990e7_min.webp"
+        src={asset("home.closing-cta.background")}
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
@@ -124,7 +127,7 @@ export function ClosingCta() {
             {/* Digits Partner Badge */}
             <div className="flex items-center gap-4">
               <div className="size-14 sm:size-[4.5rem] rounded-full bg-[#1a1a2e] border border-white/10 flex items-center justify-center overflow-hidden p-2.5 drop-shadow-lg">
-                <img src="https://digits.com/favicon/favicon-256.png?v=3" alt="Digits" className="w-full h-full object-contain" />
+                <img src={asset("home.closing-cta.partner-digits")} alt="Digits" className="w-full h-full object-contain" />
               </div>
               <div className="text-left">
                 <p className="text-white font-heading font-bold text-sm sm:text-base">Digits</p>
@@ -137,7 +140,7 @@ export function ClosingCta() {
             {/* Gusto Partner Badge */}
             <div className="flex items-center gap-4">
               <div className="size-14 sm:size-[4.5rem] rounded-full bg-[#1a1a2e] border border-white/10 flex items-center justify-center overflow-hidden p-2.5 drop-shadow-lg">
-                <img src="https://gusto.com/apple-touch-icon.png" alt="Gusto" className="w-full h-full object-contain" />
+                <img src={asset("home.closing-cta.partner-gusto")} alt="Gusto" className="w-full h-full object-contain" />
               </div>
               <div className="text-left">
                 <p className="text-white font-heading font-bold text-sm sm:text-base">Gusto</p>

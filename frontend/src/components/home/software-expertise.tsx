@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { useAssets } from "@/hooks/use-site-assets";
 
 /* ------------------------------------------------------------------ */
 /*  Software stack — one clean, filterable logo wall.                  */
@@ -12,7 +13,7 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 interface Tool {
   name: string;
   category: Category;
-  logo: string;
+  logoKey: string;
 }
 
 const categories = [
@@ -29,34 +30,34 @@ type Category = (typeof categories)[number];
 
 const tools: Tool[] = [
   /* ── Cloud Accounting ───────────────────────────────────────────── */
-  { name: "QuickBooks", category: "Cloud Accounting", logo: "https://cdn.worldvectorlogo.com/logos/quickbooks-2.svg" },
-  { name: "Xero", category: "Cloud Accounting", logo: "https://cdn.worldvectorlogo.com/logos/xero-1.svg" },
+  { name: "QuickBooks", category: "Cloud Accounting", logoKey: "home.software.quickbooks" },
+  { name: "Xero", category: "Cloud Accounting", logoKey: "home.software.xero" },
 
   /* ── AI Native ──────────────────────────────────────────────────── */
-  { name: "Campfire", category: "AI Native", logo: "https://www.google.com/s2/favicons?domain=campfire.ai&sz=128" },
-  { name: "Digits", category: "AI Native", logo: "https://digits.com/favicon/favicon-256.png?v=3" },
-  { name: "Kick", category: "AI Native", logo: "https://www.google.com/s2/favicons?domain=kick.co&sz=128" },
-  { name: "Puzzle", category: "AI Native", logo: "https://www.google.com/s2/favicons?domain=puzzle.io&sz=128" },
+  { name: "Campfire", category: "AI Native", logoKey: "home.software.campfire" },
+  { name: "Digits", category: "AI Native", logoKey: "home.software.digits" },
+  { name: "Kick", category: "AI Native", logoKey: "home.software.kick" },
+  { name: "Puzzle", category: "AI Native", logoKey: "home.software.puzzle" },
 
   /* ── Bill Processing ────────────────────────────────────────────── */
-  { name: "Bill.com", category: "Bill Processing", logo: "https://cdn.prod.website-files.com/63e3da3df35cd62f54751985/63efaae11991984d7d4d021a_Logo-Mark-Color%201.png" },
-  { name: "Dext", category: "Bill Processing", logo: "/logos/software/dext.png" },
-  { name: "Stampli", category: "Bill Processing", logo: "https://www.stampli.com/wp-content/uploads/2026/03/Updated_Stampli_logo.svg" },
+  { name: "Bill.com", category: "Bill Processing", logoKey: "home.software.bill-com" },
+  { name: "Dext", category: "Bill Processing", logoKey: "home.software.dext" },
+  { name: "Stampli", category: "Bill Processing", logoKey: "home.software.stampli" },
 
   /* ── Payroll ────────────────────────────────────────────────────── */
-  { name: "ADP", category: "Payroll", logo: "https://www.google.com/s2/favicons?domain=adp.com&sz=128" },
-  { name: "Rippling", category: "Payroll", logo: "https://www.google.com/s2/favicons?domain=rippling.com&sz=128" },
-  { name: "Gusto", category: "Payroll", logo: "https://gusto.com/apple-touch-icon.png" },
+  { name: "ADP", category: "Payroll", logoKey: "home.software.adp" },
+  { name: "Rippling", category: "Payroll", logoKey: "home.software.rippling" },
+  { name: "Gusto", category: "Payroll", logoKey: "home.software.gusto" },
 
   /* ── Workflow & Close ───────────────────────────────────────────── */
-  { name: "Karbon", category: "Workflow & Close", logo: "https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" },
-  { name: "Canopy", category: "Workflow & Close", logo: "https://www.getcanopy.com/wp-content/themes/get_canopy/assets/images/logo.svg" },
-  { name: "Double", category: "Workflow & Close", logo: "https://doublehq.com/wp-content/uploads/2026/01/double-logo-new.png" },
-  { name: "Financial Cents", category: "Workflow & Close", logo: "https://financial-cents.com/wp-content/uploads/2025/04/financial-cents-logo.svg" },
+  { name: "Karbon", category: "Workflow & Close", logoKey: "home.software.karbon" },
+  { name: "Canopy", category: "Workflow & Close", logoKey: "home.software.canopy" },
+  { name: "Double", category: "Workflow & Close", logoKey: "home.software.double" },
+  { name: "Financial Cents", category: "Workflow & Close", logoKey: "home.software.financial-cents" },
 
   /* ── Forecasting & Reporting ────────────────────────────────────── */
-  { name: "Spotlight Reporting", category: "Forecasting & Reporting", logo: "https://cdn.prod.website-files.com/5efc103e2e619592c6612ab2/64f6a58454e53ad531820231_Spotlight.png" },
-  { name: "FloQast", category: "Forecasting & Reporting", logo: "https://cdn.prod.website-files.com/67a1db1fd2f32256b80d22ff/67cb7363a73d6b2adb7181e8_256x256-1.jpg" },
+  { name: "Spotlight Reporting", category: "Forecasting & Reporting", logoKey: "home.software.spotlight-reporting" },
+  { name: "FloQast", category: "Forecasting & Reporting", logoKey: "home.software.floqast" },
 ];
 
 /**
@@ -65,6 +66,8 @@ const tools: Tool[] = [
  * flash empty, and made the tiles visibly slide across the section.
  */
 function ToolTile({ tool, hidden }: { tool: Tool; hidden: boolean }) {
+  const asset = useAssets();
+
   return (
     <motion.div
       whileHover={{ y: -3 }}
@@ -75,7 +78,7 @@ function ToolTile({ tool, hidden }: { tool: Tool; hidden: boolean }) {
     >
       <div className="flex size-12 items-center justify-center">
         <img
-          src={tool.logo}
+          src={asset(tool.logoKey)}
           alt={tool.name}
           className="max-h-full max-w-full object-contain opacity-90 transition duration-300 group-hover:opacity-100"
           onError={(e) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "@/lib/api";
+import { UploadButton } from "@/components/admin/upload-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -115,14 +116,20 @@ export default function AdminBlog() {
               />
             </div>
             <div>
-              <Label>Featured Image URL</Label>
-              <Input
-                value={editing.featured_image ?? ""}
-                onChange={(e) =>
-                  setEditing({ ...editing, featured_image: e.target.value })
-                }
-                className="mt-1"
-              />
+              <Label>Featured Image</Label>
+              <div className="flex gap-2 mt-1">
+                <Input
+                  value={editing.featured_image ?? ""}
+                  onChange={(e) =>
+                    setEditing({ ...editing, featured_image: e.target.value })
+                  }
+                  placeholder="Paste a URL or upload"
+                />
+                <UploadButton
+                  accept="image/*"
+                  onUploaded={(url) => setEditing({ ...editing, featured_image: url })}
+                />
+              </div>
             </div>
           </div>
           <div>

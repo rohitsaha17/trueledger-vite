@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { ConsultationModal } from "@/components/shared/consultation-modal";
 import { cn } from "@/lib/utils";
+import { useAssets } from "@/hooks/use-site-assets";
 
 const serviceLinks = [
   { label: "Global Entity Setup", href: "/services/global-entity-setup" },
@@ -35,6 +36,7 @@ export function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const location = useLocation();
+  const asset = useAssets();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-xl">
@@ -42,7 +44,7 @@ export function Navbar() {
         {/* Logo */}
         <Link to="/" className="shrink-0">
           <img
-            src="/logos/TrueLedger primary Logo.png"
+            src={asset("global.header.logo")}
             alt="TrueLedger Consulting"
             className="h-14 w-auto"
           />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, resolveAssetUrl } from "@/lib/api";
+import { UploadButton } from "@/components/admin/upload-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -72,19 +73,24 @@ export default function AdminMedia() {
 
         <div className="bg-white rounded-xl border border-black/[0.06] p-6 space-y-5 max-w-2xl">
           <div>
-            <Label>Image URL</Label>
-            <Input
-              value={editing.image_url ?? ""}
-              onChange={(e) =>
-                setEditing({ ...editing, image_url: e.target.value })
-              }
-              placeholder="https://..."
-              className="mt-1"
-            />
+            <Label>Image</Label>
+            <div className="flex gap-2 mt-1">
+              <Input
+                value={editing.image_url ?? ""}
+                onChange={(e) =>
+                  setEditing({ ...editing, image_url: e.target.value })
+                }
+                placeholder="Paste a URL or upload"
+              />
+              <UploadButton
+                accept="image/*"
+                onUploaded={(url) => setEditing({ ...editing, image_url: url })}
+              />
+            </div>
           </div>
           {editing.image_url && (
             <img
-              src={editing.image_url}
+              src={resolveAssetUrl(editing.image_url)}
               alt="Preview"
               className="rounded-lg max-h-48 object-cover border"
             />
@@ -167,7 +173,7 @@ export default function AdminMedia() {
               className="bg-white rounded-xl border border-black/[0.06] overflow-hidden group relative"
             >
               <img
-                src={item.image_url}
+                src={resolveAssetUrl(item.image_url)}
                 alt={item.title}
                 className="w-full aspect-square object-cover"
               />
