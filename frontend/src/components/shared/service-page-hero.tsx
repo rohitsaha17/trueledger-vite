@@ -44,7 +44,6 @@ interface ServicePageHeroProps {
 }
 
 export function ServicePageHero({
-  eyebrow: _eyebrow,
   title,
   description,
   imageSrc,
@@ -55,7 +54,7 @@ export function ServicePageHero({
   return (
     <section className="pt-4 pb-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden min-h-[420px] md:min-h-[500px] flex items-center bg-[#140e2a]">
+        <div className="relative rounded-3xl overflow-hidden min-h-105 md:min-h-125 flex items-center bg-[#140e2a]">
           {/* Background media */}
           {videoSrc ? (
             <>
